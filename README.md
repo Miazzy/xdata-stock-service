@@ -9,14 +9,9 @@
  -->
 
 <div style="text-align:center">
-<img width='110' height='200'  src='https://gitee.com/gankai/vue-jd-h5/raw/master/src/assets/image/home_img.jpg' />
-<img width='110px' height='200' src='https://gitee.com/gankai/vue-jd-h5/raw/master/src/assets/image/cart_home.jpg' />
-<img width='110px' height='200' src='https://gitee.com/gankai/vue-jd-h5/raw/master/src/assets/image/me_home.jpg' />
-<img width='110px' height='200' src='https://gitee.com/gankai/vue-jd-h5/raw/master/src/assets/image/WechatIMG15.png' />
-<img width='110px' height='200' src='https://gitee.com/gankai/vue-jd-h5/raw/master/src/assets/image/shal_home.jpg' />
-<img width='110px' height='200' src='https://gitee.com/gankai/vue-jd-h5/raw/master/src/assets/image/buy_home.jpg' />
-<img width='110px' src='https://gitee.com/gankai/vue-jd-h5/raw/master/src/assets/image/hotal_home.jpg' height='200' />
-<img width='110px' height='200' src='https://gitee.com/gankai/vue-jd-h5/raw/master/src/assets/image/search_img.jpg' />
+<img width='110' height='200'  src='https://gitee.com/gankai/vue-jd-h5/raw/master/src/assets/image/demo/home.png' />
+<img width='110px' height='200' src='https://gitee.com/gankai/vue-jd-h5/raw/master/src/assets/image/demo/boss.png' />
+<img width='110px' height='200' src='https://gitee.com/gankai/vue-jd-h5/raw/master/src/assets/image/demo/mine.png' />
 </div>
 
 # xdata-stock-service
