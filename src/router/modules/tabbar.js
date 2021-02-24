@@ -23,7 +23,7 @@ export default [{
             index: 1
         },
         component: () =>
-            import ('@/views/classify/index.vue')
+            import ('@/views/boss/boss.vue')
     },
     {
         path: '/shopCart',
