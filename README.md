@@ -9,9 +9,10 @@
  -->
 
 <div style="text-align:center">
-<img width='110' height='200'  src='https://gitee.com/gankai/vue-jd-h5/raw/master/src/assets/image/demo/home.png' />
-<img width='110px' height='200' src='https://gitee.com/gankai/vue-jd-h5/raw/master/src/assets/image/demo/boss.png' />
-<img width='110px' height='200' src='https://gitee.com/gankai/vue-jd-h5/raw/master/src/assets/image/demo/mine.png' />
+<img width='110' height='200'  src='https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.0/src/assets/image/demo/home.png' />
+
+<img width='110px' height='200' src='https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.0/src/assets/image/demo/boss.png' />
+<img width='110px' height='200' src='https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.0/src/assets/image/demo/mine.png' />
 </div>
 
 # xdata-stock-service
