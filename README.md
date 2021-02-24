@@ -19,7 +19,7 @@
 <img width='110px' height='200' src='https://gitee.com/gankai/vue-jd-h5/raw/master/src/assets/image/search_img.jpg' />
 </div>
 
-# vue3-jd-h5
+# xdata-stock-service
 
 <p align='center'>
 	<a href="https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2FGitHubGanKai%2Fvue3-jd-h5"><img alt="Twitter" src="https://img.shields.io/twitter/url/https/github.com/GitHubGanKai/vue3-jd-h5.svg?style=social"></a>
@@ -32,7 +32,7 @@
 
 ##  项目介绍
 
-`vue3-jd-h5`是一个电商H5页面前端项目，基于**Vue 3.0.0** +  **Vant 3.0.0** 实现，主要包括首页、分类页面、我的页面、购物车等。
+`xdata-stock-service`是一个企业股权管理平台前端项目，基于**Vue 3.0.0** +  **Vant 3.0.0** 实现，主要包括首页、分类页面、我的页面、购物车等。
 
 📖本地线下代码**vue2.6**在分支<a target='_blank' href='https://github.com/GitHubGanKai/vue-jd-h5/blob/demo/README.md'>demo</a>中，使用**mockjs**数据进行开发，效果图请点击🔗<a target='_blank' href='http://gankai.gitee.io/vue-jd-h5/index'>这里</a>
 
