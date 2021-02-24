@@ -161,58 +161,7 @@
             </router-link>
         </ul>
     </section>
-
-    <van-dialog class="node-dialog" v-model="show" confirmButtonText="我知道啦" close-on-click-overlay confirmButtonColor="#3A3A3A" confirm-button-color="#FCE14B" :show-cancel-button="false" :show-confirm-button="false">
-        <article>
-            <header class="dialog-header">
-                <img src="../../assets/image/product/header-good.png" />
-            </header>
-            <van-divider :style="{
-            color: '#3A3A3A',
-            borderColor: '#FFE31F',
-            fontWeight: '600',
-            fontSize: '14px',
-            padding: '0 15px'
-          }">我的节点数据</van-divider>
-            <ul class="my-node-data">
-                <li class="data-item">
-                    <img src="../../assets/image/product/share-node-img.png" alt />
-                    <span class="node-text">分享节点</span>
-                </li>
-                <li class="data-item">
-                    <img src="../../assets/image/product/area-node-img.png" alt />
-                    <span class="node-text">区级节点</span>
-                </li>
-                <li class="data-item">
-                    <img src="../../assets/image/product/municipal-node-img.png" alt />
-                    <span class="node-text">市级节点</span>
-                </li>
-                <li class="data-item">
-                    <img src="../../assets/image/product/state-node-img.png" alt />
-                    <span class="node-text">州级节点</span>
-                </li>
-                <li class="data-item">
-                    <img src="../../assets/image/product/industry-node-img.png" alt />
-                    <span class="node-text">行业节点</span>
-                </li>
-                <li class="data-item">
-                    <img src="../../assets/image/product/super-node-img.png" alt />
-                    <span class="node-text">超级节点</span>
-                </li>
-            </ul>
-            <van-divider :style="{
-            color: '#3A3A3A',
-            borderColor: '#FFE31F',
-            fontWeight: '600',
-            fontSize: '14px',
-            padding: '0 15px'
-          }" />
-            <div class="node-bottom">
-                <span class="know-btn" @click="handleClose">我知道啦</span>
-                <img class="gray-img" src="../../assets/image/product/gray-node-img.png" />
-            </div>
-        </article>
-    </van-dialog>
+    
     <tabbar></tabbar>
 </div>
 </template>
