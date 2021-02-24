@@ -1,5 +1,5 @@
 <template>
-<div class="mine-layout">
+<div class="mine-layout" style="background:linear-gradient(skyblue, #f0f0f0);">
     <section class="mine-header">
         <img src="../../assets/image/product/store-new.png" class="header-img" />
         <div v-show="!loginFlag" class="login-regist" style="color:#fefefe;">
