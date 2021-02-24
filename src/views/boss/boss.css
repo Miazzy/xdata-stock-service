@@ -107,7 +107,7 @@
 
 .psearch-list {
     position: absolute;
-    top: 50px;
+    top: 1.53rem;
     bottom: 0px;
     left: 0;
     right: 0;
@@ -159,4 +159,27 @@
     vertical-align: middle;
     overflow: visible;
     background-color: skyblue;
+}
+
+.search-bar-input .searchkey {
+    width: calc(100% - 60px);
+    height: 34px;
+    outline: none;
+    border: none;
+    background: none;
+    position: relative;
+    color: #333333;
+    font-size: 13px;
+    top: -1px;
+}
+
+.search-bar-input {
+    margin: auto 5px auto 5px;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    top: 7px;
+    border-radius: 4px;
+    padding: 0px 5px 0 10px;
+    background: #fff;
 }
