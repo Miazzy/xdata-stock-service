@@ -28,11 +28,7 @@
 
 ##  项目介绍
 
-`xdata-stock-service`是一个企业股权管理平台前端项目，基于**Vue 3.0.0** +  **Vant 3.0.0** 实现，主要包括首页、分类页面、我的页面、购物车等。
-
-📖本地线下代码**vue2.6**在分支<a target='_blank' href='https://github.com/GitHubGanKai/vue-jd-h5/blob/demo/README.md'>demo</a>中，使用**mockjs**数据进行开发，效果图请点击🔗<a target='_blank' href='http://gankai.gitee.io/vue-jd-h5/index'>这里</a>
-
-⚠️master分支是线上生产环境代码，因为部分后台接口已经挂了😫，可能无法看到实际效果。
+`xdata-stock-service`是一个企业股权管理平台前端项目，基于**Vue 3.0.0** +  **Vant 3.0.0** 实现，主要包括首页、查老板、动态、我的。
 
 📌 本项目还有很多不足之处，如果有想为此做贡献的伙伴，也欢迎给我们提出PR，或者issue ；
 
@@ -44,49 +40,28 @@
 1. 首先,在本地选择一个文件，将代码clone到本地：
 
 ```bash
-git clone https://github.com/GitHubGanKai/vue-jd-h5.git 
+git clone https://github.com/Miazzy/xdata-stock-service
 ```
 
 2. 查看所有分支：
 
 ```bash
-gankaideMacBook-Pro:vue-jd-h5 gankai$ git branch -a
-  demo
-  vue-next
-  dev
-  feature
-  gh-pages
+MacBook-Pro:xdata-stock-service $ git branch -a
 * master
-  remotes/origin/HEAD -> origin/master
-  remotes/origin/demo
-  remotes/origin/vue-next
-  remotes/origin/dev
-  remotes/origin/feature
-  remotes/origin/gh-pages
-  remotes/origin/master
 ```
 
-3. 切换到分支**vue-next**开始进行开发！
+3. 切换到分支**main**开始进行开发！
 
 4. 在 IDEA 命令行中运行命令：npm install,下载相关依赖;
 
 5. 🔧 开发环境 在 IDEA 命令行中运行命令：`npm run dev`,运行项目;
-
-6. 📦在 IDEA 命令行中运行命令：`npm run dll:build`,打包项目,📱手机扫描下面👇二维码进行查看！
-
-
-<div style="text-align:center">
-<img width='200px' height='200px' src='https://gitee.com/gankai/vue-jd-h5/raw/master/src/assets/image/qrcode.png' />
-</div>
-
 
 ## 项目的初始化
 
 💡如果你在安装包的时候速度比较慢，那是因为NPM服务器在国外，这里给大家推荐一个可以随时切换NPM镜像的工具👉[NRM](https://www.npmjs.com/package/nrm)，有时候，我们开发的时候，为了加快安装包的安装速度，我们需要切换镜像源为国内的，但是，如果需要发布一些自己的组件到NPM的时候，又要来回切换回来，有了这个我们就方便多了！使用`$ npm install -g nrm`全局安装，然后，可以使用`nrm ls` 查看所有镜像：
 
 ```bash
-gankaideMacBook-Pro:~ gankai$ nrm ls
-
+MacBook-Pro:~$ nrm ls
   npm -------- https://registry.npmjs.org/
 * yarn ------- https://registry.yarnpkg.com/
   cnpm ------- http://r.cnpmjs.org/
