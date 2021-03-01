@@ -35,7 +35,7 @@
     <section class="mine-content">
         <span style="padding-top:0.35rem;display:block;">工商管理</span>
         <ul class="options-list">
-            <router-link to="wallet/myWallet" class="option-item" tag="li">
+            <router-link to="/company" class="option-item" tag="li">
                 <div class="item-info">
                     <van-icon name="hotel-o" color="dodgerblue" size="0.71rem" style="margin-right:10px;"/>
                     <span>设立公司</span>

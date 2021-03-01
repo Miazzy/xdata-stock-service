@@ -1,10 +1,9 @@
-export default [
-  {
+export default [{
     path: '/order/appeal',
     name: 'appeal',
     meta: {
-      index: 3
+        index: 3
     },
-    component: () => import('@/views/order/appeal.vue')
-  }
-]
+    component: () =>
+        import ('@/views/order/appeal.vue')
+}]

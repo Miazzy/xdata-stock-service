@@ -2,7 +2,7 @@
 <keep-alive>
     <div id="content" style="margin-top: 0px; overflow-x: hidden;">
         <header id="wx-header" style="overflow-x:hidden;">
-            <van-nav-bar title="基础信息" left-text="返回" left-arrow @click-left="returnBack" @click-right="searching">
+            <van-nav-bar title="设立管理" left-text="返回" left-arrow @click-left="returnBack" @click-right="searching">
                 <template #right>
                     <van-icon name="search" />
                 </template>
@@ -38,13 +38,10 @@ export default {
         tabbar
     },
     setup(props, context) {
-        const {
-            ctx
-        } = getCurrentInstance();
-
-        const $store = useStore(); // ctx.$store === $store  ==>true 其实是同一个对象！
+        const { ctx } = getCurrentInstance();
+        const $store = useStore(); 
         const $router = useRouter();
-        const $route = useRoute(); // 可以拿到所有和路由相关的参数
+        const $route = useRoute(); 
         const active = ref("");
 
         const state = reactive({
