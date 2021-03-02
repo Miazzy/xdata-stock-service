@@ -164,26 +164,4 @@ export default {
 
 <style lang="scss" scoped>
 @import "./base.scss";
-
-#wx-header {
-    overflow-x: hidden;
-}
-
-.child {
-    transform: scale(0.75);
-    width: 1.35rem;
-    height: 1.35rem;
-    background: #0f0f0f;
-    border-radius: 4px;
-    margin: 0.25rem 5px 4px 5px;
-}
-
-.child:first-child {
-    transform: scale(0.75);
-    width: 1.35rem;
-    height: 1.35rem;
-    background: #0f0f0f;
-    border-radius: 40px;
-    margin: 0.25rem 5px 4px .225rem;
-}
 </style>
