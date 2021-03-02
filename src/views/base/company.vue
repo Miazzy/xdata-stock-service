@@ -19,44 +19,44 @@
                         <van-row>
                             <van-col span="6">
                                 <van-badge>
-                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.8/images/worktile_9.png">
+                                    <img class="child" style="" :src="state.imgs[0]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">设立公司</div>
                             </van-col>
                             <van-col span="6">
                                 <van-badge>
-                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/list_00.png">
+                                    <img class="child" style="" :src="state.imgs[1]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">录入公司</div>
                             </van-col>
                             <van-col span="6">
                                 <van-badge>
-                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/hire.png">
+                                    <img class="child" style="" :src="state.imgs[2]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">录董监高</div>
                             </van-col>
                             <van-col span="6">
                                 <van-badge>
-                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/pay.png">
+                                    <img class="child" style="" :src="state.imgs[3]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">录入股东</div>
                             </van-col>
                             <van-col span="6">
                                 <van-badge>
-                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.5/images/shenpi.png">
+                                    <img class="child" style="" :src="state.imgs[4]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">录入质押</div>
                             </van-col>
                             <van-col span="6">
                                 <van-badge>
-                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/jiejing.png">
+                                    <img class="child" style="" :src="state.imgs[5]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">录入资质</div>
                             </van-col>
                         </van-row>
                     </div>
                 </div>
-                <div style="margin-top:0.05rem;height:0.05rem;">
+                <div id="weui-cells-bottom" style="">
                     <span></span>
                 </div>
             </section>
@@ -97,8 +97,14 @@ export default {
         const active = ref("");
 
         const state = reactive({
-            homeImgs: [],
-            tabArray: []
+            imgs: [
+                'https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.8/images/worktile_9.png',
+                'https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/list_00.png',
+                'https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/hire.png',
+                'https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/pay.png',
+                'https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.5/images/shenpi.png',
+                'https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/jiejing.png',
+            ],
         });
 
         onMounted(() => {
@@ -150,7 +156,7 @@ export default {
 
         return {
             active,
-            ...toRefs(state),
+            state,
             returnBack,
             searching,
             beforeEnter,
