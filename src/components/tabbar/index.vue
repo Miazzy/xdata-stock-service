@@ -1,12 +1,3 @@
-<!--
- * @version: v 1.0.0
- * @Github: https://github.com/GitHubGanKai
- * @Author: GitHubGanKai
- * @Date: 2021-01-01 13:57:27
- * @LastEditors: gankai
- * @LastEditTime: 2021-01-02 15:07:37
- * @FilePath: /refactor-with-vue3/src/components/tabbar/index.vue
--->
 <template>
 <div class="tabbar">
     <van-tabbar route v-model="active" @change="tabChange(active)" active-color="#FE4F70" inactive-color="#949497" style="z-index: 100">
@@ -16,7 +7,7 @@
         <van-tabbar-item name="classify" icon="apps-o" to="/classify">
             查老板
         </van-tabbar-item>
-        <van-tabbar-item name="shopCart" icon="browsing-history-o" to="/news">
+        <van-tabbar-item name="news" icon="browsing-history-o" to="/news">
             发现
         </van-tabbar-item>
         <van-tabbar-item name="mine" icon="user-o" to="/mine">
@@ -67,7 +58,7 @@ export default {
     },
     methods: {
         tabChange(active) {
-            console.log("==active=====>", active);
+            console.log("active => ", active);
         }
     }
 };
