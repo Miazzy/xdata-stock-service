@@ -62,4 +62,44 @@ export default [{
     },
     component: () =>
         import ('@/views/base/allowance.vue')
+}, {
+    path: '/qualification',
+    name: 'qualification',
+    meta: {
+        index: 109
+    },
+    component: () =>
+        import ('@/views/base/qualification.vue')
+}, {
+    path: '/property',
+    name: 'property',
+    meta: {
+        index: 110
+    },
+    component: () =>
+        import ('@/views/base/property.vue')
+}, {
+    path: '/account',
+    name: 'account',
+    meta: {
+        index: 110
+    },
+    component: () =>
+        import ('@/views/base/account.vue')
+}, {
+    path: '/lawsuit',
+    name: 'lawsuit',
+    meta: {
+        index: 110
+    },
+    component: () =>
+        import ('@/views/base/lawsuit.vue')
+}, {
+    path: '/punish',
+    name: 'punish',
+    meta: {
+        index: 110
+    },
+    component: () =>
+        import ('@/views/base/punish.vue')
 }]

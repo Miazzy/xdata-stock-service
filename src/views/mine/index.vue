@@ -76,42 +76,42 @@
     <section class="mine-content">
         <span style="padding-top:0.35rem;display:block;">记录管理</span>
         <ul class="options-list">
-            <router-link to="/mine/shippingAddress" class="option-item" tag="li">
+            <router-link to="/allowance" class="option-item" tag="li">
                 <div class="item-info">
                     <van-icon name="after-sale" color="goldenrod" size="0.71rem" style="margin-right:10px;" />
                     <span>补贴记录</span>
                 </div>
                 <van-icon name="arrow" color="#DBDBDB" />
             </router-link>
-            <router-link to="/mine/messageCenter" class="option-item" tag="li">
+            <router-link to="/qualification" class="option-item" tag="li">
                 <div class="item-info">
                     <van-icon name="newspaper-o" color="darkorange" size="0.71rem" style="margin-right:10px;" />
                     <span>资质管理</span>
                 </div>
                 <van-icon color="#DBDBDB" name="arrow" />
             </router-link>
-            <router-link to="/mine/helpCenter" class="option-item" tag="li">
+            <router-link to="/property" class="option-item" tag="li">
                 <div class="item-info">
                     <van-icon name="label-o" color="cornflowerblue" size="0.71rem" style="margin-right:10px;" />
                     <span>知识产权</span>
                 </div>
                 <van-icon color="#DBDBDB" name="arrow" />
             </router-link>
-            <router-link to="/mine/setting" class="option-item" tag="li">
+            <router-link to="/lawsuit" class="option-item" tag="li">
                 <div class="item-info">
                     <van-icon name="todo-list-o" color="orangered" size="0.71rem" style="margin-right:10px;" />
                     <span>诉讼管理</span>
                 </div>
                 <van-icon color="#DBDBDB" name="arrow" />
             </router-link>
-            <router-link to="/mine/setting" class="option-item" tag="li">
+            <router-link to="/account" class="option-item" tag="li">
                 <div class="item-info">
                     <van-icon name="friends-o" color="deepskyblue" size="0.71rem" style="margin-right:10px;" />
                     <span>账户管理</span>
                 </div>
                 <van-icon color="#DBDBDB" name="arrow" />
             </router-link>
-            <router-link to="/mine/setting" class="option-item" tag="li">
+            <router-link to="/punish" class="option-item" tag="li">
                 <div class="item-info">
                     <van-icon name="close" color="tomato" size="0.71rem" style="margin-right:10px;" />
                     <span>处罚记录</span>
