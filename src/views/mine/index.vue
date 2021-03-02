@@ -154,6 +154,29 @@
             </router-link>
         </ul>
     </section>
+
+    <section class="mine-content">
+        <span style="padding-top:0.35rem;display:block;">系统管理</span>
+        <ul class="options-list">
+            <router-link to="/mine/helpCenter" class="option-item" tag="li">
+                <div class="item-info">
+                    <van-icon name="question-o" color="goldenrod" size="0.71rem" style="margin-right:10px;"  />
+                    <span>帮助中心</span>
+                </div>
+                <van-icon color="#DBDBDB" name="arrow" />
+            </router-link>
+            <router-link to="/mine/setting" class="option-item" tag="li">
+                <div class="item-info">
+                    <van-icon name="setting-o" color="gray" size="0.71rem" style="margin-right:10px;" />
+                    <span>设置</span>
+                </div>
+                <van-icon color="#DBDBDB" name="arrow" />
+            </router-link>
+        </ul>
+    </section>
+
+    <section style="height:2.50rem;">
+    </section>
     
     <tabbar></tabbar>
 </div>
