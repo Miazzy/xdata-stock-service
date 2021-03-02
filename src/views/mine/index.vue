@@ -37,21 +37,21 @@
         <ul class="options-list">
             <router-link to="/company" class="option-item" tag="li">
                 <div class="item-info">
-                    <van-icon name="hotel-o" color="dodgerblue" size="0.71rem" style="margin-right:10px;"/>
+                    <van-icon name="hotel-o" color="dodgerblue" size="0.71rem" style="margin-right:10px;" />
                     <span>设立公司</span>
                 </div>
                 <van-icon name="arrow" color="#DBDBDB" />
             </router-link>
             <router-link to="/alteration" class="option-item" tag="li">
                 <div class="item-info">
-                    <van-icon name="chart-trending-o" color="chocolate" size="0.71rem" style="margin-right:10px;"/>
+                    <van-icon name="chart-trending-o" color="chocolate" size="0.71rem" style="margin-right:10px;" />
                     <span>信息变更</span>
                 </div>
                 <van-icon name="arrow" color="#DBDBDB" />
             </router-link>
             <router-link to="/pledge" class="option-item" tag="li">
                 <div class="item-info">
-                    <van-icon name="balance-list-o" color="royalblue" size="0.71rem" style="margin-right:10px;"  />
+                    <van-icon name="balance-list-o" color="royalblue" size="0.71rem" style="margin-right:10px;" />
                     <span>股权质押</span>
                 </div>
                 <van-icon name="arrow" color="#DBDBDB" />
@@ -65,7 +65,7 @@
             </router-link>
             <router-link to="/withdraw" class="option-item" tag="li">
                 <div class="item-info">
-                    <van-icon name="delete-o" color="orangered" size="0.71rem" style="margin-right:10px;"/>
+                    <van-icon name="delete-o" color="orangered" size="0.71rem" style="margin-right:10px;" />
                     <span>注销公司</span>
                 </div>
                 <van-icon name="arrow" color="#DBDBDB" />
@@ -78,28 +78,28 @@
         <ul class="options-list">
             <router-link to="/mine/shippingAddress" class="option-item" tag="li">
                 <div class="item-info">
-                    <van-icon name="after-sale" color="goldenrod" size="0.71rem" style="margin-right:10px;"  />
+                    <van-icon name="after-sale" color="goldenrod" size="0.71rem" style="margin-right:10px;" />
                     <span>补贴记录</span>
                 </div>
                 <van-icon name="arrow" color="#DBDBDB" />
             </router-link>
             <router-link to="/mine/messageCenter" class="option-item" tag="li">
                 <div class="item-info">
-                    <van-icon name="newspaper-o"  color="darkorange" size="0.71rem" style="margin-right:10px;"  />
+                    <van-icon name="newspaper-o" color="darkorange" size="0.71rem" style="margin-right:10px;" />
                     <span>资质管理</span>
                 </div>
                 <van-icon color="#DBDBDB" name="arrow" />
             </router-link>
             <router-link to="/mine/helpCenter" class="option-item" tag="li">
                 <div class="item-info">
-                    <van-icon name="label-o"  color="cornflowerblue" size="0.71rem" style="margin-right:10px;"  />
+                    <van-icon name="label-o" color="cornflowerblue" size="0.71rem" style="margin-right:10px;" />
                     <span>知识产权</span>
                 </div>
                 <van-icon color="#DBDBDB" name="arrow" />
             </router-link>
             <router-link to="/mine/setting" class="option-item" tag="li">
                 <div class="item-info">
-                    <van-icon name="todo-list-o"  color="orangered" size="0.71rem" style="margin-right:10px;"  />
+                    <van-icon name="todo-list-o" color="orangered" size="0.71rem" style="margin-right:10px;" />
                     <span>诉讼管理</span>
                 </div>
                 <van-icon color="#DBDBDB" name="arrow" />
@@ -126,7 +126,7 @@
         <ul class="options-list">
             <router-link to="/mine/shippingAddress" class="option-item" tag="li">
                 <div class="item-info">
-                    <van-icon name="records" color="deepskyblue" size="0.71rem" style="margin-right:10px;"  />
+                    <van-icon name="records" color="deepskyblue" size="0.71rem" style="margin-right:10px;" />
                     <span>身份信息</span>
                 </div>
                 <van-icon name="arrow" color="#DBDBDB" />
@@ -140,7 +140,7 @@
             </router-link>
             <router-link to="/mine/helpCenter" class="option-item" tag="li">
                 <div class="item-info">
-                    <van-icon name="description" color="goldenrod" size="0.71rem" style="margin-right:10px;"  />
+                    <van-icon name="description" color="goldenrod" size="0.71rem" style="margin-right:10px;" />
                     <span>项目证照</span>
                 </div>
                 <van-icon color="#DBDBDB" name="arrow" />
@@ -160,8 +160,22 @@
         <ul class="options-list">
             <router-link to="/mine/helpCenter" class="option-item" tag="li">
                 <div class="item-info">
-                    <van-icon name="question-o" color="goldenrod" size="0.71rem" style="margin-right:10px;"  />
+                    <van-icon name="question-o" color="goldenrod" size="0.71rem" style="margin-right:10px;" />
                     <span>帮助中心</span>
+                </div>
+                <van-icon color="#DBDBDB" name="arrow" />
+            </router-link>
+            <router-link to="/mine/messageCenter" class="option-item" tag="li">
+                <div class="item-info">
+                    <van-icon name="chat-o" color="rosybrown" size="0.71rem" style="margin-right:10px;" />
+                    <span>消息中心</span>
+                </div>
+                <van-icon color="#DBDBDB" name="arrow" />
+            </router-link>
+            <router-link to="/mine/shippingAddress" class="option-item" tag="li">
+                <div class="item-info">
+                    <van-icon name="diamond-o" color="cornflowerblue" size="0.71rem" style="margin-right:10px;" />
+                    <span>我的地址</span>
                 </div>
                 <van-icon color="#DBDBDB" name="arrow" />
             </router-link>
@@ -177,7 +191,7 @@
 
     <section style="height:2.50rem;">
     </section>
-    
+
     <tabbar></tabbar>
 </div>
 </template>
@@ -222,5 +236,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import  "./index.scss";
+@import "./index.scss";
 </style>
