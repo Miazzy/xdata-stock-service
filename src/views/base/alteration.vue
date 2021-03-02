@@ -3,7 +3,7 @@
 
     <div id="content" style="margin-top: 0px; overflow-x: hidden;">
 
-        <header id="wx-header" style="overflow-x:hidden;">
+        <header id="wx-header" style="">
             <van-nav-bar title="信息变更" left-text="返回" left-arrow @click-left="returnBack" @click-right="searching">
                 <template #right>
                     <van-icon name="search" />
@@ -11,28 +11,28 @@
             </van-nav-bar>
         </header>
 
-        <div style="padding:0px 0.25rem; padding-bottom:1.5rem;">
-            <section style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%); background-color: #fff; border-radius: 0.21333rem; padding: 0 0.42667rem; margin-top: 0.48rem; margin-bottom:0.40rem;">
-                <div id="weui-cells-flex" class="weui-cells" style="display:block;position:relative;">
-                    <div class="weui-cell-title" style="font-size:0.350rem;margin-top:0.30rem;margin-left:0.05rem;padding-top:0.25rem;">变更管理</div>
-                    <div class="flex-layout-content" id="scanCell" style="margin-top:0.15rem;">
+        <div class="section-content" style="">
+            <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%);">
+                <div id="weui-cells-flex" class="weui-cells" style="">
+                    <div class="weui-cell-title" style="">变更管理</div>
+                    <div class="flex-layout-content" id="scanCell" style="">
                         <van-row>
                             <van-col span="6">
-                                <van-badge >
-                                    <img class="child" style="width:1.60rem;height:1.60rem;" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.4/images/shenpi_03.png">
+                                <van-badge>
+                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.4/images/shenpi_03.png">
                                 </van-badge>
-                                <div style="text-align:center;margin-top:-0.25rem;">信息变更</div>
+                                <div class="section-flex-layout-content" style="">信息变更</div>
                             </van-col>
                             <van-col span="6">
-                                <van-badge >
-                                    <img class="child" style="width:1.60rem;height:1.60rem;" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.5/images/shenpi_06.png">
+                                <van-badge>
+                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.5/images/shenpi_06.png">
                                 </van-badge>
-                                <div style="text-align:center;margin-top:-0.25rem;">录入变更</div>
+                                <div class="section-flex-layout-content" style="">录入变更</div>
                             </van-col>
                         </van-row>
                     </div>
                 </div>
-                <div style="margin-top:0.05rem;height:0.05rem;">
+                <div id="weui-cells-bottom" style="">
                     <span></span>
                 </div>
             </section>
@@ -73,8 +73,7 @@ export default {
         const active = ref("");
 
         const state = reactive({
-            homeImgs: [],
-            tabArray: []
+            imgs: [],
         });
 
         onMounted(() => {
@@ -126,7 +125,7 @@ export default {
 
         return {
             active,
-            ...toRefs(state),
+            state,
             returnBack,
             searching,
             beforeEnter,
@@ -140,22 +139,4 @@ export default {
 
 <style lang="scss" scoped>
 @import "./base.scss";
-
-.child {
-    transform: scale(0.75);
-    width: 1.35rem;
-    height: 1.35rem;
-    background: #0f0f0f;
-    border-radius: 4px;
-    margin: 0.25rem 5px 4px 5px;
-}
-
-.child:first-child {
-    transform: scale(0.75);
-    width: 1.35rem;
-    height: 1.35rem;
-    background: #0f0f0f;
-    border-radius: 40px;
-    margin: 0.25rem 5px 4px .225rem;
-}
 </style>

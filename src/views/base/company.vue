@@ -12,7 +12,7 @@
         </header>
 
         <div class="section-content" style="">
-            <section class="section" style="">
+            <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%);">
                 <div id="weui-cells-flex" class="weui-cells" style="">
                     <div class="weui-cell-title" style="">设立管理</div>
                     <div class="flex-layout-content" id="scanCell" style="">
