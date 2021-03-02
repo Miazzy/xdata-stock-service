@@ -82,7 +82,7 @@ export default [{
     path: '/account',
     name: 'account',
     meta: {
-        index: 110
+        index: 111
     },
     component: () =>
         import ('@/views/base/account.vue')
@@ -90,7 +90,7 @@ export default [{
     path: '/lawsuit',
     name: 'lawsuit',
     meta: {
-        index: 110
+        index: 112
     },
     component: () =>
         import ('@/views/base/lawsuit.vue')
@@ -98,8 +98,32 @@ export default [{
     path: '/punish',
     name: 'punish',
     meta: {
-        index: 110
+        index: 113
     },
     component: () =>
         import ('@/views/base/punish.vue')
+}, {
+    path: '/license',
+    name: 'license',
+    meta: {
+        index: 114
+    },
+    component: () =>
+        import ('@/views/base/license.vue')
+}, {
+    path: '/otherlicense', //businesslicense
+    name: 'otherlicense',
+    meta: {
+        index: 115
+    },
+    component: () =>
+        import ('@/views/base/otherlicense.vue')
+}, {
+    path: '/businesslicense', //businesslicense
+    name: 'businesslicense',
+    meta: {
+        index: 116
+    },
+    component: () =>
+        import ('@/views/base/businesslicense.vue')
 }]

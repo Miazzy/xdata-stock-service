@@ -131,21 +131,21 @@
                 </div>
                 <van-icon name="arrow" color="#DBDBDB" />
             </router-link>
-            <router-link to="/mine/messageCenter" class="option-item" tag="li">
+            <router-link to="/businesslicense" class="option-item" tag="li">
                 <div class="item-info">
                     <van-icon name="newspaper-o" color="rosybrown" size="0.71rem" style="margin-right:10px;" />
                     <span>营业执照</span>
                 </div>
                 <van-icon color="#DBDBDB" name="arrow" />
             </router-link>
-            <router-link to="/mine/helpCenter" class="option-item" tag="li">
+            <router-link to="/license" class="option-item" tag="li">
                 <div class="item-info">
                     <van-icon name="description" color="goldenrod" size="0.71rem" style="margin-right:10px;" />
                     <span>项目证照</span>
                 </div>
                 <van-icon color="#DBDBDB" name="arrow" />
             </router-link>
-            <router-link to="/mine/setting" class="option-item" tag="li">
+            <router-link to="/otherlicense" class="option-item" tag="li">
                 <div class="item-info">
                     <van-icon name="debit-pay" color="gray" size="0.71rem" style="margin-right:10px;" />
                     <span>其他证照</span>
