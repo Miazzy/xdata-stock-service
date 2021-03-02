@@ -18,8 +18,16 @@ export default [{
     path: '/alteration',
     name: 'alteration',
     meta: {
-        index: 102
+        index: 103
     },
     component: () =>
         import ('@/views/base/alteration.vue')
+}, {
+    path: '/pledge',
+    name: 'pledge',
+    meta: {
+        index: 104
+    },
+    component: () =>
+        import ('@/views/base/pledge.vue')
 }]
