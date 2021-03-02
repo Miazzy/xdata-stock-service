@@ -49,7 +49,7 @@
                 </div>
                 <van-icon name="arrow" color="#DBDBDB" />
             </router-link>
-            <router-link to="/wallet/myWallet" class="option-item" tag="li">
+            <router-link to="/pledge" class="option-item" tag="li">
                 <div class="item-info">
                     <van-icon name="balance-list-o" color="royalblue" size="0.71rem" style="margin-right:10px;"  />
                     <span>股权质押</span>
