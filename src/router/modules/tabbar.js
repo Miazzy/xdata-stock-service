@@ -24,17 +24,7 @@ export default [{
         },
         component: () =>
             import ('@/views/boss/boss.vue')
-    },
-    {
-        path: '/shopCart',
-        name: 'shopCart',
-        meta: {
-            index: 1
-        },
-        component: () =>
-            import ('@/views/shopCart/index.vue')
-    },
-    {
+    }, {
         path: '/mine',
         name: 'mine',
         meta: {
