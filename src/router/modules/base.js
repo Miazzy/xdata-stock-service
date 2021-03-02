@@ -46,4 +46,12 @@ export default [{
     },
     component: () =>
         import ('@/views/base/withdraw.vue')
+}, {
+    path: '/news',
+    name: 'news',
+    meta: {
+        index: 104
+    },
+    component: () =>
+        import ('@/views/home/news.vue')
 }]

@@ -16,7 +16,7 @@
         <van-tabbar-item name="classify" icon="apps-o" to="/classify">
             查老板
         </van-tabbar-item>
-        <van-tabbar-item name="shopCart" icon="browsing-history-o" to="/shopCart">
+        <van-tabbar-item name="shopCart" icon="browsing-history-o" to="/news">
             发现
         </van-tabbar-item>
         <van-tabbar-item name="mine" icon="user-o" to="/mine">
