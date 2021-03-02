@@ -1,7 +1,7 @@
 <template>
 <div class="home">
     <div>
-        <div class="home-top">
+        <div class="home-top" style="background: url(https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.3/src/assets/img/top_bg3.png) no-repeat; background-size: 100% 100%;">
             <div class="home-logo-wrap" style="padding-top:0.45rem;margin-bottom:0.65rem;"> 
                 <span style="color:#fefefe;font-size:0.75rem;">
                     企业股权查询平台
