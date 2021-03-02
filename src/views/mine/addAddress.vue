@@ -1,12 +1,3 @@
-<!--
- * @version: v 1.0.0
- * @Github: https://github.com/GitHubGanKai
- * @Author: GitHubGanKai
- * @Date: 2021-01-01 17:19:50
- * @LastEditors: gankai
- * @LastEditTime: 2021-01-02 16:20:57
- * @FilePath: /refactor-with-vue3/src/views/mine/addAddress.vue
--->
 <template>
   <div class="add-address">
     <header class="page-header">

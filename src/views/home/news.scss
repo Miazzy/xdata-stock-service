@@ -6,4 +6,10 @@
     overflow: auto;
     background: #fff;
     -webkit-overflow-scrolling: touch;
+    .home-middle-content .lnews-cell:last-child {
+        position: relative;
+        padding: 10px 10px;
+        background: #fff;
+        border-bottom: 1px solid #f0f0f0;
+    }
 }

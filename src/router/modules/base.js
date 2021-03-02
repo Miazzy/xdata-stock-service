@@ -34,7 +34,7 @@ export default [{
     path: '/annals',
     name: 'annals',
     meta: {
-        index: 104
+        index: 105
     },
     component: () =>
         import ('@/views/base/annals.vue')
@@ -42,7 +42,7 @@ export default [{
     path: '/withdraw',
     name: 'withdraw',
     meta: {
-        index: 104
+        index: 106
     },
     component: () =>
         import ('@/views/base/withdraw.vue')
@@ -50,8 +50,16 @@ export default [{
     path: '/news',
     name: 'news',
     meta: {
-        index: 104
+        index: 107
     },
     component: () =>
         import ('@/views/home/news.vue')
+}, {
+    path: '/allowance',
+    name: 'allowance',
+    meta: {
+        index: 108
+    },
+    component: () =>
+        import ('@/views/base/allowance.vue')
 }]
