@@ -30,4 +30,20 @@ export default [{
     },
     component: () =>
         import ('@/views/base/pledge.vue')
+}, {
+    path: '/annals',
+    name: 'annals',
+    meta: {
+        index: 104
+    },
+    component: () =>
+        import ('@/views/base/annals.vue')
+}, {
+    path: '/withdraw',
+    name: 'withdraw',
+    meta: {
+        index: 104
+    },
+    component: () =>
+        import ('@/views/base/withdraw.vue')
 }]

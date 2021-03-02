@@ -56,14 +56,14 @@
                 </div>
                 <van-icon name="arrow" color="#DBDBDB" />
             </router-link>
-            <router-link to="/wallet/myWallet" class="option-item" tag="li">
+            <router-link to="/annals" class="option-item" tag="li">
                 <div class="item-info">
                     <van-icon name="notes-o" color="madiumaquamarine" size="0.71rem" style="margin-right:10px;" />
                     <span>年报上传</span>
                 </div>
                 <van-icon name="arrow" color="#DBDBDB" />
             </router-link>
-            <router-link to="/wallet/myWallet" class="option-item" tag="li">
+            <router-link to="/withdraw" class="option-item" tag="li">
                 <div class="item-info">
                     <van-icon name="delete-o" color="orangered" size="0.71rem" style="margin-right:10px;"/>
                     <span>注销公司</span>
