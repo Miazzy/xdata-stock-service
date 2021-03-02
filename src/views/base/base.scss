@@ -1,0 +1,32 @@
+.section-content {
+    padding: 0px 0.25rem;
+    padding-bottom: 1.5rem;
+    .section {
+        background-color: #fff;
+        border-radius: 0.21333rem;
+        padding: 0 0.42667rem;
+        margin-top: 0.48rem;
+        margin-bottom: 0.40rem;
+        .weui-cells {
+            display: block;
+            position: relative;
+            .weui-cell-title {
+                font-size: 0.35rem;
+                margin-top: 0.30rem;
+                margin-left: 0.05rem;
+                padding-top: 0.25rem;
+            }
+            .flex-layout-content {
+                margin-top: 0.15rem;
+                img {
+                    width: 1.60rem;
+                    height: 1.60rem;
+                }
+                .section-flex-layout-content {
+                    text-align: center;
+                    margin-top: -0.25rem;
+                }
+            }
+        }
+    }
+}

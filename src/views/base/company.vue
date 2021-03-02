@@ -3,7 +3,7 @@
 
     <div id="content" style="margin-top: 0px; overflow-x: hidden;">
 
-        <header id="wx-header" style="overflow-x:hidden;">
+        <header id="wx-header">
             <van-nav-bar title="设立公司" left-text="返回" left-arrow @click-left="returnBack" @click-right="searching">
                 <template #right>
                     <van-icon name="search" />
@@ -11,47 +11,47 @@
             </van-nav-bar>
         </header>
 
-        <div style="padding:0px 0.25rem; padding-bottom:1.5rem;">
-            <section style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%); background-color: #fff; border-radius: 0.21333rem; padding: 0 0.42667rem; margin-top: 0.48rem; margin-bottom:0.40rem;">
-                <div id="weui-cells-flex" class="weui-cells" style="display:block;position:relative;">
-                    <div class="weui-cell-title" style="font-size:0.425rem;margin-top:0.30rem;margin-left:0.05rem;padding-top:0.25rem;">设立管理</div>
-                    <div class="flex-layout-content" id="scanCell" style="margin-top:0.15rem;">
+        <div class="section-content" style="">
+            <section class="section" style="">
+                <div id="weui-cells-flex" class="weui-cells" style="">
+                    <div class="weui-cell-title" style="">设立管理</div>
+                    <div class="flex-layout-content" id="scanCell" style="">
                         <van-row>
                             <van-col span="6">
-                                <van-badge >
-                                    <img class="child" style="width:1.60rem;height:1.60rem;" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.8/images/worktile_9.png">
+                                <van-badge>
+                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.8/images/worktile_9.png">
                                 </van-badge>
-                                <div style="text-align:center;margin-top:-0.25rem;">设立公司</div>
+                                <div class="section-flex-layout-content" style="">设立公司</div>
                             </van-col>
                             <van-col span="6">
                                 <van-badge>
-                                    <img class="child" style="width:1.60rem;height:1.60rem;" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/list_00.png">
+                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/list_00.png">
                                 </van-badge>
-                                <div style="text-align:center;margin-top:-0.25rem;">录入公司</div>
+                                <div class="section-flex-layout-content" style="">录入公司</div>
                             </van-col>
                             <van-col span="6">
                                 <van-badge>
-                                    <img class="child" style="width:1.60rem;height:1.60rem;" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/hire.png">
+                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/hire.png">
                                 </van-badge>
-                                <div style="text-align:center;margin-top:-0.25rem;">录董监高</div>
+                                <div class="section-flex-layout-content" style="">录董监高</div>
                             </van-col>
                             <van-col span="6">
                                 <van-badge>
-                                    <img class="child" style="width:1.60rem;height:1.60rem;" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/pay.png">
+                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/pay.png">
                                 </van-badge>
-                                <div style="text-align:center;margin-top:-0.25rem;">录入股东</div>
+                                <div class="section-flex-layout-content" style="">录入股东</div>
                             </van-col>
                             <van-col span="6">
                                 <van-badge>
-                                    <img class="child" style="width:1.60rem;height:1.60rem;" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.5/images/shenpi.png">
+                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.5/images/shenpi.png">
                                 </van-badge>
-                                <div style="text-align:center;margin-top:-0.25rem;">录入质押</div>
+                                <div class="section-flex-layout-content" style="">录入质押</div>
                             </van-col>
                             <van-col span="6">
                                 <van-badge>
-                                    <img class="child" style="width:1.60rem;height:1.60rem;" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/jiejing.png">
+                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/jiejing.png">
                                 </van-badge>
-                                <div style="text-align:center;margin-top:-0.25rem;">录入资质</div>
+                                <div class="section-flex-layout-content" style="">录入资质</div>
                             </van-col>
                         </van-row>
                     </div>
@@ -164,6 +164,10 @@ export default {
 
 <style lang="scss" scoped>
 @import "./base.scss";
+
+#wx-header {
+    overflow-x: hidden;
+}
 
 .child {
     transform: scale(0.75);
