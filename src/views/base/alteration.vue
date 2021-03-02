@@ -19,39 +19,15 @@
                         <van-row>
                             <van-col span="6">
                                 <van-badge >
-                                    <img class="child" style="width:1.60rem;height:1.60rem;" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.8/images/worktile_9.png">
+                                    <img class="child" style="width:1.60rem;height:1.60rem;" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.4/images/shenpi_03.png">
                                 </van-badge>
-                                <div style="text-align:center;margin-top:-0.25rem;">设立公司</div>
+                                <div style="text-align:center;margin-top:-0.25rem;">信息变更</div>
                             </van-col>
                             <van-col span="6">
-                                <van-badge>
-                                    <img class="child" style="width:1.60rem;height:1.60rem;" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/list_00.png">
+                                <van-badge >
+                                    <img class="child" style="width:1.60rem;height:1.60rem;" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.5/images/shenpi_06.png">
                                 </van-badge>
-                                <div style="text-align:center;margin-top:-0.25rem;">录入公司</div>
-                            </van-col>
-                            <van-col span="6">
-                                <van-badge>
-                                    <img class="child" style="width:1.60rem;height:1.60rem;" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/hire.png">
-                                </van-badge>
-                                <div style="text-align:center;margin-top:-0.25rem;">录董监高</div>
-                            </van-col>
-                            <van-col span="6">
-                                <van-badge>
-                                    <img class="child" style="width:1.60rem;height:1.60rem;" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/pay.png">
-                                </van-badge>
-                                <div style="text-align:center;margin-top:-0.25rem;">录入股东</div>
-                            </van-col>
-                            <van-col span="6">
-                                <van-badge>
-                                    <img class="child" style="width:1.60rem;height:1.60rem;" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.5/images/shenpi.png">
-                                </van-badge>
-                                <div style="text-align:center;margin-top:-0.25rem;">录入质押</div>
-                            </van-col>
-                            <van-col span="6">
-                                <van-badge>
-                                    <img class="child" style="width:1.60rem;height:1.60rem;" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/jiejing.png">
-                                </van-badge>
-                                <div style="text-align:center;margin-top:-0.25rem;">录入资质</div>
+                                <div style="text-align:center;margin-top:-0.25rem;">录入变更</div>
                             </van-col>
                         </van-row>
                     </div>

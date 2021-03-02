@@ -14,4 +14,12 @@ export default [{
     },
     component: () =>
         import ('@/views/base/company.vue')
+}, {
+    path: '/alteration',
+    name: 'alteration',
+    meta: {
+        index: 102
+    },
+    component: () =>
+        import ('@/views/base/alteration.vue')
 }]

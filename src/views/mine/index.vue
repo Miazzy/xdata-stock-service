@@ -42,7 +42,7 @@
                 </div>
                 <van-icon name="arrow" color="#DBDBDB" />
             </router-link>
-            <router-link to="/node/nodeApplication" class="option-item" tag="li">
+            <router-link to="/alteration" class="option-item" tag="li">
                 <div class="item-info">
                     <van-icon name="chart-trending-o" color="chocolate" size="0.71rem" style="margin-right:10px;"/>
                     <span>信息变更</span>
