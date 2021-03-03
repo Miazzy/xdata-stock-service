@@ -1,10 +1,9 @@
-export default [
-  {
-    path: '/mine/setting',
+export default [{
+    path: '/setting',
     name: 'setting',
     meta: {
-      index: 12
+        index: 12
     },
-    component: () => import('@/views/mine/setting.vue')
-  }
-]
+    component: () =>
+        import ('@/views/mine/setting.vue')
+}]

@@ -179,7 +179,7 @@
                 </div>
                 <van-icon color="#DBDBDB" name="arrow" />
             </router-link>
-            <router-link to="/mine/setting" class="option-item" tag="li">
+            <router-link to="/setting" class="option-item" tag="li">
                 <div class="item-info">
                     <van-icon name="setting-o" color="gray" size="0.71rem" style="margin-right:10px;" />
                     <span>设置</span>

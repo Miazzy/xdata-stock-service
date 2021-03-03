@@ -1,6 +1,6 @@
 export default [{
-    path: '/setting/aboutAs',
-    name: 'aboutAs',
+    path: '/aboutas',
+    name: 'aboutas',
     meta: {
         index: 13
     },

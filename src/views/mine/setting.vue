@@ -1,5 +1,5 @@
 <template>
-  <div class="setting-page">
+<div class="setting-page">
 
     <header id="wx-header">
         <van-nav-bar title="设置" left-text="返回" left-arrow @click-left="returnBack" @click-right="searching">
@@ -7,23 +7,23 @@
     </header>
 
     <section class="setting-content">
-      <ul class="setting-list">
-        <li class="setting-item">
-          <span class="setting-msg">消息提醒</span>
-          <van-switch v-model="checked" active-color="#D8182D" size="20px" />
-        </li>
-        <li class="setting-item">
-          <span class="setting-msg">清除缓存</span>
-          <van-icon class="icon" name="arrow" />
-        </li>
-        <router-link tag="li" class="setting-item" to="/setting/aboutAs">
-          <span class="setting-msg">关于我们</span>
-          <van-icon class="icon" name="arrow" />
-        </router-link>
-      </ul>
+        <ul class="setting-list">
+            <li class="setting-item">
+                <span class="setting-msg">消息提醒</span>
+                <van-switch v-model="checked" active-color="#D8182D" size="20px" />
+            </li>
+            <li class="setting-item">
+                <span class="setting-msg">清除缓存</span>
+                <van-icon class="icon" name="arrow" />
+            </li>
+            <router-link tag="li" class="setting-item" to="/aboutas">
+                <span class="setting-msg">关于我们</span>
+                <van-icon class="icon" name="arrow" />
+            </router-link>
+        </ul>
     </section>
     <van-button plain size="large" type="danger">退出登录</van-button>
-  </div>
+</div>
 </template>
 
 <script>
@@ -130,48 +130,62 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .setting-page {
-  padding: 0 0px;
-  height: 100vh;
-  .page-header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 10px;
-    .header-content {
-      text-align: center;
-      font-size: 16px;
-      font-weight: 600;
-      flex: 1;
+    padding: 0 0px;
+    height: 100vh;
+
+    .van-button--large {
+        width: 92%;
+        height: 1.33333rem;
+        margin-left: 4%;
+        margin-right: 4%;
     }
-  }
-  .setting-content {
-    padding: 20px 20px 0 20px;
-    margin-bottom: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    .setting-list {
-      .setting-item {
+
+    .page-header {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: center;
-        padding-bottom: 20px;
-        .icon {
-          color: #949497;
-          opacity: 0.5;
-          font-size: 15px;
+        padding: 10px;
+
+        .header-content {
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            flex: 1;
         }
-        .setting-msg {
-          color: #3a3a3a;
-          font-size: 15px;
-        }
-      }
     }
-  }
-  /deep/ .van-button--large {
-    height: 44px;
-    line-height: 44px;
-  }
+
+    .setting-content {
+        padding: 20px 20px 0 20px;
+        margin-bottom: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+
+        .setting-list {
+            .setting-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-bottom: 20px;
+
+                .icon {
+                    color: #949497;
+                    opacity: 0.5;
+                    font-size: 15px;
+                }
+
+                .setting-msg {
+                    color: #3a3a3a;
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+
+    /deep/ .van-button--large {
+        height: 44px;
+        line-height: 44px;
+    }
 }
 </style>
