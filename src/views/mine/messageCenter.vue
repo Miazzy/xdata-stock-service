@@ -88,6 +88,7 @@ export default {
         const $router = useRouter();
         const $route = useRoute();
         const active = ref("");
+        const headerActive = ref(false);
 
         const state = reactive({
             imgs: [
@@ -155,6 +156,7 @@ export default {
             beforeEnter,
             enter,
             afterEnter,
+            headerActive,
             pageScroll
         };
     }

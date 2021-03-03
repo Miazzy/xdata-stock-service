@@ -46,6 +46,7 @@ export default {
         const $router = useRouter();
         const $route = useRoute(); // 可以拿到所有和路由相关的参数
         const active = ref("");
+        const headerActive = ref(false);
 
         const state = reactive({
             homeImgs: [],
@@ -107,6 +108,7 @@ export default {
             beforeEnter,
             enter,
             afterEnter,
+            headerActive,
             pageScroll
         };
     }
