@@ -31,13 +31,13 @@
                             </van-col>
                             <van-col span="6">
                                 <van-badge>
-                                    <img class="child" style="" :src="state.imgs[1]">
+                                    <img class="child" style="" :src="state.imgs[2]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">注销证照</div>
                             </van-col>
                             <van-col span="6">
                                 <van-badge>
-                                    <img class="child" style="" :src="state.imgs[1]">
+                                    <img class="child" style="" :src="state.imgs[3]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">禁用证照</div>
                             </van-col>
@@ -87,12 +87,10 @@ export default {
 
         const state = reactive({
             imgs: [
-                'https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.8/images/worktile_9.png',
-                'https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/list_00.png',
-                'https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/hire.png',
-                'https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/pay.png',
-                'https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.5/images/shenpi.png',
-                'https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/jiejing.png',
+                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/fenbufenxiang_jy.png',
+                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/xiangmutuandui_jy.png',
+                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/shigong_jy.png', //shouji
+                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/xiezuo_jy.png', //
             ],
         });
 
