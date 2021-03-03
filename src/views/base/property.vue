@@ -27,13 +27,13 @@
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[1]">
                                 </van-badge>
-                                <div class="section-flex-layout-content" style="">修改产权</div>
+                                <div class="section-flex-layout-content" style="">变更产权</div>
                             </van-col>
                             <van-col span="6">
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[2]">
                                 </van-badge>
-                                <div class="section-flex-layout-content" style="">删除产权</div>
+                                <div class="section-flex-layout-content" style="">注销产权</div>
                             </van-col>
                             <van-col span="6">
                                 <van-badge>
