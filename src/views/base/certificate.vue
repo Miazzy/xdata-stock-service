@@ -4,7 +4,7 @@
     <div id="content" style="margin-top: 0px; overflow-x: hidden;">
 
         <header id="wx-header">
-            <van-nav-bar title="其他证照" left-text="返回" left-arrow @click-left="returnBack" @click-right="searching">
+            <van-nav-bar title="身份信息" left-text="返回" left-arrow @click-left="returnBack" @click-right="searching">
                 <template #right>
                     <van-icon name="search" />
                 </template>
@@ -14,32 +14,32 @@
         <div class="section-content" style="">
             <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%);">
                 <div id="weui-cells-flex" class="weui-cells" style="">
-                    <div class="weui-cell-title" style="">证照管理</div>
+                    <div class="weui-cell-title" style="">身份管理</div>
                     <div class="flex-layout-content" id="scanCell" style="">
                         <van-row>
                             <van-col span="6">
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[0]">
                                 </van-badge>
-                                <div class="section-flex-layout-content" style="">新增证照</div>
+                                <div class="section-flex-layout-content" style="">新增身份</div>
                             </van-col>
                             <van-col span="6">
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[1]">
                                 </van-badge>
-                                <div class="section-flex-layout-content" style="">变更证照</div>
+                                <div class="section-flex-layout-content" style="">变更身份</div>
                             </van-col>
                             <van-col span="6">
                                 <van-badge>
-                                    <img class="child" style="" :src="state.imgs[1]">
+                                    <img class="child" style="" :src="state.imgs[2]">
                                 </van-badge>
-                                <div class="section-flex-layout-content" style="">注销证照</div>
+                                <div class="section-flex-layout-content" style="">注销身份</div>
                             </van-col>
                             <van-col span="6">
                                 <van-badge>
-                                    <img class="child" style="" :src="state.imgs[1]">
+                                    <img class="child" style="" :src="state.imgs[3]">
                                 </van-badge>
-                                <div class="section-flex-layout-content" style="">禁用证照</div>
+                                <div class="section-flex-layout-content" style="">禁用身份</div>
                             </van-col>
                         </van-row>
                     </div>

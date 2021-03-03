@@ -126,4 +126,12 @@ export default [{
     },
     component: () =>
         import ('@/views/base/businesslicense.vue')
+}, {
+    path: '/certificate', //businesslicense
+    name: 'certificate',
+    meta: {
+        index: 117
+    },
+    component: () =>
+        import ('@/views/base/certificate.vue')
 }]

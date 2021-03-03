@@ -124,7 +124,7 @@
     <section class="mine-content">
         <span style="padding-top:0.35rem;display:block;">证照管理</span>
         <ul class="options-list">
-            <router-link to="/mine/shippingAddress" class="option-item" tag="li">
+            <router-link to="/certificate" class="option-item" tag="li">
                 <div class="item-info">
                     <van-icon name="records" color="deepskyblue" size="0.71rem" style="margin-right:10px;" />
                     <span>身份信息</span>

@@ -27,19 +27,19 @@
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[1]">
                                 </van-badge>
+                                <div class="section-flex-layout-content" style="">变更执照</div>
+                            </van-col>
+                            <van-col span="6">
+                                <van-badge>
+                                    <img class="child" style="" :src="state.imgs[1]">
+                                </van-badge>
                                 <div class="section-flex-layout-content" style="">注销执照</div>
                             </van-col>
                             <van-col span="6">
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[1]">
                                 </van-badge>
-                                <div class="section-flex-layout-content" style="">修改执照</div>
-                            </van-col>
-                            <van-col span="6">
-                                <van-badge>
-                                    <img class="child" style="" :src="state.imgs[1]">
-                                </van-badge>
-                                <div class="section-flex-layout-content" style="">隐藏执照</div>
+                                <div class="section-flex-layout-content" style="">禁用执照</div>
                             </van-col>
                         </van-row>
                     </div>

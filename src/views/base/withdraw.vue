@@ -27,7 +27,7 @@
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[1]">
                                 </van-badge>
-                                <div class="section-flex-layout-content" style="">隐藏公司</div>
+                                <div class="section-flex-layout-content" style="">禁用公司</div>
                             </van-col>
                         </van-row>
                     </div>
