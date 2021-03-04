@@ -17,37 +17,37 @@
                     <div class="weui-cell-title" style="">设立管理</div>
                     <div class="flex-layout-content" id="scanCell" style="">
                         <van-row>
-                            <van-col span="6">
+                            <van-col span="6" @click="redirectView('/companyadd')" >
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[0]">
                                 </van-badge>
-                                <div class="section-flex-layout-content" style="">设立公司</div>
+                                <div class="section-flex-layout-content" style="" >设立公司</div>
                             </van-col>
-                            <van-col span="6">
+                            <van-col span="6" @click="redirectView('/companyrec')">
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[1]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">录入公司</div>
                             </van-col>
-                            <van-col span="6">
+                            <van-col span="6" @click="redirectView('/companydirector')">
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[2]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">录董监高</div>
                             </van-col>
-                            <van-col span="6">
+                            <van-col span="6" @click="redirectView('/companystockholder')">
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[3]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">录入股东</div>
                             </van-col>
-                            <van-col span="6">
+                            <van-col span="6" @click="redirectView('/companypledge')">
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[4]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">录入质押</div>
                             </van-col>
-                            <van-col span="6">
+                            <van-col span="6" @click="redirectView('/companyqualification')">
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[5]">
                                 </van-badge>
@@ -113,6 +113,10 @@ export default {
             window.addEventListener("scroll", pageScroll);
         });
 
+        const redirectView = (path) =>{
+            $router.push(path);
+        }
+
         const returnBack = () => {
             console.log('returnBack');
             $router.push("/mine");
@@ -164,6 +168,7 @@ export default {
             enter,
             afterEnter,
             headerActive,
+            redirectView,
             pageScroll
         };
     }

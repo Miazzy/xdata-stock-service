@@ -134,4 +134,52 @@ export default [{
     },
     component: () =>
         import ('@/views/base/certificate.vue')
+}, {
+    path: '/companyadd', //businesslicense
+    name: 'companyadd',
+    meta: {
+        index: 118
+    },
+    component: () =>
+        import ('@/views/company/companyAdd.vue')
+}, {
+    path: '/companydirector', //businesslicense
+    name: 'companydirector',
+    meta: {
+        index: 119
+    },
+    component: () =>
+        import ('@/views/company/companyDirector.vue')
+}, {
+    path: '/companypledge', //businesslicense
+    name: 'companypledge',
+    meta: {
+        index: 120
+    },
+    component: () =>
+        import ('@/views/company/companyPledge.vue')
+}, {
+    path: '/companyqualification', //businesslicense
+    name: 'companyqualification',
+    meta: {
+        index: 121
+    },
+    component: () =>
+        import ('@/views/company/companyQualification.vue')
+}, {
+    path: '/companyrec', //businesslicense
+    name: 'companyrec',
+    meta: {
+        index: 122
+    },
+    component: () =>
+        import ('@/views/company/companyRec.vue')
+}, {
+    path: '/companystockholder', //businesslicense
+    name: 'companystockholder',
+    meta: {
+        index: 123
+    },
+    component: () =>
+        import ('@/views/company/companyStockholder.vue')
 }]

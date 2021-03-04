@@ -21,13 +21,25 @@
                                 <van-badge>
                                     <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.4/images/shenpi_03.png">
                                 </van-badge>
-                                <div class="section-flex-layout-content" style="">信息变更</div>
+                                <div class="section-flex-layout-content" style="">公司变更</div>
                             </van-col>
                             <van-col span="6">
                                 <van-badge>
                                     <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.5/images/shenpi_06.png">
                                 </van-badge>
-                                <div class="section-flex-layout-content" style="">录入变更</div>
+                                <div class="section-flex-layout-content" style="">股东变更</div>
+                            </van-col>
+                            <van-col span="6">
+                                <van-badge>
+                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.5/images/shenpi_06.png">
+                                </van-badge>
+                                <div class="section-flex-layout-content" style="">高管变更</div>
+                            </van-col>
+                            <van-col span="6">
+                                <van-badge>
+                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.5/images/shenpi_06.png">
+                                </van-badge>
+                                <div class="section-flex-layout-content" style="">其他变更</div>
                             </van-col>
                         </van-row>
                     </div>
