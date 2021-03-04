@@ -158,14 +158,14 @@
     <section class="mine-content">
         <span style="padding-top:0.35rem;display:block;">系统管理</span>
         <ul class="options-list">
-            <router-link to="/mine/helpCenter" class="option-item" tag="li">
+            <router-link to="/helpCenter" class="option-item" tag="li">
                 <div class="item-info">
                     <van-icon name="question-o" color="goldenrod" size="0.71rem" style="margin-right:10px;" />
                     <span>帮助中心</span>
                 </div>
                 <van-icon color="#DBDBDB" name="arrow" />
             </router-link>
-            <router-link to="/mine/messageCenter" class="option-item" tag="li">
+            <router-link to="/messageCenter" class="option-item" tag="li">
                 <div class="item-info">
                     <van-icon name="chat-o" color="rosybrown" size="0.71rem" style="margin-right:10px;" />
                     <span>消息中心</span>

@@ -1,9 +1,9 @@
 export default [{
-    path: '/mine/changePassword',
+    path: '/changePassword',
     name: 'changePassword',
     meta: {
-      index: 14
+        index: 14
     },
-    component: () => import('@/views/mine/changePassword.vue')
-  }]
-  
+    component: () =>
+        import ('@/views/mine/changePassword.vue')
+}]

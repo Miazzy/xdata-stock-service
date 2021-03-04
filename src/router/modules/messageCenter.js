@@ -1,9 +1,9 @@
 export default [{
-    path: '/mine/messageCenter',
+    path: '/messageCenter',
     name: 'messageCenter',
     meta: {
-      index: 14
+        index: 14
     },
-    component: () => import('@/views/mine/messageCenter.vue')
-  }]
-  
+    component: () =>
+        import ('@/views/mine/messageCenter.vue')
+}]

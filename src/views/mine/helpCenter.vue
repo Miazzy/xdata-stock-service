@@ -13,7 +13,7 @@
             <svg-icon icon-class="product-help"></svg-icon>
             <span>使用帮助</span>
           </div>
-          <router-link to="/mine/feedback" class="item-title" tag="div">
+          <router-link to="/feedback" class="item-title" tag="div">
             <svg-icon icon-class="feedback-svg"></svg-icon>
             <span>问题反馈</span>
           </router-link>
@@ -26,19 +26,19 @@
         <li class="item-header">
           <span>使用帮助</span>
         </li>
-        <router-link to="/mine/messageCenter" class="option-item" tag="li">
+        <router-link to="/helpCenter" class="option-item" tag="li">
           <div class="item-info">
             <span>支持方式</span>
           </div>
           <van-icon color="#DBDBDB" name="arrow" />
         </router-link>
-        <router-link to="/mine/helpCenter" class="option-item" tag="li">
+        <router-link to="/helpCenter" class="option-item" tag="li">
           <div class="item-info">
             <span>服务承诺</span>
           </div>
           <van-icon color="#DBDBDB" name="arrow" />
         </router-link>
-        <router-link to="/mine/helpCenter" class="option-item" tag="li">
+        <router-link to="/helpCenter" class="option-item" tag="li">
           <div class="item-info">
             <span>联系我们</span>
           </div>
