@@ -17,37 +17,37 @@
                     <div class="weui-cell-title" style="">变更管理</div>
                     <div class="flex-layout-content" id="scanCell" style="">
                         <van-row>
-                            <van-col span="6">
+                            <van-col span="6" @click="redirectView('/alterationadd')" >
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[0]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">公司变更</div>
                             </van-col>
-                            <van-col span="6">
+                            <van-col span="6" @click="redirectView('/alterationadd')" >
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[1]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">股东变更</div>
                             </van-col>
-                            <van-col span="6">
+                            <van-col span="6" @click="redirectView('/alterationadd')" >
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[2]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">高管变更</div>
                             </van-col>
-                            <van-col span="6">
+                            <van-col span="6" @click="redirectView('/alterationadd')" >
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[3]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">资金变更</div>
                             </van-col>
-                            <van-col span="6">
+                            <van-col span="6" @click="redirectView('/alterationadd')" >
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[6]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">经营变更</div>
                             </van-col>
-                            <van-col span="6">
+                            <van-col span="6" @click="redirectView('/alterationadd')" >
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[5]">
                                 </van-badge>
@@ -118,6 +118,10 @@ export default {
             $router.push("/mine");
         };
 
+        const redirectView = (path) =>{
+            $router.push(path);
+        }
+
         const searching = () => {
             console.log('searching');
         };
@@ -164,6 +168,7 @@ export default {
             enter,
             afterEnter,
             headerActive,
+            redirectView,
             pageScroll
         };
     }

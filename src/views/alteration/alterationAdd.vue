@@ -101,7 +101,7 @@ export default {
 
         const returnBack = () => {
             console.log('returnBack');
-            $router.push("/company");
+            $router.push("/alteration");
         };
 
         const searching = () => {
