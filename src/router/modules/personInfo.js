@@ -1,10 +1,9 @@
-export default [
-    {
-      path: '/mine/personInfo',
-      name: 'personInfo',
-      meta: {
+export default [{
+    path: '/personInfo',
+    name: 'personInfo',
+    meta: {
         index: 13
-      },
-      component: () => import('@/views/mine/personInfo.vue')
-    }
-  ]
+    },
+    component: () =>
+        import ('@/views/mine/personInfo.vue')
+}]

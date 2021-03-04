@@ -1,9 +1,9 @@
 export default [{
-    path: '/mine/settingMail',
+    path: '/settingMail',
     name: 'settingMail',
     meta: {
-      index: 14
+        index: 14
     },
-    component: () => import('@/views/mine/settingMail.vue')
-  }]
-  
+    component: () =>
+        import ('@/views/mine/settingMail.vue')
+}]

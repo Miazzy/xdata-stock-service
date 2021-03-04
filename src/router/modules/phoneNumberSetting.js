@@ -1,9 +1,9 @@
 export default [{
-    path: '/mine/phoneNumberSetting',
+    path: '/phoneNumberSetting',
     name: 'phoneNumberSetting',
     meta: {
-      index: 14
+        index: 14
     },
-    component: () => import('@/views/mine/phoneNumberSetting.vue')
-  }]
-  
+    component: () =>
+        import ('@/views/mine/phoneNumberSetting.vue')
+}]

@@ -1,11 +1,9 @@
-export default [
-    {
-    path: '/register/phoneRegisterTwo',
+export default [{
+    path: '/phoneRegisterTwo',
     name: 'phoneRegisterTwo',
     meta: {
-      index: 3
+        index: 3
     },
-    component: () => import('@/views/register/phoneRegisterTwo')
-  }
-  ]
-  
+    component: () =>
+        import ('@/views/register/phoneRegisterTwo')
+}]

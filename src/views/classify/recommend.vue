@@ -52,7 +52,7 @@
 <script>
 import ListScroll from "@/components/scroll/ListScroll";
 import { useRouter } from "vue-router";
-import { reactive, ref, onMounted, getCurrentInstance, toRef } from "vue";
+import { reactive, ref, toRefs, onMounted, getCurrentInstance, toRef } from "vue";
 
 export default {
   name: "recommend",
