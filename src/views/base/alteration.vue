@@ -19,25 +19,25 @@
                         <van-row>
                             <van-col span="6">
                                 <van-badge>
-                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.4/images/shenpi_03.png">
+                                    <img class="child" style="" :src="state.imgs[0]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">公司变更</div>
                             </van-col>
                             <van-col span="6">
                                 <van-badge>
-                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.5/images/shenpi_06.png">
+                                    <img class="child" style="" :src="state.imgs[1]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">股东变更</div>
                             </van-col>
                             <van-col span="6">
                                 <van-badge>
-                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.5/images/shenpi_06.png">
+                                    <img class="child" style="" :src="state.imgs[2]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">高管变更</div>
                             </van-col>
                             <van-col span="6">
                                 <van-badge>
-                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.5/images/shenpi_06.png">
+                                    <img class="child" style="" :src="state.imgs[3]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">其他变更</div>
                             </van-col>
@@ -59,7 +59,6 @@ import {
     ref,
     reactive,
     onMounted,
-    toRefs,
     getCurrentInstance
 } from "vue";
 import {
@@ -86,7 +85,12 @@ export default {
         const headerActive = ref(false);
 
         const state = reactive({
-            imgs: [],
+            imgs: [
+                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/anquanjianchaxiang_1_jy.png',
+                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/xiangmuxinxi_jy.png',
+                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/zhenggai_jy.png',
+                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/tongzhigonggao_jy.png',
+                ],
         });
 
         onMounted(() => {
