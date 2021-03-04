@@ -1,9 +1,9 @@
 export default [{
-    path: '/order/transactionDetails',
+    path: '/transactionDetails',
     name: 'transactionDetails',
     meta: {
-      index: 4
+        index: 4
     },
-    component: () => import('@/views/order/transactionDetails.vue')
-  }]
-  
+    component: () =>
+        import ('@/views/order/transactionDetails.vue')
+}]

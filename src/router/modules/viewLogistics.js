@@ -1,10 +1,9 @@
-export default [
-    {
-      path: '/order/viewLogistics',
-      name: 'viewLogistics',
-      meta: {
+export default [{
+    path: '/viewLogistics',
+    name: 'viewLogistics',
+    meta: {
         index: 12
-      },
-      component: () => import('@/views/order/viewLogistics.vue')
-    }
-  ]
+    },
+    component: () =>
+        import ('@/views/order/viewLogistics.vue')
+}]

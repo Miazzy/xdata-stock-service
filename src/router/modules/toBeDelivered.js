@@ -1,10 +1,9 @@
-export default [
-    {
-      path: '/order/toBeDelivered',
-      name: 'toBeDelivered',
-      meta: {
+export default [{
+    path: '/toBeDelivered',
+    name: 'toBeDelivered',
+    meta: {
         index: 11
-      },
-      component: () => import('@/views/order/toBeDelivered.vue')
-    }
-  ]
+    },
+    component: () =>
+        import ('@/views/order/toBeDelivered.vue')
+}]

@@ -172,7 +172,7 @@
                 </div>
                 <van-icon color="#DBDBDB" name="arrow" />
             </router-link>
-            <router-link to="/mine/shippingAddress" class="option-item" tag="li">
+            <router-link to="/shippingAddress" class="option-item" tag="li">
                 <div class="item-info">
                     <van-icon name="diamond-o" color="cornflowerblue" size="0.71rem" style="margin-right:10px;" />
                     <span>我的地址</span>

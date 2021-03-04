@@ -1,12 +1,9 @@
-export default [
-    {
-      path: '/mine/shippingAddress',
-      name: 'shippingAddress',
-      meta: {
+export default [{
+    path: '/shippingAddress',
+    name: 'shippingAddress',
+    meta: {
         index: 12
-      },
-      component: () => import('@/views/mine/shippingAddress.vue')
-    }
-  ]
-
-
+    },
+    component: () =>
+        import ('@/views/mine/shippingAddress.vue')
+}]
