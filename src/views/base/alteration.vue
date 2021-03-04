@@ -39,6 +39,18 @@
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[3]">
                                 </van-badge>
+                                <div class="section-flex-layout-content" style="">资金变更</div>
+                            </van-col>
+                            <van-col span="6">
+                                <van-badge>
+                                    <img class="child" style="" :src="state.imgs[6]">
+                                </van-badge>
+                                <div class="section-flex-layout-content" style="">经营变更</div>
+                            </van-col>
+                            <van-col span="6">
+                                <van-badge>
+                                    <img class="child" style="" :src="state.imgs[5]">
+                                </van-badge>
                                 <div class="section-flex-layout-content" style="">其他变更</div>
                             </van-col>
                         </van-row>
@@ -86,10 +98,13 @@ export default {
 
         const state = reactive({
             imgs: [
-                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/anquanjianchaxiang_1_jy.png',
+                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/xinwen_jy.png',
                 'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/xiangmuxinxi_jy.png',
-                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/zhenggai_jy.png',
+                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/liebiao_jy.png',//anquanjianchaxiang_jy
+                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/anquanjianchaxiang_jy.png',//
                 'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/tongzhigonggao_jy.png',
+                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/xinxidengji_jy.png',
+                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/fenbufenxiang_jy.png',
                 ],
         });
 
