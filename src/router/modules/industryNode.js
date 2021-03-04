@@ -1,8 +1,9 @@
 export default [{
-    path: '/node/industryNode',
+    path: '/industryNode',
     name: 'industryNode',
     meta: {
         index: 15
     },
-    component: () => import('@/views/node/industryNode.vue')
+    component: () =>
+        import ('@/views/node/industryNode.vue')
 }]

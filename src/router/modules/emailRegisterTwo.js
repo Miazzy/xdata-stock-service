@@ -1,11 +1,9 @@
-export default [
-    {
-    path: '/register/emailRegisterTwo',
+export default [{
+    path: '/emailRegisterTwo',
     name: 'emailRegisterTwo',
     meta: {
-      index: 3
+        index: 3
     },
-    component: () => import('@/views/register/emailRegisterTwo')
-  }
-  ]
-  
+    component: () =>
+        import ('@/views/register/emailRegisterTwo')
+}]

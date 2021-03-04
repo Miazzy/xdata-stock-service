@@ -1,9 +1,9 @@
 export default [{
-    path: '/pool/nodePool',
+    path: '/nodePool',
     name: 'nodePool',
     meta: {
-      index: 15
+        index: 15
     },
-    component: () => import('@/views/pool/nodePool.vue')
-  }]
-  
+    component: () =>
+        import ('@/views/pool/nodePool.vue')
+}]
