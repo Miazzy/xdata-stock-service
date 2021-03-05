@@ -34,6 +34,7 @@
                         <van-form>
                             <van-cell-group style="margin-top:10px;">
                                 <van-cell value="股东信息" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field clearable label="填报日期" v-model="state.item.createtime" placeholder="请输入登记日期" readonly />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.item.ordertype" placeholder="请选择股东" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.item.ordertype" placeholder="请输入股权占股明细" />
                             </van-cell-group>

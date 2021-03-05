@@ -34,6 +34,7 @@
                         <van-form>
                             <van-cell-group style="margin-top:10px;">
                                 <van-cell value="机构人员" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field clearable label="填报日期" v-model="state.item.createtime" placeholder="请输入登记日期" readonly />
                                 <van-field required :readonly="false" clickable clearable label="董事长" v-model="state.item.ordertype" placeholder="请选择董事长" />
                                 <van-field required :readonly="false" clickable clearable label="董事" v-model="state.item.ordertype" placeholder="请选择董事" />
                                 <van-field required :readonly="false" clickable clearable label="执行董事" v-model="state.item.ordertype" placeholder="请选择执行董事" />
