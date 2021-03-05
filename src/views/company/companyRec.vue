@@ -69,7 +69,7 @@
             </section>
         </div>
 
-        <div class="section-content" style="">
+        <div class="section-content" style="display:none;">
             <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%); margin-bottom:0.00rem;">
                 <div id="weui-cells-flex" class="weui-cells" style="">
                     <van-cell-group>
@@ -89,7 +89,7 @@
             </section>
         </div>
 
-        <div class="section-content" style="">
+        <div class="section-content" style="display:none;">
             <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%); margin-bottom:0.75rem;">
                 <div id="weui-cells-flex" class="weui-cells" style="">
                     <van-cell-group>

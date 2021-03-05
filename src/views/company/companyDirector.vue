@@ -33,17 +33,16 @@
                     <van-cell-group>
                         <van-form>
                             <van-cell-group style="margin-top:10px;">
-                                <van-cell value="基本信息" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field clearable label="填报日期" v-model="state.item.createtime" placeholder="请输入登记日期" readonly />
-                                <van-field required :readonly="false" clickable clearable label="用印类型" v-model="state.item.sealtype" placeholder="选择用印类型" />
-                                <van-field required readonly clickable clearable label="用印顺序" v-model="state.item.ordertype" placeholder="选择用印顺序" />
+                                <van-cell value="机构人员" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field required :readonly="false" clickable clearable label="董事长" v-model="state.item.ordertype" placeholder="请选择董事长" />
+                                <van-field required :readonly="false" clickable clearable label="董事" v-model="state.item.ordertype" placeholder="请选择董事" />
+                                <van-field required :readonly="false" clickable clearable label="执行董事" v-model="state.item.ordertype" placeholder="请选择执行董事" />
+                                <van-field required :readonly="false" clickable clearable label="总经理/经理" v-model="state.item.ordertype" placeholder="请选择总经理/经理名单" />
+                                <van-field required :readonly="false" clickable clearable label="监事会主席" v-model="state.item.ordertype" placeholder="请选择监事会主席" />
+                                <van-field required :readonly="false" clickable clearable label="监事" v-model="state.item.ordertype" placeholder="请选择监事" />
                             </van-cell-group>
                         </van-form>
                     </van-cell-group>
-
-                </div>
-                <div id="weui-cells-bottom" style="">
-                    <span></span>
                 </div>
             </section>
         </div>
@@ -158,4 +157,5 @@ export default {
 
 <style lang="scss" scoped>
 @import "../base/base.scss";
+@import "../base/company.scss";
 </style>
