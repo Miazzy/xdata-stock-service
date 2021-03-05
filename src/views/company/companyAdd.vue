@@ -32,7 +32,7 @@
 
                     <van-cell-group>
                         <van-form>
-                        
+
                             <van-cell-group style="margin-top:10px;">
 
                                 <van-cell value="基本信息" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
@@ -63,25 +63,44 @@
 
                             </van-cell-group>
 
-                            <van-cell-group style="margin-top:10px;">
-                            
-                                <van-cell value="机构人员" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                        </van-form>
+                    </van-cell-group>
+                </div>
+            </section>
+        </div>
 
+        <div class="section-content" style="">
+            <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%); margin-bottom:0.00rem;">
+                <div id="weui-cells-flex" class="weui-cells" style="">
+                    <van-cell-group>
+                        <van-form>
+                            <van-cell-group style="margin-top:10px;">
+                                <van-cell value="机构人员" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="董事长" v-model="state.item.ordertype" placeholder="请选择董事长" />
                                 <van-field required :readonly="false" clickable clearable label="董事" v-model="state.item.ordertype" placeholder="请选择董事" />
                                 <van-field required :readonly="false" clickable clearable label="执行董事" v-model="state.item.ordertype" placeholder="请选择执行董事" />
                                 <van-field required :readonly="false" clickable clearable label="总经理/经理" v-model="state.item.ordertype" placeholder="请选择总经理/经理名单" />
                                 <van-field required :readonly="false" clickable clearable label="监事会主席" v-model="state.item.ordertype" placeholder="请选择监事会主席" />
                                 <van-field required :readonly="false" clickable clearable label="监事" v-model="state.item.ordertype" placeholder="请选择监事" />
-
                             </van-cell-group>
-
                         </van-form>
                     </van-cell-group>
-
                 </div>
-                <div id="weui-cells-bottom" style="">
-                    <span></span>
+            </section>
+        </div>
+
+        <div class="section-content" style="">
+            <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%); margin-bottom:0.75rem;">
+                <div id="weui-cells-flex" class="weui-cells" style="">
+                    <van-cell-group>
+                        <van-form>
+                            <van-cell-group style="margin-top:10px;">
+                                <van-cell value="股东信息" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.item.ordertype" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.item.ordertype" placeholder="请输入股权占股明细" />
+                            </van-cell-group>
+                        </van-form>
+                    </van-cell-group>
                 </div>
             </section>
         </div>
@@ -196,4 +215,5 @@ export default {
 
 <style lang="scss" scoped>
 @import "../base/base.scss";
+@import "../base/company.scss";
 </style>
