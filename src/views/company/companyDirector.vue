@@ -35,6 +35,7 @@
                             <van-cell-group style="margin-top:10px;">
                                 <van-cell value="机构人员" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field clearable label="填报日期" v-model="state.item.createtime" placeholder="请输入登记日期" readonly />
+                                <van-field required :readonly="false" clickable clearable label="公司名称" v-model="state.item.sealtype" placeholder="请填写公司名称" />
                                 <van-field required :readonly="false" clickable clearable label="董事长" v-model="state.item.ordertype" placeholder="请选择董事长" />
                                 <van-field required :readonly="false" clickable clearable label="董事" v-model="state.item.ordertype" placeholder="请选择董事" />
                                 <van-field required :readonly="false" clickable clearable label="执行董事" v-model="state.item.ordertype" placeholder="请选择执行董事" />
@@ -46,6 +47,11 @@
                     </van-cell-group>
                 </div>
             </section>
+        </div>
+
+        <div class="section-button" style="text-align:center;margin-top:0.75rem;margin-bottom:0.75rem;">
+            <van-button plain hairline type="info" style="width:37.5%;">取消</van-button>
+            <van-button plain hairline type="primary" style="width:37.5%;margin-left:0.5rem;">确定</van-button>
         </div>
 
     </div>

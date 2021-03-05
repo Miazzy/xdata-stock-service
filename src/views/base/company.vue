@@ -19,27 +19,45 @@
                         <van-row>
                             <van-col span="6" @click="redirectView('/companyadd')" >
                                 <van-badge>
-                                    <img class="child" style="" :src="state.imgs[0]">
+                                    <img class="child" style="transform:scale(0.80);" :src="state.imgs[0]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="" >设立公司</div>
                             </van-col>
                             <van-col span="6" @click="redirectView('/companyrec')">
                                 <van-badge>
-                                    <img class="child" style="" :src="state.imgs[1]">
+                                    <img class="child" style="transform:scale(0.78);" :src="state.imgs[1]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">录入公司</div>
                             </van-col>
-                            <van-col span="6" @click="redirectView('/companydirector')">
+                            <van-col span="6" @click="redirectView('/companyadd')" >
                                 <van-badge>
-                                    <img class="child" style="" :src="state.imgs[2]">
+                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/shigong_jy.png">
                                 </van-badge>
-                                <div class="section-flex-layout-content" style="">录董监高</div>
+                                <div class="section-flex-layout-content" style="" >注销公司</div>
+                            </van-col>
+                            <van-col span="6" @click="redirectView('/companyadd')" >
+                                <van-badge>
+                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/gerenjibenxinxichaxunxiugai.png">
+                                </van-badge>
+                                <div class="section-flex-layout-content" style="" >变更公司</div>
+                            </van-col>
+                            <van-col span="6" @click="redirectView('/companyadd')" >
+                                <van-badge>
+                                    <img class="child" style="" :src="state.imgs[6]">
+                                </van-badge>
+                                <div class="section-flex-layout-content" style="" >查询公司</div>
                             </van-col>
                             <van-col span="6" @click="redirectView('/companystockholder')">
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[3]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">录入股东</div>
+                            </van-col>
+                            <van-col span="6" @click="redirectView('/companydirector')">
+                                <van-badge>
+                                    <img class="child" style="" :src="state.imgs[2]">
+                                </van-badge>
+                                <div class="section-flex-layout-content" style="">录董监高</div>
                             </van-col>
                             <van-col span="6" @click="redirectView('/companypledge')">
                                 <van-badge>
@@ -99,12 +117,13 @@ export default {
 
         const state = reactive({
             imgs: [
-                'https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.8/images/worktile_9.png',
-                'https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/list_00.png',
+                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/building-15.png',
+                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/baomingfei.png',
                 'https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/hire.png',
-                'https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/pay.png',
+                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/icon_phone_client_.png',
                 'https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.5/images/shenpi.png',
                 'https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/jiejing.png',
+                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/xiezuowendangku_jy.png',
             ],
         });
 

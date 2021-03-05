@@ -17,17 +17,29 @@
                     <div class="weui-cell-title" style="">质押管理</div>
                     <div class="flex-layout-content" id="scanCell" style="">
                         <van-row>
-                            <van-col span="6">
+                            <van-col span="6" @click="redirectView('/companypledge?back=/pledge')">
                                 <van-badge>
-                                    <img class="child" style="" :src="state.imgs[0]">
+                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/yanglaodaiyushenling.png">
                                 </van-badge>
-                                <div class="section-flex-layout-content" style="">股权质押</div>
+                                <div class="section-flex-layout-content" style="">新增质押</div>
                             </van-col>
-                            <van-col span="6">
+                            <van-col span="6" @click="redirectView('/companypledge?back=/pledge')">
                                 <van-badge>
-                                    <img class="child" style="" :src="state.imgs[1]">
+                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/xiangmutuandui_jy.png">
                                 </van-badge>
-                                <div class="section-flex-layout-content" style="">录入质押</div>
+                                <div class="section-flex-layout-content" style="">变更质押</div>
+                            </van-col>
+                            <van-col span="6" @click="redirectView('/companypledge?back=/pledge')">
+                                <van-badge>
+                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/shigong_jy.png">
+                                </van-badge>
+                                <div class="section-flex-layout-content" style="">注销质押</div>
+                            </van-col>
+                            <van-col span="6" @click="redirectView('/companypledge?back=/pledge')">
+                                <van-badge>
+                                    <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/jianchachaxun.png">
+                                </van-badge>
+                                <div class="section-flex-layout-content" style="">查看质押</div>
                             </van-col>
                         </van-row>
                     </div>
@@ -81,6 +93,7 @@ export default {
                 'https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/pay.png',
                 'https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.5/images/shenpi.png',
                 'https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/jiejing.png',
+                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/shigong_jy.png',
             ],
         });
 
@@ -88,6 +101,10 @@ export default {
             ctx.$eventBus.$emit("changeTag", 0);
             window.addEventListener("scroll", pageScroll);
         });
+
+        const redirectView = (path) =>{
+            $router.push(path);
+        }
 
         const returnBack = () => {
             console.log('returnBack');
@@ -140,6 +157,7 @@ export default {
             enter,
             afterEnter,
             headerActive,
+            redirectView,
             pageScroll
         };
     }

@@ -12,7 +12,7 @@
         </header>
 
         <div class="section-content" style="">
-            <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%);">
+            <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%);margin-bottom:0.005rem;">
 
                 <div class="weui-cells" style="margin-top:0px;">
 
@@ -35,6 +35,7 @@
                             <van-cell-group style="margin-top:10px;">
                                 <van-cell value="股东信息" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field clearable label="填报日期" v-model="state.item.createtime" placeholder="请输入登记日期" readonly />
+                                <van-field required :readonly="false" clickable clearable label="公司名称" v-model="state.item.sealtype" placeholder="请填写公司名称" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.item.ordertype" placeholder="请选择股东" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.item.ordertype" placeholder="请输入股权占股明细" />
                             </van-cell-group>
@@ -42,10 +43,12 @@
                     </van-cell-group>
 
                 </div>
-                <div id="weui-cells-bottom" style="">
-                    <span></span>
-                </div>
             </section>
+        </div>
+
+        <div class="section-button" style="text-align:center;margin-top:0.75rem;margin-bottom:0.75rem;">
+            <van-button plain hairline type="info" style="width:37.5%;">取消</van-button>
+            <van-button plain hairline type="primary" style="width:37.5%;margin-left:0.5rem;">确定</van-button>
         </div>
 
     </div>
@@ -158,4 +161,5 @@ export default {
 
 <style lang="scss" scoped>
 @import "../base/base.scss";
+@import "../base/company.scss";
 </style>

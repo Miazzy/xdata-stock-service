@@ -15,37 +15,39 @@
             <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%);">
 
                 <div class="weui-cells" style="margin-top:0px;">
-
                     <div class="weui-cells" style="margin-top:0px;border-bottom:0px solid #fefefe;">
                         <van-notice-bar v-show=" title!='' && title != null && typeof title != 'undefined' " left-icon="volume-o" color="#1989fa" background="#ecf9ff" :text="title" />
                     </div>
-
                     <div class="" id="scanCell" style="padding: 8px 10px 4px 10px;">
                         <van-row>
                             <van-col span="24" style="text-align: center;font-size:.475rem;">录入资质申请</van-col>
                         </van-row>
                     </div>
-
                 </div>
 
                 <div id="weui-cells-flex" class="weui-cells" style="">
-
                     <van-cell-group>
                         <van-form>
                             <van-cell-group style="margin-top:10px;">
-                                <van-cell value="基本信息" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-cell value="资质信息" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field clearable label="填报日期" v-model="state.item.createtime" placeholder="请输入登记日期" readonly />
-                                <van-field required :readonly="false" clickable clearable label="用印类型" v-model="state.item.sealtype" placeholder="选择用印类型" />
-                                <van-field required readonly clickable clearable label="用印顺序" v-model="state.item.ordertype" placeholder="选择用印顺序" />
+                                <van-field required :readonly="false" clickable clearable label="公司名称" v-model="state.item.sealtype" placeholder="请填写公司名称" />
+                                <van-field required :readonly="false" clickable clearable label="资质类型" v-model="state.item.sealtype" placeholder="请选择资质类型" />
+                                <van-field required :readonly="false" clickable clearable label="资质等级" v-model="state.item.ordertype" placeholder="请选择资质等级" />
+                                <van-field required :readonly="false" clickable clearable label="资质编号" v-model="state.item.ordertype" placeholder="请选择资质编号" />
+                                <van-field required :readonly="false" clickable clearable label="资质证有效期" v-model="state.item.ordertype" placeholder="请选择资质证有效期" />
+                                <van-field required :readonly="false" clickable clearable label="资质状态" v-model="state.item.ordertype" placeholder="请选择资质状态" />
+                                <van-field required :readonly="false" clickable clearable label="注销原因" v-model="state.item.ordertype" placeholder="请选择注销原因" />
                             </van-cell-group>
                         </van-form>
                     </van-cell-group>
-
-                </div>
-                <div id="weui-cells-bottom" style="">
-                    <span></span>
                 </div>
             </section>
+        </div>
+
+        <div class="section-button" style="text-align:center;margin-top:0.75rem;margin-bottom:0.75rem;">
+            <van-button plain hairline type="info" style="width:37.5%;">取消</van-button>
+            <van-button plain hairline type="primary" style="width:37.5%;margin-left:0.5rem;">确定</van-button>
         </div>
 
     </div>
@@ -158,4 +160,5 @@ export default {
 
 <style lang="scss" scoped>
 @import "../base/base.scss";
+@import "../base/company.scss";
 </style>

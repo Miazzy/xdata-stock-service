@@ -19,15 +19,33 @@
                         <van-row>
                             <van-col span="6">
                                 <van-badge>
-                                    <img class="child" style="" :src="state.imgs[0]">
+                                    <img class="child" style="" :src="state.imgs[8]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">年报上传</div>
                             </van-col>
                             <van-col span="6">
                                 <van-badge>
-                                    <img class="child" style="" :src="state.imgs[1]">
+                                    <img class="child" style="transform:scale(0.88);" :src="state.imgs[6]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">录入年报</div>
+                            </van-col>
+                            <van-col span="6">
+                                <van-badge>
+                                    <img class="child" style="" :src="state.imgs[10]">
+                                </van-badge>
+                                <div class="section-flex-layout-content" style="">变更年报</div>
+                            </van-col>
+                            <van-col span="6">
+                                <van-badge>
+                                    <img class="child" style="transform:scale(0.88);" :src="state.imgs[9]">
+                                </van-badge>
+                                <div class="section-flex-layout-content" style="">注销年报</div>
+                            </van-col>
+                            <van-col span="6">
+                                <van-badge>
+                                    <img class="child" style="transform:scale(0.88);" :src="state.imgs[7]">
+                                </van-badge>
+                                <div class="section-flex-layout-content" style="">查看年报</div>
                             </van-col>
                         </van-row>
                     </div>
@@ -81,6 +99,11 @@ export default {
                 'https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/pay.png',
                 'https://cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@r3.0.5/images/shenpi.png',
                 'https://cdn.jsdelivr.net/gh/Miazzy/yunwisdom_cdn@v1.0.0/images/jiejing.png',
+                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/fuwujigou.png',
+                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/lianlugenzong_sn00.png',//gongshangbuzhujinshenbao
+                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/gongshangbuzhujinshenbao.png',//gerenyewushouli
+                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/laodonghetong.png',//hezu
+                'https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/hezu.png',//hezu
             ],
         });
 
@@ -88,6 +111,10 @@ export default {
             ctx.$eventBus.$emit("changeTag", 0);
             window.addEventListener("scroll", pageScroll);
         });
+
+        const redirectView = (path) =>{
+            $router.push(path);
+        }
 
         const returnBack = () => {
             console.log('returnBack');
@@ -140,6 +167,7 @@ export default {
             enter,
             afterEnter,
             headerActive,
+            redirectView,
             pageScroll
         };
     }

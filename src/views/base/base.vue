@@ -58,6 +58,10 @@ export default {
             window.addEventListener("scroll", pageScroll);
         });
 
+        const redirectView = (path) =>{
+            $router.push(path);
+        }
+
         const returnBack = () => {
             console.log('returnBack');
             $router.push("/mine");
@@ -109,6 +113,7 @@ export default {
             enter,
             afterEnter,
             headerActive,
+            redirectView,
             pageScroll
         };
     }

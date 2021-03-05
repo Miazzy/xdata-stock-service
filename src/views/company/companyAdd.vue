@@ -105,6 +105,11 @@
             </section>
         </div>
 
+        <div class="section-button" style="text-align:center;margin-top:0.75rem;margin-bottom:0.75rem;">
+            <van-button plain hairline type="info" style="width:37.5%;">取消</van-button>
+            <van-button plain hairline type="primary" style="width:37.5%;margin-left:0.5rem;">下一步</van-button>
+        </div>
+
     </div>
 </keep-alive>
 </template>

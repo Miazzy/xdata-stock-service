@@ -30,6 +30,7 @@
                             <van-cell-group style="margin-top:10px;">
                                 <van-cell value="基本信息" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field clearable label="填报日期" v-model="state.item.createtime" placeholder="请输入登记日期" readonly />
+                                <van-field required :readonly="false" clickable clearable label="公司名称" v-model="state.item.sealtype" placeholder="请填写公司名称" />
                                 <van-field required :readonly="false" clickable clearable label="质权人" v-model="state.item.sealtype" placeholder="请选择质权人" />
                                 <van-field required :readonly="false" clickable clearable label="出质人" v-model="state.item.ordertype" placeholder="请选择出质人" />
                                 <van-field required :readonly="false" clickable clearable label="质押股权数" v-model="state.item.ordertype" placeholder="请输入质押股权数" />
@@ -40,6 +41,11 @@
                     </van-cell-group>
                 </div>
             </section>
+        </div>
+
+        <div class="section-button" style="text-align:center;margin-top:0.75rem;margin-bottom:0.75rem;">
+            <van-button plain hairline type="info" style="width:37.5%;">取消</van-button>
+            <van-button plain hairline type="primary" style="width:37.5%;margin-left:0.5rem;">确定</van-button>
         </div>
 
     </div>
@@ -152,4 +158,5 @@ export default {
 
 <style lang="scss" scoped>
 @import "../base/base.scss";
+@import "../base/company.scss";
 </style>
