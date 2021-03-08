@@ -7,6 +7,7 @@ services:
       - node.name=elasticsearch1
       - cluster.name=docker-cluster
       - cluster.initial_master_nodes=elasticsearch1
+      - "discovery.seed_hosts=elasticsearch1,elasticsearch2,elasticsearch3"
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms256M -Xmx256M"
       - http.cors.enabled=true
@@ -49,6 +50,7 @@ services:
     ports:
       - 9200:9200
       - 9300:9300
+
   elasticsearch2:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
     container_name: elasticsearch2
@@ -56,6 +58,7 @@ services:
       - node.name=elasticsearch2
       - cluster.name=docker-cluster
       - cluster.initial_master_nodes=elasticsearch1
+      - "discovery.seed_hosts=elasticsearch1,elasticsearch2,elasticsearch3"
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms256M -Xmx256M"
       - "discovery.zen.ping.unicast.hosts=elasticsearch1"
@@ -98,6 +101,7 @@ services:
       - ingress
     ports:
       - 9201:9200
+
   elasticsearch3:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
     container_name: elasticsearch3
@@ -105,6 +109,7 @@ services:
       - node.name=elasticsearch3
       - cluster.name=docker-cluster
       - cluster.initial_master_nodes=elasticsearch1
+      - "discovery.seed_hosts=elasticsearch1,elasticsearch2,elasticsearch3"
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms256M -Xmx256M"
       - "discovery.zen.ping.unicast.hosts=elasticsearch1"
@@ -147,6 +152,7 @@ services:
       - ingress
     ports:
       - 9202:9200
+
   kibana:
     image: docker.elastic.co/kibana/kibana:7.8.0
     container_name: kibana
@@ -186,6 +192,7 @@ services:
     networks:
       - elastic
       - ingress
+
   auditbeat:
     image: docker.elastic.co/beats/auditbeat:7.8.0
     command: auditbeat -e -strict.perms=false
@@ -200,6 +207,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - elastic
+
   metricbeat:
     image: docker.elastic.co/beats/metricbeat:7.8.0
     # command: --strict.perms=false
@@ -257,6 +265,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - elastic
+
   apmserver:
     image: docker.elastic.co/apm/apm-server:7.8.0
     command: --strict.perms=false
@@ -271,6 +280,7 @@ services:
     #   - ${PWD}/configs/apm-server.yml:/usr/share/apm-server/apm-server.yml
     networks:
         - elastic
+
   app-search:
     image: docker.elastic.co/app-search/app-search:7.6.2
     ports:
@@ -281,6 +291,7 @@ services:
       allow_es_settings_modification: "true"
     networks:
         - elastic
+
   nginx:
     image: nginx:latest
     ports:
@@ -292,6 +303,7 @@ services:
       nproc: 65535
     networks:
       - ingress
+
 volumes:
   esdata1:
   esdata2:
