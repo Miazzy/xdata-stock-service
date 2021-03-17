@@ -212,7 +212,7 @@ export default {
         const cancel = () => {
             Dialog.confirm({
                     title: '取消设立公司申请？',
-                    message: '确认操作后返回上一页',
+                    message: '点击‘确认’后返回上一页',
                 }).then(() => { // on confirm
                     returnBack();
                 }).catch(() => { // on cancel
@@ -221,7 +221,7 @@ export default {
         }
 
         const confirm = ()=> {
-            
+
         }
 
         const nextstep = () => {
