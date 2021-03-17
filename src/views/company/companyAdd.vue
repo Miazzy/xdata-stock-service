@@ -11,7 +11,7 @@
             </van-nav-bar>
         </header>
 
-        <div class="section-content" style="">
+        <div class="section-content" v-show="state.step == 'one' " style="">
             <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%);">
 
                 <div class="weui-cells" style="margin-top:0px;">
@@ -69,7 +69,7 @@
             </section>
         </div>
 
-        <div class="section-content" style="display:none;">
+        <div class="section-content" v-show="state.step == 'two' " style="">
             <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%); margin-bottom:0.00rem;">
                 <div id="weui-cells-flex" class="weui-cells" style="">
                     <van-cell-group>
@@ -89,7 +89,7 @@
             </section>
         </div>
 
-        <div class="section-content" style="display:none;">
+        <div class="section-content" v-show="state.step == 'three' " style="">
             <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%); margin-bottom:0.75rem;">
                 <div id="weui-cells-flex" class="weui-cells" style="">
                     <van-cell-group>
@@ -106,8 +106,10 @@
         </div>
 
         <div class="section-button" style="text-align:center;margin-top:0.75rem;margin-bottom:0.75rem;">
-            <van-button plain hairline type="info" style="width:37.5%;">取消</van-button>
-            <van-button plain hairline type="primary" style="width:37.5%;margin-left:0.5rem;">下一步</van-button>
+            <van-button v-show="state.step == 'one' " plain hairline type="info" style="width:37.5%;" @click="cancel">取消</van-button>
+            <van-button v-show="state.step != 'one' " plain hairline type="info" style="width:37.5%;" @click="prestep">上一步</van-button>
+            <van-button v-show="state.step != 'three' " plain hairline type="primary" style="width:37.5%;margin-left:0.5rem;" @click="nextstep">下一步</van-button>
+            <van-button v-show="state.step == 'three' " plain hairline type="primary" style="width:37.5%;margin-left:0.5rem;" @click="nextstep">确认</van-button>
         </div>
 
     </div>
@@ -115,6 +117,9 @@
 </template>
 
 <script>
+
+import { Dialog } from 'vant';
+
 import {
     ref,
     reactive,
@@ -154,6 +159,7 @@ export default {
                 sealtype: '',
                 ordertype: '',
             },
+            step:'one',
         });
 
         onMounted(() => {
@@ -203,6 +209,33 @@ export default {
                 (headerActive.value = false);
         };
 
+        const cancel = () => {
+            Dialog.confirm({
+                    title: '取消设立公司申请？',
+                    message: '确认操作后返回上一页',
+                }).then(() => { // on confirm
+                    returnBack();
+                }).catch(() => { // on cancel
+
+                });
+        }
+
+        const nextstep = () => {
+            if(state.step == 'one'){
+                state.step = 'two'
+            } else if(state.step == 'two'){
+                state.step = 'three'
+            }
+        }
+
+        const prestep = () => {
+            if(state.step == 'three'){
+                state.step = 'two'
+            } else if(state.step == 'two'){
+                state.step = 'one'
+            }
+        }
+
         return {
             active,
             state,
@@ -212,7 +245,10 @@ export default {
             enter,
             afterEnter,
             headerActive,
-            pageScroll
+            pageScroll,
+            nextstep,
+            prestep,
+            cancel
         };
     }
 };
