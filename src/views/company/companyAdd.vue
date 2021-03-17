@@ -109,7 +109,7 @@
             <van-button v-show="state.step == 'one' " plain hairline type="info" style="width:37.5%;" @click="cancel">取消</van-button>
             <van-button v-show="state.step != 'one' " plain hairline type="info" style="width:37.5%;" @click="prestep">上一步</van-button>
             <van-button v-show="state.step != 'three' " plain hairline type="primary" style="width:37.5%;margin-left:0.5rem;" @click="nextstep">下一步</van-button>
-            <van-button v-show="state.step == 'three' " plain hairline type="primary" style="width:37.5%;margin-left:0.5rem;" @click="nextstep">确认</van-button>
+            <van-button v-show="state.step == 'three' " plain hairline type="primary" style="width:37.5%;margin-left:0.5rem;" @click="confirm">确认</van-button>
         </div>
 
     </div>
@@ -218,6 +218,10 @@ export default {
                 }).catch(() => { // on cancel
 
                 });
+        }
+
+        const confirm = ()=> {
+            
         }
 
         const nextstep = () => {
