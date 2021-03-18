@@ -154,7 +154,6 @@
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail9" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
-
                         </van-form>
                     </van-cell-group>
                 </div>
