@@ -237,31 +237,31 @@ export default {
                 directorChairman:'', //董事长
                 director:'', //董事
                 directorExecutive:'', //执行董事
-                manager:'',
-                supervisorChairman:'',
-                supervisor:''
+                manager:'', //总经理/经理
+                supervisorChairman:'', //监事会主席
+                supervisor:'' //监事
             },
             stock:{
-                shareholder0:'',
-                ratioDetail0:'',
-                shareholder1:'',
-                ratioDetail1:'',
-                shareholder2:'',
-                ratioDetail2:'',
-                shareholder3:'',
-                ratioDetail3:'',
-                shareholder4:'',
-                ratioDetail4:'',
-                shareholder5:'',
-                ratioDetail5:'',
-                shareholder6:'',
-                ratioDetail6:'',
-                shareholder7:'',
-                ratioDetail7:'',
-                shareholder8:'',
-                ratioDetail8:'',
-                shareholder9:'',
-                ratioDetail9:'',
+                shareholder0:'', //股东
+                ratioDetail0:'', //占股明细
+                shareholder1:'', //股东
+                ratioDetail1:'', //占股明细
+                shareholder2:'', //股东
+                ratioDetail2:'', //占股明细
+                shareholder3:'', //股东
+                ratioDetail3:'', //占股明细
+                shareholder4:'', //股东
+                ratioDetail4:'', //占股明细
+                shareholder5:'', //股东
+                ratioDetail5:'', //占股明细
+                shareholder6:'', //股东
+                ratioDetail6:'', //占股明细
+                shareholder7:'', //股东
+                ratioDetail7:'', //占股明细
+                shareholder8:'', //股东
+                ratioDetail8:'', //占股明细
+                shareholder9:'', //股东
+                ratioDetail9:'', //占股明细
             },
             step:'one',
         });
@@ -271,15 +271,18 @@ export default {
             window.addEventListener("scroll", pageScroll);
         });
 
+        //返回上一页函数
         const returnBack = () => {
             console.log('returnBack');
             $router.push("/company");
         };
 
+        //点击搜索函数
         const searching = () => {
             console.log('searching');
         };
 
+        //页面进入前函数
         const beforeEnter = el => {
             const dom = ball.el;
             const rect = dom.getBoundingClientRect();
@@ -291,6 +294,7 @@ export default {
             inner.style.transform = `translate3d(${x}px,0,0)`;
         };
 
+        //页面进入函数
         const enter = (el, done) => {
             document.body.offsetHeight;
             el.style.transform = "translate3d(0,0,0)";
@@ -299,10 +303,12 @@ export default {
             el.addEventListener("transitionend", done);
         };
 
+        //页面进入后函数
         const afterEnter = el => {
             el.style.display = "none";
         };
 
+        //页面滚动
         const pageScroll = () => {
             const scrollTop =
                 window.pageYOffset ||
@@ -313,6 +319,7 @@ export default {
                 (headerActive.value = false);
         };
 
+        //取消函数
         const cancel = async () => {
             Dialog.confirm({
                     title: '取消设立公司申请？',
@@ -324,6 +331,7 @@ export default {
                 });
         }
 
+        //确认函数
         const confirm = async() => {
             Dialog.confirm({
                     title: '确认提交设立公司申请？',
@@ -335,6 +343,7 @@ export default {
                 });
         }
 
+        //下一步函数
         const nextstep = async() => {
             if(state.step == 'one'){
                 //此次校验，公司基础信息是否填写完整
@@ -347,6 +356,7 @@ export default {
             }
         }
 
+        //上一步函数
         const prestep = async () => {
             if(state.step == 'three'){
                 state.step = 'two'
