@@ -302,47 +302,47 @@ export default {
         };
 
         //数据校验
-        const checkData = (element , type) => {
+        const checkData = (element, type) => {
 
-            if(type == 'company'){
+            if (type == 'company') {
 
                 //校验公司名称长度
-    
+
                 //校验所属行业
-    
+
                 //校验所属区域
-    
+
                 //校验登记状态
-    
+
                 //校验营业执照
-    
+
                 //校验经营范围
-    
+
                 //校验注册地址
-    
+
                 //校验注册资本
-    
+
                 //校验实缴资本
-    
+
                 //校验营业期限
-    
+
                 //校验公司类型
-    
+
                 //校验设立原因
-    
+
                 //校验使用情况
-    
+
                 //校验法人代表
-    
+
                 //校验印章保管人
-    
+
                 //校验备案联络员
-    
+
                 //校验财务负责人
-    
+
                 //校验备注信息
 
-            } else if(type == 'director' ){
+            } else if (type == 'director') {
 
                 //校验董事长
 
@@ -356,14 +356,13 @@ export default {
 
                 //校验监事
 
-            } else if(type == 'stock' ){
+            } else if (type == 'stock') {
 
                 //如果没有数据，则提交股东信息
 
                 //如果有数据，校验股东信息及占股比例
 
             }
-
 
         }
 
@@ -413,27 +412,37 @@ export default {
         }
 
         //确认函数
-        const confirm = async (elem , result , response) => {
+        const confirm = async (elem, result, response) => {
             // 获取用户信息
-            const userinfo = await Betools.storage.getStore('system_userinfo');
+            // const userinfo = await Betools.storage.getStore('system_userinfo');
 
             Dialog.confirm({
                 title: '确认提交设立公司申请？',
                 message: '点击‘确认’后提交申请',
             }).then(async () => { // on confirm
 
-                //第一步，执行数据校验
+                try {
 
-                //第二步，向表单提交form对象数据
-                result = await Betools.manage.postTableData('bs_company_flow_data', elem);
+                    //第一步，执行数据校验
+                    console.log(`第一步，执行数据校验`);
 
-                //第三步，检查是否有股东信息，如果有股东信息，则需要提交股东信息
+                    //第二步，向表单提交form对象数据
+                    console.log(`第二步，向表单提交form对象数据`);
+                    result = await Betools.manage.postTableData('bs_company_flow_data', elem);
 
-                //第四步，如果返回信息成功，则提示用户申请成功
-                if (result.protocol41 == true && result.affectedRows > 0 && result.node) {
-                    await Dialog.confirm({
-                        title: '设立公司申请提交成功！',
-                    });
+
+                    //第三步，检查是否有股东信息，如果有股东信息，则需要提交股东信息
+                    console.log(`第三步，检查是否有股东信息，如果有股东信息，则需要提交股东信息`);
+
+                    //第四步，如果返回信息成功，则提示用户申请成功
+                    console.log(`第四步，如果返回信息成功，则提示用户申请成功`);
+                    if (result.protocol41 == true && result.affectedRows > 0 && result.node) {
+                        await Dialog.confirm({
+                            title: '设立公司申请提交成功！',
+                        });
+                    }
+                } catch (error) {
+                    console.log(error);
                 }
 
             }).catch(() => { // on cancel
@@ -466,7 +475,11 @@ export default {
                     })
                 }
             } else if (state.step == 'three') {
-                await confirm({id:'',...state.item , ...state.director});
+                await confirm({
+                    id: Betools.tools.queryUniqueID(),
+                    ...state.item,
+                    ...state.director
+                });
             }
         }
 
