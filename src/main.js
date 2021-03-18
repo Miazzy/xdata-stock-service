@@ -14,11 +14,12 @@ import eventBus from './utils/eventBus';
 const app = createApp(App);
 
 try {
-    app.use(Vant).use(store).use(router).mount('#app');
+    app.use(store).use(router).mount('#app');
     app.use(axios)
     app.use(icons)
     app.use(components)
     app.use(eventBus);
+    app.use(Vant);
     FastClick.attach(document.body); //注册移动端快速点击功能
 } catch (error) {
     console.log('fask click components regist error: ', error);
