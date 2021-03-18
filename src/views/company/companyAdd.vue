@@ -313,7 +313,7 @@ export default {
                 (headerActive.value = false);
         };
 
-        const cancel = () => {
+        const cancel = async () => {
             Dialog.confirm({
                     title: '取消设立公司申请？',
                     message: '点击‘确认’后返回上一页',
@@ -324,23 +324,36 @@ export default {
                 });
         }
 
-        const confirm = ()=> {
+        const confirm = async() => {
+            Dialog.confirm({
+                    title: '确认提交设立公司申请？',
+                    message: '点击‘确认’后提交申请',
+                }).then(() => { // on confirm
 
+                }).catch(() => { // on cancel
+
+                });
         }
 
-        const nextstep = () => {
+        const nextstep = async() => {
             if(state.step == 'one'){
+                //此次校验，公司基础信息是否填写完整
                 state.step = 'two'
             } else if(state.step == 'two'){
+                //此次校验，公司的董事信息是否填写完整
                 state.step = 'three'
+            } else if(state.step == 'three'){
+                await confirm();
             }
         }
 
-        const prestep = () => {
+        const prestep = async () => {
             if(state.step == 'three'){
                 state.step = 'two'
             } else if(state.step == 'two'){
                 state.step = 'one'
+            } else if(state.stop == 'one'){
+                await cancel();
             }
         }
 
@@ -356,7 +369,8 @@ export default {
             pageScroll,
             nextstep,
             prestep,
-            cancel
+            cancel,
+            confirm
         };
     }
 };
