@@ -37,29 +37,29 @@
 
                                 <van-cell value="基本信息" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field clearable label="填报日期" v-model="state.item.createtime" placeholder="请输入登记日期" readonly />
-                                <van-field required :readonly="false" clickable clearable label="公司名称" v-model="state.item.sealtype" placeholder="请填写公司名称" />
-                                <van-field required :readonly="false" clickable clearable label="所属行业" v-model="state.item.ordertype" placeholder="请选择所属行业" />
-                                <van-field required :readonly="false" clickable clearable label="所属区域" v-model="state.item.ordertype" placeholder="请选择所属区域" />
-                                <van-field required :readonly="false" clickable clearable label="登记状态" v-model="state.item.ordertype" placeholder="请选择登记状态" />
-                                <van-field required :readonly="false" clickable clearable label="注销时间" v-model="state.item.ordertype" placeholder="请选择注销时间" />
-                                <van-field required :readonly="false" clickable clearable label="营业执照" v-model="state.item.ordertype" placeholder="请选择营业执照" />
+                                <van-field required :readonly="false" clickable clearable label="公司名称" v-model="state.item.companyName" placeholder="请填写公司名称" />
+                                <van-field required :readonly="false" clickable clearable label="所属行业" v-model="state.item.industry" placeholder="请选择所属行业" />
+                                <van-field required :readonly="false" clickable clearable label="所属区域" v-model="state.item.companyCode" placeholder="请选择所属区域" />
+                                <van-field required :readonly="false" clickable clearable label="登记状态" v-model="state.item.registrationStatus" placeholder="请选择登记状态" />
+                                <van-field required :readonly="false" clickable clearable label="注销时间" v-model="state.item.cancellationTime" placeholder="请选择注销时间" />
+                                <van-field required :readonly="false" clickable clearable label="营业执照" v-model="state.item.licenseNumber" placeholder="请选择营业执照" />
 
-                                <van-field required :readonly="false" clickable clearable label="经营范围" v-model="state.item.ordertype" placeholder="请输入经营范围" />
-                                <van-field required :readonly="false" clickable clearable label="注册地址" v-model="state.item.ordertype" placeholder="请输入注册地址" />
-                                <van-field required :readonly="false" clickable clearable label="注册资本(万)" v-model="state.item.ordertype" placeholder="请输入注册资本(万)" />
-                                <van-field required :readonly="false" clickable clearable label="实缴资本(万)" v-model="state.item.ordertype" placeholder="请输入实缴资本(万)" />
-                                <van-field required :readonly="false" clickable clearable label="认缴时间" v-model="state.item.ordertype" placeholder="请选择认缴时间" />
-                                <van-field required :readonly="false" clickable clearable label="实缴时间" v-model="state.item.ordertype" placeholder="请选择实缴时间" />
-                                <van-field required :readonly="false" clickable clearable label="营业期限" v-model="state.item.ordertype" placeholder="请选择营业期限" />
-                                <van-field required :readonly="false" clickable clearable label="公司类型" v-model="state.item.ordertype" placeholder="请选择公司类型" />
+                                <van-field required :readonly="false" clickable clearable label="经营范围" v-model="state.item.businessScope" placeholder="请输入经营范围" />
+                                <van-field required :readonly="false" clickable clearable label="注册地址" v-model="state.item.registeredAddress" placeholder="请输入注册地址" />
+                                <van-field required :readonly="false" clickable clearable label="注册资本(万)" v-model="state.item.registeredCapital" placeholder="请输入注册资本(万)" />
+                                <van-field required :readonly="false" clickable clearable label="实缴资本(万)" v-model="state.item.paidCapital" placeholder="请输入实缴资本(万)" />
+                                <van-field required :readonly="false" clickable clearable label="认缴时间" v-model="state.item.paidTime" placeholder="请选择认缴时间" />
+                                <van-field required :readonly="false" clickable clearable label="实缴时间" v-model="state.item.paidTureTime" placeholder="请选择实缴时间" />
+                                <van-field required :readonly="false" clickable clearable label="营业期限" v-model="state.item.businessTerm" placeholder="请选择营业期限" />
+                                <van-field required :readonly="false" clickable clearable label="公司类型" v-model="state.item.companyType" placeholder="请选择公司类型" />
 
-                                <van-field required :readonly="false" clickable clearable label="设立原因" v-model="state.item.ordertype" placeholder="请输入设立原因" />
-                                <van-field required :readonly="false" clickable clearable label="使用情况" v-model="state.item.ordertype" placeholder="请输入使用情况" />
-                                <van-field required :readonly="false" clickable clearable label="法定代表人" v-model="state.item.ordertype" placeholder="请输入法定代表人" />
-                                <van-field required :readonly="false" clickable clearable label="印章保管人" v-model="state.item.ordertype" placeholder="请选择印章保管人" />
-                                <van-field required :readonly="false" clickable clearable label="备案联络员" v-model="state.item.ordertype" placeholder="请选择工商备案联络员" />
-                                <van-field required :readonly="false" clickable clearable label="财务负责人" v-model="state.item.ordertype" placeholder="请选择工商备案财务负责人" />
-                                <van-field required :readonly="false" clickable clearable label="备注信息" v-model="state.item.ordertype" placeholder="请输入备注信息" />
+                                <van-field required :readonly="false" clickable clearable label="设立原因" v-model="state.item.reason" placeholder="请输入设立原因" />
+                                <van-field required :readonly="false" clickable clearable label="使用情况" v-model="state.item.usage" placeholder="请输入使用情况" />
+                                <van-field required :readonly="false" clickable clearable label="法定代表人" v-model="state.item.legalRepresentative" placeholder="请输入法定代表人" />
+                                <van-field required :readonly="false" clickable clearable label="印章保管人" v-model="state.item.sealKeeper" placeholder="请选择印章保管人" />
+                                <van-field required :readonly="false" clickable clearable label="备案联络员" v-model="state.item.liaison" placeholder="请选择工商备案联络员" />
+                                <van-field required :readonly="false" clickable clearable label="财务负责人" v-model="state.item.responsiblePerson" placeholder="请选择工商备案财务负责人" />
+                                <van-field required :readonly="false" clickable clearable label="备注信息" v-model="state.item.remark" placeholder="请输入备注信息" />
 
                             </van-cell-group>
 
@@ -76,12 +76,12 @@
                         <van-form>
                             <van-cell-group style="margin-top:10px;">
                                 <van-cell value="机构人员" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="董事长" v-model="state.item.ordertype" placeholder="请选择董事长" />
-                                <van-field required :readonly="false" clickable clearable label="董事" v-model="state.item.ordertype" placeholder="请选择董事" />
-                                <van-field required :readonly="false" clickable clearable label="执行董事" v-model="state.item.ordertype" placeholder="请选择执行董事" />
-                                <van-field required :readonly="false" clickable clearable label="总经理/经理" v-model="state.item.ordertype" placeholder="请选择总经理/经理名单" />
-                                <van-field required :readonly="false" clickable clearable label="监事会主席" v-model="state.item.ordertype" placeholder="请选择监事会主席" />
-                                <van-field required :readonly="false" clickable clearable label="监事" v-model="state.item.ordertype" placeholder="请选择监事" />
+                                <van-field required :readonly="false" clickable clearable label="董事长" v-model="state.item.directorChairman" placeholder="请选择董事长" />
+                                <van-field required :readonly="false" clickable clearable label="董事" v-model="state.item.director" placeholder="请选择董事" />
+                                <van-field required :readonly="false" clickable clearable label="执行董事" v-model="state.item.directorExecutive" placeholder="请选择执行董事" />
+                                <van-field required :readonly="false" clickable clearable label="总经理/经理" v-model="state.item.manager" placeholder="请选择总经理/经理名单" />
+                                <van-field required :readonly="false" clickable clearable label="监事会主席" v-model="state.item.supervisorChairman" placeholder="请选择监事会主席" />
+                                <van-field required :readonly="false" clickable clearable label="监事" v-model="state.item.supervisor" placeholder="请选择监事" />
                             </van-cell-group>
                         </van-form>
                     </van-cell-group>
@@ -95,10 +95,66 @@
                     <van-cell-group>
                         <van-form>
                             <van-cell-group style="margin-top:10px;">
-                                <van-cell value="股东信息" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.item.ordertype" placeholder="请选择股东" />
-                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.item.ordertype" placeholder="请输入股权占股明细" />
+                                <van-cell value="股东信息1" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.item.shareholder" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.item.ratioDetail" placeholder="请输入股权占股明细" />
                             </van-cell-group>
+
+                            <van-cell-group style="margin-top:10px;">
+                                <van-cell value="股东信息2" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.item.shareholder" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.item.ratioDetail" placeholder="请输入股权占股明细" />
+                            </van-cell-group>
+
+                            <van-cell-group style="margin-top:10px;">
+                                <van-cell value="股东信息3" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.item.shareholder" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.item.ratioDetail" placeholder="请输入股权占股明细" />
+                            </van-cell-group>
+
+                            <van-cell-group style="margin-top:10px;">
+                                <van-cell value="股东信息4" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.item.shareholder" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.item.ratioDetail" placeholder="请输入股权占股明细" />
+                            </van-cell-group>
+
+                            <van-cell-group style="margin-top:10px;">
+                                <van-cell value="股东信息5" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.item.shareholder" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.item.ratioDetail" placeholder="请输入股权占股明细" />
+                            </van-cell-group>
+
+                            <van-cell-group style="margin-top:10px;">
+                                <van-cell value="股东信息6" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.item.shareholder" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.item.ratioDetail" placeholder="请输入股权占股明细" />
+                            </van-cell-group>
+
+                            <van-cell-group style="margin-top:10px;">
+                                <van-cell value="股东信息7" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.item.shareholder" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.item.ratioDetail" placeholder="请输入股权占股明细" />
+                            </van-cell-group>
+
+                            <van-cell-group style="margin-top:10px;">
+                                <van-cell value="股东信息8" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.item.shareholder" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.item.ratioDetail" placeholder="请输入股权占股明细" />
+                            </van-cell-group>
+
+                            <van-cell-group style="margin-top:10px;">
+                                <van-cell value="股东信息9" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.item.shareholder" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.item.ratioDetail" placeholder="请输入股权占股明细" />
+                            </van-cell-group>
+
+                            <van-cell-group style="margin-top:10px;">
+                                <van-cell value="股东信息10" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.item.shareholder" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.item.ratioDetail" placeholder="请输入股权占股明细" />
+                            </van-cell-group>
+
+
                         </van-form>
                     </van-cell-group>
                 </div>
