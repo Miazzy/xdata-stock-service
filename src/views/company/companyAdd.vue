@@ -172,8 +172,9 @@
 </template>
 
 <script>
-
-import { Dialog } from 'vant';
+import {
+    Dialog
+} from 'vant';
 
 import {
     ref,
@@ -213,57 +214,58 @@ export default {
                 create_time: dayjs().format('YYYY-MM-DD'),
                 companyName: '', //公司名称
                 industry: '', //所属行业
-                companyCode:'', //所属区域
+                companyCode: '', //所属区域
                 registrationStatus: '', //登记状态
-                cancellationTime:'', //注销时间
-                licenseNumber:'', //营业执照
-                businessScope:'', //经营范围
+                cancellationTime: '9999-12-31', //注销时间
+                licenseNumber: '', //营业执照
+                businessScope: '', //经营范围
                 registeredAddress: '', //注册地址
                 registeredCapital: '', //注册资本(万)
-                paidCapital:'' , //实缴资本(万)
-                paidTime:'', //认缴时间
+                paidCapital: '', //实缴资本(万)
+                paidTime: '', //认缴时间
                 paidTureTime: '', //实缴时间
-                businessTerm: '' , //营业期限
+                businessTerm: '', //营业期限
                 companyType: '', //公司类型
-                reason: '',//设立原因
-                usage:'',//使用情况
-                legalRepresentative:'',//法定代表人
-                sealKeeper:'', //印章保管人
-                liaison:'',//备案联络员
-                responsiblePerson:'',//财务负责人
-                remark:'',//备注信息
+                reason: '', //设立原因
+                usage: '', //使用情况
+                legalRepresentative: '', //法定代表人
+                sealKeeper: '', //印章保管人
+                liaison: '', //备案联络员
+                responsiblePerson: '', //财务负责人
+                remark: '', //备注信息
             },
-            director:{
-                directorChairman:'', //董事长
-                director:'', //董事
-                directorExecutive:'', //执行董事
-                manager:'', //总经理/经理
-                supervisorChairman:'', //监事会主席
-                supervisor:'' //监事
+            director: {
+                directorChairman: '', //董事长
+                director: '', //董事
+                directorExecutive: '', //执行董事
+                manager: '', //总经理/经理
+                supervisorChairman: '', //监事会主席
+                supervisor: '' //监事
             },
-            stock:{
-                shareholder0:'', //股东
-                ratioDetail0:'', //占股明细
-                shareholder1:'', //股东
-                ratioDetail1:'', //占股明细
-                shareholder2:'', //股东
-                ratioDetail2:'', //占股明细
-                shareholder3:'', //股东
-                ratioDetail3:'', //占股明细
-                shareholder4:'', //股东
-                ratioDetail4:'', //占股明细
-                shareholder5:'', //股东
-                ratioDetail5:'', //占股明细
-                shareholder6:'', //股东
-                ratioDetail6:'', //占股明细
-                shareholder7:'', //股东
-                ratioDetail7:'', //占股明细
-                shareholder8:'', //股东
-                ratioDetail8:'', //占股明细
-                shareholder9:'', //股东
-                ratioDetail9:'', //占股明细
+            stock: {
+                shareholder0: '', //股东
+                ratioDetail0: '', //占股明细
+                shareholder1: '', //股东
+                ratioDetail1: '', //占股明细
+                shareholder2: '', //股东
+                ratioDetail2: '', //占股明细
+                shareholder3: '', //股东
+                ratioDetail3: '', //占股明细
+                shareholder4: '', //股东
+                ratioDetail4: '', //占股明细
+                shareholder5: '', //股东
+                ratioDetail5: '', //占股明细
+                shareholder6: '', //股东
+                ratioDetail6: '', //占股明细
+                shareholder7: '', //股东
+                ratioDetail7: '', //占股明细
+                shareholder8: '', //股东
+                ratioDetail8: '', //占股明细
+                shareholder9: '', //股东
+                ratioDetail9: '', //占股明细
             },
-            step:'one',
+            message: {},
+            step: 'one',
         });
 
         onMounted(() => {
@@ -294,6 +296,85 @@ export default {
             inner.style.transform = `translate3d(${x}px,0,0)`;
         };
 
+        const validField = (fieldName, item) => {
+            state.message[fieldName] = Betools.tools.isNull(item[fieldName]) ? `未填写${fieldName}信息，请填写后在进行提交申请！` : '';
+            return Betools.tools.isNull(state.message[fieldName]);
+        };
+
+        //数据校验
+        const checkData = (element , type) => {
+
+            if(type == 'company'){
+
+                //校验公司名称长度
+    
+                //校验所属行业
+    
+                //校验所属区域
+    
+                //校验登记状态
+    
+                //校验营业执照
+    
+                //校验经营范围
+    
+                //校验注册地址
+    
+                //校验注册资本
+    
+                //校验实缴资本
+    
+                //校验营业期限
+    
+                //校验公司类型
+    
+                //校验设立原因
+    
+                //校验使用情况
+    
+                //校验法人代表
+    
+                //校验印章保管人
+    
+                //校验备案联络员
+    
+                //校验财务负责人
+    
+                //校验备注信息
+
+            } else if(type == 'director' ){
+
+                //校验董事长
+
+                //校验董事
+
+                //校验执行董事
+
+                //校验总经理
+
+                //校验监事会主席
+
+                //校验监事
+
+            } else if(type == 'stock' ){
+
+                //如果没有数据，则提交股东信息
+
+                //如果有数据，校验股东信息及占股比例
+
+            }
+
+
+        }
+
+        const checkValid = (element) => {
+            const keys = Object.keys(element);
+            const invalidKey = keys.find(key => {
+                return !validField(key, element);
+            });
+            return invalidKey;
+        }
+
         //页面进入函数
         const enter = (el, done) => {
             document.body.offsetHeight;
@@ -322,47 +403,80 @@ export default {
         //取消函数
         const cancel = async () => {
             Dialog.confirm({
-                    title: '取消设立公司申请？',
-                    message: '点击‘确认’后返回上一页',
-                }).then(() => { // on confirm
-                    returnBack();
-                }).catch(() => { // on cancel
+                title: '取消设立公司申请？',
+                message: '点击‘确认’后返回上一页',
+            }).then(() => { // on confirm
+                returnBack();
+            }).catch(() => { // on cancel
 
-                });
+            });
         }
 
         //确认函数
-        const confirm = async() => {
+        const confirm = async (elem , result , response) => {
+            // 获取用户信息
+            const userinfo = await Betools.storage.getStore('system_userinfo');
+
             Dialog.confirm({
-                    title: '确认提交设立公司申请？',
-                    message: '点击‘确认’后提交申请',
-                }).then(() => { // on confirm
+                title: '确认提交设立公司申请？',
+                message: '点击‘确认’后提交申请',
+            }).then(async () => { // on confirm
 
-                }).catch(() => { // on cancel
+                //第一步，执行数据校验
 
-                });
+                //第二步，向表单提交form对象数据
+                result = await Betools.manage.postTableData('bs_company_flow_data', elem);
+
+                //第三步，检查是否有股东信息，如果有股东信息，则需要提交股东信息
+
+                //第四步，如果返回信息成功，则提示用户申请成功
+                if (result.protocol41 == true && result.affectedRows > 0 && result.node) {
+                    await Dialog.confirm({
+                        title: '设立公司申请提交成功！',
+                    });
+                }
+
+            }).catch(() => { // on cancel
+
+            });
         }
 
         //下一步函数
-        const nextstep = async() => {
-            if(state.step == 'one'){
+        const nextstep = async () => {
+            if (state.step == 'one') {
                 //此次校验，公司基础信息是否填写完整
-                state.step = 'two'
-            } else if(state.step == 'two'){
+                const invalidKeys = checkValid(state.item);
+                if (Betools.tools.isNull(invalidKeys)) {
+                    state.step = 'two'
+                } else {
+                    Dialog.confirm({
+                        title: '请填写完公司设立信息后进行下一步！',
+                        message: `请检查缺失信息：${invalidKeys}`
+                    })
+                }
+            } else if (state.step == 'two') {
                 //此次校验，公司的董事信息是否填写完整
-                state.step = 'three'
-            } else if(state.step == 'three'){
-                await confirm();
+                const invalidKeys = checkValid(state.director);
+                if (Betools.tools.isNull(invalidKeys)) {
+                    state.step = 'three'
+                } else {
+                    Dialog.confirm({
+                        title: '请填写完公司董事信息后进行下一步！',
+                        message: `请检查缺失信息：${invalidKeys}`
+                    })
+                }
+            } else if (state.step == 'three') {
+                await confirm({id:'',...state.item , ...state.director});
             }
         }
 
         //上一步函数
         const prestep = async () => {
-            if(state.step == 'three'){
+            if (state.step == 'three') {
                 state.step = 'two'
-            } else if(state.step == 'two'){
+            } else if (state.step == 'two') {
                 state.step = 'one'
-            } else if(state.stop == 'one'){
+            } else if (state.stop == 'one') {
                 await cancel();
             }
         }
