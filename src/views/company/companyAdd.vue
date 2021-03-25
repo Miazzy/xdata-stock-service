@@ -42,22 +42,25 @@
                                 <van-field required :readonly="false" clickable clearable label="所属行业" v-model="state.item.industry" placeholder="请选择所属行业" />
                                 <van-field required :readonly="false" clickable clearable label="所属区域" v-model="state.item.companyCode" placeholder="请选择所属区域" />
                                 <van-field required :readonly="false" clickable clearable label="登记状态" v-model="state.item.registrationStatus" placeholder="请选择登记状态" />
-                                <van-field required readonly clickable clearable label="注销时间" v-model="state.item.cancellationTime" placeholder="请选择注销时间" @click="clickDatePicker('');" />
-                                
-                                <van-popup v-model="state.show">
-                                    <van-datetime-picker v-show="state.tag.showCancellationTime"  v-model="state.status.currentDate" type="date" title="选择年月日" :min-date="state.status.minDate" :max-date="state.status.maxDate" />
-                                </van-popup>
-                                
-                                <van-field required readonly clickable clearable label="注销时间" v-model="state.item.cancellationTime" placeholder="请选择注销时间" @click="state.tag.showCancellationTime = true"  />
-                                <van-field required :readonly="false" clickable clearable label="营业执照" v-model="state.item.licenseNumber" placeholder="请选择营业执照" />
 
+                                <van-field required readonly clickable clearable label="注销时间" v-model="state.item.cancellationTime" placeholder="请选择注销时间" @click="clickDatePicker('showCancellationTime' , 'cancellationTime' , true);" />
+                                <van-datetime-picker v-show="state.tag.showCancellationTime"  v-model="state.status.cancellationTime" type="date" title="选择年月日" :min-date="state.status.minDate" :max-date="state.status.maxDate" @cancel="clickDatePicker('showCancellationTime' , 'cancellationTime' , false);" @confirm="clickDatePicker('showCancellationTime' , 'cancellationTime' , false);" />
+                                
+                                <van-field required :readonly="false" clickable clearable label="营业执照" v-model="state.item.licenseNumber" placeholder="请选择营业执照" />
                                 <van-field required :readonly="false" clickable clearable label="经营范围" v-model="state.item.businessScope" placeholder="请输入经营范围" />
                                 <van-field required :readonly="false" clickable clearable label="注册地址" v-model="state.item.registeredAddress" placeholder="请输入注册地址" />
                                 <van-field required :readonly="false" clickable clearable label="注册资本(万)" v-model="state.item.registeredCapital" placeholder="请输入注册资本(万)" />
                                 <van-field required :readonly="false" clickable clearable label="实缴资本(万)" v-model="state.item.paidCapital" placeholder="请输入实缴资本(万)" />
-                                <van-field required :readonly="false" clickable clearable label="认缴时间" v-model="state.item.paidTime" placeholder="请选择认缴时间" />
-                                <van-field required :readonly="false" clickable clearable label="实缴时间" v-model="state.item.paidTureTime" placeholder="请选择实缴时间" />
-                                <van-field required :readonly="false" clickable clearable label="营业期限" v-model="state.item.businessTerm" placeholder="请选择营业期限" />
+
+                                <van-field required :readonly="false" clickable clearable label="认缴时间" v-model="state.item.paidTime" placeholder="请选择认缴时间" @click="clickDatePicker('showPaidTime' , 'paidTime' , true);" />
+                                <van-datetime-picker v-show="state.tag.showPaidTime"  v-model="state.status.paidTime" type="date" title="选择年月日" :min-date="state.status.minDate" :max-date="state.status.maxDate" @cancel="clickDatePicker('showPaidTime' , 'paidTime' , false);" @confirm="clickDatePicker('showPaidTime' , 'paidTime' , false);" />
+
+                                <van-field required :readonly="false" clickable clearable label="实缴时间" v-model="state.item.paidTureTime" placeholder="请选择实缴时间" @click="clickDatePicker('showPaidTureTime' , 'paidTureTime' , true);"/>
+                                <van-datetime-picker v-show="state.tag.showPaidTureTime"  v-model="state.status.paidTureTime" type="date" title="选择年月日" :min-date="state.status.minDate" :max-date="state.status.maxDate" @cancel="clickDatePicker('showPaidTureTime' , 'paidTureTime' , false);" @confirm="clickDatePicker('showPaidTureTime' , 'paidTureTime' , false);" />
+                                
+                                <van-field required :readonly="false" clickable clearable label="营业期限" v-model="state.item.businessTerm" placeholder="请选择营业期限" @click="clickDatePicker('showBusinessTerm' , 'businessTerm' , true);"  />
+                                <van-datetime-picker v-show="state.tag.showBusinessTerm"  v-model="state.status.businessTerm" type="date" title="选择年月日" :min-date="state.status.minDate" :max-date="state.status.maxDate" @cancel="clickDatePicker('showBusinessTerm' , 'businessTerm' , false);" @confirm="clickDatePicker('showBusinessTerm' , 'businessTerm' , false);" />
+                                
                                 <van-field required :readonly="false" clickable clearable label="公司类型" v-model="state.item.companyType" placeholder="请选择公司类型" />
 
                                 <van-field required :readonly="false" clickable clearable label="设立原因" v-model="state.item.reason" placeholder="请输入设立原因" />
@@ -69,10 +72,6 @@
                                 <van-field required :readonly="false" clickable clearable label="备注信息" v-model="state.item.remark" placeholder="请输入备注信息" />
 
                             </van-cell-group>
-
-
-
-
 
                         </van-form>
                     </van-cell-group>
@@ -345,11 +344,17 @@ export default {
                 ratioDetail9: '', //占股明细
             },
             status:{
-                currentDate:'',
-                minDate: new Date(2020, 0, 1),
+                cancellationTime:new Date(),
+                paidTime:new Date(),
+                paidTureTime:new Date(),
+                businessTerm:new Date(),
+                minDate: new Date(1990, 0, 1),
                 maxDate: new Date(2099, 12, 31),
             },
             tag:{
+                showPaidTime:false,
+                showPaidTureTime:false,
+                showBusinessTerm:false,
                 showCancellationTime:false,
             },
             show:true,
@@ -390,11 +395,9 @@ export default {
             return Betools.tools.isNull(state.message[fieldName]);
         };
 
-        const clickDatePicker = async(name) => {
-
-            state.tag.showCancellationTime = true;
-            debugger;
-
+        const clickDatePicker = async(name , tname , status = true) => {
+            state.tag[name] = status;
+            state.item[tname] = dayjs(state.status[tname]).format('YYYY-MM-DD');
         };
 
         //数据校验
