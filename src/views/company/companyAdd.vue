@@ -100,58 +100,82 @@
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail0" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
-                            <van-cell-group style="margin-top:10px;">
+                            <van-cell-group v-show="state.stock.shareholder0 && state.stock.ratioDetail0" style="margin-top:10px;">
                                 <van-cell value="股东信息2" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder1" placeholder="请选择股东" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail1" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
-                            <van-cell-group style="margin-top:10px;">
+                            <van-cell-group v-show="state.stock.shareholder1 && state.stock.ratioDetail1" style="margin-top:10px;">
                                 <van-cell value="股东信息3" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder2" placeholder="请选择股东" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail2" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
-                            <van-cell-group style="margin-top:10px;">
+                            <van-cell-group v-show="state.stock.shareholder2 && state.stock.ratioDetail2" style="margin-top:10px;">
                                 <van-cell value="股东信息4" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder3" placeholder="请选择股东" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail3" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
-                            <van-cell-group style="margin-top:10px;">
+                            <van-cell-group v-show="state.stock.shareholder3 && state.stock.ratioDetail3" style="margin-top:10px;">
                                 <van-cell value="股东信息5" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder4" placeholder="请选择股东" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail4" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
-                            <van-cell-group style="margin-top:10px;">
+                            <van-cell-group v-show="state.stock.shareholder4 && state.stock.ratioDetail4" style="margin-top:10px;">
                                 <van-cell value="股东信息6" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder5" placeholder="请选择股东" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail5" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
-                            <van-cell-group style="margin-top:10px;">
+                            <van-cell-group v-show="state.stock.shareholder5 && state.stock.ratioDetail5" style="margin-top:10px;">
                                 <van-cell value="股东信息7" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder6" placeholder="请选择股东" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail6" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
-                            <van-cell-group style="margin-top:10px;">
+                            <van-cell-group v-show="state.stock.shareholder6 && state.stock.ratioDetail6" style="margin-top:10px;">
                                 <van-cell value="股东信息8" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder7" placeholder="请选择股东" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail7" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
-                            <van-cell-group style="margin-top:10px;">
+                            <van-cell-group v-show="state.stock.shareholder7 && state.stock.ratioDetail7" style="margin-top:10px;">
                                 <van-cell value="股东信息9" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder8" placeholder="请选择股东" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail8" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
-                            <van-cell-group style="margin-top:10px;">
+                            <van-cell-group v-show="state.stock.shareholder8 && state.stock.ratioDetail8" style="margin-top:10px;">
                                 <van-cell value="股东信息10" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder9" placeholder="请选择股东" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail9" placeholder="请输入股权占股明细" />
+                            </van-cell-group>
+
+                            <van-cell-group v-show="state.stock.shareholder9 && state.stock.ratioDetail9" style="margin-top:10px;">
+                                <van-cell value="股东信息11" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder10" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail10" placeholder="请输入股权占股明细" />
+                            </van-cell-group>
+
+                            <van-cell-group v-show="state.stock.shareholder10 && state.stock.ratioDetail10" style="margin-top:10px;">
+                                <van-cell value="股东信息12" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder11" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail11" placeholder="请输入股权占股明细" />
+                            </van-cell-group>
+
+                            <van-cell-group v-show="state.stock.shareholder11 && state.stock.ratioDetail11" style="margin-top:10px;">
+                                <van-cell value="股东信息13" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder12" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail12" placeholder="请输入股权占股明细" />
+                            </van-cell-group>
+
+                            <van-cell-group v-show="state.stock.shareholder12 && state.stock.ratioDetail12" style="margin-top:10px;">
+                                <van-cell value="股东信息14" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder13" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail13" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                         </van-form>
@@ -216,15 +240,15 @@ export default {
                 industry: '', //所属行业
                 companyCode: '', //所属区域
                 registrationStatus: '', //登记状态
-                cancellationTime: '9999-12-31', //注销时间
+                cancellationTime: '2099-12-31', //注销时间
                 licenseNumber: '', //营业执照
                 businessScope: '', //经营范围
                 registeredAddress: '', //注册地址
                 registeredCapital: '', //注册资本(万)
                 paidCapital: '', //实缴资本(万)
-                paidTime: '', //认缴时间
-                paidTureTime: '', //实缴时间
-                businessTerm: '', //营业期限
+                paidTime: dayjs().format('YYYY-MM-DD'), //认缴时间
+                paidTureTime: dayjs().format('YYYY-MM-DD'), //实缴时间
+                businessTerm: dayjs().format('YYYY-MM-DD'), //营业期限
                 companyType: '', //公司类型
                 reason: '', //设立原因
                 usage: '', //使用情况
@@ -302,7 +326,7 @@ export default {
         };
 
         //数据校验
-        const checkData = (element, type) => {
+        const checkData = async (element, type) => {
 
             if (type == 'company') {
 
@@ -412,9 +436,11 @@ export default {
         }
 
         //确认函数
-        const confirm = async (elem, result, response) => {
+        const confirm = async (elem, result, validResult ,  response) => {
             // 获取用户信息
             // const userinfo = await Betools.storage.getStore('system_userinfo');
+            elem = { id: Betools.tools.queryUniqueID(),  ...state.item, ...state.director };
+            // console.log(`element:`,JSON.stringify(elem));
 
             Dialog.confirm({
                 title: '确认提交设立公司申请？',
@@ -425,11 +451,11 @@ export default {
 
                     //第一步，执行数据校验
                     console.log(`第一步，执行数据校验`);
+                    validResult = await checkData(elem,'company');
 
                     //第二步，向表单提交form对象数据
                     console.log(`第二步，向表单提交form对象数据`);
                     result = await Betools.manage.postTableData('bs_company_flow_data', elem);
-
 
                     //第三步，检查是否有股东信息，如果有股东信息，则需要提交股东信息
                     console.log(`第三步，检查是否有股东信息，如果有股东信息，则需要提交股东信息`);
@@ -475,11 +501,13 @@ export default {
                     })
                 }
             } else if (state.step == 'three') {
-                await confirm({
+                const elem = {
                     id: Betools.tools.queryUniqueID(),
                     ...state.item,
                     ...state.director
-                });
+                };
+                console.log(`elemnt:`,JSON.stringify(elem));
+                await confirm(elem , null , null);
             }
         }
 
