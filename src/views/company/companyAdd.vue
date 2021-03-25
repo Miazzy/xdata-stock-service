@@ -12,6 +12,7 @@
         </header>
 
         <div class="section-content" v-show="state.step == 'one' " style="">
+
             <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%);">
 
                 <div class="weui-cells" style="margin-top:0px;">
@@ -41,7 +42,13 @@
                                 <van-field required :readonly="false" clickable clearable label="所属行业" v-model="state.item.industry" placeholder="请选择所属行业" />
                                 <van-field required :readonly="false" clickable clearable label="所属区域" v-model="state.item.companyCode" placeholder="请选择所属区域" />
                                 <van-field required :readonly="false" clickable clearable label="登记状态" v-model="state.item.registrationStatus" placeholder="请选择登记状态" />
-                                <van-field required :readonly="false" clickable clearable label="注销时间" v-model="state.item.cancellationTime" placeholder="请选择注销时间" />
+                                <van-field required readonly clickable clearable label="注销时间" v-model="state.item.cancellationTime" placeholder="请选择注销时间" @click="clickDatePicker('');" />
+                                
+                                <van-popup v-model="state.show">
+                                    <van-datetime-picker v-show="state.tag.showCancellationTime"  v-model="state.status.currentDate" type="date" title="选择年月日" :min-date="state.status.minDate" :max-date="state.status.maxDate" />
+                                </van-popup>
+                                
+                                <van-field required readonly clickable clearable label="注销时间" v-model="state.item.cancellationTime" placeholder="请选择注销时间" @click="state.tag.showCancellationTime = true"  />
                                 <van-field required :readonly="false" clickable clearable label="营业执照" v-model="state.item.licenseNumber" placeholder="请选择营业执照" />
 
                                 <van-field required :readonly="false" clickable clearable label="经营范围" v-model="state.item.businessScope" placeholder="请输入经营范围" />
@@ -62,6 +69,10 @@
                                 <van-field required :readonly="false" clickable clearable label="备注信息" v-model="state.item.remark" placeholder="请输入备注信息" />
 
                             </van-cell-group>
+
+
+
+
 
                         </van-form>
                     </van-cell-group>
@@ -178,8 +189,45 @@
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail13" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
+                            <van-cell-group v-show="state.stock.shareholder13 && state.stock.ratioDetail13" style="margin-top:10px;">
+                                <van-cell value="股东信息15" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder14" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail14" placeholder="请输入股权占股明细" />
+                            </van-cell-group>
+
+                            <van-cell-group v-show="state.stock.shareholder14 && state.stock.ratioDetail14" style="margin-top:10px;">
+                                <van-cell value="股东信息16" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder15" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail15" placeholder="请输入股权占股明细" />
+                            </van-cell-group>
+
+                            <van-cell-group v-show="state.stock.shareholder15 && state.stock.ratioDetail15" style="margin-top:10px;">
+                                <van-cell value="股东信息17" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder16" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail16" placeholder="请输入股权占股明细" />
+                            </van-cell-group>
+
+                            <van-cell-group v-show="state.stock.shareholder16 && state.stock.ratioDetail16" style="margin-top:10px;">
+                                <van-cell value="股东信息18" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder17" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail17" placeholder="请输入股权占股明细" />
+                            </van-cell-group>
+
+                            <van-cell-group v-show="state.stock.shareholder17 && state.stock.ratioDetail17" style="margin-top:10px;">
+                                <van-cell value="股东信息19" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder18" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail18" placeholder="请输入股权占股明细" />
+                            </van-cell-group>
+
+                            <van-cell-group v-show="state.stock.shareholder18 && state.stock.ratioDetail18" style="margin-top:10px;">
+                                <van-cell value="股东信息20" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder19" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail19" placeholder="请输入股权占股明细" />
+                            </van-cell-group>
+
                         </van-form>
                     </van-cell-group>
+
                 </div>
             </section>
         </div>
@@ -197,8 +245,9 @@
 
 <script>
 import {
-    Dialog
+    Dialog,Popup
 } from 'vant';
+
 
 import {
     ref,
@@ -218,7 +267,14 @@ import tabbar from "@/components/tabbar";
 export default {
     name: "base",
     components: {
-        tabbar
+        tabbar,
+        Popup
+    },
+    data() {
+        return {
+            phoneRegisterTwoForm:"",
+            showPicker: false,
+        };
     },
     setup(props, context) {
 
@@ -288,6 +344,15 @@ export default {
                 shareholder9: '', //股东
                 ratioDetail9: '', //占股明细
             },
+            status:{
+                currentDate:'',
+                minDate: new Date(2020, 0, 1),
+                maxDate: new Date(2099, 12, 31),
+            },
+            tag:{
+                showCancellationTime:false,
+            },
+            show:true,
             message: {},
             step: 'one',
         });
@@ -323,6 +388,13 @@ export default {
         const validField = (fieldName, item) => {
             state.message[fieldName] = Betools.tools.isNull(item[fieldName]) ? `未填写${fieldName}信息，请填写后在进行提交申请！` : '';
             return Betools.tools.isNull(state.message[fieldName]);
+        };
+
+        const clickDatePicker = async(name) => {
+
+            state.tag.showCancellationTime = true;
+            debugger;
+
         };
 
         //数据校验
@@ -436,10 +508,14 @@ export default {
         }
 
         //确认函数
-        const confirm = async (elem, result, validResult ,  response) => {
+        const confirm = async (elem, result, validResult, response) => {
             // 获取用户信息
             // const userinfo = await Betools.storage.getStore('system_userinfo');
-            elem = { id: Betools.tools.queryUniqueID(),  ...state.item, ...state.director };
+            elem = {
+                id: Betools.tools.queryUniqueID(),
+                ...state.item,
+                ...state.director
+            };
             // console.log(`element:`,JSON.stringify(elem));
 
             Dialog.confirm({
@@ -451,7 +527,7 @@ export default {
 
                     //第一步，执行数据校验
                     console.log(`第一步，执行数据校验`);
-                    validResult = await checkData(elem,'company');
+                    validResult = await checkData(elem, 'company');
 
                     //第二步，向表单提交form对象数据
                     console.log(`第二步，向表单提交form对象数据`);
@@ -506,8 +582,8 @@ export default {
                     ...state.item,
                     ...state.director
                 };
-                console.log(`elemnt:`,JSON.stringify(elem));
-                await confirm(elem , null , null);
+                console.log(`elemnt:`, JSON.stringify(elem));
+                await confirm(elem, null, null);
             }
         }
 
@@ -535,7 +611,8 @@ export default {
             nextstep,
             prestep,
             cancel,
-            confirm
+            confirm,
+            clickDatePicker,
         };
     }
 };
