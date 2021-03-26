@@ -948,6 +948,7 @@ export default {
             }).catch(() => { // on cancel
 
             });
+            
         }
 
         //下一步函数
