@@ -101,6 +101,7 @@ export default {
                 (headerActive.value = false);
         };
 
+        //搜索公司信息
         const companySearch = async (data, key) => {
             data = await Betools.manage.queryTableData('bs_company_flow_data', `_where=(companyName,like,~${key}~)&_sort=-id&_p=0&_size=100`); // 获取最近12个月的已用印记录
             data.map(item=>{
@@ -108,8 +109,6 @@ export default {
             })
             state.companyColumns = data;
         };
-
-        
 
         return {
             active,
