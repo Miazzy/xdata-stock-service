@@ -175,9 +175,21 @@
 
                                 <van-field required :readonly="false" clickable clearable label="财务负责人" v-model="state.item.responsiblePerson" placeholder="请选择工商备案财务负责人" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="companySearch(null,state.item.companyName)">查询</van-button>
+                                        <van-button size="small" type="primary" @click="responsiblePersonSearch(null,state.item.responsiblePerson)">查询</van-button>
                                     </template>
                                 </van-field>
+
+                                <van-radio-group v-show="state.tag.showResponsiblePerson" v-model="state.radio.responsiblePerson" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.responsiblePersonColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="responsiblePersonConfirm(index,item);">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
 
                                 <van-field required :readonly="false" clickable clearable label="备注信息" v-model="state.item.remark" rows="1" autosize type="textarea" placeholder="请输入备注信息" />
 
@@ -442,12 +454,14 @@ export default {
             legalRepresentativeColumns:[],
             sealKeeperColumns:[],
             liaisonColumns:[],
+            responsiblePersonColumns:[],
             radio: {
                 companyName: '',
                 industryName: '',
                 registStatus: '',
                 sealKeeper:'',
                 liaison:'',
+                responsiblePerson:'',
             },
             item: {
                 create_time: dayjs().format('YYYY-MM-DD'),
@@ -522,6 +536,7 @@ export default {
                 showCompanyType:false,
                 showLegalRepresentative:false,
                 showSealKeeper:false,
+                showResponsiblePerson:false,
             },
             show: true,
             message: {},
@@ -593,6 +608,11 @@ export default {
         const liaisonConfirm = (index, value, key)=>{
             state.item.liaison = value.lastname;
             state.tag.showLiaison = false;
+        };
+
+        const responsiblePersonConfirm = (index, value, key)=>{
+            state.item.responsiblePerson = value.lastname;
+            state.tag.showResponsiblePerson = false;
         };
 
         const companySearch = async (data, key) => {
@@ -682,6 +702,28 @@ export default {
             }
             state.tag.showLiaison = true;
             state.liaisonColumns = data;
+        };
+
+        const responsiblePersonSearch = async (data, key) => {
+            if(key && key.length >= 2){
+                data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
+                data.map((item, index) => {
+                    item.code = item.id;
+                    item.tel = '';
+                    item.name = item.lastname ;
+                    item.departName = item.textfield1 && item.textfield1.includes('||') ? item.textfield1.split('||')[1] : '';
+                    item.title = `${item.lastname} ${item.departName}`;
+                    item.isDefault = false;
+                });
+                data = data.filter((item,index,self)=>{
+                    const findex = self.findIndex((element)=>{
+                        return element.loginid == item.loginid;
+                    })
+                    return findex == index;
+                });
+            }
+            state.tag.showResponsiblePerson = true;
+            state.responsiblePersonColumns = data;
         };
 
         //页面进入前函数
@@ -936,6 +978,8 @@ export default {
             sealKeeperConfirm,
             liaisonConfirm,
             liaisonSearch,
+            responsiblePersonConfirm,
+            responsiblePersonSearch,
         };
     }
 };

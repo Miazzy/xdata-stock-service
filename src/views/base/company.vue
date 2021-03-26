@@ -23,19 +23,19 @@
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="" >设立公司</div>
                             </van-col>
-                            <van-col span="6" @click="redirectView('/companyrec')">
+                            <van-col span="6" @click="redirectView('/companyrec')" style="display:none;" >
                                 <van-badge>
                                     <img class="child" style="transform:scale(0.78);" :src="state.imgs[1]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">录入公司</div>
                             </van-col>
-                            <van-col span="6" @click="redirectView('/companyadd')" >
+                            <van-col span="6" @click="redirectView('/companyadd')" style="display:none;">
                                 <van-badge>
                                     <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/shigong_jy.png">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="" >注销公司</div>
                             </van-col>
-                            <van-col span="6" @click="redirectView('/companyadd')" >
+                            <van-col span="6" @click="redirectView('/companyadd')" style="display:none;">
                                 <van-badge>
                                     <img class="child" style="" src="https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.5/src/assets/img/gerenjibenxinxichaxunxiugai.png">
                                 </van-badge>
