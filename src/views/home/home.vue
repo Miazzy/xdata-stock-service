@@ -9,8 +9,8 @@
             </div>
             <form action="/search" id="V3_Index_S" style="margin-left:2.5%;margin-right:2.5%;text-algin:center;">
                 <div class="home-input-outside-wrap" style="width:100%;">
-                    <div class="home-input-wrap"> <input type="text" placeholder="请输入企业名称、人名、品牌、地址等" value="" id="searchkey" name="key" autocomplete="off"> </div>
-                    <div class="home-search-icon" id="V3_Search_bt" style="cursor: pointer;"> <span class="btn">查一下</span> </div>
+                    <div class="home-input-wrap"> <input type="text" placeholder="请输入企业名称、人名、品牌、地址等" v-model="state.searchkey" id="searchkey" name="key" autocomplete="off"> </div>
+                    <div class="home-search-icon" id="V3_Search_bt" style="cursor: pointer;" @click="companySearch(null,state.searchkey);"> <span class="btn">查一下</span> </div>
                 </div>
             </form>
         </div>
@@ -111,7 +111,7 @@ export default {
 
         //搜索公司信息
         const companySearch = async (data, key) => {
-            data = await Betools.manage.queryTableData('bs_company_flow_data', `_where=(companyName,like,~${key}~)&_sort=-id&_p=0&_size=100`); // 获取最近12个月的已用印记录
+            data = await Betools.manage.queryTableData('bs_company_flow_data', `_where=(companyName,like,~${key}~)&_sort=-id&_p=0&_size=30`); // 获取最近12个月的已用印记录
             data.map(item=>{
                 item.establish_time= dayjs(item.establish_time).format('YYYY-MM-DD');
             })
