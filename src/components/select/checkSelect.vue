@@ -1,7 +1,7 @@
 <template>
 <div :id="option.classID">
     <van-field v-model="resultLabel" v-bind="$attrs" readonly is-link input-align="left" @click="show = !show" />
-    <van-popup v-model="show" position="bottom" class="" style="max-height:500px;">
+    <div v-if="show" position="bottom" class="" style="max-height:500px;">
         <div class="van-picker__toolbar">
             <button type="button" class="van-picker__cancel" @click="cancel">取消</button>
             <div class="van-ellipsis van-picker__title">{{$attrs.label}}</div>
@@ -29,7 +29,7 @@
                 </van-cell-group>
             </van-checkbox-group>
         </div>
-    </van-popup>
+    </div>
 </div>
 </template>
 
@@ -49,7 +49,7 @@ export default {
         columns_origin: {
             type: Array,
             default: function () {
-                return this.columns ? JSON.parse(JSON.stringify(this.columns)) : [];
+                return this && this.columns ? JSON.parse(JSON.stringify(this.columns)) : [];
             }
         },
         selectValue: {
@@ -119,7 +119,10 @@ export default {
             this.$emit('cancel', this.resultValue)
         },
         toggle(index) { //cell点击事件，同步checkbox
-            this.$refs.checkboxes[index].toggle()
+            const temp = this.$refs.checkboxes;
+            if(this.$refs.checkboxes[index]){
+                this.$refs.checkboxes[index].toggle();
+            }
         },
         toggleAll(all) { //全选
             this.$refs.checkboxGroup.toggleAll(this.checkedAll)

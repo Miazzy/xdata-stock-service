@@ -39,6 +39,7 @@
                                 <van-cell value="基本信息" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field clearable label="填报日期" v-model="state.item.create_time" placeholder="请输入登记日期" readonly />
                                 <van-field required :readonly="false" clickable clearable label="公司名称" v-model="state.item.companyName" placeholder="请填写公司名称" />
+                                <check-select required :readonly="readonly" clearable label="公司名称" placeholder="请输入公司名称" v-model="state.item.companyName" :columns="state.companyColumns" :option="{ label:'name',value:'name',title:'title',all:false, search:true , search_emit:true , margin:'35px 3px 0px 0px' , classID:'van-field-check-select'}" @confirm="companyConfirm" @search="companySearch" />
                                 <van-field required :readonly="false" clickable clearable label="所属行业" v-model="state.item.industry" placeholder="请选择所属行业" />
                                 <van-field required :readonly="false" clickable clearable label="所属区域" v-model="state.item.companyCode" placeholder="请选择所属区域" />
                                 <van-field required :readonly="false" clickable clearable label="登记状态" v-model="state.item.registrationStatus" placeholder="请选择登记状态" />
@@ -247,6 +248,8 @@ import {
     Dialog,Popup
 } from 'vant';
 
+import singleSelect from '@/components/select/singleSelect';
+import checkSelect from '@/components/select/checkSelect';
 
 import {
     ref,
@@ -267,7 +270,9 @@ export default {
     name: "base",
     components: {
         tabbar,
-        Popup
+        Popup,
+        singleSelect,
+        checkSelect,
     },
     data() {
         return {
@@ -289,6 +294,7 @@ export default {
 
         const state = reactive({
             imgs: [],
+            companyColumns: [],
             item: {
                 create_time: dayjs().format('YYYY-MM-DD'),
                 companyName: '', //公司名称
@@ -376,6 +382,22 @@ export default {
         //点击搜索函数
         const searching = () => {
             console.log('searching');
+        };
+
+        const companyConfirm = (data, key, value) => {
+
+        };
+
+        const companySearch = async (data, key) => {
+            data = await Betools.manage.queryTableData('bs_company_flow_base', `_where=(status,in,0)~and(level,gt,2)~and(name,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
+            data.map((item, index) => {
+                item.title = item.name.slice(0, 24);
+                item.code = item.id;
+                item.tel = '';
+                item.name = item.name;
+                item.isDefault = false;
+            });
+            state.companyColumns = data;
         };
 
         //页面进入前函数
@@ -616,6 +638,8 @@ export default {
             cancel,
             confirm,
             clickDatePicker,
+            companyConfirm,
+            companySearch,
         };
     }
 };
