@@ -1,14 +1,12 @@
 <template>
 <div class="home">
-    <div>
-        <div class="home-top" style="background: url(https://cdn.jsdelivr.net/gh/Miazzy/xdata-stock-service@v1.0.3/src/assets/img/top_bg3.png) no-repeat; background-size: 100% 100%;">
-            
-        </div>
+
+    <van-nav-bar title="公司信息" left-text="返回" left-arrow @click-left="returnBack" />
+
+    <div id="company-query-content">
+        <van-search v-model="value" placeholder="请输入公司名称、法人、地址等信息" @search="onSearch" />
         <div class="home-latestcompany" style="margin-bottom:50px;">
-            <div class="home-middle-title-wrap">
-                <div class="home-middle-title">企业注册信息</div>
-            </div>
-            <div class="home-middle-content"> 
+            <div class="home-middle-content">
                 <a href="/firm/f06eabb81ca5c48435a99d643e2aeb6d.html" class="a-decoration">
                     <div class="list-item">
                         <div class="list-item-top">
@@ -95,6 +93,12 @@ export default {
             window.addEventListener("scroll", pageScroll);
         });
 
+        //返回上一页函数
+        const returnBack = () => {
+            console.log('returnBack');
+            $router.push("/company");
+        };
+
         const addToCart = (event, tag) => {
             $store.commit("cart/addToCart", tag);
             ball.show = true;
@@ -150,11 +154,21 @@ export default {
             enter,
             afterEnter,
             handleClick,
-            pageScroll
+            pageScroll,
+            returnBack,
         };
     }
 };
 </script>
+
 <style lang="scss" scoped>
 @import "../home/home.css";
+
+#company-query-content .list-item-name {
+    color: #333333;
+    font-size: 17px;
+    float: left;
+    margin-left: 5px;
+    width: calc(100% - 50px);
+}
 </style>
