@@ -111,6 +111,9 @@ export default {
             state.companyColumns = data;
         };
 
+        //查询默认公司列表信息
+        companySearch(null,'');
+
         return {
             active,
             timeData,

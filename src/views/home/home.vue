@@ -126,6 +126,9 @@ export default {
         const searchMore = async() => {
             $router.push('/companyquery');
         };
+        
+        //查询默认公司列表信息
+        companySearch(null,'');
 
         return {
             active,
