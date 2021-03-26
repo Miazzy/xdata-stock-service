@@ -4,7 +4,7 @@
     <van-nav-bar title="公司信息" left-text="返回" left-arrow @click-left="returnBack" />
 
     <div id="company-query-content">
-        <van-search v-model="value" placeholder="请输入公司名称、法人、地址等信息" @search="onSearch" />
+        <van-search v-model="value" placeholder="请输入公司名称、法人、地址等信息" @search="companySearch" />
         <div class="home-latestcompany" style="margin-bottom:50px;">
             <div class="home-middle-content">
                 <a href="/firm/f06eabb81ca5c48435a99d643e2aeb6d.html" class="a-decoration">
@@ -74,20 +74,6 @@ export default {
             tabArray: []
         });
 
-        const ball = reactive({
-            show: false,
-            el: ""
-        });
-
-        ctx.$http.get("http://test.happymmall.com/home/homeData").then(res => {
-            const {
-                images,
-                tabList
-            } = res.data;
-            state.tabArray = tabList;
-            state.homeImgs = images;
-        });
-
         onMounted(() => {
             ctx.$eventBus.$emit("changeTag", 0);
             window.addEventListener("scroll", pageScroll);
@@ -97,12 +83,6 @@ export default {
         const returnBack = () => {
             console.log('returnBack');
             $router.push("/company");
-        };
-
-        const addToCart = (event, tag) => {
-            $store.commit("cart/addToCart", tag);
-            ball.show = true;
-            ball.el = event.target;
         };
 
         const beforeEnter = el => {
@@ -129,10 +109,6 @@ export default {
             el.style.display = "none";
         };
 
-        const handleClick = linkUrl => {
-            $router.push("/classify/product");
-        };
-
         const pageScroll = () => {
             const scrollTop =
                 window.pageYOffset ||
@@ -149,11 +125,9 @@ export default {
             headerActive,
             ...toRefs(ball),
             ...toRefs(state),
-            addToCart,
             beforeEnter,
             enter,
             afterEnter,
-            handleClick,
             pageScroll,
             returnBack,
         };
