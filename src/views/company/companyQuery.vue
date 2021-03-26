@@ -4,34 +4,36 @@
     <van-nav-bar title="公司信息" left-text="返回" left-arrow @click-left="returnBack" />
 
     <div id="company-query-content">
-        <van-search v-model="value" placeholder="请输入公司名称、法人、地址等信息" @search="companySearch" />
+        <van-search v-model="state.searchkey" placeholder="请输入公司名称、法人、地址等信息" @search="companySearch(null,state.searchkey);" />
         <div class="home-latestcompany" style="margin-bottom:50px;">
             <div class="home-middle-content">
-                <a href="/firm/f06eabb81ca5c48435a99d643e2aeb6d.html" class="a-decoration">
-                    <div class="list-item">
-                        <div class="list-item-top">
-                            <div class="list-item-logo"></div>
-                            <div class="list-item-name">
-                                普洱蓝艺装饰工程有限责任公司
+                <template v-for="(item , index) in state.companyColumns" :key="index">
+                    <a href="#" class="a-decoration">
+                        <div class="list-item">
+                            <div class="list-item-top">
+                                <div class="list-item-logo"></div>
+                                <div class="list-item-name">
+                                    {{ item.companyName }}
+                                </div>
+                            </div>
+                            <div class="list-item-middle">
+                                <div class="col-3">
+                                    <div class="col-subtitle">
+                                        法定代表人
+                                    </div> <object class="col-title"> <a class="text-primary" href="/people?name=%E9%99%88%E6%B5%A9&amp;keyno=f06eabb81ca5c48435a99d643e2aeb6d">{{ item.legalRepresentative }} </a> </object>
+                                </div>
+                                <div class="col-3">
+                                    <div class="col-subtitle">注册资金</div>
+                                    <div class="col-title"> {{ item.registeredCapital }} 万元人民币 </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="col-subtitle">成立日期</div>
+                                    <div class="col-title">{{ item.establish_time }}</div>
+                                </div>
                             </div>
                         </div>
-                        <div class="list-item-middle">
-                            <div class="col-3">
-                                <div class="col-subtitle">
-                                    法定代表人
-                                </div> <object class="col-title"> <a class="text-primary" href="/people?name=%E9%99%88%E6%B5%A9&amp;keyno=f06eabb81ca5c48435a99d643e2aeb6d">陈浩</a> </object>
-                            </div>
-                            <div class="col-3">
-                                <div class="col-subtitle">注册资金</div>
-                                <div class="col-title"> 100万元人民币 </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="col-subtitle">成立日期</div>
-                                <div class="col-title">2021-02-24</div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                </template>
             </div>
         </div>
         <div style="height:30px;"></div>
@@ -71,11 +73,14 @@ export default {
 
         const state = reactive({
             homeImgs: [],
-            tabArray: []
+            tabArray: [],
+            searchkey:'',
+            companyColumns:[],
         });
 
         onMounted(() => {
             ctx.$eventBus.$emit("changeTag", 0);
+            companySearch(null,'');
             window.addEventListener("scroll", pageScroll);
         });
 
@@ -85,6 +90,7 @@ export default {
             $router.push("/company");
         };
 
+        //页面滚动处理函数
         const pageScroll = () => {
             const scrollTop =
                 window.pageYOffset ||
@@ -95,13 +101,24 @@ export default {
                 (headerActive.value = false);
         };
 
+        const companySearch = async (data, key) => {
+            data = await Betools.manage.queryTableData('bs_company_flow_data', `_where=(companyName,like,~${key}~)&_sort=-id&_p=0&_size=100`); // 获取最近12个月的已用印记录
+            data.map(item=>{
+                item.establish_time= dayjs(item.establish_time).format('YYYY-MM-DD');
+            })
+            state.companyColumns = data;
+        };
+
+        
+
         return {
             active,
             timeData,
             headerActive,
-            ...toRefs(state),
+            state,
             pageScroll,
             returnBack,
+            companySearch,
         };
     }
 };
