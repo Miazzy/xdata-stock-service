@@ -226,7 +226,24 @@
                                     </van-cell-group>
                                 </van-radio-group>
 
-                                <van-field required :readonly="false" clickable clearable label="董事" v-model="state.director.director" placeholder="请选择董事" />
+                                <van-field required :readonly="false" clickable clearable label="董事" v-model="state.director.director" placeholder="请选择董事" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="directorSearch(null,state.item.director)">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showDirector" v-model="state.radio.director" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.directorColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="directorConfirm(index,item);">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
                                 <van-field required :readonly="false" clickable clearable label="执行董事" v-model="state.director.directorExecutive" placeholder="请选择执行董事" />
                                 <van-field required :readonly="false" clickable clearable label="总经理/经理" v-model="state.director.manager" placeholder="请选择总经理/经理名单" />
                                 <van-field required :readonly="false" clickable clearable label="监事会主席" v-model="state.director.supervisorChairman" placeholder="请选择监事会主席" />
@@ -473,6 +490,7 @@ export default {
             liaisonColumns:[],
             responsiblePersonColumns:[],
             directorChairmanColumns:[],
+            directorColumns:[],
             radio: {
                 companyName: '',
                 industryName: '',
@@ -481,6 +499,7 @@ export default {
                 liaison:'',
                 responsiblePerson:'',
                 directorChairman:'',
+                director:'',
             },
             item: {
                 create_time: dayjs().format('YYYY-MM-DD'),
@@ -557,6 +576,7 @@ export default {
                 showSealKeeper:false,
                 showResponsiblePerson:false,
                 showDirectorChairman:false,
+                showDirector:false,
             },
             show: true,
             message: {},
@@ -638,6 +658,11 @@ export default {
         const directorChairmanConfirm = (index, value, key)=>{
             state.item.directorChairman = value.lastname;
             state.tag.showDirectorChairman = false;
+        };
+
+        const directorConfirm = (index, value, key)=>{
+            state.item.director = value.lastname;
+            state.tag.showDirector = false;
         };
 
         const companySearch = async (data, key) => {
@@ -948,7 +973,7 @@ export default {
             }).catch(() => { // on cancel
 
             });
-            
+
         }
 
         //下一步函数
@@ -1030,6 +1055,8 @@ export default {
             responsiblePersonSearch,
             directorChairmanConfirm,
             directorChairmanSearch,
+            directorConfirm,
+            directorSearch,
         };
     }
 };
