@@ -472,6 +472,7 @@ export default {
             sealKeeperColumns:[],
             liaisonColumns:[],
             responsiblePersonColumns:[],
+            directorChairmanColumns:[],
             radio: {
                 companyName: '',
                 industryName: '',
@@ -479,6 +480,7 @@ export default {
                 sealKeeper:'',
                 liaison:'',
                 responsiblePerson:'',
+                directorChairman:'',
             },
             item: {
                 create_time: dayjs().format('YYYY-MM-DD'),
@@ -554,6 +556,7 @@ export default {
                 showLegalRepresentative:false,
                 showSealKeeper:false,
                 showResponsiblePerson:false,
+                showDirectorChairman:false,
             },
             show: true,
             message: {},
@@ -767,7 +770,7 @@ export default {
                 });
             }
             state.tag.showResponsiblePerson = true;
-            state.responsiblePersonColumns = data;
+            state.directorChairman = data;
         };
 
         //页面进入前函数
