@@ -38,7 +38,6 @@
         </div>
         <div style="height:30px;"></div>
     </div>
-    <tabbar></tabbar>
 </div>
 </template>
 
@@ -57,12 +56,10 @@ import {
     useRouter,
     useRoute
 } from "vue-router";
-import tabbar from "@/components/tabbar";
+
 export default {
-    name: "home",
-    components: {
-        tabbar
-    },
+    name: "companyQuery",
+    components: {},
     setup(props, context) {
         const {
             ctx
@@ -159,5 +156,5 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "./home.css";
+@import "../home/home.css";
 </style>

@@ -143,10 +143,18 @@ export default [{
     component: () =>
         import ('@/views/company/companyAdd.vue')
 }, {
+    path: '/companyquery', //businesslicense
+    name: 'companyquery',
+    meta: {
+        index: 119
+    },
+    component: () =>
+        import ('@/views/company/companyQuery.vue')
+}, {
     path: '/companydirector', //businesslicense
     name: 'companydirector',
     meta: {
-        index: 119
+        index: 120
     },
     component: () =>
         import ('@/views/company/companyDirector.vue')
@@ -154,7 +162,7 @@ export default [{
     path: '/companypledge', //businesslicense
     name: 'companypledge',
     meta: {
-        index: 120
+        index: 12
     },
     component: () =>
         import ('@/views/company/companyPledge.vue')

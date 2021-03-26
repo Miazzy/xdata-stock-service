@@ -41,7 +41,7 @@
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="" >变更公司</div>
                             </van-col>
-                            <van-col span="6" @click="redirectView('/companyadd')" >
+                            <van-col span="6" @click="redirectView('/companyquery')" >
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[6]">
                                 </van-badge>
