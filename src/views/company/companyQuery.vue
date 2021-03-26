@@ -85,30 +85,6 @@ export default {
             $router.push("/company");
         };
 
-        const beforeEnter = el => {
-            const dom = ball.el;
-            const rect = dom.getBoundingClientRect();
-            const x = rect.left - window.innerWidth * 0.6;
-            const y = -(window.innerHeight - rect.top);
-            el.style.display = "block";
-            el.style.transform = `translate3d(0,${y}px,0)`;
-            const inner = el.querySelector(".inner");
-            inner.style.transform = `translate3d(${x}px,0,0)`;
-        };
-
-        const enter = (el, done) => {
-            document.body.offsetHeight;
-            el.style.transform = "translate3d(0,0,0)";
-            const inner = el.querySelector(".inner");
-            inner.style.transform = "translate3d(0,0,0)";
-            el.addEventListener("transitionend", done);
-        };
-
-        const afterEnter = el => {
-            ball.show = false;
-            el.style.display = "none";
-        };
-
         const pageScroll = () => {
             const scrollTop =
                 window.pageYOffset ||
@@ -123,11 +99,7 @@ export default {
             active,
             timeData,
             headerActive,
-            ...toRefs(ball),
             ...toRefs(state),
-            beforeEnter,
-            enter,
-            afterEnter,
             pageScroll,
             returnBack,
         };
