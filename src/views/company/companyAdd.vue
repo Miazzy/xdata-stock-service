@@ -208,7 +208,24 @@
                         <van-form>
                             <van-cell-group style="margin-top:10px;">
                                 <van-cell value="机构人员" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="董事长" v-model="state.director.directorChairman" placeholder="请选择董事长" />
+                                <van-field required :readonly="false" clickable clearable label="董事长" v-model="state.director.directorChairman" placeholder="请选择董事长" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="directorChairmanSearch(null,state.item.directorChairman)">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showDirectorChairman" v-model="state.radio.directorChairman" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.directorChairmanColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="directorChairmanConfirm(index,item);">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
                                 <van-field required :readonly="false" clickable clearable label="董事" v-model="state.director.director" placeholder="请选择董事" />
                                 <van-field required :readonly="false" clickable clearable label="执行董事" v-model="state.director.directorExecutive" placeholder="请选择执行董事" />
                                 <van-field required :readonly="false" clickable clearable label="总经理/经理" v-model="state.director.manager" placeholder="请选择总经理/经理名单" />
@@ -615,6 +632,11 @@ export default {
             state.tag.showResponsiblePerson = false;
         };
 
+        const directorChairmanConfirm = (index, value, key)=>{
+            state.item.directorChairman = value.lastname;
+            state.tag.showDirectorChairman = false;
+        };
+
         const companySearch = async (data, key) => {
             data = await Betools.manage.queryTableData('bs_company_flow_base', `_where=(status,in,0)~and(level,gt,2)~and(name,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
             data.map((item, index) => {
@@ -705,6 +727,28 @@ export default {
         };
 
         const responsiblePersonSearch = async (data, key) => {
+            if(key && key.length >= 2){
+                data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
+                data.map((item, index) => {
+                    item.code = item.id;
+                    item.tel = '';
+                    item.name = item.lastname ;
+                    item.departName = item.textfield1 && item.textfield1.includes('||') ? item.textfield1.split('||')[1] : '';
+                    item.title = `${item.lastname} ${item.departName}`;
+                    item.isDefault = false;
+                });
+                data = data.filter((item,index,self)=>{
+                    const findex = self.findIndex((element)=>{
+                        return element.loginid == item.loginid;
+                    })
+                    return findex == index;
+                });
+            }
+            state.tag.showResponsiblePerson = true;
+            state.responsiblePersonColumns = data;
+        };
+
+        const directorChairmanSearch = async (data, key) => {
             if(key && key.length >= 2){
                 data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
                 data.map((item, index) => {
@@ -980,6 +1024,8 @@ export default {
             liaisonSearch,
             responsiblePersonConfirm,
             responsiblePersonSearch,
+            directorChairmanConfirm,
+            directorChairmanSearch,
         };
     }
 };
