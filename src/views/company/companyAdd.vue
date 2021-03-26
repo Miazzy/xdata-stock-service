@@ -157,9 +157,21 @@
 
                                 <van-field required :readonly="false" clickable clearable label="备案联络员" v-model="state.item.liaison" placeholder="请选择工商备案联络员" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="companySearch(null,state.item.companyName)">查询</van-button>
+                                        <van-button size="small" type="primary" @click="liaisonSearch(null,state.item.liaison)">查询</van-button>
                                     </template>
                                 </van-field>
+
+                                <van-radio-group v-show="state.tag.showLiaison" v-model="state.radio.liaison" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.liaisonColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="liaisonConfirm(index,item);">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
 
                                 <van-field required :readonly="false" clickable clearable label="财务负责人" v-model="state.item.responsiblePerson" placeholder="请选择工商备案财务负责人" >
                                     <template #button>
@@ -429,11 +441,13 @@ export default {
             registStatusColumns: ['存续', '注销', '经营异常'],
             legalRepresentativeColumns:[],
             sealKeeperColumns:[],
+            liaisonColumns:[],
             radio: {
                 companyName: '',
                 industryName: '',
                 registStatus: '',
                 sealKeeper:'',
+                liaison:'',
             },
             item: {
                 create_time: dayjs().format('YYYY-MM-DD'),
@@ -569,12 +583,16 @@ export default {
         const legalRepresentativeConfirm = (index, value, key) => {
             state.item.legalRepresentative = value.lastname;
             state.tag.showLegalRepresentative = false;
-            debugger;
         };
 
         const sealKeeperConfirm = (index, value, key) => {
             state.item.sealKeeper = value.lastname;
             state.tag.showSealKeeper = false;
+        };
+
+        const liaisonConfirm = (index, value, key)=>{
+            state.item.liaison = value.lastname;
+            state.tag.showLiaison = false;
         };
 
         const companySearch = async (data, key) => {
@@ -603,7 +621,6 @@ export default {
         const legalRepresentativeSearch = async (data, key) => {
             if(key && key.length >= 2){
                 data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
-                debugger;
                 data.map((item, index) => {
                     item.code = item.id;
                     item.tel = '';
@@ -643,6 +660,28 @@ export default {
             }
             state.tag.showSealKeeper = true;
             state.sealKeeperColumns = data;
+        };
+
+        const liaisonSearch = async (data, key) => {
+            if(key && key.length >= 2){
+                data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
+                data.map((item, index) => {
+                    item.code = item.id;
+                    item.tel = '';
+                    item.name = item.lastname ;
+                    item.departName = item.textfield1 && item.textfield1.includes('||') ? item.textfield1.split('||')[1] : '';
+                    item.title = `${item.lastname} ${item.departName}`;
+                    item.isDefault = false;
+                });
+                data = data.filter((item,index,self)=>{
+                    const findex = self.findIndex((element)=>{
+                        return element.loginid == item.loginid;
+                    })
+                    return findex == index;
+                });
+            }
+            state.tag.showLiaison = true;
+            state.liaisonColumns = data;
         };
 
         //页面进入前函数
@@ -895,6 +934,8 @@ export default {
             legalRepresentativeConfirm,
             sealKeeperSearch,
             sealKeeperConfirm,
+            liaisonConfirm,
+            liaisonSearch,
         };
     }
 };
