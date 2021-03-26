@@ -16,7 +16,7 @@
         </div>
         <div class="home-latestcompany" style="margin-bottom:50px;">
             <div class="home-middle-title-wrap">
-                <div class="home-middle-title">企业注册信息 <a class="home-middle-title-more" href="index_latestcompany">查看更多</a></div>
+                <div class="home-middle-title">企业注册信息 <a class="home-middle-title-more"  @click="redirectView('/companyquery?back=/index');"  >查看更多</a></div>
             </div>
             <div class="home-middle-content"> 
                 <template v-for="(item , index) in state.companyColumns" :key="index">
@@ -95,6 +95,7 @@ export default {
 
         onMounted(() => {
             ctx.$eventBus.$emit("changeTag", 0);
+            companySearch(null,'');
             window.addEventListener("scroll", pageScroll);
         });
 
@@ -117,19 +118,24 @@ export default {
             state.companyColumns = data;
         };
 
+        const redirectView = (path) =>{
+            $router.push(path);
+        }
+
+        //查看更多
+        const searchMore = async() => {
+            $router.push('/companyquery');
+        };
+
         return {
             active,
             timeData,
             headerActive,
-            ...toRefs(ball),
-            ...toRefs(state),
-            addToCart,
-            beforeEnter,
-            enter,
-            afterEnter,
-            handleClick,
+            state,
             pageScroll,
-            companySearch
+            companySearch,
+            searchMore,
+            redirectView,
         };
     }
 };

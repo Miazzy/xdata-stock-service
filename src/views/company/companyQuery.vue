@@ -85,9 +85,10 @@ export default {
         });
 
         //返回上一页函数
-        const returnBack = () => {
-            console.log('returnBack');
-            $router.push("/company");
+        const returnBack = (back = '/company') => {
+            back = Betools.tools.queryUrlString('back','common');
+            back = back ? back : '/company';
+            $router.push(back);
         };
 
         //页面滚动处理函数
