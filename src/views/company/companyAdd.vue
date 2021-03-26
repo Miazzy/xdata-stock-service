@@ -34,43 +34,140 @@
                     <van-cell-group>
                         <van-form>
 
-                            <van-cell-group style="margin-top:10px;">
+                            <van-cell-group id="company-flow-base-content" style="margin-top:10px;">
 
                                 <van-cell value="基本信息" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field clearable label="填报日期" v-model="state.item.create_time" placeholder="请输入登记日期" readonly />
-                                <van-field required :readonly="false" clickable clearable label="公司名称" v-model="state.item.companyName" placeholder="请填写公司名称" />
-                                <check-select required :readonly="readonly" clearable label="公司名称" placeholder="请输入公司名称" v-model="state.item.companyName" :columns="state.companyColumns" :option="{ label:'name',value:'name',title:'title',all:false, search:true , search_emit:true , margin:'35px 3px 0px 0px' , classID:'van-field-check-select'}" @confirm="companyConfirm" @search="companySearch" />
-                                <van-field required :readonly="false" clickable clearable label="所属行业" v-model="state.item.industry" placeholder="请选择所属行业" />
-                                <van-field required :readonly="false" clickable clearable label="所属区域" v-model="state.item.companyCode" placeholder="请选择所属区域" />
-                                <van-field required :readonly="false" clickable clearable label="登记状态" v-model="state.item.registrationStatus" placeholder="请选择登记状态" />
+                                <van-field required :readonly="false" clickable clearable label="公司名称" v-model="state.item.companyName" placeholder="请填写公司名称">
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="companySearch(null,state.item.companyName)">查询</van-button>
+                                    </template>
+                                </van-field>
 
-                                <van-field required readonly clickable clearable label="注销时间" v-model="state.item.cancellationTime" placeholder="请选择注销时间" @click="clickDatePicker('showCancellationTime' , 'cancellationTime' , true);" />
-                                <van-datetime-picker v-show="state.tag.showCancellationTime"  v-model="state.status.cancellationTime" type="date" title="选择年月日" :min-date="state.status.minDate" :max-date="state.status.maxDate" @cancel="clickDatePicker('showCancellationTime' , 'cancellationTime' , false);" @confirm="clickDatePicker('showCancellationTime' , 'cancellationTime' , false);" />
-                                
-                                <van-field required :readonly="false" clickable clearable label="营业执照" v-model="state.item.licenseNumber" placeholder="请选择营业执照" />
-                                <van-field required :readonly="false" clickable clearable label="经营范围" v-model="state.item.businessScope" placeholder="请输入经营范围" />
-                                <van-field required :readonly="false" clickable clearable label="注册地址" v-model="state.item.registeredAddress" placeholder="请输入注册地址" />
-                                <van-field required :readonly="false" clickable clearable label="注册资本(万)" v-model="state.item.registeredCapital" placeholder="请输入注册资本(万)" />
-                                <van-field required :readonly="false" clickable clearable label="实缴资本(万)" v-model="state.item.paidCapital" placeholder="请输入实缴资本(万)" />
+                                <van-radio-group v-show="state.showCompanyName" v-model="state.radio.companyName" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.companyColumns ">
+                                            <van-cell :index="index" :title="item.name" clickable @click="companyConfirm(index,item);">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
+                                <van-field required :readonly="false" clickable clearable label="所属行业" v-model="state.item.industry" placeholder="请选择所属行业">
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="industrySearch(null,state.item.industry)">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.showIndustryName" v-model="state.radio.industryName" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item" v-for="(item,index) in state.industryColumns ">
+                                            <van-cell :index="index" :title="item" clickable @click="industryConfirm(index,item);">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
+                                <van-field required :readonly="false" clickable clearable label="所属区域" v-model="state.item.companyCode" placeholder="请选择所属区域" @click="state.geo.show = true;" />
+
+                                <van-cascader v-show="state.geo.show" v-model="state.geo.cascaderValue" title="请选择所在地区" :options="state.geo.options" @close="state.geo.show = false" @finish="companyCode" />
+
+                                <van-field required :readonly="false" clickable clearable label="登记状态" v-model="state.item.registrationStatus" placeholder="请选择登记状态">
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="registStatusSearch(null,state.item.registrationStatus)">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.showRegistStatus" v-model="state.radio.registStatus" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item" v-for="(item,index) in state.registStatusColumns ">
+                                            <van-cell :index="index" :title="item" clickable @click="registStatusConfirm(index,item);">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
+                                <van-field v-show="state.item.registrationStatus == '注销' " required readonly clickable clearable label="注销时间" v-model="state.item.cancellationTime" placeholder="请选择注销时间" @click="clickDatePicker('showCancellationTime' , 'cancellationTime' , true);" />
+                                <van-datetime-picker v-show="state.tag.showCancellationTime" v-model="state.status.cancellationTime" type="date" title="选择年月日" :min-date="state.status.minDate" :max-date="state.status.maxDate" @cancel="clickDatePicker('showCancellationTime' , 'cancellationTime' , false);" @confirm="clickDatePicker('showCancellationTime' , 'cancellationTime' , false);" />
+
+                                <van-field required :readonly="false" clickable clearable label="营业执照" v-model="state.item.licenseNumber" rows="1" autosize type="textarea" placeholder="请输入营业执照注册号" />
+                                <van-field required :readonly="false" clickable clearable label="经营范围" v-model="state.item.businessScope" rows="1" autosize type="textarea" placeholder="请输入经营范围" />
+                                <van-field required :readonly="false" clickable clearable label="注册地址" v-model="state.item.registeredAddress" rows="1" autosize type="textarea" placeholder="请输入注册地址" />
+                                <van-field required :readonly="false" clickable clearable label="注册资本(万)" v-model="state.item.registeredCapital" type="number" placeholder="请输入注册资本(万)" />
+                                <van-field required :readonly="false" clickable clearable label="实缴资本(万)" v-model="state.item.paidCapital" type="number" placeholder="请输入实缴资本(万)" />
 
                                 <van-field required :readonly="false" clickable clearable label="认缴时间" v-model="state.item.paidTime" placeholder="请选择认缴时间" @click="clickDatePicker('showPaidTime' , 'paidTime' , true);" />
-                                <van-datetime-picker v-show="state.tag.showPaidTime"  v-model="state.status.paidTime" type="date" title="选择年月日" :min-date="state.status.minDate" :max-date="state.status.maxDate" @cancel="clickDatePicker('showPaidTime' , 'paidTime' , false);" @confirm="clickDatePicker('showPaidTime' , 'paidTime' , false);" />
+                                <van-datetime-picker v-show="state.tag.showPaidTime" v-model="state.status.paidTime" type="date" title="选择年月日" :min-date="state.status.minDate" :max-date="state.status.maxDate" @cancel="clickDatePicker('showPaidTime' , 'paidTime' , false);" @confirm="clickDatePicker('showPaidTime' , 'paidTime' , false);" />
 
-                                <van-field required :readonly="false" clickable clearable label="实缴时间" v-model="state.item.paidTureTime" placeholder="请选择实缴时间" @click="clickDatePicker('showPaidTureTime' , 'paidTureTime' , true);"/>
-                                <van-datetime-picker v-show="state.tag.showPaidTureTime"  v-model="state.status.paidTureTime" type="date" title="选择年月日" :min-date="state.status.minDate" :max-date="state.status.maxDate" @cancel="clickDatePicker('showPaidTureTime' , 'paidTureTime' , false);" @confirm="clickDatePicker('showPaidTureTime' , 'paidTureTime' , false);" />
-                                
-                                <van-field required :readonly="false" clickable clearable label="营业期限" v-model="state.item.businessTerm" placeholder="请选择营业期限" @click="clickDatePicker('showBusinessTerm' , 'businessTerm' , true);"  />
-                                <van-datetime-picker v-show="state.tag.showBusinessTerm"  v-model="state.status.businessTerm" type="date" title="选择年月日" :min-date="state.status.minDate" :max-date="state.status.maxDate" @cancel="clickDatePicker('showBusinessTerm' , 'businessTerm' , false);" @confirm="clickDatePicker('showBusinessTerm' , 'businessTerm' , false);" />
-                                
-                                <van-field required :readonly="false" clickable clearable label="公司类型" v-model="state.item.companyType" placeholder="请选择公司类型" />
+                                <van-field required :readonly="false" clickable clearable label="实缴时间" v-model="state.item.paidTureTime" placeholder="请选择实缴时间" @click="clickDatePicker('showPaidTureTime' , 'paidTureTime' , true);" />
+                                <van-datetime-picker v-show="state.tag.showPaidTureTime" v-model="state.status.paidTureTime" type="date" title="选择年月日" :min-date="state.status.minDate" :max-date="state.status.maxDate" @cancel="clickDatePicker('showPaidTureTime' , 'paidTureTime' , false);" @confirm="clickDatePicker('showPaidTureTime' , 'paidTureTime' , false);" />
 
-                                <van-field required :readonly="false" clickable clearable label="设立原因" v-model="state.item.reason" placeholder="请输入设立原因" />
-                                <van-field required :readonly="false" clickable clearable label="使用情况" v-model="state.item.usage" placeholder="请输入使用情况" />
-                                <van-field required :readonly="false" clickable clearable label="法定代表人" v-model="state.item.legalRepresentative" placeholder="请输入法定代表人" />
-                                <van-field required :readonly="false" clickable clearable label="印章保管人" v-model="state.item.sealKeeper" placeholder="请选择印章保管人" />
-                                <van-field required :readonly="false" clickable clearable label="备案联络员" v-model="state.item.liaison" placeholder="请选择工商备案联络员" />
-                                <van-field required :readonly="false" clickable clearable label="财务负责人" v-model="state.item.responsiblePerson" placeholder="请选择工商备案财务负责人" />
-                                <van-field required :readonly="false" clickable clearable label="备注信息" v-model="state.item.remark" placeholder="请输入备注信息" />
+                                <van-field required :readonly="false" clickable clearable label="营业期限" v-model="state.item.businessTerm" placeholder="请选择营业期限" @click="clickDatePicker('showBusinessTerm' , 'businessTerm' , true);" />
+                                <van-datetime-picker v-show="state.tag.showBusinessTerm" v-model="state.status.businessTerm" type="date" title="选择年月日" :min-date="state.status.minDate" :max-date="state.status.maxDate" @cancel="clickDatePicker('showBusinessTerm' , 'businessTerm' , false);" @confirm="clickDatePicker('showBusinessTerm' , 'businessTerm' , false);" />
+
+                                <van-field required :readonly="false" clickable clearable label="公司类型" v-model="state.item.companyType" placeholder="请选择公司类型" @click="state.tag.showCompanyType = true;"/>
+                                <van-picker v-show="state.tag.showCompanyType" title="选择公司类型" show-toolbar :columns="state.companyTypeColumns" @confirm="companyTypeConfirm" @cancel="state.tag.showCompanyType = false;" />
+
+                                <van-field required :readonly="false" clickable clearable label="设立原因" v-model="state.item.reason" rows="1" autosize type="textarea" placeholder="请输入设立原因" />
+                                <van-field required :readonly="false" clickable clearable label="使用情况" v-model="state.item.usage" rows="1" autosize type="textarea" placeholder="请输入使用情况" />
+                                <van-field required :readonly="false" clickable clearable label="法定代表人" v-model="state.item.legalRepresentative" placeholder="请输入法定代表人" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="legalRepresentativeSearch(null,state.item.legalRepresentative)">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showLegalRepresentative" v-model="state.radio.legalRepresentative" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.legalRepresentativeColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="legalRepresentativeConfirm(index,item);">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
+                                <van-field required :readonly="false" clickable clearable label="印章保管人" v-model="state.item.sealKeeper" placeholder="请选择印章保管人" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="sealKeeperSearch(null,state.item.sealKeeper)">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showSealKeeper" v-model="state.radio.sealKeeper" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.sealKeeperColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="sealKeeperConfirm(index,item);">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
+                                <van-field required :readonly="false" clickable clearable label="备案联络员" v-model="state.item.liaison" placeholder="请选择工商备案联络员" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="companySearch(null,state.item.companyName)">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-field required :readonly="false" clickable clearable label="财务负责人" v-model="state.item.responsiblePerson" placeholder="请选择工商备案财务负责人" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="companySearch(null,state.item.companyName)">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-field required :readonly="false" clickable clearable label="备注信息" v-model="state.item.remark" rows="1" autosize type="textarea" placeholder="请输入备注信息" />
 
                             </van-cell-group>
 
@@ -245,7 +342,8 @@
 
 <script>
 import {
-    Dialog,Popup
+    Dialog,
+    Popup
 } from 'vant';
 
 import singleSelect from '@/components/select/singleSelect';
@@ -276,7 +374,7 @@ export default {
     },
     data() {
         return {
-            phoneRegisterTwoForm:"",
+            phoneRegisterTwoForm: "",
             showPicker: false,
         };
     },
@@ -294,7 +392,49 @@ export default {
 
         const state = reactive({
             imgs: [],
+            geo: {
+                show: false,
+                address: '',
+                fieldValue: '',
+                cascaderValue: '',
+                options: [{
+                        text: '浙江省',
+                        value: '浙江省',
+                        children: [{
+                            text: '杭州市',
+                            value: '杭州市'
+                        }],
+                    },
+                    {
+                        text: '江苏省',
+                        value: '江苏省',
+                        children: [{
+                            text: '南京市',
+                            value: '南京市'
+                        }],
+                    },
+                    {
+                        text: '四川省',
+                        value: '四川省',
+                        children: [{
+                            text: '成都市',
+                            value: '成都市'
+                        }],
+                    },
+                ],
+            },
             companyColumns: [],
+            companyTypeColumns:['有限公司','股份公司'],
+            industryColumns: ['房地产行业', '金融行业', '物业管理', '医疗健康产业', '商业管理'],
+            registStatusColumns: ['存续', '注销', '经营异常'],
+            legalRepresentativeColumns:[],
+            sealKeeperColumns:[],
+            radio: {
+                companyName: '',
+                industryName: '',
+                registStatus: '',
+                sealKeeper:'',
+            },
             item: {
                 create_time: dayjs().format('YYYY-MM-DD'),
                 companyName: '', //公司名称
@@ -349,21 +489,27 @@ export default {
                 shareholder9: '', //股东
                 ratioDetail9: '', //占股明细
             },
-            status:{
-                cancellationTime:new Date(),
-                paidTime:new Date(),
-                paidTureTime:new Date(),
-                businessTerm:new Date(),
+            status: {
+                cancellationTime: new Date(),
+                paidTime: new Date(),
+                paidTureTime: new Date(),
+                businessTerm: new Date(),
                 minDate: new Date(1990, 0, 1),
                 maxDate: new Date(2099, 12, 31),
             },
-            tag:{
-                showPaidTime:false,
-                showPaidTureTime:false,
-                showBusinessTerm:false,
-                showCancellationTime:false,
+            tag: {
+                showPaidTime: false,
+                showPaidTureTime: false,
+                showBusinessTerm: false,
+                showCancellationTime: false,
+                showCompanyName: false,
+                showIndustryName: false,
+                showRegistStatus: false,
+                showCompanyType:false,
+                showLegalRepresentative:false,
+                showSealKeeper:false,
             },
-            show:true,
+            show: true,
             message: {},
             step: 'one',
         });
@@ -384,8 +530,51 @@ export default {
             console.log('searching');
         };
 
-        const companyConfirm = (data, key, value) => {
+        const companyCode = ({
+            selectedOptions
+        }) => {
+            state.geo.show = false;
+            state.item.companyCode = selectedOptions.map((option) => option.text).join('/');
+        };
 
+        const companyConfirm = (index, item, value) => {
+            state.radio.companyName = index;
+            state.item.companyName = state.companyColumns[index]['name'];
+            setTimeout(() => {
+                state.showCompanyName = false;
+            }, 1000);
+        };
+
+        const industryConfirm = (index, item, value) => {
+            state.radio.industryName = index;
+            state.item.industry = state.industryColumns[index];
+            setTimeout(() => {
+                state.showIndustryName = false;
+            }, 1000);
+        };
+
+        const registStatusConfirm = (index, item, value) => {
+            state.radio.registStatus = index;
+            state.item.registrationStatus = state.registStatusColumns[index];
+            setTimeout(() => {
+                state.showRegistStatus = false;
+            }, 1000);
+        };
+
+        const companyTypeConfirm = (value, index) => {
+            state.item.companyType = value;
+            state.tag.showCompanyType = false;
+        };
+
+        const legalRepresentativeConfirm = (index, value, key) => {
+            state.item.legalRepresentative = value.lastname;
+            state.tag.showLegalRepresentative = false;
+            debugger;
+        };
+
+        const sealKeeperConfirm = (index, value, key) => {
+            state.item.sealKeeper = value.lastname;
+            state.tag.showSealKeeper = false;
         };
 
         const companySearch = async (data, key) => {
@@ -397,7 +586,63 @@ export default {
                 item.name = item.name;
                 item.isDefault = false;
             });
+            state.showCompanyName = true;
             state.companyColumns = data;
+        };
+
+        const industrySearch = async (data, key) => {
+            state.showIndustryName = true;
+            state.industryColumns = state.industryColumns;
+        };
+
+        const registStatusSearch = async (data, key) => {
+            state.showRegistStatus = true;
+            state.RegistStatusColumns = state.RegistStatusColumns;
+        };
+
+        const legalRepresentativeSearch = async (data, key) => {
+            if(key && key.length >= 2){
+                data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
+                debugger;
+                data.map((item, index) => {
+                    item.code = item.id;
+                    item.tel = '';
+                    item.name = item.lastname ;
+                    item.departName = item.textfield1 && item.textfield1.includes('||') ? item.textfield1.split('||')[1] : '';
+                    item.title = `${item.lastname} ${item.departName}`;
+                    item.isDefault = false;
+                });
+                data = data.filter((item,index,self)=>{
+                    const findex = self.findIndex((element)=>{
+                        return element.loginid == item.loginid;
+                    })
+                    return findex == index;
+                });
+            }
+            state.tag.showLegalRepresentative = true;
+            state.legalRepresentativeColumns = data;
+        };
+
+        const sealKeeperSearch = async (data, key) => {
+            if(key && key.length >= 2){
+                data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
+                data.map((item, index) => {
+                    item.code = item.id;
+                    item.tel = '';
+                    item.name = item.lastname ;
+                    item.departName = item.textfield1 && item.textfield1.includes('||') ? item.textfield1.split('||')[1] : '';
+                    item.title = `${item.lastname} ${item.departName}`;
+                    item.isDefault = false;
+                });
+                data = data.filter((item,index,self)=>{
+                    const findex = self.findIndex((element)=>{
+                        return element.loginid == item.loginid;
+                    })
+                    return findex == index;
+                });
+            }
+            state.tag.showSealKeeper = true;
+            state.sealKeeperColumns = data;
         };
 
         //页面进入前函数
@@ -417,7 +662,7 @@ export default {
             return Betools.tools.isNull(state.message[fieldName]);
         };
 
-        const clickDatePicker = async(name , tname , status = true) => {
+        const clickDatePicker = async (name, tname, status = true) => {
             state.tag[name] = status;
             state.item[tname] = dayjs(state.status[tname]).format('YYYY-MM-DD');
         };
@@ -638,8 +883,18 @@ export default {
             cancel,
             confirm,
             clickDatePicker,
-            companyConfirm,
             companySearch,
+            companyConfirm,
+            industrySearch,
+            industryConfirm,
+            registStatusSearch,
+            registStatusConfirm,
+            companyCode,
+            companyTypeConfirm,
+            legalRepresentativeSearch,
+            legalRepresentativeConfirm,
+            sealKeeperSearch,
+            sealKeeperConfirm,
         };
     }
 };
