@@ -128,7 +128,7 @@
                                 <van-radio-group v-show="state.tag.showLegalRepresentative" v-model="state.radio.legalRepresentative" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.legalRepresentativeColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="legalRepresentativeConfirm(index,item);">
+                                            <van-cell :index="index" :title="item.title" clickable @click="legalRepresentativeConfirm(index, item, 'legalRepresentative', state.item);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -146,7 +146,7 @@
                                 <van-radio-group v-show="state.tag.showSealKeeper" v-model="state.radio.sealKeeper" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.sealKeeperColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="sealKeeperConfirm(index,item);">
+                                            <van-cell :index="index" :title="item.title" clickable @click="sealKeeperConfirm(index, item, 'sealKeeper', state.item);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -164,7 +164,7 @@
                                 <van-radio-group v-show="state.tag.showLiaison" v-model="state.radio.liaison" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.liaisonColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="liaisonConfirm(index,item);">
+                                            <van-cell :index="index" :title="item.title" clickable @click="liaisonConfirm(index, item, 'liaison', state.item);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -182,7 +182,7 @@
                                 <van-radio-group v-show="state.tag.showResponsiblePerson" v-model="state.radio.responsiblePerson" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.responsiblePersonColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="responsiblePersonConfirm(index,item);">
+                                            <van-cell :index="index" :title="item.title" clickable @click="responsiblePersonConfirm(index, item, 'responsiblePerson', state.item);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -1053,57 +1053,57 @@ export default {
             state.tag.showCompanyType = false;
         };
 
-        const legalRepresentativeConfirm = (index, value, key) => {
-            state.item.legalRepresentative = value.lastname;
-            state.tag.showLegalRepresentative = false;
-        };
-
-        const sealKeeperConfirm = (index, value, key) => {
-            state.item.sealKeeper = value.lastname;
-            state.tag.showSealKeeper = false;
-        };
-
-        const liaisonConfirm = (index, value, key)=>{
-            state.item.liaison = value.lastname;
-            state.tag.showLiaison = false;
-        };
-
-        const responsiblePersonConfirm = (index, value, key)=>{
-            state.item.responsiblePerson = value.lastname;
-            state.tag.showResponsiblePerson = false;
-        };
-
-        const directorChairmanConfirm = (index, value, key, item)=>{
+        const legalRepresentativeConfirm = (index, value, key, item) => {
             item[key] = value.lastname;
             state.tag['show' + Betools.manage.prefixUpperCase(key)] = false;
         };
 
-        const directorConfirm = (index, value, key, item)=>{
+        const sealKeeperConfirm = (index, value, key, item) => {
             item[key] = value.lastname;
             state.tag['show' + Betools.manage.prefixUpperCase(key)] = false;
         };
 
-        const directorExecutiveConfirm = (index, value, key, item)=>{
+        const liaisonConfirm = (index, value, key, item) => {
             item[key] = value.lastname;
             state.tag['show' + Betools.manage.prefixUpperCase(key)] = false;
         };
 
-        const managerConfirm = (index, value, key, item)=>{
+        const responsiblePersonConfirm = (index, value, key, item) => {
             item[key] = value.lastname;
             state.tag['show' + Betools.manage.prefixUpperCase(key)] = false;
         };
 
-        const supervisorChairmanConfirm = (index, value, key , item)=>{
+        const directorChairmanConfirm = (index, value, key, item) => { 
             item[key] = value.lastname;
             state.tag['show' + Betools.manage.prefixUpperCase(key)] = false;
         };
 
-        const supervisorConfirm = (index, value, key = 'supervisor' , item)=>{
+        const directorConfirm = (index, value, key, item) => {
             item[key] = value.lastname;
             state.tag['show' + Betools.manage.prefixUpperCase(key)] = false;
         };
 
-        const shareholderConfirm = (index, value, key , item)=>{
+        const directorExecutiveConfirm = (index, value, key, item) => {
+            item[key] = value.lastname;
+            state.tag['show' + Betools.manage.prefixUpperCase(key)] = false;
+        };
+
+        const managerConfirm = (index, value, key, item) => {
+            item[key] = value.lastname;
+            state.tag['show' + Betools.manage.prefixUpperCase(key)] = false;
+        };
+
+        const supervisorChairmanConfirm = (index, value, key , item) => {
+            item[key] = value.lastname;
+            state.tag['show' + Betools.manage.prefixUpperCase(key)] = false;
+        };
+
+        const supervisorConfirm = (index, value, key = 'supervisor' , item) => {
+            item[key] = value.lastname;
+            state.tag['show' + Betools.manage.prefixUpperCase(key)] = false;
+        };
+
+        const shareholderConfirm = (index, value, key , item) => {
             item[key] = value.lastname;
             state.tag['show' + Betools.manage.prefixUpperCase(key)] = false;
         };
