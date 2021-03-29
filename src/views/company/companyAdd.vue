@@ -80,7 +80,7 @@
 
                                 <van-field required :readonly="false" clickable clearable label="登记状态" v-model="state.item.registrationStatus" placeholder="请选择登记状态">
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="registStatusSearch(null,state.item.registrationStatus)">查询</van-button>
+                                        <van-button size="small" type="primary" @click="registStatusSearch(null,state.item.registrationStatus, 'registrationStatus' , 'registrationStatus')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -121,7 +121,7 @@
                                 <van-field required :readonly="false" clickable clearable label="使用情况" v-model="state.item.usage" rows="1" autosize type="textarea" placeholder="请输入使用情况" />
                                 <van-field required :readonly="false" clickable clearable label="法定代表人" v-model="state.item.legalRepresentative" placeholder="请输入法定代表人" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="legalRepresentativeSearch(null,state.item.legalRepresentative)">查询</van-button>
+                                        <van-button size="small" type="primary" @click="legalRepresentativeSearch(null, state.item, 'legalRepresentative' , 'legalRepresentative')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -139,7 +139,7 @@
 
                                 <van-field required :readonly="false" clickable clearable label="印章保管人" v-model="state.item.sealKeeper" placeholder="请选择印章保管人" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="sealKeeperSearch(null,state.item.sealKeeper)">查询</van-button>
+                                        <van-button size="small" type="primary" @click="sealKeeperSearch(null, state.item, 'sealKeeper' , 'sealKeeper')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -157,7 +157,7 @@
 
                                 <van-field required :readonly="false" clickable clearable label="备案联络员" v-model="state.item.liaison" placeholder="请选择工商备案联络员" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="liaisonSearch(null,state.item.liaison)">查询</van-button>
+                                        <van-button size="small" type="primary" @click="liaisonSearch(null, state.item, 'liaison' , 'liaison')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -175,7 +175,7 @@
 
                                 <van-field required :readonly="false" clickable clearable label="财务负责人" v-model="state.item.responsiblePerson" placeholder="请选择工商备案财务负责人" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="responsiblePersonSearch(null,state.item.responsiblePerson)">查询</van-button>
+                                        <van-button size="small" type="primary" @click="responsiblePersonSearch(null, state.item, 'responsiblePerson' , 'responsiblePerson')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -1138,91 +1138,35 @@ export default {
         };
 
         const legalRepresentativeSearch = async (data, value , key , fieldKey) => {
-            if(key && key.length >= 2){
-                data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
-                data.map((item, index) => {
-                    item.code = item.id;
-                    item.tel = '';
-                    item.name = item.lastname ;
-                    item.departName = item.textfield1 && item.textfield1.includes('||') ? item.textfield1.split('||')[1] : '';
-                    item.title = `${item.lastname} ${item.departName}`;
-                    item.isDefault = false;
-                });
-                data = data.filter((item,index,self)=>{
-                    const findex = self.findIndex((element)=>{
-                        return element.loginid == item.loginid;
-                    })
-                    return findex == index;
-                });
-            }
-            state.tag.showLegalRepresentative = true;
-            state.legalRepresentativeColumns = data;
+            const searchkey = value[key];
+            data = await Betools.manage.queryUserData(searchkey, []);
+            state.tag['show' + Betools.manage.prefixUpperCase(fieldKey)] = true;
+            state.tag.showKey = key;
+            state[fieldKey + 'Columns'] = data;
         };
 
         const sealKeeperSearch = async (data, value , key , fieldKey) => {
-            if(key && key.length >= 2){
-                data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
-                data.map((item, index) => {
-                    item.code = item.id;
-                    item.tel = '';
-                    item.name = item.lastname ;
-                    item.departName = item.textfield1 && item.textfield1.includes('||') ? item.textfield1.split('||')[1] : '';
-                    item.title = `${item.lastname} ${item.departName}`;
-                    item.isDefault = false;
-                });
-                data = data.filter((item,index,self)=>{
-                    const findex = self.findIndex((element)=>{
-                        return element.loginid == item.loginid;
-                    })
-                    return findex == index;
-                });
-            }
-            state.tag.showSealKeeper = true;
-            state.sealKeeperColumns = data;
+            const searchkey = value[key];
+            data = await Betools.manage.queryUserData(searchkey, []);
+            state.tag['show' + Betools.manage.prefixUpperCase(fieldKey)] = true;
+            state.tag.showKey = key;
+            state[fieldKey + 'Columns'] = data;
         };
 
         const liaisonSearch = async (data, value , key , fieldKey) => {
-            if(key && key.length >= 2){
-                data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
-                data.map((item, index) => {
-                    item.code = item.id;
-                    item.tel = '';
-                    item.name = item.lastname ;
-                    item.departName = item.textfield1 && item.textfield1.includes('||') ? item.textfield1.split('||')[1] : '';
-                    item.title = `${item.lastname} ${item.departName}`;
-                    item.isDefault = false;
-                });
-                data = data.filter((item,index,self)=>{
-                    const findex = self.findIndex((element)=>{
-                        return element.loginid == item.loginid;
-                    })
-                    return findex == index;
-                });
-            }
-            state.tag.showLiaison = true;
-            state.liaisonColumns = data;
+            const searchkey = value[key];
+            data = await Betools.manage.queryUserData(searchkey, []);
+            state.tag['show' + Betools.manage.prefixUpperCase(fieldKey)] = true;
+            state.tag.showKey = key;
+            state[fieldKey + 'Columns'] = data;
         };
 
         const responsiblePersonSearch = async (data, value , key , fieldKey) => {
-            if(key && key.length >= 2){
-                data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
-                data.map((item, index) => {
-                    item.code = item.id;
-                    item.tel = '';
-                    item.name = item.lastname ;
-                    item.departName = item.textfield1 && item.textfield1.includes('||') ? item.textfield1.split('||')[1] : '';
-                    item.title = `${item.lastname} ${item.departName}`;
-                    item.isDefault = false;
-                });
-                data = data.filter((item,index,self)=>{
-                    const findex = self.findIndex((element)=>{
-                        return element.loginid == item.loginid;
-                    })
-                    return findex == index;
-                });
-            }
-            state.tag.showResponsiblePerson = true;
-            state.responsiblePersonColumns = data;
+            const searchkey = value[key];
+            data = await Betools.manage.queryUserData(searchkey, []);
+            state.tag['show' + Betools.manage.prefixUpperCase(fieldKey)] = true;
+            state.tag.showKey = key;
+            state[fieldKey + 'Columns'] = data;
         };
 
         const directorChairmanSearch = async (data, value , key , fieldKey) => {
