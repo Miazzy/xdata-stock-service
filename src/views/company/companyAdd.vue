@@ -560,6 +560,9 @@ export default {
             directorChairmanColumns:[],
             directorColumns:[],
             directorExecutiveColumns:[],
+            managerColumns: [], //总经理/经理
+            supervisorChairmanColumns: [], //监事会主席
+            supervisorColumns: [], //监事
             radio: {
                 companyName: '',
                 industryName: '',
@@ -570,6 +573,9 @@ export default {
                 directorChairman:'',
                 director:'',
                 directorExecutive:'',
+                manager: '', //总经理/经理
+                supervisorChairman: '', //监事会主席
+                supervisor: '' //监事
             },
             item: {
                 create_time: dayjs().format('YYYY-MM-DD'),
@@ -730,13 +736,18 @@ export default {
         };
 
         const directorChairmanConfirm = (index, value, key)=>{
-            state.item.directorChairman = value.lastname;
+            state.director.directorChairman = value.lastname;
             state.tag.showDirectorChairman = false;
         };
 
         const directorConfirm = (index, value, key)=>{
-            state.item.director = value.lastname;
+            state.director.director = value.lastname;
             state.tag.showDirector = false;
+        };
+
+        const directorExecutiveConfirm = (index, value, key)=>{
+            state.director.directorExecutive = value.lastname;
+            state.tag.showDirectorExecutive = false;
         };
 
         const companySearch = async (data, key) => {
@@ -1175,7 +1186,14 @@ export default {
             directorChairmanSearch,
             directorConfirm,
             directorSearch,
+            directorExecutiveConfirm,
             directorExecutiveSearch,
+            managerConfirm, //总经理/经理
+            supervisorChairmanConfirm, //监事会主席
+            supervisorConfirm, //监事
+            managerSearch, //总经理/经理
+            supervisorChairmanSearch, //监事会主席
+            supervisorSearch, //监事
         };
     }
 };
