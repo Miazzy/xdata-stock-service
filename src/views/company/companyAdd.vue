@@ -1339,6 +1339,7 @@ export default {
             state,
             returnBack,
             searching,
+            companyCode,
             headerActive,
             pageScroll,
             nextstep,
@@ -1352,7 +1353,6 @@ export default {
             industryConfirm,
             registStatusSearch,
             registStatusConfirm,
-            companyCode,
             companyTypeConfirm,
             legalRepresentativeConfirm,
             sealKeeperConfirm,
@@ -1363,7 +1363,7 @@ export default {
             directorExecutiveConfirm,
             managerConfirm, //总经理/经理
             supervisorChairmanConfirm, //监事会主席
-            supervisorConfirm, //监事
+            supervisorConfirm, 
             shareholderConfirm,
             commonSearch, 
         };
