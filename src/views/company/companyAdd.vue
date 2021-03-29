@@ -201,7 +201,7 @@
             </section>
         </div>
 
-        <div class="section-content" v-show="state.step == 'one' " style="">
+        <div class="section-content" v-show="state.step == 'two' " style="">
             <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%); margin-bottom:0.00rem;">
                 <div id="weui-cells-flex" class="weui-cells" style="">
                     <van-cell-group>
@@ -323,128 +323,468 @@
             </section>
         </div>
 
-        <div class="section-content" v-show="state.step == 'three' " style="">
+        <div class="section-content" v-show="state.step == 'one' " style="">
             <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%); margin-bottom:0.75rem;">
                 <div id="weui-cells-flex" class="weui-cells" style="">
                     <van-cell-group>
                         <van-form>
                             <van-cell-group style="margin-top:10px;">
                                 <van-cell value="股东信息1" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder0" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder0" placeholder="请选择股东" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder0')">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder0 && state.tag.showShareholderKey == 'shareholder0' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder0');">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail0" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder0 && state.stock.ratioDetail0" style="margin-top:10px;">
                                 <van-cell value="股东信息2" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder1" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder1" placeholder="请选择股东" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder1')">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder1 && state.tag.showShareholderKey == 'shareholder1' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder1');">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail1" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder1 && state.stock.ratioDetail1" style="margin-top:10px;">
                                 <van-cell value="股东信息3" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder2" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder2" placeholder="请选择股东" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder2')">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder2 && state.tag.showShareholderKey == 'shareholder2'" v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder2');">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail2" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder2 && state.stock.ratioDetail2" style="margin-top:10px;">
                                 <van-cell value="股东信息4" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder3" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder3" placeholder="请选择股东" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder3')">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder3 && state.tag.showShareholderKey == 'shareholder3' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder3');">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail3" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder3 && state.stock.ratioDetail3" style="margin-top:10px;">
                                 <van-cell value="股东信息5" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder4" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder4" placeholder="请选择股东" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder4')">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder4 && state.tag.showShareholderKey == 'shareholder4' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder4');">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail4" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder4 && state.stock.ratioDetail4" style="margin-top:10px;">
                                 <van-cell value="股东信息6" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder5" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder5" placeholder="请选择股东" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder5')">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder5 && state.tag.showShareholderKey == 'shareholder5' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder5');">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail5" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder5 && state.stock.ratioDetail5" style="margin-top:10px;">
                                 <van-cell value="股东信息7" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder6" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder6" placeholder="请选择股东" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder6')">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder6 && state.tag.showShareholderKey == 'shareholder6' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder6');">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail6" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder6 && state.stock.ratioDetail6" style="margin-top:10px;">
                                 <van-cell value="股东信息8" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder7" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder7" placeholder="请选择股东" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder7')">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder7 && state.tag.showShareholderKey == 'shareholder7' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder7');">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail7" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder7 && state.stock.ratioDetail7" style="margin-top:10px;">
                                 <van-cell value="股东信息9" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder8" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder8" placeholder="请选择股东" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder8')">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder8 && state.tag.showShareholderKey == 'shareholder8' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder8');">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail8" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder8 && state.stock.ratioDetail8" style="margin-top:10px;">
                                 <van-cell value="股东信息10" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder9" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder9" placeholder="请选择股东" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder9')">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder9 && state.tag.showShareholderKey == 'shareholder9' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder9');">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail9" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder9 && state.stock.ratioDetail9" style="margin-top:10px;">
                                 <van-cell value="股东信息11" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder10" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder10" placeholder="请选择股东" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder10')">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder10 && state.tag.showShareholderKey == 'shareholder10' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder10');">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail10" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder10 && state.stock.ratioDetail10" style="margin-top:10px;">
                                 <van-cell value="股东信息12" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder11" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder11" placeholder="请选择股东" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder11')">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder11 && state.tag.showShareholderKey == 'shareholder11' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder11');">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail11" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder11 && state.stock.ratioDetail11" style="margin-top:10px;">
                                 <van-cell value="股东信息13" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder12" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder12" placeholder="请选择股东" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder12')">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder12 && state.tag.showShareholderKey == 'shareholder12' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder12');">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail12" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder12 && state.stock.ratioDetail12" style="margin-top:10px;">
                                 <van-cell value="股东信息14" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder13" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder13" placeholder="请选择股东" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder13')">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder13 && state.tag.showShareholderKey == 'shareholder13'" v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder13');">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail13" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder13 && state.stock.ratioDetail13" style="margin-top:10px;">
                                 <van-cell value="股东信息15" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder14" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder14" placeholder="请选择股东" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder14')">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder14 && state.tag.showShareholderKey == 'shareholder14' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder14');">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail14" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder14 && state.stock.ratioDetail14" style="margin-top:10px;">
                                 <van-cell value="股东信息16" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder15" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder15" placeholder="请选择股东" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder15')">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder15 && state.tag.showShareholderKey == 'shareholder15' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder15');">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail15" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder15 && state.stock.ratioDetail15" style="margin-top:10px;">
                                 <van-cell value="股东信息17" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder16" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder16" placeholder="请选择股东" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder16')">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder16 && state.tag.showShareholderKey == 'shareholder16' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder16');">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail16" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder16 && state.stock.ratioDetail16" style="margin-top:10px;">
                                 <van-cell value="股东信息18" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder17" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder17" placeholder="请选择股东" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder17')">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder17 && state.tag.showShareholderKey == 'shareholder17'" v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder17');">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail17" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder17 && state.stock.ratioDetail17" style="margin-top:10px;">
                                 <van-cell value="股东信息19" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder18" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder18" placeholder="请选择股东" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder18')">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder18 && state.tag.showShareholderKey == 'shareholder18' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder18');">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail18" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder18 && state.stock.ratioDetail18" style="margin-top:10px;">
                                 <van-cell value="股东信息20" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder19" placeholder="请选择股东" />
+                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder19" placeholder="请选择股东" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder19')">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder19 && state.tag.showShareholderKey == 'shareholder19' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder19');">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail19" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
@@ -563,6 +903,7 @@ export default {
             managerColumns: [], //总经理/经理
             supervisorChairmanColumns: [], //监事会主席
             supervisorColumns: [], //监事
+            shareholderColumns:[],
             radio: {
                 companyName: '',
                 industryName: '',
@@ -575,7 +916,8 @@ export default {
                 directorExecutive:'',
                 manager: '', //总经理/经理
                 supervisorChairman: '', //监事会主席
-                supervisor: '' //监事
+                supervisor: '', //监事
+                shareholder:'',
             },
             item: {
                 create_time: dayjs().format('YYYY-MM-DD'),
@@ -657,6 +999,8 @@ export default {
                 showManager: false, //总经理/经理
                 showSupervisorChairman: false, //监事会主席
                 showSupervisor: false , //监事
+                showShareholder: false,
+                showShareholderKey:'',
             },
             show: true,
             message: {},
@@ -763,6 +1107,11 @@ export default {
         const supervisorConfirm = (index, value, key)=>{
             state.director.supervisor = value.lastname;
             state.tag.showSupervisor = false;
+        };
+
+        const shareholderConfirm = (index, value, key)=>{
+            state.stock[key] = value.lastname;
+            state.tag.showShareholder = false;
         };
 
         const companySearch = async (data, key) => {
@@ -1006,6 +1355,30 @@ export default {
             }
             state.tag.showSupervisor = true;
             state.supervisorColumns = data;
+        };
+
+        const shareholderSearch = async (data, value , key) => {
+            const searchkey = value[key];
+            if(searchkey && searchkey.length >= 2){
+                data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${searchkey}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
+                data.map((item, index) => {
+                    item.code = item.id;
+                    item.tel = '';
+                    item.name = item.lastname ;
+                    item.departName = item.textfield1 && item.textfield1.includes('||') ? item.textfield1.split('||')[1] : '';
+                    item.title = `${item.lastname} ${item.departName}`;
+                    item.isDefault = false;
+                });
+                data = data.filter((item,index,self)=>{
+                    const findex = self.findIndex((element)=>{
+                        return element.loginid == item.loginid;
+                    })
+                    return findex == index;
+                });
+            }
+            state.tag.showShareholder = true;
+            state.tag.showShareholderKey = key;
+            state.shareholderColumns = data;
         };
 
         //页面进入前函数
@@ -1275,6 +1648,8 @@ export default {
             managerSearch, //总经理/经理
             supervisorChairmanSearch, //监事会主席
             supervisorSearch, //监事
+            shareholderConfirm,
+            shareholderSearch,
         };
     }
 };
