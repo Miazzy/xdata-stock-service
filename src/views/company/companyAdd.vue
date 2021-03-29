@@ -332,7 +332,7 @@
                                 <van-cell value="股东信息1" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder0" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder0')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder0', 'shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -355,7 +355,7 @@
                                 <van-cell value="股东信息2" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder1" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder1')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder1', 'shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -378,7 +378,7 @@
                                 <van-cell value="股东信息3" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder2" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder2')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder2', 'shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -401,7 +401,7 @@
                                 <van-cell value="股东信息4" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder3" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder3')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder3', 'shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -424,7 +424,7 @@
                                 <van-cell value="股东信息5" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder4" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder4')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder4','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -447,7 +447,7 @@
                                 <van-cell value="股东信息6" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder5" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder5')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder5','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -470,7 +470,7 @@
                                 <van-cell value="股东信息7" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder6" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder6')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder6','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -493,7 +493,7 @@
                                 <van-cell value="股东信息8" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder7" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder7')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder7','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -516,7 +516,7 @@
                                 <van-cell value="股东信息9" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder8" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder8')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder8','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -539,7 +539,7 @@
                                 <van-cell value="股东信息10" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder9" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder9')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder9','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -562,7 +562,7 @@
                                 <van-cell value="股东信息11" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder10" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder10')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder10','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -585,7 +585,7 @@
                                 <van-cell value="股东信息12" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder11" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder11')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder11','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -608,7 +608,7 @@
                                 <van-cell value="股东信息13" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder12" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder12')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder12','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -631,7 +631,7 @@
                                 <van-cell value="股东信息14" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder13" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder13')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder13','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -654,7 +654,7 @@
                                 <van-cell value="股东信息15" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder14" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder14')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder14','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -677,7 +677,7 @@
                                 <van-cell value="股东信息16" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder15" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder15')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder15','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -700,7 +700,7 @@
                                 <van-cell value="股东信息17" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder16" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder16')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder16','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -723,7 +723,7 @@
                                 <van-cell value="股东信息18" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder17" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder17')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder17','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -746,7 +746,7 @@
                                 <van-cell value="股东信息19" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder18" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder18')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder18','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -769,7 +769,7 @@
                                 <van-cell value="股东信息20" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder19" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null,state.stock,'shareholder19')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder19','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -1114,7 +1114,7 @@ export default {
             state.tag.showShareholder = false;
         };
 
-        const companySearch = async (data, key) => {
+        const companySearch = async (data, value , key , fieldKey) => {
             data = await Betools.manage.queryTableData('bs_company_flow_base', `_where=(status,in,0)~and(level,gt,2)~and(name,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
             data.map((item, index) => {
                 item.title = item.name.slice(0, 24);
@@ -1127,17 +1127,17 @@ export default {
             state.companyColumns = data;
         };
 
-        const industrySearch = async (data, key) => {
+        const industrySearch = async (data, value , key , fieldKey) => {
             state.showIndustryName = true;
             state.industryColumns = state.industryColumns;
         };
 
-        const registStatusSearch = async (data, key) => {
+        const registStatusSearch = async (data, value , key , fieldKey) => {
             state.showRegistStatus = true;
             state.RegistStatusColumns = state.RegistStatusColumns;
         };
 
-        const legalRepresentativeSearch = async (data, key) => {
+        const legalRepresentativeSearch = async (data, value , key , fieldKey) => {
             if(key && key.length >= 2){
                 data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
                 data.map((item, index) => {
@@ -1159,7 +1159,7 @@ export default {
             state.legalRepresentativeColumns = data;
         };
 
-        const sealKeeperSearch = async (data, key) => {
+        const sealKeeperSearch = async (data, value , key , fieldKey) => {
             if(key && key.length >= 2){
                 data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
                 data.map((item, index) => {
@@ -1181,7 +1181,7 @@ export default {
             state.sealKeeperColumns = data;
         };
 
-        const liaisonSearch = async (data, key) => {
+        const liaisonSearch = async (data, value , key , fieldKey) => {
             if(key && key.length >= 2){
                 data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
                 data.map((item, index) => {
@@ -1203,7 +1203,7 @@ export default {
             state.liaisonColumns = data;
         };
 
-        const responsiblePersonSearch = async (data, key) => {
+        const responsiblePersonSearch = async (data, value , key , fieldKey) => {
             if(key && key.length >= 2){
                 data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
                 data.map((item, index) => {
@@ -1225,7 +1225,7 @@ export default {
             state.responsiblePersonColumns = data;
         };
 
-        const directorChairmanSearch = async (data, key) => {
+        const directorChairmanSearch = async (data, value , key , fieldKey) => {
             if(key && key.length >= 2){
                 data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
                 data.map((item, index) => {
@@ -1247,7 +1247,7 @@ export default {
             state.directorChairmanColumns = data;
         };
 
-        const directorSearch = async (data, key) => {
+        const directorSearch = async (data, value , key , fieldKey) => {
             if(key && key.length >= 2){
                 data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
                 data.map((item, index) => {
@@ -1269,7 +1269,7 @@ export default {
             state.directorColumns = data;
         };
 
-        const directorExecutiveSearch = async (data, key) => {
+        const directorExecutiveSearch = async (data, value , key , fieldKey) => {
             if(key && key.length >= 2){
                 data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
                 data.map((item, index) => {
@@ -1291,7 +1291,7 @@ export default {
             state.directorExecutiveColumns = data;
         };
 
-        const managerSearch = async (data, key) => {
+        const managerSearch = async (data, value , key , fieldKey) => {
             if(key && key.length >= 2){
                 data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
                 data.map((item, index) => {
@@ -1313,7 +1313,7 @@ export default {
             state.managerColumns = data;
         };
 
-        const supervisorChairmanSearch = async (data, key) => {
+        const supervisorChairmanSearch = async (data, value , key , fieldKey) => {
             if(key && key.length >= 2){
                 data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
                 data.map((item, index) => {
@@ -1335,7 +1335,7 @@ export default {
             state.supervisorChairmanColumns = data;
         };
 
-        const supervisorSearch = async (data, key) => {
+        const supervisorSearch = async (data, value , key , fieldKey) => {
             if(key && key.length >= 2){
                 data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
                 data.map((item, index) => {
@@ -1360,24 +1360,8 @@ export default {
 
         const shareholderSearch = async (data, value , key , fieldKey) => {
             const searchkey = value[key];
-            if(searchkey && searchkey.length >= 2){
-                data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${searchkey}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
-                data.map((item, index) => {
-                    item.code = item.id;
-                    item.tel = '';
-                    item.name = item.lastname ;
-                    item.departName = item.textfield1 && item.textfield1.includes('||') ? item.textfield1.split('||')[1] : '';
-                    item.title = `${item.lastname} ${item.departName}`;
-                    item.isDefault = false;
-                });
-                data = data.filter((item,index,self)=>{
-                    const findex = self.findIndex((element)=>{
-                        return element.loginid == item.loginid;
-                    })
-                    return findex == index;
-                });
-            }
-            state.tag['show' + fieldKey] = true;
+            data = await Betools.manage.queryUserData(searchkey, []);
+            state.tag['show' + Betools.manage.prefixUpperCase(fieldKey)] = true;
             state.tag.showKey = key;
             state[fieldKey + 'Columns'] = data;
         };
