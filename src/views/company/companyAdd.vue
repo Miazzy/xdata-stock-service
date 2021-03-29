@@ -40,7 +40,7 @@
                                 <van-field clearable label="填报日期" v-model="state.item.create_time" placeholder="请输入登记日期" readonly />
                                 <van-field required :readonly="false" clickable clearable label="公司名称" v-model="state.item.companyName" placeholder="请填写公司名称">
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="companySearch(null,state.item,'companyName','companyName')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null,state.item,'companyName','companyName','company')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -769,7 +769,7 @@
                                 <van-cell value="股东信息20" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder19" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder19','shareholder')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder19','shareholder' , 'user')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -1058,10 +1058,6 @@ export default {
             state.tag['show' + Betools.manage.prefixUpperCase(key)] = false;
         };
 
-        const companySearch = async (data, value , key , fieldKey) => {
-            await Betools.manage.commonCompanySearch(data, value , key , fieldKey, state);
-        };
-
         const industrySearch = async (data, value , key , fieldKey) => {
             state.tag.showIndustryName = true;
         };
@@ -1070,8 +1066,8 @@ export default {
             state.tag.showRegistStatus = true;
         };
 
-        const commonSearch = async (data, value , key , fieldKey) => {
-            await Betools.manage.commonUserSearch(data, value , key , fieldKey, state);
+        const commonSearch = async (data, value , key , fieldKey , type = 'user') => {
+            await Betools.manage.commonDataSearch(data, value , key , fieldKey, state , type);
         };
 
         const validField = (fieldName, item) => {
@@ -1285,7 +1281,6 @@ export default {
             cancel,
             confirm,
             clickDatePicker,
-            companySearch,
             industrySearch,
             registStatusSearch,
             companyConfirm,
