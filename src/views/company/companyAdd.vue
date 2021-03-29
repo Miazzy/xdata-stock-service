@@ -282,7 +282,7 @@
 
                                 <van-field required :readonly="false" clickable clearable label="监事会主席" v-model="state.director.supervisorChairman" placeholder="请选择监事会主席" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="supervisorChairmanSearch(null, state.director, 'supervisorChairman', 'supervisorChairman')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.director, 'supervisorChairman', 'supervisorChairman')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -1164,14 +1164,9 @@ export default {
             await Betools.manage.commonStockSearch(data, value , key , fieldKey, state);
         };
 
-        const supervisorChairmanSearch = async (data, value , key , fieldKey) => {
-            await Betools.manage.commonStockSearch(data, value , key , fieldKey, state);
-        };
-
         const commonSearch = async (data, value , key , fieldKey) => {
             await Betools.manage.commonStockSearch(data, value , key , fieldKey, state);
         };
-
 
         const validField = (fieldName, item) => {
             state.message[fieldName] = Betools.tools.isNull(item[fieldName]) ? `未填写${fieldName}信息，请填写后在进行提交申请！` : '';
@@ -1409,7 +1404,7 @@ export default {
             supervisorChairmanConfirm, //监事会主席
             supervisorConfirm, //监事
             managerSearch, //总经理/经理
-            supervisorChairmanSearch, //监事会主席
+            commonSearch, //监事会主席
             commonSearch, //监事
             shareholderConfirm,
             commonSearch,
