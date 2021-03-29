@@ -1034,13 +1034,13 @@ export default {
             state.item.companyCode = selectedOptions.map((option) => option.text).join('/');
         };
 
-        const companyConfirm = (index, item, value) => {
+        const companyConfirm = async (index, item, value) => {
             state.radio.companyName = index;
             state.item.companyName = state.companyNameColumns[index]['name'];
             state.tag.showCompanyName = false;
 
             //检查公司名是否已经存在 //校验公司名称,如果已经存在此公司名称，需要给出提示
-            const companyNameCount = await Betools.manage.queryTableFieldValueCount('bs_company_flow_data', 'name', state.item.companyName);
+            const companyNameCount = await Betools.manage.queryTableFieldValueCount('bs_company_flow_data', 'companyName', state.item.companyName);
             debugger;
 
         };
