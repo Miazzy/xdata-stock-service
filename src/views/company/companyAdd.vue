@@ -1175,7 +1175,6 @@ export default {
                 //此次校验，公司基础信息是否填写完整
                 const invalidKeys = checkValid(state.item);
                 if (Betools.tools.isNull(invalidKeys)) {
-                    checkData(state.item , 'company');
                     state.step = 'two'
                 } else {
                     Dialog.confirm({
