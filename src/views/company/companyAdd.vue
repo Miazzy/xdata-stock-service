@@ -1038,6 +1038,11 @@ export default {
             state.radio.companyName = index;
             state.item.companyName = state.companyNameColumns[index]['name'];
             state.tag.showCompanyName = false;
+
+            //检查公司名是否已经存在 //校验公司名称,如果已经存在此公司名称，需要给出提示
+            const companyNameCount = await Betools.manage.queryTableFieldValueCount('bs_company_flow_data', 'name', state.item.companyName);
+            debugger;
+
         };
 
         const industryConfirm = (index, item, value) => {
@@ -1195,6 +1200,7 @@ export default {
                 //此次校验，公司基础信息是否填写完整
                 const invalidKeys = checkValid(state.item);
                 if (Betools.tools.isNull(invalidKeys)) {
+                    checkData(state.item , 'company');
                     state.step = 'two'
                 } else {
                     Dialog.confirm({
