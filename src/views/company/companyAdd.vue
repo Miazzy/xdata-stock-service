@@ -300,7 +300,7 @@
 
                                 <van-field required :readonly="false" clickable clearable label="监事" v-model="state.director.supervisor" placeholder="请选择监事" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="supervisorSearch(null, state.director, 'supervisor', 'supervisor')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.director, 'supervisor', 'supervisor')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -332,7 +332,7 @@
                                 <van-cell value="股东信息1" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder0" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder0', 'shareholder')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder0', 'shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -355,7 +355,7 @@
                                 <van-cell value="股东信息2" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder1" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder1', 'shareholder')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder1', 'shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -378,7 +378,7 @@
                                 <van-cell value="股东信息3" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder2" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder2', 'shareholder')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder2', 'shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -401,7 +401,7 @@
                                 <van-cell value="股东信息4" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder3" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder3', 'shareholder')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder3', 'shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -424,7 +424,7 @@
                                 <van-cell value="股东信息5" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder4" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder4','shareholder')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder4','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -447,7 +447,7 @@
                                 <van-cell value="股东信息6" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder5" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder5','shareholder')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder5','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -470,7 +470,7 @@
                                 <van-cell value="股东信息7" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder6" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder6','shareholder')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder6','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -493,7 +493,7 @@
                                 <van-cell value="股东信息8" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder7" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder7','shareholder')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder7','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -516,7 +516,7 @@
                                 <van-cell value="股东信息9" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder8" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder8','shareholder')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder8','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -539,7 +539,7 @@
                                 <van-cell value="股东信息10" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder9" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder9','shareholder')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder9','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -562,7 +562,7 @@
                                 <van-cell value="股东信息11" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder10" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder10','shareholder')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder10','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -585,7 +585,7 @@
                                 <van-cell value="股东信息12" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder11" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder11','shareholder')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder11','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -608,7 +608,7 @@
                                 <van-cell value="股东信息13" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder12" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder12','shareholder')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder12','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -631,7 +631,7 @@
                                 <van-cell value="股东信息14" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder13" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder13','shareholder')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder13','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -654,7 +654,7 @@
                                 <van-cell value="股东信息15" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder14" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder14','shareholder')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder14','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -677,7 +677,7 @@
                                 <van-cell value="股东信息16" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder15" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder15','shareholder')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder15','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -700,7 +700,7 @@
                                 <van-cell value="股东信息17" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder16" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder16','shareholder')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder16','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -723,7 +723,7 @@
                                 <van-cell value="股东信息18" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder17" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder17','shareholder')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder17','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -746,7 +746,7 @@
                                 <van-cell value="股东信息19" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder18" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder18','shareholder')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder18','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -769,7 +769,7 @@
                                 <van-cell value="股东信息20" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder19" placeholder="请选择股东" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="shareholderSearch(null, state.stock, 'shareholder19','shareholder')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder19','shareholder')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -1168,11 +1168,7 @@ export default {
             await Betools.manage.commonStockSearch(data, value , key , fieldKey, state);
         };
 
-        const supervisorSearch = async (data, value , key , fieldKey) => {
-            await Betools.manage.commonStockSearch(data, value , key , fieldKey, state);
-        };
-
-        const shareholderSearch = async (data, value , key , fieldKey) => {
+        const commonSearch = async (data, value , key , fieldKey) => {
             await Betools.manage.commonStockSearch(data, value , key , fieldKey, state);
         };
 
@@ -1414,9 +1410,9 @@ export default {
             supervisorConfirm, //监事
             managerSearch, //总经理/经理
             supervisorChairmanSearch, //监事会主席
-            supervisorSearch, //监事
+            commonSearch, //监事
             shareholderConfirm,
-            shareholderSearch,
+            commonSearch,
         };
     }
 };
