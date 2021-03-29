@@ -47,7 +47,7 @@
                                 <van-radio-group v-show="state.tag.showCompanyName" v-model="state.radio.companyName" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.companyNameColumns ">
-                                            <van-cell :index="index" :title="item.name" clickable @click="companyConfirm(index,item);">
+                                            <van-cell :index="index" :title="item.name" clickable @click="commonConfirm(index,item,'companyName',state.item);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -65,7 +65,7 @@
                                 <van-radio-group v-show="state.tag.showIndustryName" v-model="state.radio.industryName" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item" v-for="(item,index) in state.industryColumns ">
-                                            <van-cell :index="index" :title="item" clickable @click="commonStatusConfirm(index,item,'industryName',state.item);">
+                                            <van-cell :index="index" :title="item" clickable @click="commonConfirm(index,item,'industryName',state.item);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -87,7 +87,7 @@
                                 <van-radio-group v-show="state.tag.showRegistrationStatus" v-model="state.radio.registStatus" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item" v-for="(item,index) in state.registStatusColumns ">
-                                            <van-cell :index="index" :title="item" clickable @click="commonStatusConfirm(index,item,'registrationStatus',state.item);">
+                                            <van-cell :index="index" :title="item" clickable @click="commonConfirm(index,item,'registrationStatus',state.item);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -1034,36 +1034,28 @@ export default {
             state.item.companyCode = selectedOptions.map((option) => option.text).join('/');
         };
 
-        const companyConfirm = async (index, item, value) => {
-            
-            state.radio.companyName = index;
-            state.item.companyName = state.companyNameColumns[index]['name'];
-            state.tag.showCompanyName = false;
+        const commonConfirm = async (index, value, key, item) => {
 
-            //检查公司名是否已经存在 //校验公司名称,如果已经存在此公司名称，需要给出提示
-            const companyNameCount = await Betools.manage.queryTableFieldValueCount('bs_company_flow_data', 'companyName', state.item.companyName);
-
-            Dialog.confirm({
-                title: '温馨提示',
-                message: '已经存在此公司的基础数据！',
-            })
-
-        };
-
-        const commonStatusConfirm = (index, value, key , item) => {
             state.radio[key] = index;
-            item[key.replace(/Name/g,'')] = item[key] = value;
+            item[key.replace(/Name/g,'')] = item[key] = value['lastname'] || value['name'] || value;
             state.tag['show' + Betools.manage.prefixUpperCase(key)] = false;
+
+            if(key == 'companyName'){
+                //检查公司名是否已经存在 //校验公司名称,如果已经存在此公司名称，需要给出提示
+                const companyNameCount = await Betools.manage.queryTableFieldValueCount('bs_company_flow_data', 'companyName', state.item.companyName);
+                if(companyNameCount && companyNameCount.length > 0){
+                    Dialog.confirm({
+                        title: '温馨提示',
+                        message: '已经存在此公司的基础数据！',
+                    });
+                }
+            }
+
         };
 
         const companyTypeConfirm = (value, index) => {
             state.item.companyType = value;
             state.tag.showCompanyType = false;
-        };
-
-        const commonConfirm = (index, value, key , item) => {
-            item[key] = value.lastname;
-            state.tag['show' + Betools.manage.prefixUpperCase(key)] = false;
         };
 
         const commonSearch = async (data, value , key , fieldKey , type = 'user') => {
@@ -1253,8 +1245,6 @@ export default {
             cancel,
             confirm,
             clickDatePicker,
-            companyConfirm,
-            commonStatusConfirm,
             companyTypeConfirm,
             commonConfirm,
             commonSearch, 
