@@ -1079,7 +1079,8 @@ export default {
         //数据校验
         const checkData = async (element, type) => {
             if (type == 'company') {
-                //校验公司名称长度
+                //校验公司名称,如果已经存在此公司名称，需要给出提示
+                  
                 //校验所属行业
                 //校验所属区域
                 //校验登记状态
