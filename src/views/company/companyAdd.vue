@@ -246,7 +246,7 @@
 
                                 <van-field required :readonly="false" clickable clearable label="执行董事" v-model="state.director.directorExecutive" placeholder="请选择执行董事" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="directorExecutiveSearch(null,state.director.directorExecutive)">查询</van-button>
+                                        <van-button size="small" type="primary" @click="directorExecutiveSearch(null, state.director, 'directorExecutive' , 'directorExecutive' )">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -264,7 +264,7 @@
 
                                 <van-field required :readonly="false" clickable clearable label="总经理/经理" v-model="state.director.manager" placeholder="请选择总经理/经理名单" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="managerSearch(null,state.director.manager)">查询</van-button>
+                                        <van-button size="small" type="primary" @click="managerSearch(null, state.director, 'manager', 'manager')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -282,7 +282,7 @@
 
                                 <van-field required :readonly="false" clickable clearable label="监事会主席" v-model="state.director.supervisorChairman" placeholder="请选择监事会主席" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="supervisorChairmanSearch(null,state.director.supervisorChairman)">查询</van-button>
+                                        <van-button size="small" type="primary" @click="supervisorChairmanSearch(null, state.director, 'supervisorChairman', 'supervisorChairman')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -300,7 +300,7 @@
 
                                 <van-field required :readonly="false" clickable clearable label="监事" v-model="state.director.supervisor" placeholder="请选择监事" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="supervisorSearch(null,state.director.supervisor)">查询</van-button>
+                                        <van-button size="small" type="primary" @click="supervisorSearch(null, state.director, 'supervisor', 'supervisor')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -323,7 +323,7 @@
             </section>
         </div>
 
-        <div class="section-content" v-show="state.step == 'one' " style="">
+        <div class="section-content" v-show="state.step == 'three' " style="">
             <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%); margin-bottom:0.75rem;">
                 <div id="weui-cells-flex" class="weui-cells" style="">
                     <van-cell-group>
