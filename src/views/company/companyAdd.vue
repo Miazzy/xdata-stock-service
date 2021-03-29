@@ -65,7 +65,7 @@
                                 <van-radio-group v-show="state.tag.showIndustryName" v-model="state.radio.industryName" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item" v-for="(item,index) in state.industryColumns ">
-                                            <van-cell :index="index" :title="item" clickable @click="industryConfirm(index,item);">
+                                            <van-cell :index="index" :title="item" clickable @click="commonStatusConfirm(index,item,'industryName',state.item);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -87,7 +87,7 @@
                                 <van-radio-group v-show="state.tag.showRegistrationStatus" v-model="state.radio.registStatus" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item" v-for="(item,index) in state.registStatusColumns ">
-                                            <van-cell :index="index" :title="item" clickable @click="registStatusConfirm(index,item);">
+                                            <van-cell :index="index" :title="item" clickable @click="commonStatusConfirm(index,item,'registrationStatus',state.item);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -1035,6 +1035,7 @@ export default {
         };
 
         const companyConfirm = async (index, item, value) => {
+            
             state.radio.companyName = index;
             state.item.companyName = state.companyNameColumns[index]['name'];
             state.tag.showCompanyName = false;
@@ -1049,16 +1050,10 @@ export default {
 
         };
 
-        const industryConfirm = (index, item, value) => {
-            state.radio.industryName = index;
-            state.item.industry = state.industryColumns[index];
-            state.tag.showIndustryName = false;
-        };
-
-        const registStatusConfirm = (index, item, value) => {
-            state.radio.registrationStatus = index;
-            state.item.registrationStatus = state.registStatusColumns[index];
-            state.tag.showRegistrationStatus = false;
+        const commonStatusConfirm = (index, value, key , item) => {
+            state.radio[key] = index;
+            item[key.replace(/Name/g,'')] = item[key] = value;
+            state.tag['show' + Betools.manage.prefixUpperCase(key)] = false;
         };
 
         const companyTypeConfirm = (value, index) => {
@@ -1259,8 +1254,7 @@ export default {
             confirm,
             clickDatePicker,
             companyConfirm,
-            industryConfirm,
-            registStatusConfirm,
+            commonStatusConfirm,
             companyTypeConfirm,
             commonConfirm,
             commonSearch, 
