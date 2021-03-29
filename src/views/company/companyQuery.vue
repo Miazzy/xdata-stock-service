@@ -11,7 +11,9 @@
                     <a href="#" class="a-decoration">
                         <div class="list-item">
                             <div class="list-item-top">
-                                <div class="list-item-logo"></div>
+                                <div class="list-item-logo">
+                                    <span class="boss-letter color-1" :first-letter="item.companyName.slice(0,4)" ></span>
+                                </div>
                                 <div class="list-item-name">
                                     {{ item.companyName }}
                                 </div>
@@ -136,5 +138,25 @@ export default {
     float: left;
     margin-left: 5px;
     width: calc(100% - 50px);
+}
+
+#company-query-content .boss-letter {
+    width: 24px;
+    height: 24px;
+    border-radius: 0.05rem;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    overflow: visible;
+    font-size: 12px;
+}
+
+#company-query-content .boss-letter:before {
+    content: attr(first-letter);
+    font-size: 0.24rem;
+    line-height: 24px;
+    color: #fff;
+    font-weight: 500;
+    transform: scale(0.55);
 }
 </style>
