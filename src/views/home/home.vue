@@ -14,7 +14,7 @@
                 </div>
             </form>
         </div>
-        <div class="home-latestcompany" style="margin-bottom:50px;">
+        <div id="company-query-content" class="home-latestcompany" style="margin-bottom:50px;">
             <div class="home-middle-title-wrap">
                 <div class="home-middle-title">企业注册信息 <a class="home-middle-title-more"  @click="redirectView('/companyquery?back=/index');"  >查看更多</a></div>
             </div>
@@ -23,7 +23,9 @@
                     <a href="#" class="a-decoration">
                         <div class="list-item">
                             <div class="list-item-top">
-                                <div class="list-item-logo"></div>
+                                <div class="list-item-logo">
+                                    <span class="boss-letter color-1" :first-letter="item.companyName.slice(0,4)" ></span>
+                                </div>
                                 <div class="list-item-name">
                                     {{ item.companyName }}
                                 </div>

@@ -132,31 +132,4 @@ export default {
 <style lang="scss" scoped>
 @import "../home/home.css";
 
-#company-query-content .list-item-name {
-    color: #333333;
-    font-size: 17px;
-    float: left;
-    margin-left: 5px;
-    width: calc(100% - 50px);
-}
-
-#company-query-content .boss-letter {
-    width: 24px;
-    height: 24px;
-    border-radius: 0.05rem;
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-    overflow: visible;
-    font-size: 12px;
-}
-
-#company-query-content .boss-letter:before {
-    content: attr(first-letter);
-    font-size: 0.24rem;
-    line-height: 24px;
-    color: #fff;
-    font-weight: 500;
-    transform: scale(0.55);
-}
 </style>
