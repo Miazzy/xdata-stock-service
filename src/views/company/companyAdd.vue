@@ -11,7 +11,7 @@
             </van-nav-bar>
         </header>
 
-        <div class="section-content" v-show="state.step == 'one' " style="">
+        <div class="section-content" v-show="state.step == 'two' " style="">
 
             <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%);">
 
@@ -201,7 +201,7 @@
             </section>
         </div>
 
-        <div class="section-content" v-show="state.step == 'two' " style="">
+        <div class="section-content" v-show="state.step == 'one' " style="">
             <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%); margin-bottom:0.00rem;">
                 <div id="weui-cells-flex" class="weui-cells" style="">
                     <van-cell-group>
@@ -777,6 +777,28 @@ export default {
         };
 
         const directorChairmanSearch = async (data, key) => {
+            if(key && key.length >= 2){
+                data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
+                data.map((item, index) => {
+                    item.code = item.id;
+                    item.tel = '';
+                    item.name = item.lastname ;
+                    item.departName = item.textfield1 && item.textfield1.includes('||') ? item.textfield1.split('||')[1] : '';
+                    item.title = `${item.lastname} ${item.departName}`;
+                    item.isDefault = false;
+                });
+                data = data.filter((item,index,self)=>{
+                    const findex = self.findIndex((element)=>{
+                        return element.loginid == item.loginid;
+                    })
+                    return findex == index;
+                });
+            }
+            state.tag.showResponsiblePerson = true;
+            state.directorChairman = data;
+        };
+
+        const directorSearch = async (data, key) => {
             if(key && key.length >= 2){
                 data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
                 data.map((item, index) => {
