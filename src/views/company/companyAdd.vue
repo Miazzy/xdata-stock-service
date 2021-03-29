@@ -1035,11 +1035,11 @@ export default {
         };
 
         const commonConfirm = async (index, value, key, item) => {
-            await Betools.manage.commonDataConfirm(index , value , key , item , state);
+            await Betools.manage.commonDataConfirm(index, value, key, item, state, Dialog);
         };
 
         const companyTypeConfirm = async (value, index) => {
-            await Betools.manage.commonDataConfirm(index , value , 'companyType' , state.item , state);
+            await Betools.manage.commonDataConfirm(index, value, 'companyType', state.item, state, Dialog);
         };
 
         const commonSearch = async (data, value , key , fieldKey , type = 'user') => {
