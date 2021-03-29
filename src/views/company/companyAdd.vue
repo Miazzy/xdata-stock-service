@@ -40,13 +40,13 @@
                                 <van-field clearable label="填报日期" v-model="state.item.create_time" placeholder="请输入登记日期" readonly />
                                 <van-field required :readonly="false" clickable clearable label="公司名称" v-model="state.item.companyName" placeholder="请填写公司名称">
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="companySearch(null,state.item.companyName)">查询</van-button>
+                                        <van-button size="small" type="primary" @click="companySearch(null,state.item,'companyName','companyName')">查询</van-button>
                                     </template>
                                 </van-field>
 
                                 <van-radio-group v-show="state.showCompanyName" v-model="state.radio.companyName" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.companyColumns ">
+                                        <template :key="item.id" v-for="(item,index) in state.companyNameColumns ">
                                             <van-cell :index="index" :title="item.name" clickable @click="companyConfirm(index,item);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
@@ -889,7 +889,7 @@ export default {
                     },
                 ],
             },
-            companyColumns: [],
+            companyNameColumns: [],
             companyTypeColumns:['有限公司','股份公司'],
             industryColumns: ['房地产行业', '金融行业', '物业管理', '医疗健康产业', '商业管理'],
             registStatusColumns: ['存续', '注销', '经营异常'],
@@ -1032,7 +1032,7 @@ export default {
 
         const companyConfirm = (index, item, value) => {
             state.radio.companyName = index;
-            state.item.companyName = state.companyColumns[index]['name'];
+            state.item.companyName = state.companyNameColumns[index]['name'];
             setTimeout(() => {
                 state.showCompanyName = false;
             }, 1000);
@@ -1115,16 +1115,11 @@ export default {
         };
 
         const companySearch = async (data, value , key , fieldKey) => {
-            data = await Betools.manage.queryTableData('bs_company_flow_base', `_where=(status,in,0)~and(level,gt,2)~and(name,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
-            data.map((item, index) => {
-                item.title = item.name.slice(0, 24);
-                item.code = item.id;
-                item.tel = '';
-                item.name = item.name;
-                item.isDefault = false;
-            });
-            state.showCompanyName = true;
-            state.companyColumns = data;
+            const searchkey = value[key];
+            data = await Betools.manage.queryCompanyData(searchkey, []);
+            state.tag['show' + Betools.manage.prefixUpperCase(fieldKey)] = true;
+            state.tag.showKey = key;
+            state[fieldKey + 'Columns'] = data;
         };
 
         const industrySearch = async (data, value , key , fieldKey) => {
