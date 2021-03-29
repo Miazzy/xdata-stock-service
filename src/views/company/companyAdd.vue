@@ -1205,19 +1205,11 @@ export default {
         };
 
         const supervisorSearch = async (data, value , key , fieldKey) => {
-            const searchkey = value[key];
-            data = await Betools.manage.queryUserData(searchkey, []);
-            state.tag['show' + Betools.manage.prefixUpperCase(fieldKey)] = true;
-            state.tag.showKey = key;
-            state[fieldKey + 'Columns'] = data;
+            await Betools.manage.commonStockSearch(data, value , key , fieldKey, state);
         };
 
         const shareholderSearch = async (data, value , key , fieldKey) => {
-            const searchkey = value[key];
-            data = await Betools.manage.queryUserData(searchkey, []);
-            state.tag['show' + Betools.manage.prefixUpperCase(fieldKey)] = true;
-            state.tag.showKey = key;
-            state[fieldKey + 'Columns'] = data;
+            await Betools.manage.commonStockSearch(data, value , key , fieldKey, state);
         };
 
 
