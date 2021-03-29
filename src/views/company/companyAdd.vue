@@ -121,7 +121,7 @@
                                 <van-field required :readonly="false" clickable clearable label="使用情况" v-model="state.item.usage" rows="1" autosize type="textarea" placeholder="请输入使用情况" />
                                 <van-field required :readonly="false" clickable clearable label="法定代表人" v-model="state.item.legalRepresentative" placeholder="请输入法定代表人" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="legalRepresentativeSearch(null, state.item, 'legalRepresentative' , 'legalRepresentative')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.item, 'legalRepresentative' , 'legalRepresentative')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -139,7 +139,7 @@
 
                                 <van-field required :readonly="false" clickable clearable label="印章保管人" v-model="state.item.sealKeeper" placeholder="请选择印章保管人" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="sealKeeperSearch(null, state.item, 'sealKeeper' , 'sealKeeper')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.item, 'sealKeeper' , 'sealKeeper')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -157,7 +157,7 @@
 
                                 <van-field required :readonly="false" clickable clearable label="备案联络员" v-model="state.item.liaison" placeholder="请选择工商备案联络员" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="liaisonSearch(null, state.item, 'liaison' , 'liaison')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.item, 'liaison' , 'liaison')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -175,7 +175,7 @@
 
                                 <van-field required :readonly="false" clickable clearable label="财务负责人" v-model="state.item.responsiblePerson" placeholder="请选择工商备案财务负责人" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="responsiblePersonSearch(null, state.item, 'responsiblePerson' , 'responsiblePerson')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.item, 'responsiblePerson' , 'responsiblePerson')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -210,7 +210,7 @@
                                 <van-cell value="机构人员" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="董事长" v-model="state.director.directorChairman" placeholder="请选择董事长" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="directorChairmanSearch(null, state.director , 'directorChairman' , 'directorChairman')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.director , 'directorChairman' , 'directorChairman')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -228,7 +228,7 @@
 
                                 <van-field required :readonly="false" clickable clearable label="董事" v-model="state.director.director" placeholder="请选择董事" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="directorSearch(null, state.director, 'director' , 'director')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.director, 'director' , 'director')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -246,7 +246,7 @@
 
                                 <van-field required :readonly="false" clickable clearable label="执行董事" v-model="state.director.directorExecutive" placeholder="请选择执行董事" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="directorExecutiveSearch(null, state.director, 'directorExecutive' , 'directorExecutive' )">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.director, 'directorExecutive' , 'directorExecutive' )">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -264,7 +264,7 @@
 
                                 <van-field required :readonly="false" clickable clearable label="总经理/经理" v-model="state.director.manager" placeholder="请选择总经理/经理名单" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="managerSearch(null, state.director, 'manager', 'manager')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null, state.director, 'manager', 'manager')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -1132,38 +1132,6 @@ export default {
             state.RegistStatusColumns = state.RegistStatusColumns;
         };
 
-        const legalRepresentativeSearch = async (data, value , key , fieldKey) => {
-            await Betools.manage.commonStockSearch(data, value , key , fieldKey, state);
-        };
-
-        const sealKeeperSearch = async (data, value , key , fieldKey) => {
-            await Betools.manage.commonStockSearch(data, value , key , fieldKey, state);
-        };
-
-        const liaisonSearch = async (data, value , key , fieldKey) => {
-            await Betools.manage.commonStockSearch(data, value , key , fieldKey, state);
-        };
-
-        const responsiblePersonSearch = async (data, value , key , fieldKey) => {
-            await Betools.manage.commonStockSearch(data, value , key , fieldKey, state);
-        };
-
-        const directorChairmanSearch = async (data, value , key , fieldKey) => {
-            await Betools.manage.commonStockSearch(data, value , key , fieldKey, state);
-        };
-
-        const directorSearch = async (data, value , key , fieldKey) => {
-            await Betools.manage.commonStockSearch(data, value , key , fieldKey, state);
-        };
-
-        const directorExecutiveSearch = async (data, value , key , fieldKey) => {
-            await Betools.manage.commonStockSearch(data, value , key , fieldKey, state);
-        };
-
-        const managerSearch = async (data, value , key , fieldKey) => {
-            await Betools.manage.commonStockSearch(data, value , key , fieldKey, state);
-        };
-
         const commonSearch = async (data, value , key , fieldKey) => {
             await Betools.manage.commonStockSearch(data, value , key , fieldKey, state);
         };
@@ -1386,28 +1354,18 @@ export default {
             registStatusConfirm,
             companyCode,
             companyTypeConfirm,
-            legalRepresentativeSearch,
             legalRepresentativeConfirm,
-            sealKeeperSearch,
             sealKeeperConfirm,
             liaisonConfirm,
-            liaisonSearch,
             responsiblePersonConfirm,
-            responsiblePersonSearch,
             directorChairmanConfirm,
-            directorChairmanSearch,
             directorConfirm,
-            directorSearch,
             directorExecutiveConfirm,
-            directorExecutiveSearch,
             managerConfirm, //总经理/经理
             supervisorChairmanConfirm, //监事会主席
             supervisorConfirm, //监事
-            managerSearch, //总经理/经理
-            commonSearch, //监事会主席
-            commonSearch, //监事
             shareholderConfirm,
-            commonSearch,
+            commonSearch, 
         };
     }
 };
