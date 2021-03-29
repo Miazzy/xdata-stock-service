@@ -58,7 +58,7 @@
 
                                 <van-field required :readonly="false" clickable clearable label="所属行业" v-model="state.item.industry" placeholder="请选择所属行业">
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="industrySearch(null,state.item.industry)">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null,state.item,'industryName','industryName','common')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -1058,10 +1058,6 @@ export default {
             state.tag['show' + Betools.manage.prefixUpperCase(key)] = false;
         };
 
-        const industrySearch = async (data, value , key , fieldKey) => {
-            state.tag.showIndustryName = true;
-        };
-
         const commonSearch = async (data, value , key , fieldKey , type = 'user') => {
             await Betools.manage.commonDataSearch(data, value , key , fieldKey, state , type);
         };
@@ -1277,7 +1273,6 @@ export default {
             cancel,
             confirm,
             clickDatePicker,
-            industrySearch,
             companyConfirm,
             industryConfirm,
             registStatusConfirm,
