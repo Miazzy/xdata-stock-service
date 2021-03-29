@@ -80,11 +80,11 @@
 
                                 <van-field required :readonly="false" clickable clearable label="登记状态" v-model="state.item.registrationStatus" placeholder="请选择登记状态">
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null,state.item, 'registrationStatus' , 'registrationStatus','common')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(state.registrationStatusColumns, state.item, 'registrationStatus', 'registrationStatus', 'common')">查询</van-button>
                                     </template>
                                 </van-field>
 
-                                <van-radio-group v-show="state.tag.showRegistStatus" v-model="state.radio.registStatus" style="max-height:120px;overflow-y: scroll;">
+                                <van-radio-group v-show="state.tag.showRegistrationStatus" v-model="state.radio.registStatus" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item" v-for="(item,index) in state.registStatusColumns ">
                                             <van-cell :index="index" :title="item" clickable @click="registStatusConfirm(index,item);">
@@ -892,7 +892,9 @@ export default {
             companyNameColumns: [],
             companyTypeColumns:['有限公司','股份公司'],
             industryColumns: ['房地产行业', '金融行业', '物业管理', '医疗健康产业', '商业管理'],
+            industryNameColumns: ['房地产行业', '金融行业', '物业管理', '医疗健康产业', '商业管理'],
             registStatusColumns: ['存续', '注销', '经营异常'],
+            registrationStatusColumns:['存续', '注销', '经营异常'],
             legalRepresentativeColumns:[],
             sealKeeperColumns:[],
             liaisonColumns:[],
@@ -908,6 +910,7 @@ export default {
                 companyName: '',
                 industryName: '',
                 registStatus: '',
+                registrationStatus:'',
                 sealKeeper:'',
                 liaison:'',
                 responsiblePerson:'',
@@ -989,6 +992,7 @@ export default {
                 showCompanyName: false,
                 showIndustryName: false,
                 showRegistStatus: false,
+                showRegistrationStatus: false,
                 showCompanyType:false,
                 showLegalRepresentative:false,
                 showSealKeeper:false,
@@ -1043,9 +1047,9 @@ export default {
         };
 
         const registStatusConfirm = (index, item, value) => {
-            state.radio.registStatus = index;
+            state.radio.registrationStatus = index;
             state.item.registrationStatus = state.registStatusColumns[index];
-            state.tag.showRegistStatus = false;
+            state.tag.showRegistrationStatus = false;
         };
 
         const companyTypeConfirm = (value, index) => {
