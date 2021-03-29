@@ -1041,7 +1041,11 @@ export default {
 
             //检查公司名是否已经存在 //校验公司名称,如果已经存在此公司名称，需要给出提示
             const companyNameCount = await Betools.manage.queryTableFieldValueCount('bs_company_flow_data', 'companyName', state.item.companyName);
-            debugger;
+
+            Dialog.confirm({
+                title: '温馨提示',
+                message: '已经存在此公司的基础数据！',
+            })
 
         };
 
