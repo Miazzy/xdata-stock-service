@@ -1035,28 +1035,11 @@ export default {
         };
 
         const commonConfirm = async (index, value, key, item) => {
-
-            state.radio[key] = index;
-            item[key.replace(/Name/g,'')] = item[key] = value['lastname'] || value['name'] || value;
-            state.tag['show' + Betools.manage.prefixUpperCase(key)] = false;
-
-            if(key == 'companyName'){
-                //检查公司名是否已经存在 //校验公司名称,如果已经存在此公司名称，需要给出提示
-                const companyNameCount = await Betools.manage.queryTableFieldValueCount('bs_company_flow_data', 'companyName', state.item.companyName);
-                if(companyNameCount && companyNameCount.length > 0){
-                    Dialog.confirm({
-                        title: '温馨提示',
-                        message: '已经存在此公司的基础数据，请勿重复提交！',
-                    });
-                    item[key.replace(/Name/g,'')] = item[key] = '';
-                }
-            }
-
+            await Betools.manage.commonDataConfirm(index , value , key , item , state);
         };
 
-        const companyTypeConfirm = (value, index) => {
-            state.item.companyType = value;
-            state.tag.showCompanyType = false;
+        const companyTypeConfirm = async (value, index) => {
+            await Betools.manage.commonDataConfirm(index , value , 'companyType' , state.item , state);
         };
 
         const commonSearch = async (data, value , key , fieldKey , type = 'user') => {
