@@ -80,7 +80,7 @@
 
                                 <van-field required :readonly="false" clickable clearable label="登记状态" v-model="state.item.registrationStatus" placeholder="请选择登记状态">
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="registStatusSearch(null,state.item.registrationStatus, 'registrationStatus' , 'registrationStatus')">查询</van-button>
+                                        <van-button size="small" type="primary" @click="commonSearch(null,state.item, 'registrationStatus' , 'registrationStatus','common')">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -1062,10 +1062,6 @@ export default {
             state.tag.showIndustryName = true;
         };
 
-        const registStatusSearch = async (data, value , key , fieldKey) => {
-            state.tag.showRegistStatus = true;
-        };
-
         const commonSearch = async (data, value , key , fieldKey , type = 'user') => {
             await Betools.manage.commonDataSearch(data, value , key , fieldKey, state , type);
         };
@@ -1282,7 +1278,6 @@ export default {
             confirm,
             clickDatePicker,
             industrySearch,
-            registStatusSearch,
             companyConfirm,
             industryConfirm,
             registStatusConfirm,
