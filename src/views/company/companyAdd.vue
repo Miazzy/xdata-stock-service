@@ -1133,51 +1133,27 @@ export default {
         };
 
         const legalRepresentativeSearch = async (data, value , key , fieldKey) => {
-            const searchkey = value[key];
-            data = await Betools.manage.queryUserData(searchkey, []);
-            state.tag['show' + Betools.manage.prefixUpperCase(fieldKey)] = true;
-            state.tag.showKey = key;
-            state[fieldKey + 'Columns'] = data;
+            await Betools.manage.commonStockSearch(data, value , key , fieldKey, state);
         };
 
         const sealKeeperSearch = async (data, value , key , fieldKey) => {
-            const searchkey = value[key];
-            data = await Betools.manage.queryUserData(searchkey, []);
-            state.tag['show' + Betools.manage.prefixUpperCase(fieldKey)] = true;
-            state.tag.showKey = key;
-            state[fieldKey + 'Columns'] = data;
+            await Betools.manage.commonStockSearch(data, value , key , fieldKey, state);
         };
 
         const liaisonSearch = async (data, value , key , fieldKey) => {
-            const searchkey = value[key];
-            data = await Betools.manage.queryUserData(searchkey, []);
-            state.tag['show' + Betools.manage.prefixUpperCase(fieldKey)] = true;
-            state.tag.showKey = key;
-            state[fieldKey + 'Columns'] = data;
+            await Betools.manage.commonStockSearch(data, value , key , fieldKey, state);
         };
 
         const responsiblePersonSearch = async (data, value , key , fieldKey) => {
-            const searchkey = value[key];
-            data = await Betools.manage.queryUserData(searchkey, []);
-            state.tag['show' + Betools.manage.prefixUpperCase(fieldKey)] = true;
-            state.tag.showKey = key;
-            state[fieldKey + 'Columns'] = data;
+            await Betools.manage.commonStockSearch(data, value , key , fieldKey, state);
         };
 
         const directorChairmanSearch = async (data, value , key , fieldKey) => {
-            const searchkey = value[key];
-            data = await Betools.manage.queryUserData(searchkey, []);
-            state.tag['show' + Betools.manage.prefixUpperCase(fieldKey)] = true;
-            state.tag.showKey = key;
-            state[fieldKey + 'Columns'] = data;
+            await Betools.manage.commonStockSearch(data, value , key , fieldKey, state);
         };
 
         const directorSearch = async (data, value , key , fieldKey) => {
-            const searchkey = value[key];
-            data = await Betools.manage.queryUserData(searchkey, []);
-            state.tag['show' + Betools.manage.prefixUpperCase(fieldKey)] = true;
-            state.tag.showKey = key;
-            state[fieldKey + 'Columns'] = data;
+            await Betools.manage.commonStockSearch(data, value , key , fieldKey, state);
         };
 
         const directorExecutiveSearch = async (data, value , key , fieldKey) => {
