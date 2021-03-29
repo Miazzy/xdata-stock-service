@@ -210,7 +210,7 @@
                                 <van-cell value="机构人员" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field required :readonly="false" clickable clearable label="董事长" v-model="state.director.directorChairman" placeholder="请选择董事长" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="directorChairmanSearch(null,state.item.directorChairman)">查询</van-button>
+                                        <van-button size="small" type="primary" @click="directorChairmanSearch(null,state.director.directorChairman)">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -228,7 +228,7 @@
 
                                 <van-field required :readonly="false" clickable clearable label="董事" v-model="state.director.director" placeholder="请选择董事" >
                                     <template #button>
-                                        <van-button size="small" type="primary" @click="directorSearch(null,state.item.director)">查询</van-button>
+                                        <van-button size="small" type="primary" @click="directorSearch(null,state.director.director)">查询</van-button>
                                     </template>
                                 </van-field>
 
@@ -244,10 +244,78 @@
                                     </van-cell-group>
                                 </van-radio-group>
 
-                                <van-field required :readonly="false" clickable clearable label="执行董事" v-model="state.director.directorExecutive" placeholder="请选择执行董事" />
-                                <van-field required :readonly="false" clickable clearable label="总经理/经理" v-model="state.director.manager" placeholder="请选择总经理/经理名单" />
-                                <van-field required :readonly="false" clickable clearable label="监事会主席" v-model="state.director.supervisorChairman" placeholder="请选择监事会主席" />
-                                <van-field required :readonly="false" clickable clearable label="监事" v-model="state.director.supervisor" placeholder="请选择监事" />
+                                <van-field required :readonly="false" clickable clearable label="执行董事" v-model="state.director.directorExecutive" placeholder="请选择执行董事" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="directorExecutiveSearch(null,state.director.directorExecutive)">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showDirectorExecutive" v-model="state.radio.directorExecutive" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.directorExecutiveColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="directorExecutiveConfirm(index,item);">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
+                                <van-field required :readonly="false" clickable clearable label="总经理/经理" v-model="state.director.manager" placeholder="请选择总经理/经理名单" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="managerSearch(null,state.director.manager)">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showManager" v-model="state.radio.manager" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.managerColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="managerConfirm(index,item);">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
+                                <van-field required :readonly="false" clickable clearable label="监事会主席" v-model="state.director.supervisorChairman" placeholder="请选择监事会主席" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="supervisorChairmanSearch(null,state.director.supervisorChairman)">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showSupervisorChairman" v-model="state.radio.supervisorChairman" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.supervisorChairmanColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="supervisorChairmanConfirm(index,item);">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
+                                <van-field required :readonly="false" clickable clearable label="监事" v-model="state.director.supervisor" placeholder="请选择监事" >
+                                    <template #button>
+                                        <van-button size="small" type="primary" @click="supervisorSearch(null,state.director.supervisor)">查询</van-button>
+                                    </template>
+                                </van-field>
+
+                                <van-radio-group v-show="state.tag.showSupervisor" v-model="state.radio.supervisor" style="max-height:120px;overflow-y: scroll;">
+                                    <van-cell-group>
+                                        <template :key="item.id" v-for="(item,index) in state.supervisorColumns ">
+                                            <van-cell :index="index" :title="item.title" clickable @click="supervisorConfirm(index,item);">
+                                                <template #right-icon>
+                                                    <van-radio :name="index" />
+                                                </template>
+                                            </van-cell>
+                                        </template>
+                                    </van-cell-group>
+                                </van-radio-group>
+
                             </van-cell-group>
                         </van-form>
                     </van-cell-group>
@@ -491,6 +559,7 @@ export default {
             responsiblePersonColumns:[],
             directorChairmanColumns:[],
             directorColumns:[],
+            directorExecutiveColumns:[],
             radio: {
                 companyName: '',
                 industryName: '',
@@ -500,6 +569,7 @@ export default {
                 responsiblePerson:'',
                 directorChairman:'',
                 director:'',
+                directorExecutive:'',
             },
             item: {
                 create_time: dayjs().format('YYYY-MM-DD'),
@@ -577,6 +647,10 @@ export default {
                 showResponsiblePerson:false,
                 showDirectorChairman:false,
                 showDirector:false,
+                showDirectorExecutive:false,
+                showManager: false, //总经理/经理
+                showSupervisorChairman: false, //监事会主席
+                showSupervisor: false , //监事
             },
             show: true,
             message: {},
@@ -794,8 +868,8 @@ export default {
                     return findex == index;
                 });
             }
-            state.tag.showResponsiblePerson = true;
-            state.directorChairman = data;
+            state.tag.showDirectorChairman = true;
+            state.directorChairmanColumns = data;
         };
 
         const directorSearch = async (data, key) => {
@@ -816,8 +890,30 @@ export default {
                     return findex == index;
                 });
             }
-            state.tag.showResponsiblePerson = true;
-            state.directorChairman = data;
+            state.tag.showDirector = true;
+            state.directorColumns = data;
+        };
+
+        const directorExecutiveSearch = async (data, key) => {
+            if(key && key.length >= 2){
+                data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
+                data.map((item, index) => {
+                    item.code = item.id;
+                    item.tel = '';
+                    item.name = item.lastname ;
+                    item.departName = item.textfield1 && item.textfield1.includes('||') ? item.textfield1.split('||')[1] : '';
+                    item.title = `${item.lastname} ${item.departName}`;
+                    item.isDefault = false;
+                });
+                data = data.filter((item,index,self)=>{
+                    const findex = self.findIndex((element)=>{
+                        return element.loginid == item.loginid;
+                    })
+                    return findex == index;
+                });
+            }
+            state.tag.showDirectorExecutive = true;
+            state.directorExecutive = data;
         };
 
         //页面进入前函数
@@ -1079,6 +1175,7 @@ export default {
             directorChairmanSearch,
             directorConfirm,
             directorSearch,
+            directorExecutiveSearch,
         };
     }
 };
