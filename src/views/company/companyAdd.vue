@@ -11,7 +11,7 @@
             </van-nav-bar>
         </header>
 
-        <div class="section-content" v-show="state.step == 'two' " style="">
+        <div class="section-content" v-show="state.step == 'one' " style="">
 
             <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%);">
 
@@ -201,7 +201,7 @@
             </section>
         </div>
 
-        <div class="section-content" v-show="state.step == 'one' " style="">
+        <div class="section-content" v-show="state.step == 'two' " style="">
             <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%); margin-bottom:0.00rem;">
                 <div id="weui-cells-flex" class="weui-cells" style="">
                     <van-cell-group>
@@ -1225,17 +1225,6 @@ export default {
             state[fieldKey + 'Columns'] = data;
         };
 
-        //页面进入前函数
-        const beforeEnter = el => {
-            const dom = ball.el;
-            const rect = dom.getBoundingClientRect();
-            const x = rect.left - window.innerWidth * 0.6;
-            const y = -(window.innerHeight - rect.top);
-            el.style.display = "block";
-            el.style.transform = `translate3d(0,${y}px,0)`;
-            const inner = el.querySelector(".inner");
-            inner.style.transform = `translate3d(${x}px,0,0)`;
-        };
 
         const validField = (fieldName, item) => {
             state.message[fieldName] = Betools.tools.isNull(item[fieldName]) ? `未填写${fieldName}信息，请填写后在进行提交申请！` : '';
@@ -1319,20 +1308,6 @@ export default {
             });
             return invalidKey;
         }
-
-        //页面进入函数
-        const enter = (el, done) => {
-            document.body.offsetHeight;
-            el.style.transform = "translate3d(0,0,0)";
-            const inner = el.querySelector(".inner");
-            inner.style.transform = "translate3d(0,0,0)";
-            el.addEventListener("transitionend", done);
-        };
-
-        //页面进入后函数
-        const afterEnter = el => {
-            el.style.display = "none";
-        };
 
         //页面滚动
         const pageScroll = () => {
@@ -1454,9 +1429,6 @@ export default {
             state,
             returnBack,
             searching,
-            beforeEnter,
-            enter,
-            afterEnter,
             headerActive,
             pageScroll,
             nextstep,
