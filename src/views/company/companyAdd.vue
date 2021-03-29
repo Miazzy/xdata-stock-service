@@ -750,6 +750,21 @@ export default {
             state.tag.showDirectorExecutive = false;
         };
 
+        const managerConfirm = (index, value, key)=>{
+            state.director.manager = value.lastname;
+            state.tag.showManager = false;
+        };
+
+        const supervisorChairmanConfirm = (index, value, key)=>{
+            state.director.supervisorChairman = value.lastname;
+            state.tag.showSupervisorChairman = false;
+        };
+
+        const supervisorConfirm = (index, value, key)=>{
+            state.director.supervisor = value.lastname;
+            state.tag.showSupervisor = false;
+        };
+
         const companySearch = async (data, key) => {
             data = await Betools.manage.queryTableData('bs_company_flow_base', `_where=(status,in,0)~and(level,gt,2)~and(name,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
             data.map((item, index) => {
@@ -924,7 +939,73 @@ export default {
                 });
             }
             state.tag.showDirectorExecutive = true;
-            state.directorExecutive = data;
+            state.directorExecutiveColumns = data;
+        };
+
+        const managerSearch = async (data, key) => {
+            if(key && key.length >= 2){
+                data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
+                data.map((item, index) => {
+                    item.code = item.id;
+                    item.tel = '';
+                    item.name = item.lastname ;
+                    item.departName = item.textfield1 && item.textfield1.includes('||') ? item.textfield1.split('||')[1] : '';
+                    item.title = `${item.lastname} ${item.departName}`;
+                    item.isDefault = false;
+                });
+                data = data.filter((item,index,self)=>{
+                    const findex = self.findIndex((element)=>{
+                        return element.loginid == item.loginid;
+                    })
+                    return findex == index;
+                });
+            }
+            state.tag.showManager = true;
+            state.managerColumns = data;
+        };
+
+        const supervisorChairmanSearch = async (data, key) => {
+            if(key && key.length >= 2){
+                data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
+                data.map((item, index) => {
+                    item.code = item.id;
+                    item.tel = '';
+                    item.name = item.lastname ;
+                    item.departName = item.textfield1 && item.textfield1.includes('||') ? item.textfield1.split('||')[1] : '';
+                    item.title = `${item.lastname} ${item.departName}`;
+                    item.isDefault = false;
+                });
+                data = data.filter((item,index,self)=>{
+                    const findex = self.findIndex((element)=>{
+                        return element.loginid == item.loginid;
+                    })
+                    return findex == index;
+                });
+            }
+            state.tag.showSupervisorChairman = true;
+            state.supervisorChairmanColumns = data;
+        };
+
+        const supervisorSearch = async (data, key) => {
+            if(key && key.length >= 2){
+                data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${key}~)&_sort=id&_p=0&_size=30`); // 获取最近12个月的已用印记录
+                data.map((item, index) => {
+                    item.code = item.id;
+                    item.tel = '';
+                    item.name = item.lastname ;
+                    item.departName = item.textfield1 && item.textfield1.includes('||') ? item.textfield1.split('||')[1] : '';
+                    item.title = `${item.lastname} ${item.departName}`;
+                    item.isDefault = false;
+                });
+                data = data.filter((item,index,self)=>{
+                    const findex = self.findIndex((element)=>{
+                        return element.loginid == item.loginid;
+                    })
+                    return findex == index;
+                });
+            }
+            state.tag.showSupervisor = true;
+            state.supervisorColumns = data;
         };
 
         //页面进入前函数
