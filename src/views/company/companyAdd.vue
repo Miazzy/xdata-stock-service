@@ -1120,6 +1120,7 @@ export default {
             state.tag['show' + Betools.manage.prefixUpperCase(fieldKey)] = true;
             state.tag.showKey = key;
             state[fieldKey + 'Columns'] = data;
+            await Betools.manage.commonCompanySearch(data, value , key , fieldKey, state);
         };
 
         const industrySearch = async (data, value , key , fieldKey) => {
