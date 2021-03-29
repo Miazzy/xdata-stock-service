@@ -44,7 +44,7 @@
                                     </template>
                                 </van-field>
 
-                                <van-radio-group v-show="state.showCompanyName" v-model="state.radio.companyName" style="max-height:120px;overflow-y: scroll;">
+                                <van-radio-group v-show="state.tag.showCompanyName" v-model="state.radio.companyName" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.companyNameColumns ">
                                             <van-cell :index="index" :title="item.name" clickable @click="companyConfirm(index,item);">
@@ -62,7 +62,7 @@
                                     </template>
                                 </van-field>
 
-                                <van-radio-group v-show="state.showIndustryName" v-model="state.radio.industryName" style="max-height:120px;overflow-y: scroll;">
+                                <van-radio-group v-show="state.tag.showIndustryName" v-model="state.radio.industryName" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item" v-for="(item,index) in state.industryColumns ">
                                             <van-cell :index="index" :title="item" clickable @click="industryConfirm(index,item);">
@@ -84,7 +84,7 @@
                                     </template>
                                 </van-field>
 
-                                <van-radio-group v-show="state.showRegistStatus" v-model="state.radio.registStatus" style="max-height:120px;overflow-y: scroll;">
+                                <van-radio-group v-show="state.tag.showRegistStatus" v-model="state.radio.registStatus" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item" v-for="(item,index) in state.registStatusColumns ">
                                             <van-cell :index="index" :title="item" clickable @click="registStatusConfirm(index,item);">
@@ -217,7 +217,7 @@
                                 <van-radio-group v-show="state.tag.showDirectorChairman" v-model="state.radio.directorChairman" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.directorChairmanColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="directorChairmanConfirm(index,item);">
+                                            <van-cell :index="index" :title="item.title" clickable @click="directorChairmanConfirm(index, item, 'directorChairman', state.director);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -235,7 +235,7 @@
                                 <van-radio-group v-show="state.tag.showDirector" v-model="state.radio.director" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.directorColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="directorConfirm(index,item);">
+                                            <van-cell :index="index" :title="item.title" clickable @click="directorConfirm(index, item, 'director', state.director );">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -253,7 +253,7 @@
                                 <van-radio-group v-show="state.tag.showDirectorExecutive" v-model="state.radio.directorExecutive" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.directorExecutiveColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="directorExecutiveConfirm(index,item);">
+                                            <van-cell :index="index" :title="item.title" clickable @click="directorExecutiveConfirm(index, item, 'directorExecutive', state.director);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -271,7 +271,7 @@
                                 <van-radio-group v-show="state.tag.showManager" v-model="state.radio.manager" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.managerColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="managerConfirm(index,item);">
+                                            <van-cell :index="index" :title="item.title" clickable @click="managerConfirm(index, item, 'manager', state.director);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -289,7 +289,7 @@
                                 <van-radio-group v-show="state.tag.showSupervisorChairman" v-model="state.radio.supervisorChairman" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.supervisorChairmanColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="supervisorChairmanConfirm(index,item);">
+                                            <van-cell :index="index" :title="item.title" clickable @click="supervisorChairmanConfirm(index, item , 'supervisorChairman', state.director);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -307,7 +307,7 @@
                                 <van-radio-group v-show="state.tag.showSupervisor" v-model="state.radio.supervisor" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.supervisorColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="supervisorConfirm(index,item);">
+                                            <van-cell :index="index" :title="item.title" clickable @click="supervisorConfirm(index, item, 'supervisor', state.director);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -339,7 +339,7 @@
                                 <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder0 && state.tag.showKey == 'shareholder0' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder0');">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder0', state.stock);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -362,7 +362,7 @@
                                 <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder1 && state.tag.showKey == 'shareholder1' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder1');">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder1', state.stock);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -385,7 +385,7 @@
                                 <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder2 && state.tag.showKey == 'shareholder2'" v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder2');">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder2', state.stock);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -408,7 +408,7 @@
                                 <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder3 && state.tag.showKey == 'shareholder3' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder3');">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder3', state.stock);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -431,7 +431,7 @@
                                 <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder4 && state.tag.showKey == 'shareholder4' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder4');">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder4', state.stock);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -454,7 +454,7 @@
                                 <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder5 && state.tag.showKey == 'shareholder5' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder5');">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder5', state.stock);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -477,7 +477,7 @@
                                 <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder6 && state.tag.showKey == 'shareholder6' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder6');">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder6', state.stock);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -500,7 +500,7 @@
                                 <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder7 && state.tag.showKey == 'shareholder7' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder7');">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder7', state.stock);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -523,7 +523,7 @@
                                 <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder8 && state.tag.showKey == 'shareholder8' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder8');">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder8', state.stock);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -546,7 +546,7 @@
                                 <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder9 && state.tag.showKey == 'shareholder9' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder9');">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder9', state.stock);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -569,7 +569,7 @@
                                 <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder10 && state.tag.showKey == 'shareholder10' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder10');">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder10', state.stock);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -592,7 +592,7 @@
                                 <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder11 && state.tag.showKey == 'shareholder11' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder11');">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder11', state.stock);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -615,7 +615,7 @@
                                 <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder12 && state.tag.showKey == 'shareholder12' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder12');">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder12', state.stock);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -638,7 +638,7 @@
                                 <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder13 && state.tag.showKey == 'shareholder13'" v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder13');">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder13', state.stock);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -661,7 +661,7 @@
                                 <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder14 && state.tag.showKey == 'shareholder14' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder14');">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder14', state.stock);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -684,7 +684,7 @@
                                 <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder15 && state.tag.showKey == 'shareholder15' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder15');">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder15', state.stock);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -707,7 +707,7 @@
                                 <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder16 && state.tag.showKey == 'shareholder16' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder16');">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder16', state.stock);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -730,7 +730,7 @@
                                 <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder17 && state.tag.showKey == 'shareholder17'" v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder17');">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder17', state.stock);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -753,7 +753,7 @@
                                 <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder18 && state.tag.showKey == 'shareholder18' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder18');">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder18', state.stock);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -776,7 +776,7 @@
                                 <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder19 && state.tag.showKey == 'shareholder19' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
                                     <van-cell-group>
                                         <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder19');">
+                                            <van-cell :index="index" :title="item.title" clickable @click="shareholderConfirm(index, item , 'shareholder19', state.stock);">
                                                 <template #right-icon>
                                                     <van-radio :name="index" />
                                                 </template>
@@ -1033,25 +1033,19 @@ export default {
         const companyConfirm = (index, item, value) => {
             state.radio.companyName = index;
             state.item.companyName = state.companyNameColumns[index]['name'];
-            setTimeout(() => {
-                state.showCompanyName = false;
-            }, 1000);
+            state.tag.showCompanyName = false;
         };
 
         const industryConfirm = (index, item, value) => {
             state.radio.industryName = index;
             state.item.industry = state.industryColumns[index];
-            setTimeout(() => {
-                state.showIndustryName = false;
-            }, 1000);
+            state.tag.showIndustryName = false;
         };
 
         const registStatusConfirm = (index, item, value) => {
             state.radio.registStatus = index;
             state.item.registrationStatus = state.registStatusColumns[index];
-            setTimeout(() => {
-                state.showRegistStatus = false;
-            }, 1000);
+            state.tag.showRegistStatus = false;
         };
 
         const companyTypeConfirm = (value, index) => {
@@ -1079,39 +1073,39 @@ export default {
             state.tag.showResponsiblePerson = false;
         };
 
-        const directorChairmanConfirm = (index, value, key)=>{
-            state.director.directorChairman = value.lastname;
-            state.tag.showDirectorChairman = false;
+        const directorChairmanConfirm = (index, value, key, item)=>{
+            item[key] = value.lastname;
+            state.tag['show' + Betools.manage.prefixUpperCase(key)] = false;
         };
 
-        const directorConfirm = (index, value, key)=>{
-            state.director.director = value.lastname;
-            state.tag.showDirector = false;
+        const directorConfirm = (index, value, key, item)=>{
+            item[key] = value.lastname;
+            state.tag['show' + Betools.manage.prefixUpperCase(key)] = false;
         };
 
-        const directorExecutiveConfirm = (index, value, key)=>{
-            state.director.directorExecutive = value.lastname;
-            state.tag.showDirectorExecutive = false;
+        const directorExecutiveConfirm = (index, value, key, item)=>{
+            item[key] = value.lastname;
+            state.tag['show' + Betools.manage.prefixUpperCase(key)] = false;
         };
 
-        const managerConfirm = (index, value, key)=>{
-            state.director.manager = value.lastname;
-            state.tag.showManager = false;
+        const managerConfirm = (index, value, key, item)=>{
+            item[key] = value.lastname;
+            state.tag['show' + Betools.manage.prefixUpperCase(key)] = false;
         };
 
-        const supervisorChairmanConfirm = (index, value, key)=>{
-            state.director.supervisorChairman = value.lastname;
-            state.tag.showSupervisorChairman = false;
+        const supervisorChairmanConfirm = (index, value, key , item)=>{
+            item[key] = value.lastname;
+            state.tag['show' + Betools.manage.prefixUpperCase(key)] = false;
         };
 
-        const supervisorConfirm = (index, value, key)=>{
-            state.director.supervisor = value.lastname;
-            state.tag.showSupervisor = false;
+        const supervisorConfirm = (index, value, key = 'supervisor' , item)=>{
+            item[key] = value.lastname;
+            state.tag['show' + Betools.manage.prefixUpperCase(key)] = false;
         };
 
-        const shareholderConfirm = (index, value, key)=>{
-            state.stock[key] = value.lastname;
-            state.tag.showShareholder = false;
+        const shareholderConfirm = (index, value, key , item)=>{
+            item[key] = value.lastname;
+            state.tag['show' + Betools.manage.prefixUpperCase(key)] = false;
         };
 
         const companySearch = async (data, value , key , fieldKey) => {
@@ -1119,13 +1113,11 @@ export default {
         };
 
         const industrySearch = async (data, value , key , fieldKey) => {
-            state.showIndustryName = true;
-            state.industryColumns = state.industryColumns;
+            state.tag.showIndustryName = true;
         };
 
         const registStatusSearch = async (data, value , key , fieldKey) => {
-            state.showRegistStatus = true;
-            state.RegistStatusColumns = state.RegistStatusColumns;
+            state.tag.showRegistStatus = true;
         };
 
         const commonSearch = async (data, value , key , fieldKey) => {
