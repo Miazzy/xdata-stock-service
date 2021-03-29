@@ -981,7 +981,7 @@ export default {
                 paidTime: new Date(),
                 paidTureTime: new Date(),
                 businessTerm: new Date(),
-                minDate: new Date(1990, 0, 1),
+                minDate: new Date(1970, 0, 1),
                 maxDate: new Date(2099, 12, 31),
             },
             tag: {
@@ -1060,8 +1060,6 @@ export default {
         const checkData = async (element, type) => {
             if (type == 'company') {
                 //校验公司名称,如果已经存在此公司名称，需要给出提示
-                const companyNameCount = await Betools.manage.queryTableFieldValueCount('bs_company_flow_data', 'name', state.item.companyName);
-                debugger;
                 //校验所属行业
                 //校验所属区域
                 //校验登记状态
