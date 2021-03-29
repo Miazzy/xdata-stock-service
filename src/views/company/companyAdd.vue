@@ -1115,11 +1115,6 @@ export default {
         };
 
         const companySearch = async (data, value , key , fieldKey) => {
-            const searchkey = value[key];
-            data = await Betools.manage.queryCompanyData(searchkey, []);
-            state.tag['show' + Betools.manage.prefixUpperCase(fieldKey)] = true;
-            state.tag.showKey = key;
-            state[fieldKey + 'Columns'] = data;
             await Betools.manage.commonCompanySearch(data, value , key , fieldKey, state);
         };
 
@@ -1134,7 +1129,7 @@ export default {
         };
 
         const commonSearch = async (data, value , key , fieldKey) => {
-            await Betools.manage.commonStockSearch(data, value , key , fieldKey, state);
+            await Betools.manage.commonUserSearch(data, value , key , fieldKey, state);
         };
 
         const validField = (fieldName, item) => {
