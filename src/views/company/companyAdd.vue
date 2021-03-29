@@ -1046,8 +1046,9 @@ export default {
                 if(companyNameCount && companyNameCount.length > 0){
                     Dialog.confirm({
                         title: '温馨提示',
-                        message: '已经存在此公司的基础数据！',
+                        message: '已经存在此公司的基础数据，请勿重复提交！',
                     });
+                    item[key.replace(/Name/g,'')] = item[key] = '';
                 }
             }
 
