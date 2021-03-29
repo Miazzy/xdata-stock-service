@@ -1357,8 +1357,8 @@ export default {
             directorChairmanConfirm,
             directorConfirm,
             directorExecutiveConfirm,
-            managerConfirm, //总经理/经理
-            supervisorChairmanConfirm, //监事会主席
+            managerConfirm, 
+            supervisorChairmanConfirm, 
             supervisorConfirm, 
             shareholderConfirm,
             commonSearch, 
