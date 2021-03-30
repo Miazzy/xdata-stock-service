@@ -68,17 +68,17 @@ export default {
   emits: ['change','search','confirm'],
   name: "commonSelect",
   setup(props, { slots, emit }) {
+    const mprops = toRefs(props);
     watch(
       () => props.modelValue,
       value => {
-        const {element,fieldName} = toRefs(props);
+        const {element,fieldName} = mprops;
         element[fieldName] = value;
         console.log(`change: ${value}, ${element[fieldName]}`);
         emit('change', value); 
       }
     );
     const commonSearch = (data, element, fieldName , fieldName_ , type) => {
-      const mprops = toRefs(props);
       console.log(`search: data:${data} ${mprops.modelValue.value}, element:${element}, fieldName:${fieldName}, fieldName_:${fieldName_}, type:${type}`);
       element[fieldName] = mprops.modelValue.value;
       emit('search', data, element, fieldName , fieldName_ , type);
