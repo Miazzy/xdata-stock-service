@@ -12,33 +12,23 @@
         </header>
 
         <div class="section-content" v-show="state.step == 'one' " style="">
-
             <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%);">
-
                 <div class="weui-cells" style="margin-top:0px;">
-
                     <div class="weui-cells" style="margin-top:0px;border-bottom:0px solid #fefefe;">
                         <van-notice-bar v-show=" title!='' && title != null && typeof title != 'undefined' " left-icon="volume-o" color="#1989fa" background="#ecf9ff" :text="title" />
                     </div>
-
                     <div class="" id="scanCell" style="padding: 8px 10px 4px 10px;">
                         <van-row>
                             <van-col span="24" style="text-align: center;font-size:.475rem;">设立公司申请</van-col>
                         </van-row>
                     </div>
-
                 </div>
-
                 <div id="weui-cells-flex" class="weui-cells" style="">
-
                     <van-cell-group>
                         <van-form>
-
                             <van-cell-group id="company-flow-base-content" style="margin-top:10px;">
-
                                 <van-cell value="基本信息" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field clearable label="填报日期" v-model="state.item.create_time" placeholder="请输入登记日期" readonly />
-                                
                                 <common-select :showTag="state.tag.showCompanyName" :modelColumns="state.companyNameColumns" fieldName="companyName" :modelValue="state.item.companyName" :element="state.item" type="company" v-model="state.item.companyName" labelName="公司名称" placeholderName="请填写公司名称" @search="commonSearch" @confirm="commonConfirm" />
                                 <common-select :showTag="state.tag.showIndustryName" :modelColumns="state.industryColumns" fieldName="industryName" :modelValue="state.item.industry" :element="state.item" type="common" v-model="state.item.industry" labelName="所属行业" placeholderName="请选择所属行业" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="所属区域" v-model="state.item.companyCode" placeholder="请选择所属区域" @click="state.geo.show = true;" />
@@ -61,67 +51,12 @@
                                 <van-picker v-show="state.tag.showCompanyType" title="选择公司类型" show-toolbar :columns="state.companyTypeColumns" @confirm="companyTypeConfirm" @cancel="state.tag.showCompanyType = false;" />
                                 <van-field required :readonly="false" clickable clearable label="设立原因" v-model="state.item.reason" rows="1" autosize type="textarea" placeholder="请输入设立原因" />
                                 <van-field required :readonly="false" clickable clearable label="使用情况" v-model="state.item.usage" rows="1" autosize type="textarea" placeholder="请输入使用情况" />
-                                
                                 <common-select :showTag="state.tag.showLegalRepresentative" :modelColumns="state.legalRepresentativeColumns" fieldName="legalRepresentative" :modelValue="state.item.legalRepresentative" :element="state.item" type="user" v-model="state.item.legalRepresentative" labelName="法定代表人" placeholderName="请输入法定代表人" @search="commonSearch" @confirm="commonConfirm" />
-
-                                <van-field required :readonly="false" clickable clearable label="印章保管人" v-model="state.item.sealKeeper" placeholder="请选择印章保管人">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.item, 'sealKeeper' , 'sealKeeper','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showSealKeeper" v-model="state.radio.sealKeeper" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.sealKeeperColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item, 'sealKeeper', state.item);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
-                                <van-field required :readonly="false" clickable clearable label="备案联络员" v-model="state.item.liaison" placeholder="请选择工商备案联络员">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.item, 'liaison' , 'liaison','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showLiaison" v-model="state.radio.liaison" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.liaisonColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item, 'liaison', state.item);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
-                                <van-field required :readonly="false" clickable clearable label="财务负责人" v-model="state.item.responsiblePerson" placeholder="请选择工商备案财务负责人">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.item, 'responsiblePerson' , 'responsiblePerson','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showResponsiblePerson" v-model="state.radio.responsiblePerson" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.responsiblePersonColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item, 'responsiblePerson', state.item);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
+                                <common-select :showTag="state.tag.showSealKeeper" :modelColumns="state.sealKeeperColumns" fieldName="sealKeeper" :modelValue="state.item.sealKeeper" :element="state.item" type="user" v-model="state.item.sealKeeper" labelName="印章保管人" placeholderName="请输入印章保管人" @search="commonSearch" @confirm="commonConfirm" />
+                                <common-select :showTag="state.tag.showLiaison" :modelColumns="state.liaisonColumns" fieldName="liaison" :modelValue="state.item.liaison" :element="state.item" type="user" v-model="state.item.liaison" labelName="备案联络员" placeholderName="请选择工商备案联络员" @search="commonSearch" @confirm="commonConfirm" />
+                                <common-select :showTag="state.tag.showResponsiblePerson" :modelColumns="state.responsiblePersonColumns" fieldName="liaison" :modelValue="state.item.responsiblePerson" :element="state.item" type="user" v-model="state.item.responsiblePerson" labelName="财务负责人" placeholderName="请选择工商备案财务负责人" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="备注信息" v-model="state.item.remark" rows="1" autosize type="textarea" placeholder="请输入备注信息" />
-
                             </van-cell-group>
-
                         </van-form>
                     </van-cell-group>
                 </div>
@@ -135,114 +70,12 @@
                         <van-form>
                             <van-cell-group style="margin-top:10px;">
                                 <van-cell value="机构人员" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="董事长" v-model="state.director.directorChairman" placeholder="请选择董事长">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.director , 'directorChairman' , 'directorChairman','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showDirectorChairman" v-model="state.radio.directorChairman" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.directorChairmanColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item, 'directorChairman', state.director);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
-                                <van-field required :readonly="false" clickable clearable label="董事" v-model="state.director.director" placeholder="请选择董事">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.director, 'director' , 'director','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showDirector" v-model="state.radio.director" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.directorColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item, 'director', state.director );">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
-                                <van-field required :readonly="false" clickable clearable label="执行董事" v-model="state.director.directorExecutive" placeholder="请选择执行董事">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.director, 'directorExecutive' , 'directorExecutive' ,'user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showDirectorExecutive" v-model="state.radio.directorExecutive" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.directorExecutiveColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item, 'directorExecutive', state.director);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
-                                <van-field required :readonly="false" clickable clearable label="总经理/经理" v-model="state.director.manager" placeholder="请选择总经理/经理名单">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.director, 'manager', 'manager','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showManager" v-model="state.radio.manager" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.managerColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item, 'manager', state.director);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
-                                <van-field required :readonly="false" clickable clearable label="监事会主席" v-model="state.director.supervisorChairman" placeholder="请选择监事会主席">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.director, 'supervisorChairman', 'supervisorChairman','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showSupervisorChairman" v-model="state.radio.supervisorChairman" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.supervisorChairmanColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item , 'supervisorChairman', state.director);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
-                                <van-field required :readonly="false" clickable clearable label="监事" v-model="state.director.supervisor" placeholder="请选择监事">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.director, 'supervisor', 'supervisor','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showSupervisor" v-model="state.radio.supervisor" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.supervisorColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item, 'supervisor', state.director);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
+                                <common-select :showTag="state.tag.showDirectorChairman" :modelColumns="state.directorChairmanColumns" fieldName="directorChairman" :modelValue="state.director.directorChairman" :element="state.director" type="user" v-model="state.director.directorChairman" labelName="董事长" placeholderName="请选择董事长" @search="commonSearch" @confirm="commonConfirm" />
+                                <common-select :showTag="state.tag.showDirector" :modelColumns="state.directorColumns" fieldName="director" :modelValue="state.director.director" :element="state.director" type="user" v-model="state.director.director" labelName="董事" placeholderName="请选择董事" @search="commonSearch" @confirm="commonConfirm" />
+                                <common-select :showTag="state.tag.showDirectorExecutive" :modelColumns="state.directorExecutiveColumns" fieldName="directorExecutive" :modelValue="state.director.directorExecutive" :element="state.director" type="user" v-model="state.director.directorExecutive" labelName="执行董事" placeholderName="请选择执行董事" @search="commonSearch" @confirm="commonConfirm" />
+                                <common-select :showTag="state.tag.showManager" :modelColumns="state.managerColumns" fieldName="manager" :modelValue="state.director.manager" :element="state.director" type="user" v-model="state.director.manager" labelName="总经理/经理" placeholderName="请选择总经理/经理名单" @search="commonSearch" @confirm="commonConfirm" />
+                                <common-select :showTag="state.tag.showSupervisorChairman" :modelColumns="state.supervisorChairmanColumns" fieldName="supervisorChairman" :modelValue="state.director.supervisorChairman" :element="state.director" type="user" v-model="state.director.supervisorChairman" labelName="监事会主席" placeholderName="请选择监事会主席" @search="commonSearch" @confirm="commonConfirm" />
+                                <common-select :showTag="state.tag.showSupervisor" :modelColumns="state.supervisorColumns" fieldName="supervisor" :modelValue="state.director.supervisor" :element="state.director" type="user" v-model="state.director.supervisor" labelName="监事" placeholderName="请选择监事" @search="commonSearch" @confirm="commonConfirm" />
                             </van-cell-group>
                         </van-form>
                     </van-cell-group>
