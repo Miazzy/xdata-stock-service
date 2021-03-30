@@ -618,23 +618,6 @@ export default {
 
                         //第三步，检查是否有股东信息，如果有股东、董监高信息，则需要提交股东、董监高信息
                         console.log(`第三步，检查是否有股东信息，如果有股东、董监高信息，则需要提交股东、董监高信息`);
-                        
-                        //检查董监高信息
-                        if(state.director && (state.director.supervisor || state.director.manager || state.director.supervisorChairman || state.director.director || state.director.directorExecutive || state.director.directorChairman)){
-                            //第三步，设置stock信息，即公司A拥有董监高B //类型 100 股东 200 董事长 300 董事 400 执行董事 500 总经理 600 监事会主席 700 监事 800 法人代表
-                            for(let name in state.director){
-                                const element = {
-                                    id: Betools.tools.queryUniqueID(),
-                                    pid: elem.id,
-                                    baseID:company.id,
-                                    name:state.director[name],
-                                    type:state.type[name],
-                                    typeName:name,
-                                    companyName:elem.companyName,
-                                }
-                                result = await Betools.manage.postTableData('bs_company_flow_stock', element);
-                            }
-                        }
                         //检查股东信息
                         if(state.stock){
                             for(let i =0 ;  i < 20 ; ){
@@ -668,10 +651,30 @@ export default {
 
                         //第五步，如果返回信息成功，则提示用户申请成功
                         if (result.protocol41 == true && result.affectedRows > 0) {
+
                             console.log(`如果返回信息成功，则提示用户申请成功`);
+
+                            //检查董监高信息
+                            if(state.director && (state.director.supervisor || state.director.manager || state.director.supervisorChairman || state.director.director || state.director.directorExecutive || state.director.directorChairman)){
+                                //设置stock信息，即公司A拥有董监高B //类型 100 股东 200 董事长 300 董事 400 执行董事 500 总经理 600 监事会主席 700 监事 800 法人代表
+                                for(let name in state.director){
+                                    const element = {
+                                        id: Betools.tools.queryUniqueID(),
+                                        pid: elem.id,
+                                        baseID:company.id,
+                                        name:state.director[name],
+                                        type:state.type[name],
+                                        typeName:name,
+                                        companyName:elem.companyName,
+                                    }
+                                    result = await Betools.manage.postTableData('bs_company_flow_stock', element);
+                                }
+                            }
+
                             await Dialog.confirm({
                                 title: '设立公司申请提交成功！',
                             });
+
                         }
                     }
                 } catch (error) {
