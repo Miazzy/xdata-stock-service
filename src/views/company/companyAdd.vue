@@ -461,6 +461,14 @@ export default {
                 showShareholder19:false,
                 showKey: '',
             },
+            type:{
+                supervisor:'700',
+                manager:'500',
+                supervisorChairman:'600',
+                directorChairman:'200',
+                director:'300',
+                directorExecutive:'400',
+            },
             show: true,
             message: {},
             step: 'one',
@@ -580,8 +588,11 @@ export default {
         const confirm = async (elem, result, validResult, response) => {
             // 获取用户信息
             // const userinfo = await Betools.storage.getStore('system_userinfo');
+            const company = state.companyNameColumns.find((item)=>{return item.name == state.item.companyName});
+
             elem = {
                 id: Betools.tools.queryUniqueID(),
+                baseID:company.id,
                 ...state.item,
                 ...state.director,
                 ...state.stock,
@@ -603,26 +614,59 @@ export default {
                     console.log(`第二步，向表单提交form对象数据`);
                     result = await Betools.manage.postTableData('bs_company_flow_data', elem);
 
-                    //第三步，检查是否有股东信息，如果有股东、董监高信息，则需要提交股东、董监高信息
-                    console.log(`第三步，检查是否有股东信息，如果有股东、董监高信息，则需要提交股东、董监高信息`);
-                    
-                    //检查董监高信息
-                    if(state.director && (state.director.supervisor || state.director.manager || state.director.supervisorChairman || state.director.director || state.director.directorExecutive || state.director.directorChairman)){
-                        //第三步，设置stock信息，即公司A拥有董监高B
-                    }
-                    //检查股东信息
-                    if(state.stock){
-                        for(let i =0 ;  i < 20 ; i++){
-                            if( state.stock && state.stock['shareholder' + i] ){
-                                //第三步，设置stock信息，即公司A拥有股东B
-                                //第四步，设置股权关系，即股东A 持有 公司B 多少比例 股权
+                    if (result.protocol41 == true && result.affectedRows > 0 && result.node) {
+
+                        //第三步，检查是否有股东信息，如果有股东、董监高信息，则需要提交股东、董监高信息
+                        console.log(`第三步，检查是否有股东信息，如果有股东、董监高信息，则需要提交股东、董监高信息`);
+                        
+                        //检查董监高信息
+                        if(state.director && (state.director.supervisor || state.director.manager || state.director.supervisorChairman || state.director.director || state.director.directorExecutive || state.director.directorChairman)){
+                            //第三步，设置stock信息，即公司A拥有董监高B //类型 100 股东 200 董事长 300 董事 400 执行董事 500 总经理 600 监事会主席 700 监事 800 法人代表
+                            for(let name of state.director){
+                                const element = {
+                                    id: Betools.tools.queryUniqueID(),
+                                    pid: elem.id,
+                                    baseID:company.id,
+                                    name:state.director[name],
+                                    type:state.type[name],
+                                    typeName:name,
+                                    companyName:elem.companyName,
+                                }
+                                result = await Betools.manage.postTableData('bs_company_flow_stock', element);
                             }
                         }
-                    }
+                        //检查股东信息
+                        if(state.stock){
+                            for(let i =0 ;  i < 20 ; i++){
+                                if( state.stock && state.stock['shareholder' + i] ){
+                                    //第三步，设置stock信息，即公司A拥有股东B
+                                    const element = {
+                                        id: Betools.tools.queryUniqueID(),
+                                        pid: elem.id,
+                                        baseID:company.id,
+                                        shareholder:state.stock['shareholder'+i],
+                                        ratioDetail:state.stock['ratioDetail'+i],
+                                        type:'100',
+                                        typeName:'shareholder',
+                                        companyName:elem.companyName,
+                                    }
+                                    result = await Betools.manage.postTableData('bs_company_flow_stock', element);
+                                    //第四步，设置股权关系，即股东A 持有 公司B 多少比例 股权
+                                    const ratio = {
+                                        from:state.stock['shareholder'+i],
+                                        to:company.id,
+                                        from_company: state.stock['shareholder'+i],
+                                        to_company:elem.companyName,
+                                        label:state.stock['ratioDetail'+i],
+                                        status:0,
+                                    }
+                                    result = await Betools.manage.postTableData('bs_company_flow_link', ratio);
+                                }
+                            }
+                        }
 
-                    //第五步，如果返回信息成功，则提示用户申请成功
-                    console.log(`第四步，如果返回信息成功，则提示用户申请成功`);
-                    if (result.protocol41 == true && result.affectedRows > 0 && result.node) {
+                        //第五步，如果返回信息成功，则提示用户申请成功
+                        console.log(`第四步，如果返回信息成功，则提示用户申请成功`);
                         await Dialog.confirm({
                             title: '设立公司申请提交成功！',
                         });
