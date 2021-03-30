@@ -9,7 +9,7 @@
     <van-radio-group v-if="showTag" v-model="radioName" style="max-height:120px;overflow-y: scroll;">
         <van-cell-group>
             <template :key="item.id || index " v-for="(item,index) in modelColumns ">
-                <van-cell :index="index" :title="item.name || item" clickable @click="commonConfirm(index, item, fieldName, element);">
+                <van-cell :index="index" :title="item.title || item.name || item" clickable @click="commonConfirm(index, item, fieldName, element);">
                     <template #right-icon>
                         <van-radio :name="index" />
                     </template>
@@ -71,11 +71,16 @@ export default {
     watch(
       () => props.modelValue,
       value => {
-        emit('change', value);
+        const {element,fieldName} = toRefs(props);
+        element[fieldName] = value;
+        console.log(`change: ${value}, ${element[fieldName]}`);
+        emit('change', value); 
       }
     );
     const commonSearch = (data, element, fieldName , fieldName_ , type) => {
-      console.log(`search: data:${data} , element:${element}, fieldName:${fieldName}, fieldName_:${fieldName_}, type:${type}`);
+      const mprops = toRefs(props);
+      console.log(`search: data:${data} ${mprops.modelValue.value}, element:${element}, fieldName:${fieldName}, fieldName_:${fieldName_}, type:${type}`);
+      element[fieldName] = mprops.modelValue.value;
       emit('search', data, element, fieldName , fieldName_ , type);
     };
     const commonConfirm = (index, item, fieldName, element, value = '') => {
