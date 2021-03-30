@@ -83,9 +83,9 @@ export default {
       }
     );
     const commonSearch = (data, element, fieldName , fieldName_ , type) => {
-      console.log(`search: data:${data} ${mprops.modelValue.value}, element:${element}, fieldName:${fieldName}, fieldName_:${fieldName_}, type:${type}`);
       element[fieldName] = mprops.modelValue.value;
       fieldName_ = fieldName_ ? fieldName_ : fieldName;
+      console.log(`search: data:${data} ${mprops.modelValue.value}, element:${element}, fieldName:${fieldName}, fieldName_:${fieldName_}, type:${type}`);
       emit('search', data, element, fieldName , fieldName_ , type);
     };
     const commonConfirm = (index, item, fieldName, element, value = '') => {

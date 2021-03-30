@@ -11,7 +11,7 @@
             </van-nav-bar>
         </header>
 
-        <div class="section-content" v-show="state.step == 'one' " style="">
+        <div class="section-content" v-show="state.step == 'one_' " style="">
             <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%);">
                 <div class="weui-cells" style="margin-top:0px;">
                     <div class="weui-cells" style="margin-top:0px;border-bottom:0px solid #fefefe;">
@@ -83,14 +83,14 @@
             </section>
         </div>
 
-        <div class="section-content" v-show="state.step == 'three' " style="">
+        <div class="section-content" v-show="state.step == 'one' " style="">
             <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%); margin-bottom:0.75rem;">
                 <div id="weui-cells-flex" class="weui-cells" style="">
                     <van-cell-group>
                         <van-form>
                             <van-cell-group style="margin-top:10px;">
                                 <van-cell value="股东信息1" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <common-select :showTag="state.tag.showShareholder && state.stock.shareholder0 && state.tag.showKey == 'shareholder0' " :modelColumns="state.shareholderColumns" fieldName="shareholder0" fieldName_="shareholder" :modelValue="state.stock.shareholder0" :element="state.stock" type="user" v-model="state.stock.shareholder0" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
+                                <common-select :showTag="state.tag.showShareholder0" :modelColumns="state.shareholder0Columns" fieldName="shareholder0" fieldName_="shareholder0" :modelValue="state.stock.shareholder0" :element="state.stock" type="user" v-model="state.stock.shareholder0" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail0" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
@@ -651,6 +651,26 @@ export default {
             supervisorChairmanColumns: [], //监事会主席
             supervisorColumns: [], //监事
             shareholderColumns: [],
+            shareholder0Columns:[],
+            shareholder1Columns:[],
+            shareholder2Columns:[],
+            shareholder3Columns:[],
+            shareholder4Columns:[],
+            shareholder5Columns:[],
+            shareholder6Columns:[],
+            shareholder7Columns:[],
+            shareholder8Columns:[],
+            shareholder9Columns:[],
+            shareholder10Columns:[],
+            shareholder11Columns:[],
+            shareholder12Columns:[],
+            shareholder13Columns:[],
+            shareholder14Columns:[],
+            shareholder15Columns:[],
+            shareholder16Columns:[],
+            shareholder17Columns:[],
+            shareholder18Columns:[],
+            shareholder19Columns:[],
             radio: {
                 companyName: '',
                 industryName: '',
@@ -720,6 +740,26 @@ export default {
                 ratioDetail8: '', //占股明细
                 shareholder9: '', //股东
                 ratioDetail9: '', //占股明细
+                shareholder10: '', //股东
+                ratioDetail10: '', //占股明细
+                shareholder11: '', //股东
+                ratioDetail11: '', //占股明细
+                shareholder12: '', //股东
+                ratioDetail12: '', //占股明细
+                shareholder13: '', //股东
+                ratioDetail13: '', //占股明细
+                shareholder14: '', //股东
+                ratioDetail14: '', //占股明细
+                shareholder15: '', //股东
+                ratioDetail15: '', //占股明细
+                shareholder16: '', //股东
+                ratioDetail16: '', //占股明细
+                shareholder17: '', //股东
+                ratioDetail17: '', //占股明细
+                shareholder18: '', //股东
+                ratioDetail18: '', //占股明细
+                shareholder19: '', //股东
+                ratioDetail19: '', //占股明细
             },
             status: {
                 cancellationTime: new Date(),
@@ -749,6 +789,26 @@ export default {
                 showSupervisorChairman: false, //监事会主席
                 showSupervisor: false, //监事
                 showShareholder: false,
+                showShareholder0:false,
+                showShareholder1:false,
+                showShareholder2:false,
+                showShareholder3:false,
+                showShareholder4:false,
+                showShareholder5:false,
+                showShareholder6:false,
+                showShareholder7:false,
+                showShareholder8:false,
+                showShareholder9:false,
+                showShareholder10:false,
+                showShareholder11:false,
+                showShareholder12:false,
+                showShareholder13:false,
+                showShareholder14:false,
+                showShareholder15:false,
+                showShareholder16:false,
+                showShareholder17:false,
+                showShareholder18:false,
+                showShareholder19:false,
                 showKey: '',
             },
             show: true,
