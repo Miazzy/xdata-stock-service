@@ -286,7 +286,7 @@ export default {
             },
             companyNameColumns: [],
             companyTypeColumns: ['有限公司', '股份公司'],
-            industryColumns: ['房地产行业', '金融行业', '物业管理', '医疗健康产业', '商业管理'],
+            industryColumns: ['房地产行业', '金融行业', '物业管理', '医疗健康产业', '商业管理','批发和零售业','建筑业','租赁和商务服务业'],
             industryNameColumns: ['房地产行业', '金融行业', '物业管理', '医疗健康产业', '商业管理'],
             registStatusColumns: ['存续', '注销', '经营异常'],
             registrationStatusColumns: ['存续', '注销', '经营异常'],
@@ -622,7 +622,18 @@ export default {
                         if(state.stock){
                             for(let i =0 ;  i < 20 ; ){
                                 if( state.stock && state.stock['shareholder' + i] ){
-                                    //第三步，设置stock信息，即公司A拥有股东B
+                                    //设置股权关系，即股东A 持有 公司B 多少比例 股权
+                                    const ratio = {
+                                        from:state.stock['shareholder'+i],
+                                        to:company.id,
+                                        from_company: state.stock['shareholder'+i],
+                                        to_company:elem.companyName,
+                                        label:state.stock['ratioDetail'+i],
+                                        status:0,
+                                    }
+                                    result = await Betools.manage.postTableData('bs_company_flow_link', ratio);
+                                    await Betools.tools.sleep(Math.random() * 10);
+                                    //设置stock信息，即公司A拥有股东B
                                     const element = {
                                         id: Betools.tools.queryUniqueID(),
                                         pid: elem.id,
@@ -634,16 +645,7 @@ export default {
                                         companyName:elem.companyName,
                                     }
                                     result = await Betools.manage.postTableData('bs_company_flow_stock', element);
-                                    //第四步，设置股权关系，即股东A 持有 公司B 多少比例 股权
-                                    const ratio = {
-                                        from:state.stock['shareholder'+i],
-                                        to:company.id,
-                                        from_company: state.stock['shareholder'+i],
-                                        to_company:elem.companyName,
-                                        label:state.stock['ratioDetail'+i],
-                                        status:0,
-                                    }
-                                    result = await Betools.manage.postTableData('bs_company_flow_link', ratio);
+                                    await Betools.tools.sleep(Math.random() * 10);
                                 }
                                 i++;
                             }
@@ -667,7 +669,8 @@ export default {
                                         typeName:name,
                                         companyName:elem.companyName,
                                     }
-                                    result = await Betools.manage.postTableData('bs_company_flow_stock', element);
+                                    result = await Betools.manage.postTableData('bs_company_flow_manager', element);
+                                    await Betools.tools.sleep(Math.random() * 10);
                                 }
                             }
 
@@ -676,6 +679,10 @@ export default {
                             });
 
                         }
+                    } else {
+                        await Dialog.confirm({
+                            title: `设立公司申请失败，请检查是否已提交过此公司申请，Error:[${JSON.stringify(result)}]！`,
+                        });
                     }
                 } catch (error) {
                     console.log(error);
