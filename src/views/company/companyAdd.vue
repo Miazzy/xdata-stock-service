@@ -226,44 +226,19 @@
 </template>
 
 <script>
-import {
-    Dialog,
-    Popup
-} from 'vant';
-
+import { Dialog } from 'vant';
 import commonSelect from '@/components/select/commonSelect';
-import singleSelect from '@/components/select/singleSelect';
-import checkSelect from '@/components/select/checkSelect';
+import { ref, reactive, onMounted, toRefs, getCurrentInstance } from "vue";
+import { useStore} from "vuex";
+import { useRouter, useRoute } from "vue-router";
 
-import {
-    ref,
-    reactive,
-    onMounted,
-    toRefs,
-    getCurrentInstance
-} from "vue";
-import {
-    useStore
-} from "vuex";
-import {
-    useRouter,
-    useRoute
-} from "vue-router";
-import tabbar from "@/components/tabbar";
 export default {
     name: "base",
     components: {
-        tabbar,
-        Popup,
         commonSelect,
-        singleSelect,
-        checkSelect,
     },
     data() {
-        return {
-            phoneRegisterTwoForm: "",
-            showPicker: false,
-        };
+        return {};
     },
     setup(props, context) {
 
@@ -278,7 +253,6 @@ export default {
         const headerActive = ref(false);
 
         const state = reactive({
-            imgs: [],
             geo: {
                 show: false,
                 address: '',
