@@ -11,10 +11,7 @@ import 'vant/lib/index.css'; // 全局引入样式
 import './mock/mock';
 import eventBus from './utils/eventBus';
 
-
-
 const app = createApp(App);
-
 
 try {
     app.use(store).use(router).mount('#app');

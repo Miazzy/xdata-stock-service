@@ -38,6 +38,9 @@
 
                                 <van-cell value="基本信息" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field clearable label="填报日期" v-model="state.item.create_time" placeholder="请输入登记日期" readonly />
+
+                                <common-select :showTag="true" :modelColumns="state.industryColumns" fieldName="industryName" :element="state.item" type="common" v-model="state.item.industry" labelName="所属行业" />
+
                                 <van-field required :readonly="false" clickable clearable label="公司名称" v-model="state.item.companyName" placeholder="请填写公司名称">
                                     <template #button>
                                         <van-button size="small" type="primary" @click="commonSearch(null,state.item,'companyName','companyName','company')">查询</van-button>
@@ -812,6 +815,7 @@ import {
     Popup
 } from 'vant';
 
+import commonSelect from '@/components/select/commonSelect';
 import singleSelect from '@/components/select/singleSelect';
 import checkSelect from '@/components/select/checkSelect';
 
@@ -830,19 +834,19 @@ import {
     useRoute
 } from "vue-router";
 import tabbar from "@/components/tabbar";
+// import CommonSelect from '../../components/select/commonSelect.vue';
 export default {
     name: "base",
     components: {
         tabbar,
         Popup,
+        commonSelect,
         singleSelect,
-        checkSelect,
+        checkSelec
+        //CommonSelectt,
     },
     data() {
-        return {
-            phoneRegisterTwoForm: "",
-            showPicker: false,
-        };
+        return {};
     },
     setup(props, context) {
 
