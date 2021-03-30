@@ -9,7 +9,7 @@
     <van-radio-group v-if="showTag" v-model="radioName" style="max-height:120px;overflow-y: scroll;">
         <van-cell-group>
             <template :key="item.id || index " v-for="(item,index) in modelColumns ">
-                <van-cell :index="index" :title="item.title || item.name || item" clickable @click="commonConfirm(index, item, fieldName, element);">
+                <van-cell :index="index" :title="item.title || item.name || item" clickable @click="commonConfirm(index, item, fieldName, element, type);">
                     <template #right-icon>
                         <van-radio :name="index" />
                     </template>
@@ -88,10 +88,10 @@ export default {
       console.log(`search: data:${data} ${mprops.modelValue.value}, element:${element}, fieldName:${fieldName}, fieldName_:${fieldName_}, type:${type}`);
       emit('search', data, element, fieldName , fieldName_ , type);
     };
-    const commonConfirm = (index, item, fieldName, element, value = '') => {
+    const commonConfirm = (index, item, fieldName, element, type,  value = '') => {
       value = item && !Betools.tools.isNull(item['lastname']) ? item['lastname'] : (item && !Betools.tools.isNull(item['name']) ? item['name']: item);
       console.log(`confirm: index:${index}, item:${item}, value:${value}, fieldName:${fieldName}, element:${element}`);
-      emit('confirm', index, value, fieldName, element);
+      emit('confirm', index, value, fieldName, element, type);
     };
     return {
         commonSearch,

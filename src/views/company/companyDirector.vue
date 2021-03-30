@@ -161,7 +161,7 @@ export default {
                 (headerActive.value = false);
         };
 
-        const commonConfirm = async (index, value, key, item) => {
+        const commonConfirm = async (index, value, key, item,type='') => {
             await Betools.manage.commonDataConfirm(index, value, key, item, state, Dialog);
         };
 

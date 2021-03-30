@@ -489,12 +489,12 @@ export default {
             state.item.companyCode = selectedOptions.map((option) => option.text).join('/');
         };
 
-        const commonConfirm = async (index, value, key, item) => {
-            await Betools.manage.commonDataConfirm(index, value, key, item, state, Dialog);
+        const commonConfirm = async (index, value, key, item , type = '') => {
+            await Betools.manage.commonDataConfirm(index, value, key, item, state, Dialog , type);
         };
 
         const companyTypeConfirm = async (value, index) => {
-            await Betools.manage.commonDataConfirm(index, value, 'companyType', state.item, state, Dialog);
+            await Betools.manage.commonDataConfirm(index, value, 'companyType', state.item, state, Dialog , '');
         };
 
         const commonSearch = async (data, value, key, fieldKey, type = 'user') => {
