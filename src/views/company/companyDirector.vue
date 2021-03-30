@@ -166,20 +166,7 @@ export default {
         };
 
         const commonSearch = async (data, value, key, fieldKey, type = 'user') => {
-            debugger;
             await Betools.manage.commonDataSearch(data, value, key, fieldKey, state, type);
-            const searchkey = value[key];
-            if (type == 'company') {
-                data = await Betools.manage.queryCompanyData(searchkey, []);
-            } else if (type == 'user') {
-                data = await Betools.manage.queryUserData(searchkey, []);
-            } else if (type == 'company_ic') {
-                data = await Betools.manage.queryCompanyICData(searchkey, []);
-            }
-            debugger;
-            state.tag['show' + Betools.manage.prefixUpperCase(fieldKey)] = true;
-            state.tag.showKey = key;
-            state[fieldKey + 'Columns'] = data;
         };
 
         return {
