@@ -603,8 +603,16 @@ export default {
                     console.log(`第二步，向表单提交form对象数据`);
                     result = await Betools.manage.postTableData('bs_company_flow_data', elem);
 
-                    //第三步，检查是否有股东信息，如果有股东信息，则需要提交股东信息
-                    console.log(`第三步，检查是否有股东信息，如果有股东信息，则需要提交股东信息`);
+                    //第三步，检查是否有股东信息，如果有股东、董监高信息，则需要提交股东、董监高信息
+                    console.log(`第三步，检查是否有股东信息，如果有股东、董监高信息，则需要提交股东、董监高信息`);
+                    //检查董监高信息
+                    if(state.director && (state.director.supervisor || state.director.manager || state.director.supervisorChairman || state.director.director || state.director.directorExecutive || state.director.directorChairman)){
+
+                    }
+                    //检查股东信息
+                    if(state.stock && state.stock.shareholder0 ){
+                        
+                    }
 
                     //第四步，如果返回信息成功，则提示用户申请成功
                     console.log(`第四步，如果返回信息成功，则提示用户申请成功`);
