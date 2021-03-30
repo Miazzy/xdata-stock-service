@@ -605,16 +605,22 @@ export default {
 
                     //第三步，检查是否有股东信息，如果有股东、董监高信息，则需要提交股东、董监高信息
                     console.log(`第三步，检查是否有股东信息，如果有股东、董监高信息，则需要提交股东、董监高信息`);
+                    
                     //检查董监高信息
                     if(state.director && (state.director.supervisor || state.director.manager || state.director.supervisorChairman || state.director.director || state.director.directorExecutive || state.director.directorChairman)){
-
+                        //第三步，设置stock信息，即公司A拥有董监高B
                     }
                     //检查股东信息
-                    if(state.stock && state.stock.shareholder0 ){
-                        
+                    if(state.stock){
+                        for(let i =0 ;  i < 20 ; i++){
+                            if( state.stock && state.stock['shareholder' + i] ){
+                                //第三步，设置stock信息，即公司A拥有股东B
+                                //第四步，设置股权关系，即股东A 持有 公司B 多少比例 股权
+                            }
+                        }
                     }
 
-                    //第四步，如果返回信息成功，则提示用户申请成功
+                    //第五步，如果返回信息成功，则提示用户申请成功
                     console.log(`第四步，如果返回信息成功，则提示用户申请成功`);
                     if (result.protocol41 == true && result.affectedRows > 0 && result.node) {
                         await Dialog.confirm({
