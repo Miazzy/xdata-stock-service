@@ -11,7 +11,7 @@
             </van-nav-bar>
         </header>
 
-        <div class="section-content" v-show="state.step == 'one_' " style="">
+        <div class="section-content" v-show="state.step == 'one' " style="">
             <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%);">
                 <div class="weui-cells" style="margin-top:0px;">
                     <div class="weui-cells" style="margin-top:0px;border-bottom:0px solid #fefefe;">
@@ -83,7 +83,7 @@
             </section>
         </div>
 
-        <div class="section-content" v-show="state.step == 'one' " style="">
+        <div class="section-content" v-show="state.step == 'three' " style="">
             <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%); margin-bottom:0.75rem;">
                 <div id="weui-cells-flex" class="weui-cells" style="">
                     <van-cell-group>
@@ -96,441 +96,117 @@
 
                             <van-cell-group v-show="state.stock.shareholder0 && state.stock.ratioDetail0" style="margin-top:10px;">
                                 <van-cell value="股东信息2" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder1" placeholder="请选择股东">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder1', 'shareholder','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder1 && state.tag.showKey == 'shareholder1' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item , 'shareholder1', state.stock);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
+                                <common-select :showTag="state.tag.showShareholder1" :modelColumns="state.shareholder1Columns" fieldName="shareholder1" fieldName_="shareholder1" :modelValue="state.stock.shareholder1" :element="state.stock" type="user" v-model="state.stock.shareholder1" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail1" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder1 && state.stock.ratioDetail1" style="margin-top:10px;">
                                 <van-cell value="股东信息3" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder2" placeholder="请选择股东">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder2', 'shareholder','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder2 && state.tag.showKey == 'shareholder2'" v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item , 'shareholder2', state.stock);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
+                                <common-select :showTag="state.tag.showShareholder2" :modelColumns="state.shareholder2Columns" fieldName="shareholder2" fieldName_="shareholder2" :modelValue="state.stock.shareholder2" :element="state.stock" type="user" v-model="state.stock.shareholder2" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail2" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder2 && state.stock.ratioDetail2" style="margin-top:10px;">
                                 <van-cell value="股东信息4" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder3" placeholder="请选择股东">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder3', 'shareholder','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder3 && state.tag.showKey == 'shareholder3' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item , 'shareholder3', state.stock);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
+                                <common-select :showTag="state.tag.showShareholder3" :modelColumns="state.shareholder3Columns" fieldName="shareholder3" fieldName_="shareholder3" :modelValue="state.stock.shareholder3" :element="state.stock" type="user" v-model="state.stock.shareholder3" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail3" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder3 && state.stock.ratioDetail3" style="margin-top:10px;">
                                 <van-cell value="股东信息5" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder4" placeholder="请选择股东">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder4','shareholder','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder4 && state.tag.showKey == 'shareholder4' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item , 'shareholder4', state.stock);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
+                                <common-select :showTag="state.tag.showShareholder4" :modelColumns="state.shareholder4Columns" fieldName="shareholder4" fieldName_="shareholder4" :modelValue="state.stock.shareholder4" :element="state.stock" type="user" v-model="state.stock.shareholder4" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail4" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder4 && state.stock.ratioDetail4" style="margin-top:10px;">
                                 <van-cell value="股东信息6" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder5" placeholder="请选择股东">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder5','shareholder','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder5 && state.tag.showKey == 'shareholder5' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item , 'shareholder5', state.stock);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
+                                <common-select :showTag="state.tag.showShareholder5" :modelColumns="state.shareholder5Columns" fieldName="shareholder5" fieldName_="shareholder5" :modelValue="state.stock.shareholder5" :element="state.stock" type="user" v-model="state.stock.shareholder5" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail5" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder5 && state.stock.ratioDetail5" style="margin-top:10px;">
                                 <van-cell value="股东信息7" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder6" placeholder="请选择股东">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder6','shareholder','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder6 && state.tag.showKey == 'shareholder6' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item , 'shareholder6', state.stock);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
+                                <common-select :showTag="state.tag.showShareholder6" :modelColumns="state.shareholder6Columns" fieldName="shareholder6" fieldName_="shareholder6" :modelValue="state.stock.shareholder6" :element="state.stock" type="user" v-model="state.stock.shareholder6" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail6" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder6 && state.stock.ratioDetail6" style="margin-top:10px;">
                                 <van-cell value="股东信息8" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder7" placeholder="请选择股东">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder7','shareholder','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder7 && state.tag.showKey == 'shareholder7' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item , 'shareholder7', state.stock);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
+                                <common-select :showTag="state.tag.showShareholder7" :modelColumns="state.shareholder7Columns" fieldName="shareholder7" fieldName_="shareholder7" :modelValue="state.stock.shareholder7" :element="state.stock" type="user" v-model="state.stock.shareholder7" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail7" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder7 && state.stock.ratioDetail7" style="margin-top:10px;">
                                 <van-cell value="股东信息9" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder8" placeholder="请选择股东">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder8','shareholder','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder8 && state.tag.showKey == 'shareholder8' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item , 'shareholder8', state.stock);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
+                                <common-select :showTag="state.tag.showShareholder8" :modelColumns="state.shareholder8Columns" fieldName="shareholder8" fieldName_="shareholder8" :modelValue="state.stock.shareholder8" :element="state.stock" type="user" v-model="state.stock.shareholder8" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail8" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder8 && state.stock.ratioDetail8" style="margin-top:10px;">
                                 <van-cell value="股东信息10" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder9" placeholder="请选择股东">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder9','shareholder','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder9 && state.tag.showKey == 'shareholder9' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item , 'shareholder9', state.stock);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
+                                <common-select :showTag="state.tag.showShareholder9" :modelColumns="state.shareholder9Columns" fieldName="shareholder9" fieldName_="shareholder9" :modelValue="state.stock.shareholder9" :element="state.stock" type="user" v-model="state.stock.shareholder9" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail9" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder9 && state.stock.ratioDetail9" style="margin-top:10px;">
                                 <van-cell value="股东信息11" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder10" placeholder="请选择股东">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder10','shareholder','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder10 && state.tag.showKey == 'shareholder10' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item , 'shareholder10', state.stock);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
+                                <common-select :showTag="state.tag.showShareholder10" :modelColumns="state.shareholder10Columns" fieldName="shareholder10" fieldName_="shareholder10" :modelValue="state.stock.shareholder10" :element="state.stock" type="user" v-model="state.stock.shareholder10" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail10" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder10 && state.stock.ratioDetail10" style="margin-top:10px;">
                                 <van-cell value="股东信息12" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder11" placeholder="请选择股东">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder11','shareholder','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder11 && state.tag.showKey == 'shareholder11' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item , 'shareholder11', state.stock);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
+                                <common-select :showTag="state.tag.showShareholder11" :modelColumns="state.shareholder11Columns" fieldName="shareholder11" fieldName_="shareholder11" :modelValue="state.stock.shareholder11" :element="state.stock" type="user" v-model="state.stock.shareholder11" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail11" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder11 && state.stock.ratioDetail11" style="margin-top:10px;">
                                 <van-cell value="股东信息13" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder12" placeholder="请选择股东">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder12','shareholder','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder12 && state.tag.showKey == 'shareholder12' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item , 'shareholder12', state.stock);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
+                                <common-select :showTag="state.tag.showShareholder12" :modelColumns="state.shareholder12Columns" fieldName="shareholder12" fieldName_="shareholder12" :modelValue="state.stock.shareholder12" :element="state.stock" type="user" v-model="state.stock.shareholder12" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail12" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder12 && state.stock.ratioDetail12" style="margin-top:10px;">
                                 <van-cell value="股东信息14" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder13" placeholder="请选择股东">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder13','shareholder','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder13 && state.tag.showKey == 'shareholder13'" v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item , 'shareholder13', state.stock);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
+                                <common-select :showTag="state.tag.showShareholder13" :modelColumns="state.shareholder13Columns" fieldName="shareholder13" fieldName_="shareholder13" :modelValue="state.stock.shareholder13" :element="state.stock" type="user" v-model="state.stock.shareholder13" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail13" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder13 && state.stock.ratioDetail13" style="margin-top:10px;">
                                 <van-cell value="股东信息15" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder14" placeholder="请选择股东">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder14','shareholder','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder14 && state.tag.showKey == 'shareholder14' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item , 'shareholder14', state.stock);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
+                                <common-select :showTag="state.tag.showShareholder14" :modelColumns="state.shareholder14Columns" fieldName="shareholder14" fieldName_="shareholder14" :modelValue="state.stock.shareholder14" :element="state.stock" type="user" v-model="state.stock.shareholder14" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail14" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder14 && state.stock.ratioDetail14" style="margin-top:10px;">
                                 <van-cell value="股东信息16" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder15" placeholder="请选择股东">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder15','shareholder','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder15 && state.tag.showKey == 'shareholder15' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item , 'shareholder15', state.stock);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
+                                <common-select :showTag="state.tag.showShareholder15" :modelColumns="state.shareholder15Columns" fieldName="shareholder15" fieldName_="shareholder15" :modelValue="state.stock.shareholder15" :element="state.stock" type="user" v-model="state.stock.shareholder15" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail15" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder15 && state.stock.ratioDetail15" style="margin-top:10px;">
                                 <van-cell value="股东信息17" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder16" placeholder="请选择股东">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder16','shareholder','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder16 && state.tag.showKey == 'shareholder16' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item , 'shareholder16', state.stock);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
+                                <common-select :showTag="state.tag.showShareholder16" :modelColumns="state.shareholder16Columns" fieldName="shareholder16" fieldName_="shareholder16" :modelValue="state.stock.shareholder16" :element="state.stock" type="user" v-model="state.stock.shareholder16" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail16" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder16 && state.stock.ratioDetail16" style="margin-top:10px;">
                                 <van-cell value="股东信息18" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder17" placeholder="请选择股东">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder17','shareholder','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder17 && state.tag.showKey == 'shareholder17'" v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item , 'shareholder17', state.stock);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
+                                <common-select :showTag="state.tag.showShareholder17" :modelColumns="state.shareholder17Columns" fieldName="shareholder17" fieldName_="shareholder17" :modelValue="state.stock.shareholder17" :element="state.stock" type="user" v-model="state.stock.shareholder17" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail17" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder17 && state.stock.ratioDetail17" style="margin-top:10px;">
                                 <van-cell value="股东信息19" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder18" placeholder="请选择股东">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder18','shareholder','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder18 && state.tag.showKey == 'shareholder18' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item , 'shareholder18', state.stock);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
+                                <common-select :showTag="state.tag.showShareholder18" :modelColumns="state.shareholder18Columns" fieldName="shareholder18" fieldName_="shareholder18" :modelValue="state.stock.shareholder18" :element="state.stock" type="user" v-model="state.stock.shareholder18" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail18" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder18 && state.stock.ratioDetail18" style="margin-top:10px;">
                                 <van-cell value="股东信息20" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder19" placeholder="请选择股东">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder19','shareholder' , 'user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder19 && state.tag.showKey == 'shareholder19' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item , 'shareholder19', state.stock);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
+                                <common-select :showTag="state.tag.showShareholder19" :modelColumns="state.shareholder19Columns" fieldName="shareholder19" fieldName_="shareholder19" :modelValue="state.stock.shareholder19" :element="state.stock" type="user" v-model="state.stock.shareholder19" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail19" placeholder="请输入股权占股明细" />
                             </van-cell-group>
-
                         </van-form>
                     </van-cell-group>
 
