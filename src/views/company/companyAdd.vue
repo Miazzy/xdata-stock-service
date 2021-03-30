@@ -611,6 +611,7 @@ export default {
                 ...state.item,
                 ...state.director
             };
+            // state.stock;
             // console.log(`element:`,JSON.stringify(elem));
 
             Dialog.confirm({
