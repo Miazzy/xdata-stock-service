@@ -56,47 +56,13 @@
                                     </van-cell-group>
                                 </van-radio-group>
 
-                                <common-select :showTag="state.tag.showIndustryName" :modelColumns="state.industryColumns" fieldName="industryName" :modelValue="state.item.industry" :element="state.item" type="common" v-model="state.item.industry" labelName="所属行业" @search="commonSearch" @confirm="commonConfirm" />
-
-                                <van-field required :readonly="false" clickable clearable label="所属行业" v-model="state.item.industry" placeholder="请选择所属行业">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null,state.item,'industryName','industryName','common')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showIndustryName" v-model="state.radio.industryName" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item" v-for="(item,index) in state.industryColumns ">
-                                            <van-cell :index="index" :title="item" clickable @click="commonConfirm(index,item,'industryName',state.item);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
+                                <common-select :showTag="state.tag.showIndustryName" :modelColumns="state.industryColumns" fieldName="industryName" :modelValue="state.item.industry" :element="state.item" type="common" v-model="state.item.industry" labelName="所属行业" placeholderName="请选择所属行业" @search="commonSearch" @confirm="commonConfirm" />
 
                                 <van-field required :readonly="false" clickable clearable label="所属区域" v-model="state.item.companyCode" placeholder="请选择所属区域" @click="state.geo.show = true;" />
 
                                 <van-cascader v-show="state.geo.show" v-model="state.geo.cascaderValue" title="请选择所在地区" :options="state.geo.options" @close="state.geo.show = false" @finish="companyCode" />
 
-                                <van-field required :readonly="false" clickable clearable label="登记状态" v-model="state.item.registrationStatus" placeholder="请选择登记状态">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(state.registrationStatusColumns, state.item, 'registrationStatus', 'registrationStatus', 'common')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showRegistrationStatus" v-model="state.radio.registStatus" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item" v-for="(item,index) in state.registStatusColumns ">
-                                            <van-cell :index="index" :title="item" clickable @click="commonConfirm(index,item,'registrationStatus',state.item);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
+                                <common-select :showTag="state.tag.showRegistrationStatus" :modelColumns="state.registStatusColumns" fieldName="registrationStatus" :modelValue="state.item.registrationStatus" :element="state.item" type="common" v-model="state.item.registrationStatus" labelName="登记状态" placeholderName="请选择登记状态" @search="commonSearch" @confirm="commonConfirm" />
 
                                 <van-field v-show="state.item.registrationStatus == '注销' " required readonly clickable clearable label="注销时间" v-model="state.item.cancellationTime" placeholder="请选择注销时间" @click="clickDatePicker('showCancellationTime' , 'cancellationTime' , true);" />
                                 <van-datetime-picker v-show="state.tag.showCancellationTime" v-model="state.status.cancellationTime" type="date" title="选择年月日" :min-date="state.status.minDate" :max-date="state.status.maxDate" @cancel="clickDatePicker('showCancellationTime' , 'cancellationTime' , false);" @confirm="clickDatePicker('showCancellationTime' , 'cancellationTime' , false);" />
