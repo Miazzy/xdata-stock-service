@@ -583,9 +583,9 @@ export default {
             elem = {
                 id: Betools.tools.queryUniqueID(),
                 ...state.item,
-                ...state.director
+                ...state.director,
+                ...state.stock,
             };
-            // state.stock;
             // console.log(`element:`,JSON.stringify(elem));
 
             Dialog.confirm({
