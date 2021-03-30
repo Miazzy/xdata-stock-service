@@ -1,12 +1,3 @@
-<!--
- * @version: v 1.0.0
- * @Github: https://github.com/GitHubGanKai
- * @Author: GitHubGanKai
- * @Date: 2020-04-29 22:08:12
- * @LastEditors: gankai
- * @LastEditTime: 2021-01-02 20:34:09
- * @FilePath: /refactor-with-vue3/src/components/SvgIcon/index.vue
- -->
 <template>
   <svg :class="svgClass" aria-hidden="true">
     <use :xlink:href="iconName" />
