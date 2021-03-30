@@ -152,17 +152,18 @@ export default {
         };
 
         const pageScroll = () => {
-            const scrollTop =
-                window.pageYOffset ||
-                document.documentElement.scrollTop ||
-                document.body.scrollTop;
-            scrollTop > 100 ?
-                (headerActive.value = true) :
-                (headerActive.value = false);
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+            scrollTop > 100 ?  (headerActive.value = true) :  (headerActive.value = false);
         };
 
         const commonConfirm = async (index, value, key, item, type='') => {
-            await Betools.manage.commonDataConfirm(index, value, key, item, state, Dialog , type);
+            await Betools.manage.commonDataConfirm(index, value, key, item, state, Dialog, type);
+            //如果confirm了公司名称，需要带出公司的基础信息
+            if(type == 'company_ic'){
+                const element = state.companyNameColumns.find((item)=>{return item.companyName == value});
+                const { directorChairman, director, directorExecutive, manager, supervisorChairman, supervisor } = element;
+                state.director = { directorChairman, director, directorExecutive, manager, supervisorChairman, supervisor };
+            }
         };
 
         const commonSearch = async (data, value, key, fieldKey, type = 'user') => {
