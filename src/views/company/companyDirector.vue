@@ -35,7 +35,7 @@
                             <van-cell-group style="margin-top:10px;">
                                 <van-cell value="机构人员" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field clearable label="录入日期" v-model="state.item.create_time" placeholder="请输入录入日期" readonly />
-                                <common-select :showTag="state.tag.showCompanyName" :modelColumns="state.companyNameColumns" fieldName="companyName" :modelValue="state.item.companyName" :element="state.item" type="company" v-model="state.item.companyName" labelName="公司名称" placeholderName="请填写公司名称" @search="commonSearch" @confirm="commonConfirm" />
+                                <common-select :showTag="state.tag.showCompanyName" :modelColumns="state.companyNameColumns" fieldName="companyName" :modelValue="state.item.companyName" :element="state.item" type="company_ic" v-model="state.item.companyName" labelName="公司名称" placeholderName="请填写公司名称" @search="commonSearch" @confirm="commonConfirm" />
                                 <common-select :showTag="state.tag.showDirectorChairman" :modelColumns="state.directorChairmanColumns" fieldName="directorChairman" :modelValue="state.director.directorChairman" :element="state.director" type="user" v-model="state.director.directorChairman" labelName="董事长" placeholderName="请选择董事长" @search="commonSearch" @confirm="commonConfirm" />
                                 <common-select :showTag="state.tag.showDirector" :modelColumns="state.directorColumns" fieldName="director" :modelValue="state.director.director" :element="state.director" type="user" v-model="state.director.director" labelName="董事" placeholderName="请选择董事" @search="commonSearch" @confirm="commonConfirm" />
                                 <common-select :showTag="state.tag.showDirectorExecutive" :modelColumns="state.directorExecutiveColumns" fieldName="directorExecutive" :modelValue="state.director.directorExecutive" :element="state.director" type="user" v-model="state.director.directorExecutive" labelName="执行董事" placeholderName="请选择执行董事" @search="commonSearch" @confirm="commonConfirm" />
@@ -166,7 +166,20 @@ export default {
         };
 
         const commonSearch = async (data, value, key, fieldKey, type = 'user') => {
+            debugger;
             await Betools.manage.commonDataSearch(data, value, key, fieldKey, state, type);
+            const searchkey = value[key];
+            if (type == 'company') {
+                data = await Betools.manage.queryCompanyData(searchkey, []);
+            } else if (type == 'user') {
+                data = await Betools.manage.queryUserData(searchkey, []);
+            } else if (type == 'company_ic') {
+                data = await Betools.manage.queryCompanyICData(searchkey, []);
+            }
+            debugger;
+            state.tag['show' + Betools.manage.prefixUpperCase(fieldKey)] = true;
+            state.tag.showKey = key;
+            state[fieldKey + 'Columns'] = data;
         };
 
         return {
