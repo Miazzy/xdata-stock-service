@@ -371,45 +371,45 @@ export default {
             },
             stock: {
                 shareholder0: '', //股东
-                ratioDetail0: '', //占股明细
+                ratioDetail0: 0, //占股明细
                 shareholder1: '', //股东
-                ratioDetail1: '', //占股明细
+                ratioDetail1: 0, //占股明细
                 shareholder2: '', //股东
-                ratioDetail2: '', //占股明细
+                ratioDetail2: 0, //占股明细
                 shareholder3: '', //股东
-                ratioDetail3: '', //占股明细
+                ratioDetail3: 0, //占股明细
                 shareholder4: '', //股东
-                ratioDetail4: '', //占股明细
+                ratioDetail4: 0, //占股明细
                 shareholder5: '', //股东
-                ratioDetail5: '', //占股明细
+                ratioDetail5: 0, //占股明细
                 shareholder6: '', //股东
-                ratioDetail6: '', //占股明细
+                ratioDetail6: 0, //占股明细
                 shareholder7: '', //股东
-                ratioDetail7: '', //占股明细
+                ratioDetail7: 0, //占股明细
                 shareholder8: '', //股东
-                ratioDetail8: '', //占股明细
+                ratioDetail8: 0, //占股明细
                 shareholder9: '', //股东
-                ratioDetail9: '', //占股明细
+                ratioDetail9: 0, //占股明细
                 shareholder10: '', //股东
-                ratioDetail10: '', //占股明细
+                ratioDetail10: 0, //占股明细
                 shareholder11: '', //股东
-                ratioDetail11: '', //占股明细
+                ratioDetail11: 0, //占股明细
                 shareholder12: '', //股东
-                ratioDetail12: '', //占股明细
+                ratioDetail12: 0, //占股明细
                 shareholder13: '', //股东
-                ratioDetail13: '', //占股明细
+                ratioDetail13: 0, //占股明细
                 shareholder14: '', //股东
-                ratioDetail14: '', //占股明细
+                ratioDetail14: 0, //占股明细
                 shareholder15: '', //股东
-                ratioDetail15: '', //占股明细
+                ratioDetail15: 0, //占股明细
                 shareholder16: '', //股东
-                ratioDetail16: '', //占股明细
+                ratioDetail16: 0, //占股明细
                 shareholder17: '', //股东
-                ratioDetail17: '', //占股明细
+                ratioDetail17: 0, //占股明细
                 shareholder18: '', //股东
-                ratioDetail18: '', //占股明细
+                ratioDetail18: 0, //占股明细
                 shareholder19: '', //股东
-                ratioDetail19: '', //占股明细
+                ratioDetail19: 0, //占股明细
             },
             status: {
                 cancellationTime: new Date(),
@@ -622,7 +622,7 @@ export default {
                         //检查董监高信息
                         if(state.director && (state.director.supervisor || state.director.manager || state.director.supervisorChairman || state.director.director || state.director.directorExecutive || state.director.directorChairman)){
                             //第三步，设置stock信息，即公司A拥有董监高B //类型 100 股东 200 董事长 300 董事 400 执行董事 500 总经理 600 监事会主席 700 监事 800 法人代表
-                            for(let name of state.director){
+                            for(let name in state.director){
                                 const element = {
                                     id: Betools.tools.queryUniqueID(),
                                     pid: elem.id,
@@ -637,7 +637,7 @@ export default {
                         }
                         //检查股东信息
                         if(state.stock){
-                            for(let i =0 ;  i < 20 ; i++){
+                            for(let i =0 ;  i < 20 ; ){
                                 if( state.stock && state.stock['shareholder' + i] ){
                                     //第三步，设置stock信息，即公司A拥有股东B
                                     const element = {
@@ -662,6 +662,7 @@ export default {
                                     }
                                     result = await Betools.manage.postTableData('bs_company_flow_link', ratio);
                                 }
+                                i++;
                             }
                         }
 
