@@ -90,24 +90,7 @@
                         <van-form>
                             <van-cell-group style="margin-top:10px;">
                                 <van-cell value="股东信息1" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.stock.shareholder0" placeholder="请选择股东">
-                                    <template #button>
-                                        <van-button size="small" type="primary" @click="commonSearch(null, state.stock, 'shareholder0', 'shareholder','user')">查询</van-button>
-                                    </template>
-                                </van-field>
-
-                                <van-radio-group v-show="state.tag.showShareholder && state.stock.shareholder0 && state.tag.showKey == 'shareholder0' " v-model="state.radio.shareholder" style="max-height:120px;overflow-y: scroll;">
-                                    <van-cell-group>
-                                        <template :key="item.id" v-for="(item,index) in state.shareholderColumns ">
-                                            <van-cell :index="index" :title="item.title" clickable @click="commonConfirm(index, item , 'shareholder0', state.stock);">
-                                                <template #right-icon>
-                                                    <van-radio :name="index" />
-                                                </template>
-                                            </van-cell>
-                                        </template>
-                                    </van-cell-group>
-                                </van-radio-group>
-
+                                <common-select :showTag="state.tag.showShareholder && state.stock.shareholder0 && state.tag.showKey == 'shareholder0' " :modelColumns="state.shareholderColumns" fieldName="shareholder0" fieldName_="shareholder" :modelValue="state.stock.shareholder0" :element="state.stock" type="user" v-model="state.stock.shareholder0" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail0" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 

@@ -2,7 +2,7 @@
 <div class="common-select">
     <van-field required :readonly="false" clickable clearable :label="labelName" v-model="modelValue" :placeholder="placeholderName">
         <template #button>
-            <van-button size="small" type="primary" @click="commonSearch(null, element, fieldName , fieldName , type)">{{ buttonName }}</van-button>
+            <van-button size="small" type="primary" @click="commonSearch(null, element, fieldName , fieldName_ , type)">{{ buttonName }}</van-button>
         </template>
     </van-field>
 
@@ -37,6 +37,10 @@ export default {
       default: () => []
     },
     fieldName: {
+      type: String,
+      default: ''
+    },
+    fieldName_: {
       type: String,
       default: ''
     },
@@ -81,6 +85,7 @@ export default {
     const commonSearch = (data, element, fieldName , fieldName_ , type) => {
       console.log(`search: data:${data} ${mprops.modelValue.value}, element:${element}, fieldName:${fieldName}, fieldName_:${fieldName_}, type:${type}`);
       element[fieldName] = mprops.modelValue.value;
+      fieldName_ = fieldName_ ? fieldName_ : fieldName;
       emit('search', data, element, fieldName , fieldName_ , type);
     };
     const commonConfirm = (index, item, fieldName, element, value = '') => {
