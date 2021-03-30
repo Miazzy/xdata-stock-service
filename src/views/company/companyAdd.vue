@@ -666,10 +666,12 @@ export default {
                         }
 
                         //第五步，如果返回信息成功，则提示用户申请成功
-                        console.log(`第四步，如果返回信息成功，则提示用户申请成功`);
-                        await Dialog.confirm({
-                            title: '设立公司申请提交成功！',
-                        });
+                        if (result.protocol41 == true && result.affectedRows > 0) {
+                            console.log(`如果返回信息成功，则提示用户申请成功`);
+                            await Dialog.confirm({
+                                title: '设立公司申请提交成功！',
+                            });
+                        }
                     }
                 } catch (error) {
                     console.log(error);
