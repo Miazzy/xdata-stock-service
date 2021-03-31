@@ -232,6 +232,7 @@ export default {
                         }
                     }
 
+                    //提示用户操作成功，并返回上一页
                     await Dialog.confirm({ title: '提交录入董监高申请成功！', });
                     await Betools.tools.sleep(300);
                     await returnBack();
