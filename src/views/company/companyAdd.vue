@@ -685,7 +685,7 @@ export default {
                     await Betools.tools.sleep(Math.random() * 10);
                     result = await Betools.manage.postTableData('bs_company_flow_stock', stockNodes);
                     await Betools.tools.sleep(Math.random() * 10);
-                    result = await Betools.manage.postTableData('bs_company_flow_manager', element);
+                    result = await Betools.manage.postTableData('bs_company_flow_manager', managerNodes);
 
                     //第四步，如果返回信息成功，则提示用户申请成功
                     if (result.protocol41 == true && result.affectedRows > 0 ) {
