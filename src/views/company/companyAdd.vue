@@ -632,6 +632,7 @@ export default {
                             if( state.stock && state.stock['shareholder' + i] ){
                                 //设置股权关系，即股东A 持有 公司B 多少比例 股权
                                 const ratio = {
+                                    id: Betools.tools.queryUniqueID(),
                                     from_id:state.stock['shareholder'+i],
                                     to_id:company.id,
                                     from_company: state.stock['shareholder'+i],
