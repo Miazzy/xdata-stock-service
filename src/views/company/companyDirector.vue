@@ -232,9 +232,9 @@ export default {
                         }
                     }
 
-                    await Dialog.confirm({
-                        title: '提交录入董监高申请成功！',
-                    });
+                    await Dialog.confirm({ title: '提交录入董监高申请成功！', });
+                    await Betools.tools.sleep(300);
+                    await returnBack();
                 } else {
                     await Dialog.confirm({
                         title: `提交录入申请失败，请联系管理员进行处理，Error:[${JSON.stringify(result)}]！`,
