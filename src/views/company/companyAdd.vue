@@ -50,7 +50,7 @@
                                 <van-field required :readonly="false" clickable clearable label="公司类型" v-model="state.item.companyType" placeholder="请选择公司类型" @click="state.tag.showCompanyType = true;" />
                                 <van-picker v-show="state.tag.showCompanyType" title="选择公司类型" show-toolbar :columns="state.companyTypeColumns" @confirm="companyTypeConfirm" @cancel="state.tag.showCompanyType = false;" />
                                 <van-field required :readonly="false" clickable clearable label="设立原因" v-model="state.item.reason" rows="1" autosize type="textarea" placeholder="请输入设立原因" />
-                                <van-field required :readonly="false" clickable clearable label="使用情况" v-model="state.item.usage" rows="1" autosize type="textarea" placeholder="请输入使用情况" />
+                                <van-field required :readonly="false" clickable clearable label="使用情况" v-model="state.item.usages" rows="1" autosize type="textarea" placeholder="请输入使用情况" />
                                 <common-select :showTag="state.tag.showLegalRepresentative" :modelColumns="state.legalRepresentativeColumns" fieldName="legalRepresentative" :modelValue="state.item.legalRepresentative" :element="state.item" type="user" v-model="state.item.legalRepresentative" labelName="法定代表人" placeholderName="请输入法定代表人" @search="commonSearch" @confirm="commonConfirm" />
                                 <common-select :showTag="state.tag.showSealKeeper" :modelColumns="state.sealKeeperColumns" fieldName="sealKeeper" :modelValue="state.item.sealKeeper" :element="state.item" type="user" v-model="state.item.sealKeeper" labelName="印章保管人" placeholderName="请输入印章保管人" @search="commonSearch" @confirm="commonConfirm" />
                                 <common-select :showTag="state.tag.showLiaison" :modelColumns="state.liaisonColumns" fieldName="liaison" :modelValue="state.item.liaison" :element="state.item" type="user" v-model="state.item.liaison" labelName="备案联络员" placeholderName="请选择工商备案联络员" @search="commonSearch" @confirm="commonConfirm" />
@@ -354,7 +354,7 @@ export default {
                 businessTerm: dayjs().format('YYYY-MM-DD'), //营业期限
                 companyType: '', //公司类型
                 reason: '', //设立原因
-                usage: '', //使用情况
+                usages: '', //使用情况
                 legalRepresentative: '', //法定代表人
                 sealKeeper: '', //印章保管人
                 liaison: '', //备案联络员
