@@ -132,6 +132,14 @@ export default {
                 showShareholder: false,
                 showKey: '',
             },
+            type:{
+                supervisor:'700',
+                manager:'500',
+                supervisorChairman:'600',
+                directorChairman:'200',
+                director:'300',
+                directorExecutive:'400',
+            },
             show: true,
             message: {},
             step: 'one',
@@ -208,13 +216,12 @@ export default {
                     result = await Betools.manage.deleteTableDataByWhere('bs_company_flow_manager', 'pid' , elem.id);
 
                     //检查董监高信息
-                    if(state.director && (state.director.supervisor || state.director.manager || state.director.supervisorChairman || state.director.director || state.director.directorExecutive || state.director.directorChairman)){
+                    if(result.protocol41 == true && state.director && (state.director.supervisor || state.director.manager || state.director.supervisorChairman || state.director.director || state.director.directorExecutive || state.director.directorChairman)){
                         //设置stock信息，即公司A拥有董监高B //类型 100 股东 200 董事长 300 董事 400 执行董事 500 总经理 600 监事会主席 700 监事 800 法人代表
                         for(let name in state.director){
                             const element = {
                                 id: Betools.tools.queryUniqueID(),
                                 pid: elem.id,
-                                baseID:company.id,
                                 name:state.director[name],
                                 type:state.type[name],
                                 typeName:name,
