@@ -233,6 +233,7 @@ export default {
                                 name:state.director[name],
                                 type:state.type[name],
                                 typeName:name,
+                                positionName:state.position[name],
                                 companyName:state.item.companyName,
                             }
                             result = await Betools.manage.postTableData('bs_company_flow_manager', element);
