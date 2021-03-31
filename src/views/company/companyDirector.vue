@@ -181,7 +181,7 @@ export default {
             });
         };
 
-        const confirm = async(result = null) => {
+        const confirm = async(result = null , elem = null) => {
 
             //查询公司名称
             const company = state.companyNameColumns.find((item)=>{return item.name == state.item.companyName});
