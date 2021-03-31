@@ -197,7 +197,7 @@ export default {
             });
         };
 
-        const confirm = async(result = null , elem = null) => {
+        const confirm = async(result = null , elem = null , nodes = []) => {
 
             //查询公司名称
             const company = state.companyNameColumns.find((item)=>{return item.name == state.item.companyName});
@@ -236,9 +236,10 @@ export default {
                                 positionName:state.position[name],
                                 companyName:state.item.companyName,
                             }
-                            result = await Betools.manage.postTableData('bs_company_flow_manager', element);
-                            await Betools.tools.sleep(Math.random() * 10);
+                            nodes.push(element);
                         }
+                        result = await Betools.manage.postTableData('bs_company_flow_manager', nodes);
+                        await Betools.tools.sleep(Math.random() * 10);
                     }
 
                     //提示用户操作成功，并返回上一页
