@@ -202,8 +202,6 @@ export default {
             //查询公司名称
             const company = state.companyNameColumns.find((item)=>{return item.name == state.item.companyName});
 
-            debugger;
-
             //董监高对象数据
             elem = {
                 id: company.id,
