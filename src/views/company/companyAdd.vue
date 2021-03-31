@@ -624,12 +624,12 @@ export default {
                             if( state.stock && state.stock['shareholder' + i] ){
                                 //设置股权关系，即股东A 持有 公司B 多少比例 股权
                                 const ratio = {
-                                    from:state.stock['shareholder'+i],
-                                    to:company.id,
+                                    from_id:state.stock['shareholder'+i],
+                                    to_id:company.id,
                                     from_company: state.stock['shareholder'+i],
                                     to_company:elem.companyName,
                                     label:state.stock['ratioDetail'+i],
-                                    status:0,
+                                    linkStatus:0,
                                 }
                                 //设置stock信息，即公司A拥有股东B
                                 const element = {
@@ -658,7 +658,7 @@ export default {
                                 id: Betools.tools.queryUniqueID(),
                                 pid: elem.id,
                                 baseID:company.id,
-                                name:state.director[name],
+                                managerName:state.director[name],
                                 type:state.type[name],
                                 typeName:name,
                                 companyName:elem.companyName,

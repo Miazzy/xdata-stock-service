@@ -230,7 +230,7 @@ export default {
                             const element = {
                                 id: Betools.tools.queryUniqueID(),
                                 pid: elem.id,
-                                name:state.director[name],
+                                managerName:state.director[name],
                                 type:state.type[name],
                                 typeName:name,
                                 positionName:state.position[name],
