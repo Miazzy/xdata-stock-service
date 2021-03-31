@@ -469,6 +469,14 @@ export default {
                 director:'300',
                 directorExecutive:'400',
             },
+            position:{
+                supervisor:'监事',
+                manager:'总经理/经理',
+                supervisorChairman:'监事会主席',
+                directorChairman:'董事长',
+                director:'董事',
+                directorExecutive:'执行董事',
+            },
             show: true,
             message: {},
             step: 'one',
@@ -661,6 +669,7 @@ export default {
                                 managerName:state.director[name],
                                 type:state.type[name],
                                 typeName:name,
+                                positionName:state.position[name],
                                 companyName:elem.companyName,
                             }
                             managerNodes.push(element);
