@@ -50,8 +50,8 @@
         </div>
 
         <div class="section-button" style="text-align:center;margin-top:0.75rem;margin-bottom:0.75rem;">
-            <van-button plain hairline type="info" style="width:37.5%;">取消</van-button>
-            <van-button plain hairline type="primary" style="width:37.5%;margin-left:0.5rem;">确定</van-button>
+            <van-button plain hairline type="info" style="width:37.5%;" @click="cancel">取消</van-button>
+            <van-button plain hairline type="primary" style="width:37.5%;margin-left:0.5rem;" @click="confirm" >确定</van-button>
         </div>
 
     </div>
@@ -170,6 +170,61 @@ export default {
             await Betools.manage.commonDataSearch(data, value, key, fieldKey, state, type);
         };
 
+        const cancel = async() => {
+            Dialog.confirm({
+                title: '取消录入董监高申请？',
+                message: '点击‘确认’后返回上一页',
+            }).then(() => { // on confirm
+                returnBack();
+            }).catch(() => { // on cancel
+
+            });
+        };
+
+        const confirm = async() => {
+
+            //查询公司名称
+            const company = state.companyNameColumns.find((item)=>{return item.name == state.item.companyName});
+
+            //董监高对象数据
+            elem = {
+                id: company.id,
+                ...state.director,
+            };
+
+            Dialog.confirm({
+                title: '确认提交录入董监高申请？',
+                message: '点击‘确认’后提交申请',
+            }).then(async () => { // on confirm
+
+                //向表单提交form对象数据（董监高）
+                const result = await Betools.manage.patchTableData('bs_company_flow_data', elem.id , elem);
+
+                if (result.protocol41 == true && result.affectedRows > 0 ) {
+                    //检查董监高信息
+                    if(state.director && (state.director.supervisor || state.director.manager || state.director.supervisorChairman || state.director.director || state.director.directorExecutive || state.director.directorChairman)){
+                        //设置stock信息，即公司A拥有董监高B //类型 100 股东 200 董事长 300 董事 400 执行董事 500 总经理 600 监事会主席 700 监事 800 法人代表
+                        for(let name in state.director){
+                            const element = {
+                                id: Betools.tools.queryUniqueID(),
+                                pid: elem.id,
+                                baseID:company.id,
+                                name:state.director[name],
+                                type:state.type[name],
+                                typeName:name,
+                                companyName:elem.companyName,
+                            }
+                            result = await Betools.manage.postTableData('bs_company_flow_manager', element);
+                            await Betools.tools.sleep(Math.random() * 10);
+                        }
+                    }
+                }
+
+            });
+
+
+        };
+
         return {
             active,
             state,
@@ -179,6 +234,8 @@ export default {
             pageScroll,
             commonConfirm,
             commonSearch,
+            cancel,
+            confirm,
         };
     }
 };
