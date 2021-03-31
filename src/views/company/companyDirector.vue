@@ -211,7 +211,7 @@ export default {
             //提交申请确认
             Dialog.confirm({
                 title: '确认提交录入董监高申请？',
-                message: '点击‘确认’后提交申请',
+                message: `录入信息:[董事长:${state.director.directorChairman},董事:${state.director.director},执行董事:${state.director.directorExecutive},总经理:${state.director.manager},监事会主席:${state.director.supervisorChairman},监事:${state.director.supervisor}],点击‘确认’后提交申请`,
             }).then(async () => { // on confirm
 
                 //向表单提交form对象数据（董监高）
