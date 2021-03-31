@@ -181,7 +181,7 @@ export default {
             });
         };
 
-        const confirm = async() => {
+        const confirm = async(result = null) => {
 
             //查询公司名称
             const company = state.companyNameColumns.find((item)=>{return item.name == state.item.companyName});
@@ -192,15 +192,21 @@ export default {
                 ...state.director,
             };
 
+            //提交申请确认
             Dialog.confirm({
                 title: '确认提交录入董监高申请？',
                 message: '点击‘确认’后提交申请',
             }).then(async () => { // on confirm
 
                 //向表单提交form对象数据（董监高）
-                const result = await Betools.manage.patchTableData('bs_company_flow_data', elem.id , elem);
+                result = await Betools.manage.patchTableData('bs_company_flow_data', elem.id , elem);
 
+                //如果提交修改数据成功，则新增id的bs_company_flow_manager数据数据
                 if (result.protocol41 == true && result.affectedRows > 0 ) {
+
+                    //删除pid为elem.id的bs_company_flow_manager数据
+                    result = await Betools.manage.deleteTableDataByWhere('bs_company_flow_manager', 'pid' , elem.id);
+
                     //检查董监高信息
                     if(state.director && (state.director.supervisor || state.director.manager || state.director.supervisorChairman || state.director.director || state.director.directorExecutive || state.director.directorChairman)){
                         //设置stock信息，即公司A拥有董监高B //类型 100 股东 200 董事长 300 董事 400 执行董事 500 总经理 600 监事会主席 700 监事 800 法人代表
