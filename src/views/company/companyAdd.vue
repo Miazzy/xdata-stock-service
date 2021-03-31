@@ -100,7 +100,7 @@
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail1" type="number" placeholder="请输入股权占股明细" />
                             </van-cell-group>
 
-                            <van-cell-group v-show="state.stock.shareholder1 && state.stock.ratioDetail1 && (state.stock.ratioDetail0 + state.stock.ratioDetail1) < 100 " style="margin-top:10px;">
+                            <van-cell-group v-show="state.stock.shareholder1 && state.stock.ratioDetail1 && (state.stock.ratioDetail0 * 1.0 + state.stock.ratioDetail1 * 1.0) < 100 " style="margin-top:10px;">
                                 <van-cell value="股东信息3" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <common-select :showTag="state.tag.showShareholder2" :modelColumns="state.shareholder2Columns" fieldName="shareholder2" fieldName_="shareholder2" :modelValue="state.stock.shareholder2" :element="state.stock" type="user" v-model="state.stock.shareholder2" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail2" type="number" placeholder="请输入股权占股明细" />
