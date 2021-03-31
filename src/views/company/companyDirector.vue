@@ -225,7 +225,7 @@ export default {
                                 name:state.director[name],
                                 type:state.type[name],
                                 typeName:name,
-                                companyName:elem.companyName,
+                                companyName:state.item.companyName,
                             }
                             result = await Betools.manage.postTableData('bs_company_flow_manager', element);
                             await Betools.tools.sleep(Math.random() * 10);
