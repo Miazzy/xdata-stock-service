@@ -231,10 +231,17 @@ export default {
                             await Betools.tools.sleep(Math.random() * 10);
                         }
                     }
+
+                    await Dialog.confirm({
+                        title: '提交录入董监高申请成功！',
+                    });
+                } else {
+                    await Dialog.confirm({
+                        title: `提交录入申请失败，请联系管理员进行处理，Error:[${JSON.stringify(result)}]！`,
+                    });
                 }
 
             });
-
 
         };
 
