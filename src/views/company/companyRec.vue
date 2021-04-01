@@ -269,13 +269,76 @@ export default {
             scrollTop > 100 ?  (headerActive.value = true) :  (headerActive.value = false);
         };
 
+        const commonConfirm = async (index, value, key, item, type='') => {
+            await Betools.manage.commonDataConfirm(index, value, key, item, state, Dialog, type);
+            //如果confirm了公司名称，需要带出公司的基础信息
+            if(type == 'company_ic'){
+                const element = state.companyNameColumns.find((item)=>{return item.companyName == value});
+                const { directorChairman, director, directorExecutive, manager, supervisorChairman, supervisor } = element;
+                state.director = { directorChairman, director, directorExecutive, manager, supervisorChairman, supervisor };
+            }
+        };
+
+        const commonSearch = async (data, value, key, fieldKey, type = 'user') => {
+            await Betools.manage.commonDataSearch(data, value, key, fieldKey, state, type);
+        };
+
+        const cancel = async() => {
+            Dialog.confirm({
+                title: '取消录入工商信息申请？',
+                message: '点击‘确认’后返回上一页',
+            }).then(() => { // on confirm
+                returnBack();
+            });
+        };
+
+        const confirm = async(result = null , elem = null , nodes = []) => {
+
+            //查询公司名称
+            const company = state.companyNameColumns.find((item)=>{return item.name == state.item.companyName});
+
+            //董监高对象数据
+            elem = {
+                id: company.id,
+                ...state.item,
+            };
+
+            //提交申请确认
+            Dialog.confirm({
+                title: '确认提交录入工商信息申请？',
+                message: `点击‘确认’后提交录入工商信息申请！`,
+            }).then(async () => { // on confirm
+
+                //向表单提交form对象数据（工商信息）
+                result = await Betools.manage.patchTableData('bs_company_flow_data', elem.id , elem);
+
+                //如果提交修改数据成功，则新增id的bs_company_flow_manager数据数据
+                if (result.protocol41 == true && result.affectedRows > 0 ) {
+                    //提示用户操作成功，并返回上一页
+                    await Dialog.confirm({ title: '提交录入工商信息申请成功！', });
+                    await Betools.tools.sleep(300);
+                    await returnBack();
+                } else {
+                    await Dialog.confirm({
+                        title: `提交录入申请失败，请联系管理员进行处理，Error:[${JSON.stringify(result)}]！`,
+                    });
+                }
+
+            });
+
+        };
+
         return {
             active,
             state,
             returnBack,
             searching,
             headerActive,
-            pageScroll
+            pageScroll,
+            commonConfirm,
+            commonSearch,
+            cancel,
+            confirm,
         };
     }
 };
