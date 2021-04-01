@@ -36,30 +36,34 @@
                             <van-cell-group style="margin-top:10px;">
 
                                 <van-cell value="基本信息" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field clearable label="填报日期" v-model="state.item.createtime" placeholder="请输入登记日期" readonly />
-                                <van-field required :readonly="false" clickable clearable label="公司名称" v-model="state.item.sealtype" placeholder="请填写公司名称" />
-                                <van-field required :readonly="false" clickable clearable label="所属行业" v-model="state.item.ordertype" placeholder="请选择所属行业" />
-                                <van-field required :readonly="false" clickable clearable label="所属区域" v-model="state.item.ordertype" placeholder="请选择所属区域" />
-                                <van-field required :readonly="false" clickable clearable label="登记状态" v-model="state.item.ordertype" placeholder="请选择登记状态" />
-                                <van-field required :readonly="false" clickable clearable label="注销时间" v-model="state.item.ordertype" placeholder="请选择注销时间" />
-                                <van-field required :readonly="false" clickable clearable label="营业执照" v-model="state.item.ordertype" placeholder="请选择营业执照" />
-
-                                <van-field required :readonly="false" clickable clearable label="经营范围" v-model="state.item.ordertype" placeholder="请输入经营范围" />
-                                <van-field required :readonly="false" clickable clearable label="注册地址" v-model="state.item.ordertype" placeholder="请输入注册地址" />
-                                <van-field required :readonly="false" clickable clearable label="注册资本(万)" v-model="state.item.ordertype" placeholder="请输入注册资本(万)" />
-                                <van-field required :readonly="false" clickable clearable label="实缴资本(万)" v-model="state.item.ordertype" placeholder="请输入实缴资本(万)" />
-                                <van-field required :readonly="false" clickable clearable label="认缴时间" v-model="state.item.ordertype" placeholder="请选择认缴时间" />
-                                <van-field required :readonly="false" clickable clearable label="实缴时间" v-model="state.item.ordertype" placeholder="请选择实缴时间" />
-                                <van-field required :readonly="false" clickable clearable label="营业期限" v-model="state.item.ordertype" placeholder="请选择营业期限" />
-                                <van-field required :readonly="false" clickable clearable label="公司类型" v-model="state.item.ordertype" placeholder="请选择公司类型" />
-
-                                <van-field required :readonly="false" clickable clearable label="设立原因" v-model="state.item.ordertype" placeholder="请输入设立原因" />
-                                <van-field required :readonly="false" clickable clearable label="使用情况" v-model="state.item.ordertype" placeholder="请输入使用情况" />
-                                <van-field required :readonly="false" clickable clearable label="法定代表人" v-model="state.item.ordertype" placeholder="请输入法定代表人" />
-                                <van-field required :readonly="false" clickable clearable label="印章保管人" v-model="state.item.ordertype" placeholder="请选择印章保管人" />
-                                <van-field required :readonly="false" clickable clearable label="备案联络员" v-model="state.item.ordertype" placeholder="请选择工商备案联络员" />
-                                <van-field required :readonly="false" clickable clearable label="财务负责人" v-model="state.item.ordertype" placeholder="请选择工商备案财务负责人" />
-                                <van-field required :readonly="false" clickable clearable label="备注信息" v-model="state.item.ordertype" placeholder="请输入备注信息" />
+                                <van-field clearable label="填报日期" v-model="state.item.create_time" placeholder="请输入登记日期" readonly />
+                                <common-select :showTag="state.tag.showCompanyName" :modelColumns="state.companyNameColumns" fieldName="companyName" :modelValue="state.item.companyName" :element="state.item" type="company" v-model="state.item.companyName" labelName="公司名称" placeholderName="请填写公司名称" @search="commonSearch" @confirm="commonConfirm" />
+                                <common-select :showTag="state.tag.showIndustryName" :modelColumns="state.industryColumns" fieldName="industryName" :modelValue="state.item.industry" :element="state.item" type="common" v-model="state.item.industry" labelName="所属行业" placeholderName="请选择所属行业" @search="commonSearch" @confirm="commonConfirm" />
+                                <van-field required :readonly="false" clickable clearable label="所属区域" v-model="state.item.companyCode" placeholder="请选择所属区域" @click="state.geo.show = true;" />
+                                <van-cascader v-show="state.geo.show" v-model="state.geo.cascaderValue" title="请选择所在地区" :options="state.geo.options" @close="state.geo.show = false" @finish="companyCode" />
+                                <common-select :showTag="state.tag.showRegistrationStatus" :modelColumns="state.registStatusColumns" fieldName="registrationStatus" :modelValue="state.item.registrationStatus" :element="state.item" type="common" v-model="state.item.registrationStatus" labelName="登记状态" placeholderName="请选择登记状态" @search="commonSearch" @confirm="commonConfirm" />
+                                <van-field v-show="state.item.registrationStatus == '注销' " required readonly clickable clearable label="注销时间" v-model="state.item.cancellationTime" placeholder="请选择注销时间" @click="clickDatePicker('showCancellationTime' , 'cancellationTime' , true);" />
+                                <van-datetime-picker v-show="state.tag.showCancellationTime" v-model="state.status.cancellationTime" type="date" title="选择年月日" :min-date="state.status.minDate" :max-date="state.status.maxDate" @cancel="clickDatePicker('showCancellationTime' , 'cancellationTime' , false);" @confirm="clickDatePicker('showCancellationTime' , 'cancellationTime' , false);" />
+                                <van-field required :readonly="false" clickable clearable label="营业执照" v-model="state.item.licenseNumber" rows="1" autosize type="textarea" placeholder="请输入营业执照注册号" />
+                                <van-field required :readonly="false" clickable clearable label="经营范围" v-model="state.item.businessScope" rows="1" autosize type="textarea" placeholder="请输入经营范围" />
+                                <van-field required :readonly="false" clickable clearable label="注册地址" v-model="state.item.registeredAddress" rows="1" autosize type="textarea" placeholder="请输入注册地址" />
+                                <van-field required :readonly="false" clickable clearable label="注册资本(万)" v-model="state.item.registeredCapital" type="number" placeholder="请输入注册资本(万)" />
+                                <van-field required :readonly="false" clickable clearable label="实缴资本(万)" v-model="state.item.paidCapital" type="number" placeholder="请输入实缴资本(万)" />
+                                <van-field required :readonly="false" clickable clearable label="认缴时间" v-model="state.item.paidTime" placeholder="请选择认缴时间" @click="clickDatePicker('showPaidTime' , 'paidTime' , true);" />
+                                <van-datetime-picker v-show="state.tag.showPaidTime" v-model="state.status.paidTime" type="date" title="选择年月日" :min-date="state.status.minDate" :max-date="state.status.maxDate" @cancel="clickDatePicker('showPaidTime' , 'paidTime' , false);" @confirm="clickDatePicker('showPaidTime' , 'paidTime' , false);" />
+                                <van-field required :readonly="false" clickable clearable label="实缴时间" v-model="state.item.paidTureTime" placeholder="请选择实缴时间" @click="clickDatePicker('showPaidTureTime' , 'paidTureTime' , true);" />
+                                <van-datetime-picker v-show="state.tag.showPaidTureTime" v-model="state.status.paidTureTime" type="date" title="选择年月日" :min-date="state.status.minDate" :max-date="state.status.maxDate" @cancel="clickDatePicker('showPaidTureTime' , 'paidTureTime' , false);" @confirm="clickDatePicker('showPaidTureTime' , 'paidTureTime' , false);" />
+                                <van-field required :readonly="false" clickable clearable label="营业期限" v-model="state.item.businessTerm" placeholder="请选择营业期限" @click="clickDatePicker('showBusinessTerm' , 'businessTerm' , true);" />
+                                <van-datetime-picker v-show="state.tag.showBusinessTerm" v-model="state.status.businessTerm" type="date" title="选择年月日" :min-date="state.status.minDate" :max-date="state.status.maxDate" @cancel="clickDatePicker('showBusinessTerm' , 'businessTerm' , false);" @confirm="clickDatePicker('showBusinessTerm' , 'businessTerm' , false);" />
+                                <van-field required :readonly="false" clickable clearable label="公司类型" v-model="state.item.companyType" placeholder="请选择公司类型" @click="state.tag.showCompanyType = true;" />
+                                <van-picker v-show="state.tag.showCompanyType" title="选择公司类型" show-toolbar :columns="state.companyTypeColumns" @confirm="companyTypeConfirm" @cancel="state.tag.showCompanyType = false;" />
+                                <van-field required :readonly="false" clickable clearable label="设立原因" v-model="state.item.reason" rows="1" autosize type="textarea" placeholder="请输入设立原因" />
+                                <van-field required :readonly="false" clickable clearable label="使用情况" v-model="state.item.usages" rows="1" autosize type="textarea" placeholder="请输入使用情况" />
+                                <common-select :showTag="state.tag.showLegalRepresentative" :modelColumns="state.legalRepresentativeColumns" fieldName="legalRepresentative" :modelValue="state.item.legalRepresentative" :element="state.item" type="user" v-model="state.item.legalRepresentative" labelName="法定代表人" placeholderName="请输入法定代表人" @search="commonSearch" @confirm="commonConfirm" />
+                                <common-select :showTag="state.tag.showSealKeeper" :modelColumns="state.sealKeeperColumns" fieldName="sealKeeper" :modelValue="state.item.sealKeeper" :element="state.item" type="user" v-model="state.item.sealKeeper" labelName="印章保管人" placeholderName="请输入印章保管人" @search="commonSearch" @confirm="commonConfirm" />
+                                <common-select :showTag="state.tag.showLiaison" :modelColumns="state.liaisonColumns" fieldName="liaison" :modelValue="state.item.liaison" :element="state.item" type="user" v-model="state.item.liaison" labelName="备案联络员" placeholderName="请选择工商备案联络员" @search="commonSearch" @confirm="commonConfirm" />
+                                <common-select :showTag="state.tag.showResponsiblePerson" :modelColumns="state.responsiblePersonColumns" fieldName="responsiblePerson" :modelValue="state.item.responsiblePerson" :element="state.item" type="user" v-model="state.item.responsiblePerson" labelName="财务负责人" placeholderName="请选择工商备案财务负责人" @search="commonSearch" @confirm="commonConfirm" />
+                                <van-field required :readonly="false" clickable clearable label="备注信息" v-model="state.item.remark" rows="1" autosize type="textarea" placeholder="请输入备注信息" />
 
                             </van-cell-group>
 
