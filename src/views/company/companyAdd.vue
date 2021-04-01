@@ -677,15 +677,18 @@ export default {
                         }
                     }
 
+                    //需要提交的表单数据
+                    const multiElement = {
+                        'bs_company_flow_data':companyNodes,
+                        'bs_company_flow_link':linkNodes,
+                        'bs_company_flow_stock':stockNodes,
+                        'bs_company_flow_manager':managerNodes,
+                    };
+
                     //第三步，向表单提交form对象数据
                     console.log(`第三步，向表单提交form对象数据`);
-                    result = await Betools.manage.postTableData('bs_company_flow_data', companyNodes);
+                    result = await Betools.manage.multiTableData('bs_company_flow_data,bs_company_flow_link,bs_company_flow_stock,bs_company_flow_manager', multiElement);
                     await Betools.tools.sleep(Math.random() * 10);
-                    result = await Betools.manage.postTableData('bs_company_flow_link', linkNodes);
-                    await Betools.tools.sleep(Math.random() * 10);
-                    result = await Betools.manage.postTableData('bs_company_flow_stock', stockNodes);
-                    await Betools.tools.sleep(Math.random() * 10);
-                    result = await Betools.manage.postTableData('bs_company_flow_manager', managerNodes);
 
                     //第四步，如果返回信息成功，则提示用户申请成功
                     if (result.protocol41 == true && result.affectedRows > 0 ) {
