@@ -278,8 +278,7 @@ export default {
             //如果confirm了公司名称，需要带出公司的基础信息
             if(type == 'company_ic'){
                 const element = state.companyNameColumns.find((item)=>{return item.companyName == value});
-                const { directorChairman, director, directorExecutive, manager, supervisorChairman, supervisor } = element;
-                state.director = { directorChairman, director, directorExecutive, manager, supervisorChairman, supervisor };
+                state.item = element;
             }
         };
 
