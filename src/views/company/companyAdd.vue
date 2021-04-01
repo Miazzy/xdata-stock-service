@@ -233,7 +233,7 @@ import { useStore} from "vuex";
 import { useRouter, useRoute } from "vue-router";
 
 export default {
-    name: "base",
+    name: "companyAdd",
     components: {
         commonSelect,
     },

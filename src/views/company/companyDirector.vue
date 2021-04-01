@@ -66,7 +66,7 @@ import { useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
 
 export default {
-    name: "base",
+    name: "companyDirector",
     components: {
         commonSelect
     },
@@ -192,8 +192,6 @@ export default {
                 message: '点击‘确认’后返回上一页',
             }).then(() => { // on confirm
                 returnBack();
-            }).catch(() => { // on cancel
-
             });
         };
 
