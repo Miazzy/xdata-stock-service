@@ -57,7 +57,7 @@
                                 <van-badge>
                                     <img class="child" style="transform:scale(0.78);" :src="state.imgs[1]">
                                 </van-badge>
-                                <div class="section-flex-layout-content" style="">录入工商信息</div>
+                                <div class="section-flex-layout-content" style="">录工商信息</div>
                             </van-col>
                             <van-col span="6" @click="redirectView('/companypledge')">
                                 <van-badge>
