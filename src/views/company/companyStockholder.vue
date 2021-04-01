@@ -346,6 +346,8 @@ export default {
         };
 
         const confirm = async(result = null , elem = null , nodes = []) => {
+            let linkNodes = [];
+            let stockNodes = [];
 
             //查询公司名称
             const company = state.companyNameColumns.find((item)=>{return item.name == state.item.companyName});
@@ -373,36 +375,35 @@ export default {
                     result = await Betools.manage.deleteTableDataByWhere('bs_company_flow_link', 'pid' , elem.id);
 
                     //检查董监高信息
-                    if(result.protocol41 == true && state.stock){
-                        for(let i =0 ;  i < 20 ; ){
-                            if( state.stock && state.stock['shareholder' + i] ){
-                                //设置股权关系，即股东A 持有 公司B 多少比例 股权
-                                const ratio = {
-                                    id: Betools.tools.queryUniqueID(),
-                                    from_id:state.stock['shareholder'+i],
-                                    to_id:company.id,
-                                    from_company: state.stock['shareholder'+i],
-                                    to_company:elem.companyName,
-                                    label:state.stock['ratioDetail'+i],
-                                    linkStatus:0,
-                                }
-                                //设置stock信息，即公司A拥有股东B
-                                const element = {
-                                    id: Betools.tools.queryUniqueID(),
-                                    pid: elem.id,
-                                    baseID:company.id,
-                                    shareholder:state.stock['shareholder'+i],
-                                    ratioDetail:state.stock['ratioDetail'+i],
-                                    type:'100',
-                                    typeName:'shareholder',
-                                    companyName:elem.companyName,
-                                }
-                                linkNodes.push(ratio);
-                                stockNodes.push(element);
+                    for(let i =0 ;  i < 20 ; ){
+                        if( state.stock && state.stock['shareholder' + i] ){
+                            //设置股权关系，即股东A 持有 公司B 多少比例 股权
+                            const ratio = {
+                                id: Betools.tools.queryUniqueID(),
+                                from_id:state.stock['shareholder'+i],
+                                to_id:company.id,
+                                from_company: state.stock['shareholder'+i],
+                                to_company:state.item.companyName,
+                                label:state.stock['ratioDetail'+i],
+                                linkStatus:0,
                             }
-                            i++;
+                            //设置stock信息，即公司A拥有股东B
+                            const element = {
+                                id: Betools.tools.queryUniqueID(),
+                                pid: elem.id,
+                                baseID:company.id,
+                                shareholder:state.stock['shareholder'+i],
+                                ratioDetail:state.stock['ratioDetail'+i],
+                                type:'100',
+                                typeName:'shareholder',
+                                companyName:state.item.companyName,
+                            }
+                            linkNodes.push(ratio);
+                            stockNodes.push(element);
                         }
+                        i++;
                     }
+                    
 
                     //需要提交的表单数据
                     const multiElement = {
