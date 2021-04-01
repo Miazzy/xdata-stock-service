@@ -679,6 +679,7 @@ export default {
 
                     //需要提交的表单数据
                     const multiElement = {
+                        'tname':'bs_company_flow_data,bs_company_flow_link,bs_company_flow_stock,bs_company_flow_manager',
                         'bs_company_flow_data':companyNodes,
                         'bs_company_flow_link':linkNodes,
                         'bs_company_flow_stock':stockNodes,
@@ -687,7 +688,7 @@ export default {
 
                     //第三步，向表单提交form对象数据
                     console.log(`第三步，向表单提交form对象数据`);
-                    result = await Betools.manage.multiTableData('bs_company_flow_data,bs_company_flow_link,bs_company_flow_stock,bs_company_flow_manager', multiElement);
+                    result = await Betools.manage.multiTableData('bs_dynamic', multiElement);
                     await Betools.tools.sleep(Math.random() * 10);
 
                     //第四步，如果返回信息成功，则提示用户申请成功
@@ -704,8 +705,6 @@ export default {
                 } catch (error) {
                     console.log(error);
                 }
-
-            }).catch(() => { // on cancel
 
             });
 
