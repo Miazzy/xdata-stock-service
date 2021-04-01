@@ -4,7 +4,7 @@
     <div id="content" style="margin-top: 0px; overflow-x: hidden;">
 
         <header id="wx-header">
-            <van-nav-bar title="录入公司" left-text="返回" left-arrow @click-left="returnBack" @click-right="searching">
+            <van-nav-bar title="录入工商信息" left-text="返回" left-arrow @click-left="returnBack" @click-right="searching">
                 <template #right>
                     <van-icon name="search" />
                 </template>
@@ -22,7 +22,7 @@
 
                     <div class="" id="scanCell" style="padding: 8px 10px 4px 10px;">
                         <van-row>
-                            <van-col span="24" style="text-align: center;font-size:.475rem;">录入公司申请</van-col>
+                            <van-col span="24" style="text-align: center;font-size:.475rem;">录入工商信息申请</van-col>
                         </van-row>
                     </div>
 
@@ -67,43 +67,7 @@
                     </van-cell-group>
                 </div>
             </section>
-        </div>
-
-        <div class="section-content" style="display:none;">
-            <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%); margin-bottom:0.00rem;">
-                <div id="weui-cells-flex" class="weui-cells" style="">
-                    <van-cell-group>
-                        <van-form>
-                            <van-cell-group style="margin-top:10px;">
-                                <van-cell value="机构人员" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="董事长" v-model="state.item.ordertype" placeholder="请选择董事长" />
-                                <van-field required :readonly="false" clickable clearable label="董事" v-model="state.item.ordertype" placeholder="请选择董事" />
-                                <van-field required :readonly="false" clickable clearable label="执行董事" v-model="state.item.ordertype" placeholder="请选择执行董事" />
-                                <van-field required :readonly="false" clickable clearable label="总经理/经理" v-model="state.item.ordertype" placeholder="请选择总经理/经理名单" />
-                                <van-field required :readonly="false" clickable clearable label="监事会主席" v-model="state.item.ordertype" placeholder="请选择监事会主席" />
-                                <van-field required :readonly="false" clickable clearable label="监事" v-model="state.item.ordertype" placeholder="请选择监事" />
-                            </van-cell-group>
-                        </van-form>
-                    </van-cell-group>
-                </div>
-            </section>
-        </div>
-
-        <div class="section-content" style="display:none;">
-            <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%); margin-bottom:0.75rem;">
-                <div id="weui-cells-flex" class="weui-cells" style="">
-                    <van-cell-group>
-                        <van-form>
-                            <van-cell-group style="margin-top:10px;">
-                                <van-cell value="股东信息" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field required :readonly="false" clickable clearable label="股东" v-model="state.item.ordertype" placeholder="请选择股东" />
-                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.item.ordertype" placeholder="请输入股权占股明细" />
-                            </van-cell-group>
-                        </van-form>
-                    </van-cell-group>
-                </div>
-            </section>
-        </div>
+        </div>       
 
         <div class="section-button" style="text-align:center;margin-top:0.75rem;margin-bottom:0.75rem;">
             <van-button plain hairline type="info" style="width:37.5%;">取消</van-button>
@@ -115,25 +79,16 @@
 </template>
 
 <script>
-import {
-    ref,
-    reactive,
-    onMounted,
-    toRefs,
-    getCurrentInstance
-} from "vue";
-import {
-    useStore
-} from "vuex";
-import {
-    useRouter,
-    useRoute
-} from "vue-router";
-import tabbar from "@/components/tabbar";
+import { Dialog, Popup } from 'vant';
+import commonSelect from '@/components/select/commonSelect';
+import { ref, reactive, onMounted, toRefs, getCurrentInstance } from "vue";
+import { useStore } from "vuex";
+import { useRouter, useRoute } from "vue-router";
+
 export default {
-    name: "base",
+    name: "companyRec",
     components: {
-        tabbar
+        commonSelect
     },
     setup(props, context) {
 
@@ -148,12 +103,151 @@ export default {
         const headerActive = ref(false);
 
         const state = reactive({
-            imgs: [],
-            item: {
-                createtime: dayjs().format('YYYY-MM-DD'),
-                sealtype: '',
-                ordertype: '',
+            geo: {
+                show: false,
+                address: '',
+                fieldValue: '',
+                cascaderValue: '',
+                options: [{
+                        text: '浙江省',
+                        value: '浙江省',
+                        children: [{
+                            text: '杭州市',
+                            value: '杭州市'
+                        }],
+                    },
+                    {
+                        text: '江苏省',
+                        value: '江苏省',
+                        children: [{
+                            text: '南京市',
+                            value: '南京市'
+                        }],
+                    },
+                    {
+                        text: '四川省',
+                        value: '四川省',
+                        children: [{
+                            text: '成都市',
+                            value: '成都市'
+                        }],
+                    },
+                ],
             },
+            companyNameColumns: [],
+            companyTypeColumns: ['有限公司', '股份公司'],
+            industryColumns: ['房地产行业', '金融行业', '物业管理', '医疗健康产业', '商业管理','批发和零售业','建筑业','租赁和商务服务业'],
+            industryNameColumns: ['房地产行业', '金融行业', '物业管理', '医疗健康产业', '商业管理'],
+            registStatusColumns: ['存续', '注销', '经营异常'],
+            registrationStatusColumns: ['存续', '注销', '经营异常'],
+            legalRepresentativeColumns: [],
+            sealKeeperColumns: [],
+            liaisonColumns: [],
+            responsiblePersonColumns: [],
+            directorChairmanColumns: [],
+            directorColumns: [],
+            directorExecutiveColumns: [],
+            managerColumns: [], //总经理/经理
+            supervisorChairmanColumns: [], //监事会主席
+            supervisorColumns: [], //监事
+            radio: {
+                companyName: '',
+                industryName: '',
+                registStatus: '',
+                registrationStatus: '',
+                sealKeeper: '',
+                liaison: '',
+                responsiblePerson: '',
+                directorChairman: '',
+                director: '',
+                directorExecutive: '',
+                manager: '', //总经理/经理
+                supervisorChairman: '', //监事会主席
+                supervisor: '', //监事
+                shareholder: '',
+            },
+            item: {
+                create_time: dayjs().format('YYYY-MM-DD'),
+                companyName: '', //公司名称
+                industry: '', //所属行业
+                companyCode: '', //所属区域
+                registrationStatus: '', //登记状态
+                cancellationTime: '2099-12-31', //注销时间
+                licenseNumber: '', //营业执照
+                businessScope: '', //经营范围
+                registeredAddress: '', //注册地址
+                registeredCapital: '', //注册资本(万)
+                paidCapital: '', //实缴资本(万)
+                paidTime: dayjs().format('YYYY-MM-DD'), //认缴时间
+                paidTureTime: dayjs().format('YYYY-MM-DD'), //实缴时间
+                businessTerm: dayjs().format('YYYY-MM-DD'), //营业期限
+                companyType: '', //公司类型
+                reason: '', //设立原因
+                usages: '', //使用情况
+                legalRepresentative: '', //法定代表人
+                sealKeeper: '', //印章保管人
+                liaison: '', //备案联络员
+                responsiblePerson: '', //财务负责人
+                remark: '', //备注信息
+            },
+            director: {
+                directorChairman: '', //董事长
+                director: '', //董事
+                directorExecutive: '', //执行董事
+                manager: '', //总经理/经理
+                supervisorChairman: '', //监事会主席
+                supervisor: '' //监事
+            },
+            stock: {
+            },
+            status: {
+                cancellationTime: new Date(),
+                paidTime: new Date(),
+                paidTureTime: new Date(),
+                businessTerm: new Date(),
+                minDate: new Date(1970, 0, 1),
+                maxDate: new Date(2099, 12, 31),
+            },
+            tag: {
+                showPaidTime: false,
+                showPaidTureTime: false,
+                showBusinessTerm: false,
+                showCancellationTime: false,
+                showCompanyName: false,
+                showIndustryName: false,
+                showRegistStatus: false,
+                showRegistrationStatus: false,
+                showCompanyType: false,
+                showLegalRepresentative: false,
+                showSealKeeper: false,
+                showResponsiblePerson: false,
+                showDirectorChairman: false,
+                showDirector: false,
+                showDirectorExecutive: false,
+                showManager: false, //总经理/经理
+                showSupervisorChairman: false, //监事会主席
+                showSupervisor: false, //监事
+                showKey: '',
+            },
+            type:{
+                supervisor:'700',
+                manager:'500',
+                supervisorChairman:'600',
+                directorChairman:'200',
+                director:'300',
+                directorExecutive:'400',
+            },
+            position:{
+                supervisor:'监事',
+                manager:'总经理/经理',
+                supervisorChairman:'监事会主席',
+                directorChairman:'董事长',
+                director:'董事',
+                directorExecutive:'执行董事',
+            },
+            show: true,
+            message: {},
+            step: 'one',
         });
 
         onMounted(() => {
@@ -170,37 +264,9 @@ export default {
             console.log('searching');
         };
 
-        const beforeEnter = el => {
-            const dom = ball.el;
-            const rect = dom.getBoundingClientRect();
-            const x = rect.left - window.innerWidth * 0.6;
-            const y = -(window.innerHeight - rect.top);
-            el.style.display = "block";
-            el.style.transform = `translate3d(0,${y}px,0)`;
-            const inner = el.querySelector(".inner");
-            inner.style.transform = `translate3d(${x}px,0,0)`;
-        };
-
-        const enter = (el, done) => {
-            document.body.offsetHeight;
-            el.style.transform = "translate3d(0,0,0)";
-            const inner = el.querySelector(".inner");
-            inner.style.transform = "translate3d(0,0,0)";
-            el.addEventListener("transitionend", done);
-        };
-
-        const afterEnter = el => {
-            el.style.display = "none";
-        };
-
         const pageScroll = () => {
-            const scrollTop =
-                window.pageYOffset ||
-                document.documentElement.scrollTop ||
-                document.body.scrollTop;
-            scrollTop > 100 ?
-                (headerActive.value = true) :
-                (headerActive.value = false);
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+            scrollTop > 100 ?  (headerActive.value = true) :  (headerActive.value = false);
         };
 
         return {
@@ -208,9 +274,6 @@ export default {
             state,
             returnBack,
             searching,
-            beforeEnter,
-            enter,
-            afterEnter,
             headerActive,
             pageScroll
         };
