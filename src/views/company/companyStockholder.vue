@@ -402,8 +402,7 @@ export default {
                             stockNodes.push(element);
                         }
                         i++;
-                    }
-                    
+                    }                    
 
                     //需要提交的表单数据
                     const multiElement = {
