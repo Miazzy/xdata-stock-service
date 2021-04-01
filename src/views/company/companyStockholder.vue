@@ -222,20 +222,11 @@ export default {
             shareholder19Columns:[],
             radio: {
                 companyName: '',
-                industryName: '',
                 shareholder: '',
             },
             item: {
                 create_time: dayjs().format('YYYY-MM-DD'),
                 companyName: '', //公司名称
-            },
-            director: {
-                directorChairman: '', //董事长
-                director: '', //董事
-                directorExecutive: '', //执行董事
-                manager: '', //总经理/经理
-                supervisorChairman: '', //监事会主席
-                supervisor: '' //监事
             },
             stock: {
                 shareholder0: '', //股东
@@ -307,22 +298,6 @@ export default {
                 showShareholder19:false,
                 showKey: '',
             },
-            type:{
-                supervisor:'700',
-                manager:'500',
-                supervisorChairman:'600',
-                directorChairman:'200',
-                director:'300',
-                directorExecutive:'400',
-            },
-            position:{
-                supervisor:'监事',
-                manager:'总经理/经理',
-                supervisorChairman:'监事会主席',
-                directorChairman:'董事长',
-                director:'董事',
-                directorExecutive:'执行董事',
-            },
             show: true,
             message: {},
             step: 'one',
@@ -352,8 +327,8 @@ export default {
             //如果confirm了公司名称，需要带出公司的基础信息
             if(type == 'company_ic'){
                 const element = state.companyNameColumns.find((item)=>{return item.companyName == value});
-                const { shareholder0, ratioDetail0,shareholder1, ratioDetail2, shareholder3, ratioDetail3, shareholder4, ratioDetail4, shareholder5, ratioDetail5,shareholder6, ratioDetail6, shareholder7, ratioDetail7, shareholder8, ratioDetail8, shareholder9, ratioDetail9, shareholder10, ratioDetail10, shareholder11, ratioDetail11, shareholder12, ratioDetail12, shareholder13, ratioDetail13, shareholder14, ratioDetail14, shareholder15, ratioDetail15, shareholder16, ratioDetail16, shareholder17, ratioDetail17, shareholder18, ratioDetail18, shareholder19, ratioDetail19,} = element;
-                state.stock = { shareholder0, ratioDetail0,shareholder1, ratioDetail2, shareholder3, ratioDetail3, shareholder4, ratioDetail4, shareholder5, ratioDetail5,shareholder6, ratioDetail6, shareholder7, ratioDetail7, shareholder8, ratioDetail8, shareholder9, ratioDetail9, shareholder10, ratioDetail10, shareholder11, ratioDetail11, shareholder12, ratioDetail12, shareholder13, ratioDetail13, shareholder14, ratioDetail14, shareholder15, ratioDetail15, shareholder16, ratioDetail16, shareholder17, ratioDetail17, shareholder18, ratioDetail18, shareholder19, ratioDetail19,};
+                const { shareholder0, ratioDetail0, shareholder1, ratioDetail1, shareholder2, ratioDetail2, shareholder3, ratioDetail3, shareholder4, ratioDetail4, shareholder5, ratioDetail5,shareholder6, ratioDetail6, shareholder7, ratioDetail7, shareholder8, ratioDetail8, shareholder9, ratioDetail9, shareholder10, ratioDetail10, shareholder11, ratioDetail11, shareholder12, ratioDetail12, shareholder13, ratioDetail13, shareholder14, ratioDetail14, shareholder15, ratioDetail15, shareholder16, ratioDetail16, shareholder17, ratioDetail17, shareholder18, ratioDetail18, shareholder19, ratioDetail19,} = element;
+                state.stock = { shareholder0, ratioDetail0, shareholder1, ratioDetail1, shareholder2, ratioDetail2, shareholder3, ratioDetail3, shareholder4, ratioDetail4, shareholder5, ratioDetail5,shareholder6, ratioDetail6, shareholder7, ratioDetail7, shareholder8, ratioDetail8, shareholder9, ratioDetail9, shareholder10, ratioDetail10, shareholder11, ratioDetail11, shareholder12, ratioDetail12, shareholder13, ratioDetail13, shareholder14, ratioDetail14, shareholder15, ratioDetail15, shareholder16, ratioDetail16, shareholder17, ratioDetail17, shareholder18, ratioDetail18, shareholder19, ratioDetail19,};
             }
         };
 
