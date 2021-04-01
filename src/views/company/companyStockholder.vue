@@ -417,7 +417,7 @@ export default {
                     await Betools.tools.sleep(Math.random() * 10);
 
                     //提示用户操作成功，并返回上一页
-                    await Dialog.confirm({ title: '提交录入董监高申请成功！', });
+                    await Dialog.confirm({ title: '提交录入股东申请成功！', });
                     await Betools.tools.sleep(300);
                     await returnBack();
                 } else {
