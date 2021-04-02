@@ -82,13 +82,14 @@ export default {
 
         onMounted(() => {
             ctx.$eventBus.$emit("changeTag", 0);
-            companySearch(null,'');
+            state.searchkey = $route.query.searchkey;
+            companySearch(null,$route.query.searchkey);
             window.addEventListener("scroll", pageScroll);
         });
 
         //返回上一页函数
         const returnBack = (back = '/company') => {
-            back = Betools.tools.queryUrlString('back','common');
+            back = $route.query.back;
             back = back ? back : '/company';
             $router.push(back);
         };
@@ -114,7 +115,7 @@ export default {
         };
 
         //查询默认公司列表信息
-        companySearch(null,'');
+        companySearch(null,$route.query.searchkey);
 
         return {
             active,
