@@ -321,18 +321,22 @@ export default {
             scrollTop > 100 ?  (headerActive.value = true) :  (headerActive.value = false);
         };
 
+        //确认数据函数
         const commonConfirm = async (index, value, key, item, type='') => {
             await Betools.manage.commonDataConfirm(index, value, key, item, state, Dialog, type);
         };
 
+        //搜索数据函数
         const commonSearch = async (data, value, key, fieldKey, type = 'user') => {
             await Betools.manage.commonDataSearch(data, value, key, fieldKey, state, type);
         };
 
+        //取消函数
         const cancel = async() => {
             await Betools.manage.cancelAndBack(Dialog, returnBack, '取消录入股东申请？') ;
         };
-
+        
+        //确认函数
         const confirm = async(result = null , elem = null , nodes = []) => {
             await Betools.manage.confirmCompanyStockholder(result, elem, nodes, state, Dialog, returnBack);
         };
