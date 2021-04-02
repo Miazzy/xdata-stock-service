@@ -44,20 +44,10 @@
 </template>
 
 <script>
-import {
-    ref,
-    reactive,
-    onMounted,
-    toRefs,
-    getCurrentInstance
-} from "vue";
-import {
-    useStore
-} from "vuex";
-import {
-    useRouter,
-    useRoute
-} from "vue-router";
+import { Dialog } from 'vant';
+import { ref, reactive, onMounted, toRefs, getCurrentInstance } from "vue";
+import { useStore} from "vuex";
+import { useRouter, useRoute } from "vue-router";
 
 export default {
     name: "companyQuery",
