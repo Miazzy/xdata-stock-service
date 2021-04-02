@@ -258,31 +258,7 @@ export default {
                 address: '',
                 fieldValue: '',
                 cascaderValue: '',
-                options: [{
-                        text: '浙江省',
-                        value: '浙江省',
-                        children: [{
-                            text: '杭州市',
-                            value: '杭州市'
-                        }],
-                    },
-                    {
-                        text: '江苏省',
-                        value: '江苏省',
-                        children: [{
-                            text: '南京市',
-                            value: '南京市'
-                        }],
-                    },
-                    {
-                        text: '四川省',
-                        value: '四川省',
-                        children: [{
-                            text: '成都市',
-                            value: '成都市'
-                        }],
-                    },
-                ],
+                options: null,
             },
             companyNameColumns: [],
             companyTypeColumns: ['有限公司', '股份公司'],
@@ -482,8 +458,10 @@ export default {
             step: 'one',
         });
 
-        onMounted(() => {
+        onMounted(async () => {
             ctx.$eventBus.$emit("changeTag", 0);
+            state.geo.options = await Betools.manage.queryCity();
+            
             window.addEventListener("scroll", pageScroll);
         });
 
