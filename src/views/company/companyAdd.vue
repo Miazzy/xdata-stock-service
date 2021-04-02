@@ -527,40 +527,6 @@ export default {
             state.item[tname] = dayjs(state.status[tname]).format('YYYY-MM-DD');
         };
 
-        //数据校验
-        const checkData = async (element, type) => {
-            if (type == 'company') {
-                //校验公司名称,如果已经存在此公司名称，需要给出提示
-                //校验所属行业
-                //校验所属区域
-                //校验登记状态
-                //校验营业执照
-                //校验经营范围
-                //校验注册地址
-                //校验注册资本
-                //校验实缴资本
-                //校验营业期限
-                //校验公司类型
-                //校验设立原因
-                //校验使用情况
-                //校验法人代表
-                //校验印章保管人
-                //校验备案联络员
-                //校验财务负责人
-                //校验备注信息
-            } else if (type == 'director') {
-                //校验董事长
-                //校验董事
-                //校验执行董事
-                //校验总经理
-                //校验监事会主席
-                //校验监事
-            } else if (type == 'stock') {
-                //如果没有数据，则提交股东信息
-                //如果有数据，校验股东信息及占股比例
-            }
-        }
-
         const checkValid = (element) => {
             const keys = Object.keys(element);
             const invalidKey = keys.find(key => {
@@ -577,176 +543,22 @@ export default {
 
         //取消函数
         const cancel = async () => {
-            Dialog.confirm({
-                title: '取消设立公司申请？',
-                message: '点击‘确认’后返回上一页',
-            }).then(() => { // on confirm
-                returnBack();
-            });
+            await Betools.manage.cancelAndBack(Dialog, returnBack, '取消设立公司申请？') ;
         }
 
         //确认函数
         const confirm = async (elem, result, validResult, response) => {
-            let companyNodes = [];
-            let linkNodes = [];
-            let stockNodes = [];
-            let managerNodes = [];
-
-            // 获取用户信息
-            const userinfo = await Betools.storage.getStore('system_userinfo');
-            
-            const company = state.companyNameColumns.find((item)=>{return item.name == state.item.companyName});
-            elem = {
-                id: Betools.tools.queryUniqueID(),
-                baseID:company.id,
-                ...state.item,
-                ...state.director,
-                ...state.stock,
-            };
-            companyNodes.push(elem);
-            console.log(`element:`,JSON.stringify(elem));
-
-            Dialog.confirm({
-                title: '确认提交设立公司申请？',
-                message: '点击‘确认’后提交申请',
-            }).then(async () => { // on confirm
-
-                try {
-                    //第一步，执行数据校验
-                    console.log(`第一步，执行数据校验`);
-                    validResult = await checkData(elem, 'company');
-
-                    //第二步，检查是否有股东信息，如果有股东、董监高信息，则需要提交股东、董监高信息
-                    console.log(`第二步，检查是否有股东信息，如果有股东、董监高信息，则需要提交股东、董监高信息`);
-                    
-                    //检查股东信息
-                    if(state.stock){
-                        for(let i =0 ;  i < 20 ; ){
-                            if( state.stock && state.stock['shareholder' + i] ){
-                                //设置股权关系，即股东A 持有 公司B 多少比例 股权
-                                const ratio = {
-                                    id: Betools.tools.queryUniqueID(),
-                                    from_id:state.stock['shareholder'+i],
-                                    to_id:company.id,
-                                    from_company: state.stock['shareholder'+i],
-                                    to_company:elem.companyName,
-                                    label:state.stock['ratioDetail'+i],
-                                    linkStatus:0,
-                                }
-                                //设置stock信息，即公司A拥有股东B
-                                const element = {
-                                    id: Betools.tools.queryUniqueID(),
-                                    pid: elem.id,
-                                    baseID:company.id,
-                                    shareholder:state.stock['shareholder'+i],
-                                    ratioDetail:state.stock['ratioDetail'+i],
-                                    type:'100',
-                                    typeName:'shareholder',
-                                    companyName:elem.companyName,
-                                }
-                                linkNodes.push(ratio);
-                                stockNodes.push(element);
-                            }
-                            i++;
-                        }
-                    }
-
-                    //检查董监高信息
-                    if(state.director && (state.director.supervisor || state.director.manager || state.director.supervisorChairman || state.director.director || state.director.directorExecutive || state.director.directorChairman)){
-                        
-                        //设置stock信息，即公司A拥有董监高B //类型 100 股东 200 董事长 300 董事 400 执行董事 500 总经理 600 监事会主席 700 监事 800 法人代表
-                        for(let name in state.director){
-                            const element = {
-                                id: Betools.tools.queryUniqueID(),
-                                pid: elem.id,
-                                baseID:company.id,
-                                managerName:state.director[name],
-                                type:state.type[name],
-                                typeName:name,
-                                positionName:state.position[name],
-                                companyName:elem.companyName,
-                            }
-                            managerNodes.push(element);
-                        }
-                    }
-
-                    //需要提交的表单数据
-                    const multiElement = {
-                        'tname':'bs_company_flow_data,bs_company_flow_link,bs_company_flow_stock,bs_company_flow_manager',
-                        'bs_company_flow_data':companyNodes,
-                        'bs_company_flow_link':linkNodes,
-                        'bs_company_flow_stock':stockNodes,
-                        'bs_company_flow_manager':managerNodes,
-                    };
-
-                    //第三步，向表单提交form对象数据
-                    console.log(`第三步，向表单提交form对象数据`);
-                    result = await Betools.manage.multiTableData('bs_dynamic', multiElement);
-                    await Betools.tools.sleep(Math.random() * 10);
-
-                    //第四步，如果返回信息成功，则提示用户申请成功
-                    if (result.protocol41 == true && result.affectedRows > 0 ) {
-                        console.log(`如果返回信息成功，则提示用户申请成功`);
-                        await Dialog.confirm({
-                            title: '设立公司申请提交成功！',
-                        });
-                    } else {
-                        await Dialog.confirm({
-                            title: `设立公司申请失败，请检查是否已提交过此公司申请，Error:[${JSON.stringify(result)}]！`,
-                        });
-                    }
-                } catch (error) {
-                    console.log(error);
-                }
-
-            });
-
+            await Betools.manage.confirmCompanyAdd(elem, result, validResult, response, state, Dialog);
         }
 
         //下一步函数
         const nextstep = async () => {
-            if (state.step == 'one') {
-                //此次校验，公司基础信息是否填写完整
-                const invalidKeys = checkValid(state.item);
-                if (Betools.tools.isNull(invalidKeys)) {
-                    state.step = 'two'
-                } else {
-                    Dialog.confirm({
-                        title: '请填写完公司设立信息后进行下一步！',
-                        message: `请检查缺失信息：${invalidKeys}`
-                    })
-                }
-            } else if (state.step == 'two') {
-                //此次校验，公司的董事信息是否填写完整
-                const invalidKeys = checkValid(state.director);
-                if (Betools.tools.isNull(invalidKeys)) {
-                    state.step = 'three'
-                } else {
-                    Dialog.confirm({
-                        title: '请填写完公司董事信息后进行下一步！',
-                        message: `请检查缺失信息：${invalidKeys}`
-                    })
-                }
-            } else if (state.step == 'three') {
-                const elem = {
-                    id: Betools.tools.queryUniqueID(),
-                    ...state.item,
-                    ...state.director
-                };
-                console.log(`elemnt:`, JSON.stringify(elem));
-                await confirm(elem, null, null);
-            }
+            await Betools.manage.nextstepCompanyAdd(state, checkValid, Dialog, confirm);
         }
 
         //上一步函数
         const prestep = async () => {
-            if (state.step == 'three') {
-                state.step = 'two'
-            } else if (state.step == 'two') {
-                state.step = 'one'
-            } else if (state.stop == 'one') {
-                await cancel();
-            }
+            await Betools.manage.prestepCompanyAdd(state, cancel);
         }
 
         return {
