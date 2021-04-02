@@ -89,20 +89,14 @@ export default {
 
         //返回上一页函数
         const returnBack = (back = '/company') => {
-            back = $route.query.back;
-            back = back ? back : '/company';
+            back = $route.query.back ? $route.query.back : '/company';
             $router.push(back);
         };
 
         //页面滚动处理函数
         const pageScroll = () => {
-            const scrollTop =
-                window.pageYOffset ||
-                document.documentElement.scrollTop ||
-                document.body.scrollTop;
-            scrollTop > 100 ?
-                (headerActive.value = true) :
-                (headerActive.value = false);
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+            scrollTop > 100 ?  (headerActive.value = true) :  (headerActive.value = false);
         };
 
         //搜索公司信息
@@ -132,5 +126,4 @@ export default {
 
 <style lang="scss" scoped>
 @import "../home/home.css";
-
 </style>
