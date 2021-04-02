@@ -493,40 +493,37 @@ export default {
             console.log('searching');
         };
 
+        //设置所属区域
         const companyCode = (config) => {
             state.geo.show = false;
             state.item.companyCode = config.selectedOptions.map((option) => option.text).join('/');
         };
 
+        //确认操作
         const commonConfirm = async (index, value, key, item , type = '') => {
             await Betools.manage.commonDataConfirm(index, value, key, item, state, Dialog , type);
         };
 
+        //公司类型确认操作
         const companyTypeConfirm = async (value, index) => {
             await Betools.manage.commonDataConfirm(index, value, 'companyType', state.item, state, Dialog , '');
         };
 
+        //通用搜索
         const commonSearch = async (data, value, key, fieldKey, type = 'user') => {
             await Betools.manage.commonDataSearch(data, value, key, fieldKey, state, type);
         };
 
-        const validField = (fieldName, item) => {
-            state.message[fieldName] = Betools.tools.isNull(item[fieldName]) ? `未填写${fieldName}信息，请填写后在进行提交申请！` : '';
-            return Betools.tools.isNull(state.message[fieldName]);
-        };
-
+        //日期选择确认
         const clickDatePicker = async (name, tname, status = true) => {
             state.tag[name] = status;
             state.item[tname] = dayjs(state.status[tname]).format('YYYY-MM-DD');
         };
 
+        //数据有限性检查
         const checkValid = (element , keysElement = element) => {
-            const keys = Object.keys(keysElement);
-            console.log(`element key :${JSON.stringify(keysElement)}` , keys);
-            const invalidKey = keys.find(key => {
-                return !validField(key, element);
-            });
-            return invalidKey;
+            window.state = state;
+            return Betools.manage.checkValid(element , keysElement);
         }
 
         //页面滚动
