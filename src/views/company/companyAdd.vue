@@ -483,9 +483,9 @@ export default {
         });
 
         //返回上一页函数
-        const returnBack = () => {
-            console.log('returnBack');
-            $router.push("/company");
+        const returnBack = (back = '/company') => {
+            back = $route.query.back ? $route.query.back : '/company';
+            $router.push(back);
         };
 
         //点击搜索函数

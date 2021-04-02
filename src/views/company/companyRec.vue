@@ -252,9 +252,10 @@ export default {
             window.addEventListener("scroll", pageScroll);
         });
 
-        const returnBack = () => {
-            console.log('returnBack');
-            $router.push("/company");
+        //返回上一页函数
+        const returnBack = (back = '/company') => {
+            back = $route.query.back ? $route.query.back : '/company';
+            $router.push(back);
         };
 
         const searching = () => {

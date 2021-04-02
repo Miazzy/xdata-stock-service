@@ -17,7 +17,7 @@
                     <div class="weui-cell-title" style="">变更管理</div>
                     <div class="flex-layout-content" id="scanCell" style="">
                         <van-row>
-                            <van-col span="6" @click="redirectView('/alterationadd')" >
+                            <van-col span="6" @click="redirectView('/companyrec?back=/alteration')" >
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[0]">
                                 </van-badge>
