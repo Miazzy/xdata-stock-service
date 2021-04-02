@@ -301,10 +301,9 @@ export default {
             const company = state.companyNameColumns.find((item)=>{return item.name == state.item.companyName});
 
             //董监高对象数据
-            elem = {
-                id: company.id,
-                ...state.item,
-            };
+            elem = { id: company.id,  ...state.item, };
+            const { companyName, industry, companyCode,   registrationStatus,   cancellationTime,    licenseNumber,   businessScope,   registeredAddress,  registeredCapital,   paidCapital,  paidTime,  paidTureTime,   businessTerm,   companyType,   reason,  usages,  legalRepresentative,   sealKeeper,  liaison,   responsiblePerson,  remark } = elem ;
+            elem =  { companyName, industry, companyCode,   registrationStatus,   cancellationTime,    licenseNumber,   businessScope,   registeredAddress,  registeredCapital,   paidCapital,  paidTime,  paidTureTime,   businessTerm,   companyType,   reason,  usages,  legalRepresentative,   sealKeeper,  liaison,   responsiblePerson,  remark };
 
             //提交申请确认
             Dialog.confirm({
