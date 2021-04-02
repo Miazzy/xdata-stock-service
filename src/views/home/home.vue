@@ -57,21 +57,12 @@
 </template>
 
 <script>
-import {
-    ref,
-    reactive,
-    onMounted,
-    toRefs,
-    getCurrentInstance
-} from "vue";
-import {
-    useStore
-} from "vuex";
-import {
-    useRouter,
-    useRoute
-} from "vue-router";
+
+import { ref, reactive, onMounted, toRefs, getCurrentInstance } from "vue";
+import { useStore } from "vuex";
+import { useRouter, useRoute } from "vue-router";
 import tabbar from "@/components/tabbar";
+
 export default {
     name: "home",
     components: {
@@ -112,12 +103,30 @@ export default {
         };
 
         //搜索公司信息
-        const companySearch = async(data, key)=>{
+        const companySearch = async(data, key , time , curtime = new Date().getTime()/1000 , cacheKey = 'system_app_home_company_data' )=>{
+            time = Betools.storage.getStore(`${cacheKey}_expire`) || 0;
+            data = Betools.storage.getStore(`${cacheKey}`);
+            //如果缓存中没有获取到数据，则直接查询服务器
+            if(Betools.tools.isNull(data) || data.length == 0){
+                data = await companySearchData(data, key, cacheKey);
+                console.log(`storage cache : ${curtime}`);
+            }
+            state.companyColumns = data;
+            //如果缓存时间快到期，则重新查询数据
+            if((time - 3600 * 23.95) < curtime){
+                data = await companySearchData(data, key, cacheKey);
+                console.log(`refresh cache : ${curtime}`);
+            }
+        }
+
+        //查询公司工商数据
+        const companySearchData = async(data, key , cacheKey)=>{
             data = await Betools.manage.queryTableData('bs_company_flow_data', `_where=(companyName,like,~${key}~)&_sort=-id&_p=0&_size=30`); // 获取最近12个月的已用印记录
             data.map(item=>{
                 item.establish_time= dayjs(item.establish_time).format('YYYY-MM-DD');
             });
-            state.companyColumns = data;
+            Betools.storage.setStore(`${cacheKey}` ,JSON.stringify(data) , 3600 * 24);
+            return data;
         }
 
         //跳转页面
@@ -141,6 +150,7 @@ export default {
             pageScroll,
             redirctSearch,
             companySearch,
+            companySearchData,
             searchMore,
             redirectView,
         };
