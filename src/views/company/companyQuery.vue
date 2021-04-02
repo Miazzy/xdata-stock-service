@@ -71,7 +71,6 @@ export default {
         });
 
         onMounted(() => {
-            ctx.$eventBus.$emit("changeTag", 0);
             state.searchkey = $route.query.searchkey;
             companySearch(null,$route.query.searchkey);
             window.addEventListener("scroll", pageScroll);

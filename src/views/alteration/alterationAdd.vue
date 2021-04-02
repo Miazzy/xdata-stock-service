@@ -94,8 +94,7 @@ export default {
             },
         });
 
-        onMounted(() => {
-            ctx.$eventBus.$emit("changeTag", 0);
+        onMounted(() => { 
             window.addEventListener("scroll", pageScroll);
         });
 

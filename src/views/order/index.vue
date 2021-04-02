@@ -338,7 +338,6 @@ export default {
 
     onMounted(() => {
       setSearchWrapWidth();
-      ctx.$eventBus.$emit("changeTag", 1);
     });
 
     return {

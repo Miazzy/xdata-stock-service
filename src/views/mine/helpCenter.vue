@@ -94,7 +94,6 @@ export default {
          const activeNames = reactive({ values: ["1"] });
 
         onMounted(() => {
-            ctx.$eventBus.$emit("changeTag", 0);
             window.addEventListener("scroll", pageScroll);
         });
 

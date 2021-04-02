@@ -87,7 +87,6 @@ export default {
         });
 
         onMounted(() => {
-            ctx.$eventBus.$emit("changeTag", 0);
             companySearch(null,'');
             window.addEventListener("scroll", pageScroll);
         });

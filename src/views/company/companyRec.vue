@@ -248,7 +248,6 @@ export default {
         });
 
         onMounted(async () => {
-            ctx.$eventBus.$emit("changeTag", 0);
             state.geo.options = await Betools.manage.queryCity();
             window.addEventListener("scroll", pageScroll);
         });
