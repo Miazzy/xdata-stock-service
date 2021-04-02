@@ -121,7 +121,7 @@ export default {
                 address: '',
                 fieldValue: '',
                 cascaderValue: '',
-                options: null,
+                options: [],
             },
             companyNameColumns: [],
             companyTypeColumns: ['有限公司', '股份公司'],
