@@ -15,21 +15,17 @@
             <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%);">
 
                 <div class="weui-cells" style="margin-top:0px;">
-
                     <div class="weui-cells" style="margin-top:0px;border-bottom:0px solid #fefefe;">
                         <van-notice-bar v-show=" title!='' && title != null && typeof title != 'undefined' " left-icon="volume-o" color="#1989fa" background="#ecf9ff" :text="title" />
                     </div>
-
                     <div class="" id="scanCell" style="padding: 8px 10px 4px 10px;">
                         <van-row>
                             <van-col span="24" style="text-align: center;font-size:.475rem;">录入董监高申请</van-col>
                         </van-row>
                     </div>
-
                 </div>
 
                 <div id="weui-cells-flex" class="weui-cells" style="">
-
                     <van-cell-group>
                         <van-form>
                             <van-cell-group style="margin-top:10px;">
@@ -171,14 +167,9 @@ export default {
             scrollTop > 100 ?  (headerActive.value = true) :  (headerActive.value = false);
         };
 
+        //搜索数据确认函数
         const commonConfirm = async (index, value, key, item, type='company_ic') => {
             await Betools.manage.commonDataConfirm(index, value, key, item, state, Dialog, type);
-            //如果confirm了公司名称，需要带出公司的基础信息
-            if(type == 'company_ic'){
-                const element = state.companyNameColumns.find((item)=>{return item.companyName == value});
-                const { directorChairman, director, directorExecutive, manager, supervisorChairman, supervisor } = element;
-                state.director = { directorChairman, director, directorExecutive, manager, supervisorChairman, supervisor };
-            }
         };
 
         //搜索数据函数
