@@ -183,10 +183,18 @@ export default [{
     component: () =>
         import ('@/views/company/companyRec.vue')
 }, {
+    path: '/companyinfo', //businesslicense
+    name: 'companyinfo',
+    meta: {
+        index: 123
+    },
+    component: () =>
+        import ('@/views/company/companyInfo.vue')
+}, {
     path: '/companystockholder', //businesslicense
     name: 'companystockholder',
     meta: {
-        index: 123
+        index: 124
     },
     component: () =>
         import ('@/views/company/companyStockholder.vue')

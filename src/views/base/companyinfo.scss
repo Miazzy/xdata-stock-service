@@ -1,0 +1,573 @@
+.top-bar {
+    background: #ffffff;
+    height: 44px;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.top-bar-back {
+    float: left;
+    width: 50px;
+    height: 44px;
+    text-align: center;
+    line-height: 44px;
+}
+
+.top-bar-back img {
+    width: 13px;
+    position: relative;
+    top: 5px;
+}
+
+.top-bar-download {
+    float: right;
+    height: 44px;
+    line-height: 44px;
+    margin-right: 15px;
+    font-size: 13px;
+    color: #128bed;
+    padding-left: 20px;
+    background-image: url("http://share.qichacha.com/wxa-service/download_report.png");
+    background-size: 15px;
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+}
+
+.top-bar-home {
+    float: right;
+    height: 44px;
+    line-height: 46px;
+    margin-right: 10px;
+    font-size: 13px;
+    color: #128bed;
+    padding-left: 20px;
+    background-image: url("http://share.qichacha.com/wxa-service/back_home.png");
+    background-size: 15px;
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+}
+
+.content {
+    width: 100%;
+    top: 52px;
+    bottom: 0px;
+    border-top: solid 1px #f1f3f4;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    position: absolute;
+}
+
+.content-block {
+    background: #ffffff;
+    margin-bottom: 10px;
+}
+
+.company-name {
+    padding: 15px 10px;
+    font-size: 15px;
+    color: #333333;
+    line-height: 25px;
+}
+
+.company-status {
+    padding: 0 5px;
+    text-align: center;
+    height: 20px;
+    line-height: 18px;
+    display: inline-block;
+    font-size: 12px;
+    margin-left: 10px;
+    border-radius: 3px;
+}
+
+.status-normal {
+    border: 1px solid #128bed;
+    color: #128bed;
+}
+
+.status-exception {
+    border: 1px solid #ff9797;
+    color: #ff9797;
+}
+
+.oper-warp {
+    padding: 0 10px;
+    margin-bottom: 15px;
+}
+
+.oper {
+    font-size: 13px;
+    color: #128bed;
+}
+
+.oper-desc {
+    font-size: 11px;
+    color: #999;
+    margin-left: 10px;
+}
+
+.contact-info-wrap {
+    padding: 0 10px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.phone {
+    width: 50%;
+    float: left;
+    color: #128bed;
+    font-size: 13px;
+    background-image: url("http://share.qichacha.com/wxa-service/phone.png");
+    background-size: 13px;
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+    padding-left: 20px;
+}
+
+.phone {
+    display: block;
+    margin-bottom: 3px;
+}
+
+.email {
+    width: auto;
+    float: left;
+    color: #128bed;
+    font-size: 13px;
+    background-image: url("http://share.qichacha.com/wxa-service/email.png");
+    background-size: 13px;
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+    padding-left: 20px;
+}
+
+.address {
+    padding: 10px 10px 15px 30px;
+    background-image: url("http://share.qichacha.com/wxa-service/address.png");
+    background-size: 13px;
+    background-position: 10px 15px;
+    background-repeat: no-repeat;
+    color: #333333;
+    font-size: 13px;
+}
+
+.refresh-time {
+    position: relative;
+    height: 44px;
+    line-height: 44px;
+    border-top: 1px solid #eeeeee;
+    background-image: url("http://share.qichacha.com/wxa-service/refresh_time.png");
+    background-size: 13px;
+    background-position: 10px 50%;
+    background-repeat: no-repeat;
+    padding: 0 10px 0 30px;
+    font-size: 13px;
+    color: #333333;
+}
+
+.refresh-button {
+    position: absolute;
+    width: 68px;
+    height: 30px;
+    line-height: 30px;
+    background: #128bed;
+    color: #ffffff;
+    text-align: center;
+    right: 10px;
+    top: 7px;
+    border-radius: 4px;
+}
+
+.refresh-button:active {
+    background: #136DED;
+}
+
+.tab-out-wrap {
+    height: 44px;
+    margin-bottom: 10px;
+}
+
+.tab-wrap {
+    width: 100%;
+    overflow: hidden;
+    background: #ffffff;
+    margin-bottom: 10px;
+}
+
+.tab-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-bottom: 1px solid #eee;
+}
+
+.tab {
+    float: left;
+    width: 25%;
+    text-align: center;
+    height: 44px;
+    line-height: 44px;
+    font-size: 15px;
+    color: #333333;
+}
+
+.tab-active {
+    color: #128bed;
+    /*border-bottom: 2px solid #128bed;*/
+}
+
+.block-title {
+    height: 44px;
+    line-height: 44px;
+    padding: 0 10px;
+    position: relative;
+    font-size: 15px;
+    color: #333333;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.block-num {
+    position: absolute;
+    right: 35px;
+    font-size: 13px;
+    color: #999999;
+}
+
+.block-title .darrow {
+    transform: rotate(135deg);
+    margin-top: -7px;
+}
+
+.basic-wrap {
+    padding: 5px 0px;
+}
+
+.basic-item {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 15px;
+    position: relative;
+}
+
+.basic-item-left {
+    width: 52px;
+    float: left;
+    color: #999999;
+    font-size: 13px;
+}
+
+.basic-item-right {
+    margin-left: 69px;
+    font-size: 13px;
+    color: #333333;
+}
+
+.basic-invest {
+    position: absolute;
+    right: 10px;
+    font-size: 13px;
+    top: 0;
+    background-image: url("http://share.qichacha.com/wxa-service/invest.png");
+    background-size: 15px;
+    background-position: 100% 50%;
+    background-repeat: no-repeat;
+    padding-right: 20px;
+}
+
+.stock-wrap {
+    padding-left: 10px;
+}
+
+.stock-title {
+    font-size: 15px;
+    color: #128bed;
+    padding: 10px 0px;
+}
+
+.stock-title:after {
+    display: table;
+    content: " ";
+    clear: both;
+}
+
+.stock-invest {
+    float: right;
+    color: #999999;
+    font-size: 13px;
+    background-image: url("http://share.qichacha.com/wxa-service/invest.png");
+    background-size: 15px;
+    background-position: 100% 50%;
+    background-repeat: no-repeat;
+    padding-right: 20px;
+    margin-right: 10px;
+    line-height: 22px;
+}
+
+.stock-content {
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+    padding: 15px 10px 15px 0;
+}
+
+.stock-row {
+    width: 100%;
+    overflow: hidden;
+}
+
+.stock-col-left {
+    float: left;
+    width: 50%;
+}
+
+.stock-col-right {
+    padding-left: 10px;
+    width: 50%;
+    float: left;
+    border-left: 1px solid #eeeeee;
+}
+
+.stock-subtitle {
+    color: #999999;
+    font-size: 13px;
+}
+
+.stock-text {
+    color: #333333;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.employee-item {
+    border-bottom: 1px solid #eeeeee;
+    padding: 10px 10px 10px 0;
+    position: relative;
+}
+
+.employee-item img {
+    float: left;
+    width: 45px;
+}
+
+.employee-content {
+    margin-left: 55px;
+}
+
+.employee-name {
+    font-size: 15px;
+    color: #128bed;
+}
+
+.employee-job {
+    font-size: 13px;
+    color: #999999;
+    margin-top: 10px;
+}
+
+.employee-invest {
+    position: absolute;
+    top: 25px;
+    right: 10px;
+    color: #999999;
+    font-size: 13px;
+    background-image: url("http://share.qichacha.com/wxa-service/invest.png");
+    background-size: 15px;
+    background-position: 100% 50%;
+    background-repeat: no-repeat;
+    padding-right: 20px;
+    line-height: 28px;
+}
+
+.change-item {
+    position: relative;
+    padding: 15px 10px 15px 10px;
+}
+
+.change-head {
+    display: flex;
+}
+
+.change-title {
+    flex: 1;
+    font-size: 13px;
+    color: #333;
+    padding-right: 10px;
+    line-height: 1.3;
+}
+
+.change-date {
+    font-size: 13px;
+    color: #999;
+}
+
+.change-start {
+    color: #999;
+    font-size: 12px;
+}
+
+.change-content {
+    margin-top: 10px;
+    width: 100%;
+    overflow: hidden;
+    background: #f8f8f8;
+    padding: 15px 0;
+    display: flex;
+}
+
+.change-left {
+    width: 50%;
+    float: left;
+    padding: 0 10px;
+}
+
+.change-right {
+    width: 50%;
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid #eeeeee;
+}
+
+.change-item-title {
+    font-size: 13px;
+    color: #999;
+}
+
+.change-item-content {
+    margin-top: 5px;
+    font-size: 13px;
+    color: #333;
+}
+
+.change-item-content a {
+    margin-top: 5px;
+    font-size: 13px;
+    color: #128bed;
+}
+
+.change-item-content .ln {
+    margin-bottom: 5px;
+}
+
+.change-border {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 10px;
+    border-left: 1px solid #eeeeee;
+}
+
+.change-circle {
+    width: 10px;
+    height: 10px;
+    background: #b8b8b8;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    left: 5px;
+}
+
+.bg-blue {
+    background: #128bed;
+}
+
+.text-blue {
+    color: #128bed;
+}
+
+.module-row {
+    width: 100%;
+    overflow: hidden;
+}
+
+.module-row a:hover,
+.module-row a:visited,
+.module-row a:link,
+.module-row a {
+    color: #eee;
+}
+
+.module-col-4 {
+    width: 25%;
+    float: left;
+    padding: 15px 0;
+    position: relative;
+}
+
+.module-col-4:active {
+    background: #f1f4f4;
+}
+
+.module-num {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 13px;
+    color: #999999;
+}
+
+.module-img {
+    text-align: center;
+}
+
+.module-img img {
+    width: 40px;
+}
+
+.module-name {
+    color: #333333;
+    font-size: 13px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.module-name-gray {
+    color: #999999;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #eee;
+}
+
+.border-right {
+    border-right: 1px solid #eee;
+}
+
+.content-bottom {
+    background: #ffffff;
+    padding: 15px 10px;
+}
+
+.bottom-title {
+    font-size: 15px;
+    color: #333333;
+    text-align: center;
+}
+
+.bottom-content {
+    margin-top: 10px;
+    color: #999999;
+    font-size: 13px;
+}
+
+.bottom-btn-wrap {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.download-btn {
+    background: #128bed;
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-block;
+    width: 90%;
+    height: 44px;
+    line-height: 44px;
+    border-radius: 5px;
+}
+
+.fixtab {
+    border-top: solid 1px #f1f3f4;
+    top: 52px;
+    position: fixed;
+    background: #fff;
+    border-bottom: 1px solid #f1f3f4;
+    z-index: 9;
+}
