@@ -279,6 +279,10 @@ export default {
             if(type == 'company_ic'){
                 const element = state.companyNameColumns.find((item)=>{return item.companyName == value});
                 state.item = element;
+                state.item.create_time = dayjs(element.create_time).format('YYYY-MM-DD');
+                state.item.paidTime =  dayjs(element.paidTime).format('YYYY-MM-DD');
+                state.item.paidTureTime =  dayjs(element.paidTureTime).format('YYYY-MM-DD');
+                state.item.businessTerm =  dayjs(element.businessTerm).format('YYYY-MM-DD');
             }
         };
 
@@ -302,8 +306,8 @@ export default {
 
             //董监高对象数据
             elem = { id: company.id,  ...state.item, };
-            const { companyName, industry, companyCode,   registrationStatus,   cancellationTime,    licenseNumber,   businessScope,   registeredAddress,  registeredCapital,   paidCapital,  paidTime,  paidTureTime,   businessTerm,   companyType,   reason,  usages,  legalRepresentative,   sealKeeper,  liaison,   responsiblePerson,  remark } = elem ;
-            elem =  { companyName, industry, companyCode,   registrationStatus,   cancellationTime,    licenseNumber,   businessScope,   registeredAddress,  registeredCapital,   paidCapital,  paidTime,  paidTureTime,   businessTerm,   companyType,   reason,  usages,  legalRepresentative,   sealKeeper,  liaison,   responsiblePerson,  remark };
+            const { id , companyName, industry, companyCode,   registrationStatus,   cancellationTime,    licenseNumber,   businessScope,   registeredAddress,  registeredCapital,   paidCapital,  paidTime,  paidTureTime,   businessTerm,   companyType,   reason,  usages,  legalRepresentative,   sealKeeper,  liaison,   responsiblePerson,  remark } = elem ;
+            elem =  { id, companyName, industry, companyCode,   registrationStatus,   cancellationTime,    licenseNumber,   businessScope,   registeredAddress,  registeredCapital,   paidCapital,  paidTime,  paidTureTime,   businessTerm,   companyType,   reason,  usages,  legalRepresentative,   sealKeeper,  liaison,   responsiblePerson,  remark };
 
             //提交申请确认
             Dialog.confirm({
