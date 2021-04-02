@@ -461,7 +461,6 @@ export default {
         onMounted(async () => {
             ctx.$eventBus.$emit("changeTag", 0);
             state.geo.options = await Betools.manage.queryCity();
-            
             window.addEventListener("scroll", pageScroll);
         });
 
@@ -476,11 +475,9 @@ export default {
             console.log('searching');
         };
 
-        const companyCode = ({
-            selectedOptions
-        }) => {
+        const companyCode = (config) => {
             state.geo.show = false;
-            state.item.companyCode = selectedOptions.map((option) => option.text).join('/');
+            state.item.companyCode = config.selectedOptions.map((option) => option.text).join('/');
         };
 
         const commonConfirm = async (index, value, key, item , type = '') => {
