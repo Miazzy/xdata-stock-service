@@ -10,13 +10,13 @@
             <form action="/search" id="V3_Index_S" style="margin-left:2.5%;margin-right:2.5%;text-algin:center;">
                 <div class="home-input-outside-wrap" style="width:100%;">
                     <div class="home-input-wrap"> <input type="text" placeholder="请输入企业名称、人名、品牌、地址等" v-model="state.searchkey" id="searchkey" name="key" autocomplete="off"> </div>
-                    <div class="home-search-icon" id="V3_Search_bt" style="cursor: pointer;" @click="companySearch(null,state.searchkey);"> <span class="btn">查一下</span> </div>
+                    <div class="home-search-icon" id="V3_Search_bt" style="cursor: pointer;" @click="redirctSearch(null,state.searchkey);"> <span class="btn">查一下</span> </div>
                 </div>
             </form>
         </div>
         <div id="company-query-content" class="home-latestcompany" style="margin-bottom:50px;">
             <div class="home-middle-title-wrap">
-                <div class="home-middle-title">企业注册信息 <a class="home-middle-title-more"  @click="redirectView('/companyquery?back=/index');"  >查看更多</a></div>
+                <div class="home-middle-title">企业注册信息 <a class="home-middle-title-more"  @click="redirctSearch(null,state.searchkey);"  >查看更多</a></div>
             </div>
             <div class="home-middle-content"> 
                 <template v-for="(item , index) in state.companyColumns" :key="index">
@@ -102,31 +102,32 @@ export default {
         });
 
         const pageScroll = () => {
-            const scrollTop =
-                window.pageYOffset ||
-                document.documentElement.scrollTop ||
-                document.body.scrollTop;
-            scrollTop > 100 ?
-                (headerActive.value = true) :
-                (headerActive.value = false);
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+            scrollTop > 100 ?  (headerActive.value = true) :  (headerActive.value = false);
+        };
+
+        //跳转到搜索页面
+        const redirctSearch = async (data, key) => {
+            $router.push(`/companyquery?searchkey=${key}&back=/index`);
         };
 
         //搜索公司信息
-        const companySearch = async (data, key) => {
+        const companySearch = async(data, key)=>{
             data = await Betools.manage.queryTableData('bs_company_flow_data', `_where=(companyName,like,~${key}~)&_sort=-id&_p=0&_size=30`); // 获取最近12个月的已用印记录
             data.map(item=>{
                 item.establish_time= dayjs(item.establish_time).format('YYYY-MM-DD');
-            })
+            });
             state.companyColumns = data;
-        };
+        }
 
+        //跳转页面
         const redirectView = (path) =>{
             $router.push(path);
         }
 
         //查看更多
         const searchMore = async() => {
-            $router.push('/companyquery');
+            $router.push(`/companyquery?searchkey=${state.searchkey}&back=/index`);
         };
         
         //查询默认公司列表信息
@@ -138,6 +139,7 @@ export default {
             headerActive,
             state,
             pageScroll,
+            redirctSearch,
             companySearch,
             searchMore,
             redirectView,
