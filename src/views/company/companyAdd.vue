@@ -56,6 +56,7 @@
                                 <common-select :showTag="state.tag.showLiaison" :modelColumns="state.liaisonColumns" fieldName="liaison" :modelValue="state.item.liaison" :element="state.item" type="user" v-model="state.item.liaison" labelName="备案联络员" placeholderName="请选择工商备案联络员" @search="commonSearch" @confirm="commonConfirm" />
                                 <common-select :showTag="state.tag.showResponsiblePerson" :modelColumns="state.responsiblePersonColumns" fieldName="responsiblePerson" :modelValue="state.item.responsiblePerson" :element="state.item" type="user" v-model="state.item.responsiblePerson" labelName="财务负责人" placeholderName="请选择工商备案财务负责人" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="备注信息" v-model="state.item.remark" rows="1" autosize type="textarea" placeholder="请输入备注信息" />
+                                <van-field required :readonly="false" clickable clearable label="公司简介" v-model="state.item.brief_info" rows="1" autosize type="textarea" placeholder="请输入公司简介" />
                             </van-cell-group>
                         </van-form>
                     </van-cell-group>
@@ -316,6 +317,10 @@ export default {
             item: {
                 create_time: dayjs().format('YYYY-MM-DD'),
                 companyName: '', //公司名称
+                companyNameEn: '', //英文名称
+                regist_number:'', //工商注册号
+                organ_code:'',//组织机构代码
+                regist_authority:'',//登记机关
                 industry: '', //所属行业
                 companyCode: '', //所属区域
                 registrationStatus: '', //登记状态
@@ -336,6 +341,7 @@ export default {
                 liaison: '', //备案联络员
                 responsiblePerson: '', //财务负责人
                 remark: '', //备注信息
+                brief_info:'', //公司简介
             },
             director: {
                 directorChairman: '', //董事长
