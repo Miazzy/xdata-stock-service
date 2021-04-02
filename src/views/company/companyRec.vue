@@ -271,67 +271,24 @@ export default {
             state.item.companyCode = config.selectedOptions.map((option) => option.text).join('/');
         };
 
+        //确认数据操作
         const commonConfirm = async (index, value, key, item, type='') => {
             await Betools.manage.commonDataConfirm(index, value, key, item, state, Dialog, type);
-            //如果confirm了公司名称，需要带出公司的基础信息
-            if(type == 'company_ic'){
-                const element = state.companyNameColumns.find((item)=>{return item.companyName == value});
-                state.item = element;
-                state.item.create_time = dayjs(element.create_time).format('YYYY-MM-DD');
-                state.item.paidTime =  dayjs(element.paidTime).format('YYYY-MM-DD');
-                state.item.paidTureTime =  dayjs(element.paidTureTime).format('YYYY-MM-DD');
-                state.item.businessTerm =  dayjs(element.businessTerm).format('YYYY-MM-DD');
-                state.item.establish_time =  dayjs(element.establish_time).format('YYYY-MM-DD');
-                state.item.examine_date =  dayjs(element.examine_date).format('YYYY-MM-DD');
-            }
         };
 
+        //搜索数据查找
         const commonSearch = async (data, value, key, fieldKey, type = 'user') => {
             await Betools.manage.commonDataSearch(data, value, key, fieldKey, state, type);
         };
 
+        //取消操作
         const cancel = async() => {
-            Dialog.confirm({
-                title: '取消录入工商信息申请？',
-                message: '点击‘确认’后返回上一页',
-            }).then(() => { // on confirm
-                returnBack();
-            });
+            await Betools.manage.cancelAndBack(Dialog , returnBack , '取消录入工商信息申请？');
         };
 
+        //确认操作
         const confirm = async(result = null , elem = null , nodes = []) => {
-
-            //查询公司名称
-            const company = state.companyNameColumns.find((item)=>{return item.name == state.item.companyName});
-
-            //董监高对象数据
-            elem = { id: company.id,  ...state.item, };
-            const { id , companyName, companyNameEn , brief_info, industry, taxpayer_id , regist_number , organ_code , establish_time , examine_date , companyCode,   registrationStatus,   cancellationTime,    licenseNumber,   businessScope,   registeredAddress,  registeredCapital,   paidCapital,  paidTime,  paidTureTime,   businessTerm,   companyType,   reason,  usages,  legalRepresentative,   sealKeeper,  liaison,   responsiblePerson,  remark } = elem ;
-            elem =  { id, companyName, companyNameEn, brief_info, industry, taxpayer_id, regist_number , organ_code , establish_time , examine_date , companyCode,   registrationStatus,   cancellationTime,    licenseNumber,   businessScope,   registeredAddress,  registeredCapital,   paidCapital,  paidTime,  paidTureTime,   businessTerm,   companyType,   reason,  usages,  legalRepresentative,   sealKeeper,  liaison,   responsiblePerson,  remark };
-
-            //提交申请确认
-            Dialog.confirm({
-                title: '确认提交录入工商信息申请？',
-                message: `点击‘确认’后提交录入工商信息申请！`,
-            }).then(async () => { // on confirm
-
-                //向表单提交form对象数据（工商信息）
-                result = await Betools.manage.patchTableData('bs_company_flow_data', elem.id , elem);
-
-                //如果提交修改数据成功，则新增id的bs_company_flow_manager数据数据
-                if (result.protocol41 == true && result.affectedRows > 0 ) {
-                    //提示用户操作成功，并返回上一页
-                    await Dialog.confirm({ title: '提交录入工商信息申请成功！', });
-                    await Betools.tools.sleep(300);
-                    await returnBack();
-                } else {
-                    await Dialog.confirm({
-                        title: `提交录入申请失败，请联系管理员进行处理，Error:[${JSON.stringify(result)}]！`,
-                    });
-                }
-
-            });
-
+            await Betools.manage.confirmCompanyRec(result, elem , nodes, state, Dialog, returnBack) ;
         };
 
         return {
