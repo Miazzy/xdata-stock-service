@@ -17,19 +17,19 @@
                     <div class="weui-cell-title" style="">变更管理</div>
                     <div class="flex-layout-content" id="scanCell" style="">
                         <van-row>
-                            <van-col span="6" @click="redirectView('/companyrec?back=/alteration')" >
+                            <van-col span="6" @click="redirectView('/companyrec?back=/alteration&title=公司变更')" >
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[0]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">公司变更</div>
                             </van-col>
-                            <van-col span="6" @click="redirectView('/alterationadd')" >
+                            <van-col span="6" @click="redirectView('/companystockholder?back=/alteration&title=股东变更')" >
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[1]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">股东变更</div>
                             </van-col>
-                            <van-col span="6" @click="redirectView('/alterationadd')" >
+                            <van-col span="6" @click="redirectView('/companydirector?back=/alteration&title=高管变更')" >
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[2]">
                                 </van-badge>
