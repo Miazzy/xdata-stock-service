@@ -197,11 +197,9 @@
 </template>
 
 <script>
-import {
-    ref,
-    onMounted,
-    getCurrentInstance
-} from "vue";
+
+import { ref, onMounted, getCurrentInstance } from "vue";
+
 export default {
     name: "mine",
     setup() {
