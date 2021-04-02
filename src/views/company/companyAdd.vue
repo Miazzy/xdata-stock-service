@@ -571,13 +571,8 @@ export default {
 
         //页面滚动
         const pageScroll = () => {
-            const scrollTop =
-                window.pageYOffset ||
-                document.documentElement.scrollTop ||
-                document.body.scrollTop;
-            scrollTop > 100 ?
-                (headerActive.value = true) :
-                (headerActive.value = false);
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+            scrollTop > 100 ?  (headerActive.value = true) :  (headerActive.value = false);
         };
 
         //取消函数
@@ -587,8 +582,6 @@ export default {
                 message: '点击‘确认’后返回上一页',
             }).then(() => { // on confirm
                 returnBack();
-            }).catch(() => { // on cancel
-
             });
         }
 
@@ -600,7 +593,7 @@ export default {
             let managerNodes = [];
 
             // 获取用户信息
-            // const userinfo = await Betools.storage.getStore('system_userinfo');
+            const userinfo = await Betools.storage.getStore('system_userinfo');
             
             const company = state.companyNameColumns.find((item)=>{return item.name == state.item.companyName});
             elem = {
@@ -611,7 +604,7 @@ export default {
                 ...state.stock,
             };
             companyNodes.push(elem);
-            // console.log(`element:`,JSON.stringify(elem));
+            console.log(`element:`,JSON.stringify(elem));
 
             Dialog.confirm({
                 title: '确认提交设立公司申请？',
