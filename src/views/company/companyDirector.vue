@@ -171,7 +171,7 @@ export default {
             scrollTop > 100 ?  (headerActive.value = true) :  (headerActive.value = false);
         };
 
-        const commonConfirm = async (index, value, key, item, type='') => {
+        const commonConfirm = async (index, value, key, item, type='company_ic') => {
             await Betools.manage.commonDataConfirm(index, value, key, item, state, Dialog, type);
             //如果confirm了公司名称，需要带出公司的基础信息
             if(type == 'company_ic'){

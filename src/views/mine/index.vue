@@ -221,7 +221,7 @@ export default {
         };
 
         onMounted(() => {
-            ctx.$eventBus.$emit("changeTag", 3);
+
         });
 
         return {

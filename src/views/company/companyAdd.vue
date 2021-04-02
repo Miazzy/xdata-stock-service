@@ -493,11 +493,9 @@ export default {
             console.log('searching');
         };
 
-        const companyCode = ({
-            selectedOptions
-        }) => {
+        const companyCode = (config) => {
             state.geo.show = false;
-            state.item.companyCode = selectedOptions.map((option) => option.text).join('/');
+            state.item.companyCode = config.selectedOptions.map((option) => option.text).join('/');
         };
 
         const commonConfirm = async (index, value, key, item , type = '') => {
@@ -522,8 +520,9 @@ export default {
             state.item[tname] = dayjs(state.status[tname]).format('YYYY-MM-DD');
         };
 
-        const checkValid = (element) => {
-            const keys = Object.keys(element);
+        const checkValid = (element , keysElement = element) => {
+            const keys = Object.keys(keysElement);
+            console.log(`element key :${JSON.stringify(keysElement)}` , keys);
             const invalidKey = keys.find(key => {
                 return !validField(key, element);
             });

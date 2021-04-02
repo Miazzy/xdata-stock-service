@@ -91,7 +91,6 @@ export default {
 
     onMounted(async () => {
       setSearchWrapHeight();
-      ctx.$eventBus.$emit("changeTag", 1);
       const { data } = await ctx.$http.get(
         "http://test.happymmall.com/category/categoryData"
       );

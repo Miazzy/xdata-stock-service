@@ -266,6 +266,11 @@ export default {
             scrollTop > 100 ?  (headerActive.value = true) :  (headerActive.value = false);
         };
 
+        const companyCode = (config) => {
+            state.geo.show = false;
+            state.item.companyCode = config.selectedOptions.map((option) => option.text).join('/');
+        };
+
         const commonConfirm = async (index, value, key, item, type='') => {
             await Betools.manage.commonDataConfirm(index, value, key, item, state, Dialog, type);
             //如果confirm了公司名称，需要带出公司的基础信息
@@ -336,6 +341,7 @@ export default {
             searching,
             headerActive,
             pageScroll,
+            companyCode,
             commonConfirm,
             commonSearch,
             cancel,
