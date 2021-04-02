@@ -4,7 +4,7 @@
     <div id="content" style="margin-top: 0px; overflow-x: hidden;">
 
         <header id="wx-header">
-            <van-nav-bar title="录入工商信息" left-text="返回" left-arrow @click-left="returnBack" @click-right="searching">
+            <van-nav-bar :title="state.title" left-text="返回" left-arrow @click-left="returnBack" @click-right="searching">
                 <template #right>
                     <van-icon name="search" />
                 </template>
@@ -22,7 +22,7 @@
 
                     <div class="" id="scanCell" style="padding: 8px 10px 4px 10px;">
                         <van-row>
-                            <van-col span="24" style="text-align: center;font-size:.475rem;">录入工商信息申请</van-col>
+                            <van-col span="24" style="text-align: center;font-size:.475rem;">{{state.title}}申请</van-col>
                         </van-row>
                     </div>
 
@@ -116,6 +116,7 @@ export default {
         const headerActive = ref(false);
 
         const state = reactive({
+            title:'录入工商信息',
             geo: {
                 show: false,
                 address: '',
@@ -248,6 +249,7 @@ export default {
         });
 
         onMounted(async () => {
+            state.title = $route.query.title ? $route.query.title : state.title;
             state.geo.options = await Betools.manage.queryCity();
             window.addEventListener("scroll", pageScroll);
         });

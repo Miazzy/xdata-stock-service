@@ -4,7 +4,7 @@
     <div id="content" style="margin-top: 0px; overflow-x: hidden;">
 
         <header id="wx-header">
-            <van-nav-bar title="录董监高" left-text="返回" left-arrow @click-left="returnBack" @click-right="searching">
+            <van-nav-bar :title="state.title" left-text="返回" left-arrow @click-left="returnBack" @click-right="searching">
                 <template #right>
                     <van-icon name="search" />
                 </template>
@@ -20,7 +20,7 @@
                     </div>
                     <div class="" id="scanCell" style="padding: 8px 10px 4px 10px;">
                         <van-row>
-                            <van-col span="24" style="text-align: center;font-size:.475rem;">录入董监高申请</van-col>
+                            <van-col span="24" style="text-align: center;font-size:.475rem;">{{state.title}}申请</van-col>
                         </van-row>
                     </div>
                 </div>
@@ -79,6 +79,7 @@ export default {
         const headerActive = ref(false);
 
         const state = reactive({
+            title:'录董监高',
             companyNameColumns: [],
             directorChairmanColumns: [],
             directorColumns: [],
@@ -150,6 +151,7 @@ export default {
         });
 
         onMounted(() => {
+            state.title = $route.query.title ? $route.query.title : state.title;
             window.addEventListener("scroll", pageScroll);
         });
 
