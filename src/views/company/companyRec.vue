@@ -302,8 +302,8 @@ export default {
 
             //董监高对象数据
             elem = { id: company.id,  ...state.item, };
-            const { id , companyName, industry, companyCode,   registrationStatus,   cancellationTime,    licenseNumber,   businessScope,   registeredAddress,  registeredCapital,   paidCapital,  paidTime,  paidTureTime,   businessTerm,   companyType,   reason,  usages,  legalRepresentative,   sealKeeper,  liaison,   responsiblePerson,  remark } = elem ;
-            elem =  { id, companyName, industry, companyCode,   registrationStatus,   cancellationTime,    licenseNumber,   businessScope,   registeredAddress,  registeredCapital,   paidCapital,  paidTime,  paidTureTime,   businessTerm,   companyType,   reason,  usages,  legalRepresentative,   sealKeeper,  liaison,   responsiblePerson,  remark };
+            const { id , companyName, companyNameEn , brief_info, industry, taxpayer_id , regist_number , organ_code , establish_time , examine_date , companyCode,   registrationStatus,   cancellationTime,    licenseNumber,   businessScope,   registeredAddress,  registeredCapital,   paidCapital,  paidTime,  paidTureTime,   businessTerm,   companyType,   reason,  usages,  legalRepresentative,   sealKeeper,  liaison,   responsiblePerson,  remark } = elem ;
+            elem =  { id, companyName, companyNameEn, brief_info, industry, taxpayer_id, regist_number , organ_code , establish_time , examine_date , companyCode,   registrationStatus,   cancellationTime,    licenseNumber,   businessScope,   registeredAddress,  registeredCapital,   paidCapital,  paidTime,  paidTureTime,   businessTerm,   companyType,   reason,  usages,  legalRepresentative,   sealKeeper,  liaison,   responsiblePerson,  remark };
 
             //提交申请确认
             Dialog.confirm({
