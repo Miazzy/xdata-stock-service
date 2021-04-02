@@ -186,12 +186,7 @@ export default {
         };
 
         const cancel = async() => {
-            Dialog.confirm({
-                title: '取消录入董监高申请？',
-                message: '点击‘确认’后返回上一页',
-            }).then(() => { // on confirm
-                returnBack();
-            });
+            await Betools.manage.cancelAndBack(Dialog , returnBack , '取消录入董监高申请？');
         };
 
         const confirm = async(result = null , elem = null , nodes = []) => {
