@@ -323,12 +323,6 @@ export default {
 
         const commonConfirm = async (index, value, key, item, type='') => {
             await Betools.manage.commonDataConfirm(index, value, key, item, state, Dialog, type);
-            //如果confirm了公司名称，需要带出公司的基础信息
-            if(type == 'company_ic'){
-                const element = state.companyNameColumns.find((item)=>{return item.companyName == value});
-                const { shareholder0, ratioDetail0, shareholder1, ratioDetail1, shareholder2, ratioDetail2, shareholder3, ratioDetail3, shareholder4, ratioDetail4, shareholder5, ratioDetail5,shareholder6, ratioDetail6, shareholder7, ratioDetail7, shareholder8, ratioDetail8, shareholder9, ratioDetail9, shareholder10, ratioDetail10, shareholder11, ratioDetail11, shareholder12, ratioDetail12, shareholder13, ratioDetail13, shareholder14, ratioDetail14, shareholder15, ratioDetail15, shareholder16, ratioDetail16, shareholder17, ratioDetail17, shareholder18, ratioDetail18, shareholder19, ratioDetail19,} = element;
-                state.stock = { shareholder0, ratioDetail0, shareholder1, ratioDetail1, shareholder2, ratioDetail2, shareholder3, ratioDetail3, shareholder4, ratioDetail4, shareholder5, ratioDetail5,shareholder6, ratioDetail6, shareholder7, ratioDetail7, shareholder8, ratioDetail8, shareholder9, ratioDetail9, shareholder10, ratioDetail10, shareholder11, ratioDetail11, shareholder12, ratioDetail12, shareholder13, ratioDetail13, shareholder14, ratioDetail14, shareholder15, ratioDetail15, shareholder16, ratioDetail16, shareholder17, ratioDetail17, shareholder18, ratioDetail18, shareholder19, ratioDetail19,};
-            }
         };
 
         const commonSearch = async (data, value, key, fieldKey, type = 'user') => {
@@ -336,97 +330,11 @@ export default {
         };
 
         const cancel = async() => {
-            Dialog.confirm({
-                title: '取消录入股东申请？',
-                message: '点击‘确认’后返回上一页',
-            }).then(() => { // on confirm
-                returnBack();
-            });
+            await Betools.manage.cancelAndBack(Dialog, returnBack, '取消录入股东申请？') ;
         };
 
         const confirm = async(result = null , elem = null , nodes = []) => {
-            let linkNodes = [];
-            let stockNodes = [];
-
-            //查询公司名称
-            const company = state.companyNameColumns.find((item)=>{return item.name == state.item.companyName});
-
-            //董监高对象数据
-            elem = {
-                id: company.id,
-                ...state.stock,
-            };
-
-            //提交申请确认
-            Dialog.confirm({
-                title: '确认提交录入股东申请？',
-                message: `点击‘确认’后提交录入股东申请！`,
-            }).then(async () => { // on confirm
-
-                //向表单提交form对象数据（董监高）
-                result = await Betools.manage.patchTableData('bs_company_flow_data', elem.id , elem);
-
-                //如果提交修改数据成功，则新增id的bs_company_flow_manager数据数据
-                if (result.protocol41 == true && result.affectedRows > 0 ) {
-
-                    //删除pid为elem.id的bs_company_flow_manager数据
-                    result = await Betools.manage.deleteTableDataByWhere('bs_company_flow_stock', 'pid' , elem.id);
-                    result = await Betools.manage.deleteTableDataByWhere('bs_company_flow_link', 'pid' , elem.id);
-
-                    //检查董监高信息
-                    for(let i =0 ;  i < 20 ; ){
-                        if( state.stock && state.stock['shareholder' + i] ){
-                            //设置股权关系，即股东A 持有 公司B 多少比例 股权
-                            const ratio = {
-                                id: Betools.tools.queryUniqueID(),
-                                pid: elem.id,
-                                from_id:state.stock['shareholder'+i],
-                                to_id:company.id,
-                                from_company: state.stock['shareholder'+i],
-                                to_company:company.name,
-                                label:state.stock['ratioDetail'+i],
-                                linkStatus:0,
-                            }
-                            //设置stock信息，即公司A拥有股东B
-                            const element = {
-                                id: Betools.tools.queryUniqueID(),
-                                pid: elem.id,
-                                shareholder:state.stock['shareholder'+i],
-                                ratioDetail:state.stock['ratioDetail'+i],
-                                type:'100',
-                                typeName:'shareholder',
-                                companyName:company.name,
-                            }
-                            linkNodes.push(ratio);
-                            stockNodes.push(element);
-                        }
-                        i++;
-                    }                    
-
-                    //需要提交的表单数据
-                    const multiElement = {
-                        'tname':'bs_company_flow_link,bs_company_flow_stock',
-                        'bs_company_flow_link':linkNodes,
-                        'bs_company_flow_stock':stockNodes,
-                    };
-
-                    //第三步，向表单提交form对象数据
-                    console.log(`第三步，向表单提交form对象数据`);
-                    result = await Betools.manage.multiTableData('bs_dynamic', multiElement);
-                    await Betools.tools.sleep(Math.random() * 10);
-
-                    //提示用户操作成功，并返回上一页
-                    await Dialog.confirm({ title: '提交录入股东申请成功！', });
-                    await Betools.tools.sleep(300);
-                    await returnBack();
-                } else {
-                    await Dialog.confirm({
-                        title: `提交录入申请失败，请联系管理员进行处理，Error:[${JSON.stringify(result)}]！`,
-                    });
-                }
-
-            });
-
+            await Betools.manage.confirmCompanyStockholder(result, elem, nodes, state, Dialog, returnBack);
         };
 
         return {
