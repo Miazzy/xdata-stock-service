@@ -26,7 +26,7 @@
                         {{state.item.registeredAddress}}
                     </div>
                     <div style="font-size: 12px;color:#666; padding-bottom: 15px; margin-left: 10px;margin-right: 10px;">
-                        {{state.item.brief_info}}
+                        简介：{{state.item.brief_info}}
                     </div>
                 </div>
                 <div class="tab-content">
@@ -69,97 +69,71 @@
                                     <tr>
                                         <td>
                                             <div class="d">企业类型</div>
-                                            <div class="v">有限责任公司（自然人独资）</div>
+                                            <div class="v"> {{ state.item.companyType }} </div>
                                         </td>
-                                        <td>
-                                            <div class="d">参保人数</div>
-                                            <div class="v">-</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">
+                                        <td colspan="1">
                                             <div class="d">人员规模</div>
-                                            <div class="v">-</div>
+                                            <div class="v"> - </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <div class="d">统一社会信用代码</div>
-                                            <div class="v">91440300MA5GNY375L</div>
+                                            <div class="v"> {{ state.item.licenseNumber }} </div>
                                         </td>
                                         <td>
                                             <div class="d">纳税人识别号</div>
-                                            <div class="v">91440300MA5GNY375L</div>
+                                            <div class="v"> {{ state.item.taxpayer_id }} </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <div class="d">工商注册号</div>
-                                            <div class="v">440300213305773</div>
+                                            <div class="v"> {{ state.item.regist_number }} </div>
                                         </td>
                                         <td>
                                             <div class="d">组织机构代码</div>
-                                            <div class="v">MA5GNY37-5</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">
-                                            <div class="d">进出口企业代码</div>
-                                            <div class="v">-</div>
+                                            <div class="v"> {{ state.item.organ_code }} </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">
                                             <div class="d">英文名</div>
-                                            <div class="v">-</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">
-                                            <div class="d">曾用名</div>
-                                            <div class="v">
-                                                -
-                                            </div>
+                                            <div class="v">  {{ state.item.companyNameEn }} </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">
                                             <div class="d">所属行业</div>
-                                            <div class="v">居民服务、修理和其他服务业</div>
+                                            <div class="v"> {{ state.item.industryName }} </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">
                                             <div class="d">经营范围</div>
-                                            <div class="v">生物技术开发；除“四害”消毒杀虫服务；电子产品、家居环保设备的研发与销售；提供清洁服务；环境保护及环境检测技术咨询；环境保护工程的设计与施工；室内环境污染处理工程的施工；室内空气净化产品的技术开发与销售；生物技术、病媒生物防止、白蚁防治技术开发与技术咨询；园林绿化用品的销售；厨房抽油烟设施上门安装、清洗、保养、维护、维修；国内贸易；货物及技术进出口。园林绿化工程的设计与施工；室内、车内空气中甲醛等有害物质的质量检测及治理；园林绿化养护服务。无</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">
-                                            <div class="d">经营方式</div>
-                                            <div class="v">-</div>
+                                            <div class="v"> {{ state.item.businessScope }} </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">
                                             <div class="d">企业地址</div>
-                                            <div class="v">深圳市龙岗区龙城街道爱联社区爱南路639号颐安都会中央花园2期F座17-1号商铺</div>
+                                            <div class="v"> {{ state.item.registeredAddress }} </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <div class="d">营业期限</div>
-                                            <div class="v">2021-03-31 至 -</div>
+                                            <div class="v"> {{state.item.establish_time}} 至 {{state.item.businessTerm}} </div>
                                         </td>
                                         <td>
                                             <div class="d">核准日期</div>
-                                            <div class="v">2021-03-31</div>
+                                            <div class="v"> {{state.item.examine_date}} </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">
                                             <div class="d">登记机关</div>
-                                            <div class="v">深圳市市场监督管理局</div>
+                                            <div class="v"> {{ state.item.regist_authority }} </div>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -171,13 +145,14 @@
                             股东信息
                             <div onclick="collapse(this)" class="darrow"></div>
                         </div>
-                        <div>
+                        <template :key="item.id" v-for="(item,index) in state.stockids" >
+                        <div v-if="state.stock['shareholder' + index] != '' " style="border-bottom:1px solid #fafafa;">
                             <table class="info-table">
                                 <tbody>
                                     <tr>
-                                        <td colspan="2">
+                                        <td colspan="3">
                                             <div class="cop-td">
-                                                <div class="head"> <span class="letter color-2" first-letter="晋"></span> </div>
+                                                <div class="head" style="margin-top:0.170rem;"> <span class="" style="margin-top:0.25rem;" >{{ state.stock['shareholder' + index] }}</span> </div>
                                                 <div class="ct">
                                                     <div class="m-t-xs ptag"> <span class="ntag sm text-success m-r-xs tooltip-br">股东</span> </div>
                                                 </div>
@@ -187,41 +162,21 @@
                                     <tr>
                                         <td>
                                             <div class="d">持股比例</div>
-                                            <div class="v">100%</div>
+                                            <div class="v"> {{ parseFloat(state.stock['ratioDetail' + index]).toFixed(2) }}%</div>
                                         </td>
-                                        <td>
-                                            <div class="d">股东类型</div>
-                                            <div class="v">自然人股东</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
                                         <td>
                                             <div class="d">认缴出资额</div>
-                                            <div class="v"> 500万元<br> </div>
-                                        </td>
-                                        <td>
-                                            <div class="d">认缴出资日期</div>
-                                            <div class="v"> - </div>
+                                            <div class="v"> {{ parseFloat(state.stock['ratioDetail' + index] * state.item.registeredCapital / 100).toFixed(2) }}万元 <br> </div>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+                        </template>
                     </div>
                     <div id="guquan" class="content-block" style="display:none;">
                         <div class="block-title">
                             股权结构
-                            <div onclick="collapse(this)" class="darrow"></div>
-                        </div>
-                        <div>
-                            <div class="mb"></div> <a id="appBtn2" href="javascript:;" onclick="openApp()" class="more-toapp">
-
-                            </a>
-                        </div>
-                    </div>
-                    <div id="syr" class="content-block" style="display:none;">
-                        <div class="block-title">
-                            最终受益人
                             <div onclick="collapse(this)" class="darrow"></div>
                         </div>
                         <div>
@@ -494,6 +449,7 @@ export default {
                 supervisorChairman: '', //监事会主席
                 supervisor: '' //监事
             },
+            stockids:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19],
             stock: {
                 shareholder0: '', //股东
                 ratioDetail0: 0, //占股明细
