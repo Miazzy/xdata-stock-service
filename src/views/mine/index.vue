@@ -1,13 +1,16 @@
 <template>
 <div class="mine-layout" style="background:linear-gradient(skyblue, #f0f0f0);">
     <section class="mine-header">
-        <img :src="state.avatar" class="header-img" />
+        <van-image class="header-img" round  width="1.5rem" height="1.5rem" :src="state.avatar" />
         <div v-show="state.username == ''" class="login-regist" style="color:#fefefe;">
             <router-link to="/login" class="order-item" tag="span" style="color:#fefefe;">登录</router-link>
             <router-link to="/register/phoneRegister" class="order-item" tag="span" style="color:#fefefe;">/注册</router-link>
         </div>
-        <ul v-show="state.username!=''" class="user-info">
-            <li class="user-name">{{state.username}}</li>
+        <ul v-show="state.username != '' " class="user-info">
+            <li class="user-name">
+                <span class="business-node">{{state.username}}</span>
+                <span class="business-node" style="margin-left:0.15rem;font-size:0.25rem">{{state.position}}</span>
+            </li>
             <li class="node-info">
                 <span class="business-node">{{state.companyName}}</span>
                 <span class="business-node">{{state.departName}}</span>
@@ -23,7 +26,7 @@
             <li class="info-item">
                 <span>我的关注</span>
             </li>
-            <li class="info-item">
+            <li class="info-item" @click="redirectView('/companyquery?back=/mine')" >
                 <span>查询公司</span>
             </li>
             <li class="info-item">
@@ -199,6 +202,8 @@
 <script>
 
 import { ref,reactive, onMounted, getCurrentInstance } from "vue";
+import { useStore} from "vuex";
+import { useRouter, useRoute } from "vue-router";
 
 export default {
     name: "mine",
@@ -206,6 +211,10 @@ export default {
         const {
             ctx
         } = getCurrentInstance();
+
+        const $store = useStore();
+        const $router = useRouter();
+        const $route = useRoute();
 
         const state = reactive({
             homeImgs: [],
@@ -215,6 +224,7 @@ export default {
             username:'',
             companyName:'',
             departName:'',
+            position:'',
             avatar:'',
         });
 
@@ -222,12 +232,18 @@ export default {
             state.userinfo = await Betools.storage.getStore('system_userinfo');
             state.avatar = state.userinfo ? state.userinfo.thumb_avatar :'',
             state.username = state.userinfo ? state.userinfo.realname:'',
+            state.position = state.userinfo ? state.userinfo.position : '';
             state.companyName = state.userinfo && state.userinfo.company ? state.userinfo.company.name : '';
             state.departName = state.userinfo && state.userinfo.department ? state.userinfo.department.name : '';
         });
 
+        const redirectView = (path) =>{
+            $router.push(path);
+        }
+
         return {
             state,
+            redirectView,
         };
     }
 };
