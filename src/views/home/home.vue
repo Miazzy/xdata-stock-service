@@ -105,8 +105,7 @@ export default {
         const weworkLogin = async (codeType = 'search', systemType = 'search') => {
             const userinfo_work = await Betools.query.queryWeworkUser(codeType, systemType);
             const userinfo = await Betools.storage.getStore('system_userinfo');
-            debugger;
-            return userinfo_work;
+            return userinfo;
         };
 
         //搜索公司信息

@@ -1,16 +1,16 @@
 <template>
 <div class="mine-layout" style="background:linear-gradient(skyblue, #f0f0f0);">
     <section class="mine-header">
-        <img src="../../assets/image/product/store-new.png" class="header-img" />
-        <div v-show="!loginFlag" class="login-regist" style="color:#fefefe;">
+        <img :src="state.avatar" class="header-img" />
+        <div v-show="state.username == ''" class="login-regist" style="color:#fefefe;">
             <router-link to="/login" class="order-item" tag="span" style="color:#fefefe;">登录</router-link>
             <router-link to="/register/phoneRegister" class="order-item" tag="span" style="color:#fefefe;">/注册</router-link>
         </div>
-        <ul v-show="loginFlag" class="user-info">
-            <li class="user-name">某员工</li>
+        <ul v-show="state.username!=''" class="user-info">
+            <li class="user-name">{{state.username}}</li>
             <li class="node-info">
-                <span class="business-node">某某有限公司</span>
-                <span class="business-node">某部门</span>
+                <span class="business-node">{{state.companyName}}</span>
+                <span class="business-node">{{state.departName}}</span>
             </li>
         </ul>
     </section>
@@ -198,36 +198,36 @@
 
 <script>
 
-import { ref, onMounted, getCurrentInstance } from "vue";
+import { ref,reactive, onMounted, getCurrentInstance } from "vue";
 
 export default {
     name: "mine",
     setup() {
-        const show = ref(false);
-        const columns = ref(1);
-        const loginFlag = ref(true);
         const {
             ctx
         } = getCurrentInstance();
 
-        const handleClose = () => {
-            show.value = false;
-        };
+        const state = reactive({
+            homeImgs: [],
+            tabArray: [],
+            searchkey:'',
+            userinfo: '',
+            username:'',
+            companyName:'',
+            departName:'',
+            avatar:'',
+        });
 
-        const toShow = () => {
-            show.value = true;
-        };
-
-        onMounted(() => {
-
+        onMounted(async () => {
+            state.userinfo = await Betools.storage.getStore('system_userinfo');
+            state.avatar = state.userinfo ? state.userinfo.thumb_avatar :'',
+            state.username = state.userinfo ? state.userinfo.realname:'',
+            state.companyName = state.userinfo && state.userinfo.company ? state.userinfo.company.name : '';
+            state.departName = state.userinfo && state.userinfo.department ? state.userinfo.department.name : '';
         });
 
         return {
-            show,
-            columns,
-            loginFlag,
-            toShow,
-            handleClose
+            state,
         };
     }
 };
@@ -235,4 +235,10 @@ export default {
 
 <style lang="scss" scoped>
 @import "./index.scss";
+.mine-layout .mine-header .header-img {
+    width: 1.86667rem;
+    height: 1.86667rem;
+    border-radius: 0.25rem;
+    border: 0.02rem solid #cecece;
+}
 </style>
