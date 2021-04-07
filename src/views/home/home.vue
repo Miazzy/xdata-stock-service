@@ -105,7 +105,6 @@ export default {
         const weworkLogin = async (codeType = 'search', systemType = 'search') => {
             const userinfo_work = await Betools.query.queryWeworkUser(codeType, systemType,'v4');
             const userinfo = await Betools.storage.getStore('system_userinfo');
-            debugger;
             return userinfo;
         };
 
