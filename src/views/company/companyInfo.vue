@@ -188,7 +188,6 @@
                     <div id="employees" class="content-block">
                         <div class="block-title">
                             主要人员
-                            <span class="block-num">2</span>
                             <div onclick="collapse(this)" class="darrow"></div>
                         </div>
                         <div>
@@ -197,10 +196,10 @@
                                     <tr>
                                         <td colspan="2">
                                             <div class="cop-td">
-                                                <div class="head"> <span class="letter color-2" first-letter="晋"></span> </div>
+                                                <div class="head"> <span class="letter color-1" first-letter="董"></span> </div>
                                                 <div class="ct">
-                                                    <div class="name"> <a href="/pl/prcff5954c49da16ce2f85860c129233.html" class="text-primary ">晋升</a> </div>
-                                                    <div class="vl">总经理,执行董事</div>
+                                                    <div class="name"> <a href="/pl/prcff5954c49da16ce2f85860c129233.html" class="text-primary ">{{ state.director.directorChairman }}</a> </div>
+                                                    <div class="vl">董事长</div>
                                                 </div>
                                             </div>
                                         </td>
@@ -212,9 +211,69 @@
                                     <tr>
                                         <td colspan="2">
                                             <div class="cop-td">
-                                                <div class="head"> <span class="letter color-6" first-letter="寇"></span> </div>
+                                                <div class="head"> <span class="letter color-2" first-letter="董"></span> </div>
                                                 <div class="ct">
-                                                    <div class="name"> <a href="/pl/pre4783f0a547eaddcfe615225ce8bef.html" class="text-primary ">寇红伟</a> </div>
+                                                    <div class="name"> <a href="/pl/prcff5954c49da16ce2f85860c129233.html" class="text-primary ">{{ state.director.director }}</a> </div>
+                                                    <div class="vl">董事</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="info-table">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2">
+                                            <div class="cop-td">
+                                                <div class="head"> <span class="letter color-3" first-letter="执"></span> </div>
+                                                <div class="ct">
+                                                    <div class="name"> <a href="/pl/prcff5954c49da16ce2f85860c129233.html" class="text-primary ">{{ state.director.directorExecutive }}</a> </div>
+                                                    <div class="vl">执行董事</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="info-table">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2">
+                                            <div class="cop-td">
+                                                <div class="head"> <span class="letter color-4" first-letter="总"></span> </div>
+                                                <div class="ct">
+                                                    <div class="name"> <a href="/pl/pre4783f0a547eaddcfe615225ce8bef.html" class="text-primary ">{{ state.director.manager }}</a> </div>
+                                                    <div class="vl">总经理</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="info-table">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2">
+                                            <div class="cop-td">
+                                                <div class="head"> <span class="letter color-5" first-letter="监"></span> </div>
+                                                <div class="ct">
+                                                    <div class="name"> <a href="/pl/pre4783f0a547eaddcfe615225ce8bef.html" class="text-primary ">{{ state.director.supervisorChairman }}</a> </div>
+                                                    <div class="vl">监事会主席</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="info-table">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2">
+                                            <div class="cop-td">
+                                                <div class="head"> <span class="letter color-6" first-letter="监"></span> </div>
+                                                <div class="ct">
+                                                    <div class="name"> <a href="/pl/pre4783f0a547eaddcfe615225ce8bef.html" class="text-primary ">{{ state.director.supervisor }}</a> </div>
                                                     <div class="vl">监事</div>
                                                 </div>
                                             </div>
@@ -230,77 +289,21 @@
                             同地区同行业企业
                             <div onclick="collapse(this)" class="darrow"></div>
                         </div>
-                        <div> <a class="info-cell" href="/firm/2b12c64ed7dda3749394cc5f53f2d0f0.html">
+                        <div> 
+                            <template :key="item.id" v-for=" item in state.occupation " >
+                            <a class="info-cell" href="/firm/2b12c64ed7dda3749394cc5f53f2d0f0.html">
                                 <div class="img-row">
                                     <div class="img"> <img src="https://qccdata.qichacha.com/AutoImage/2b12c64ed7dda3749394cc5f53f2d0f0.jpg" onerror="this.src='https://co-image.qichacha.com/CompanyImage/default.jpg'"> </div>
                                     <div class="ct">
                                         <div class="name">
-                                            深圳市拓星企业管理咨询有限公司
-                                            <object class="v"> <a href="/pl/pr4b772e49e06e19720c2b9d8e3f401e.html" class="text-primary ">牛艳霞</a> </object> </div>
+                                            {{ item.companyName }}
+                                            <object class="v"> <a href="/pl/pr4b772e49e06e19720c2b9d8e3f401e.html" class="text-primary ">{{ item.legalRepresentative }}</a> </object> </div>
                                     </div>
-                                    <div class="ntag text-success">存续</div>
+                                    <div class="ntag text-success">{{ item.registrationStatus }}</div>
                                 </div>
                                 <div class="darrow"></div>
-                            </a> <a class="info-cell" href="/firm/f9d6b923c61886c7f674bd6f828ea4e6.html">
-                                <div class="img-row">
-                                    <div class="img"> <img src="https://qccdata.qichacha.com/AutoImage/f9d6b923c61886c7f674bd6f828ea4e6.jpg" onerror="this.src='https://co-image.qichacha.com/CompanyImage/default.jpg'"> </div>
-                                    <div class="ct">
-                                        <div class="name">
-                                            深圳敏潮管理合伙企业（有限合伙）
-                                            <object class="v"> <a href="/pl/p73df1100c0a480e4c60b98fa62570b8.html" class="text-primary ">寿亦华</a> </object> </div>
-                                    </div>
-                                    <div class="ntag text-success">存续</div>
-                                </div>
-                                <div class="darrow"></div>
-                            </a> <a class="info-cell" href="/firm/2b0ad1f9d3841fd7a1783f356be3cddf.html">
-                                <div class="img-row">
-                                    <div class="img"> <img src="https://qccdata.qichacha.com/AutoImage/2b0ad1f9d3841fd7a1783f356be3cddf.jpg" onerror="this.src='https://co-image.qichacha.com/CompanyImage/default.jpg'"> </div>
-                                    <div class="ct">
-                                        <div class="name">
-                                            梦纯实业（深圳）有限公司
-                                            <object class="v"> <a href="/pl/pr02aa5d91e2d3e8c328febf5ae4a9f5.html" class="text-primary ">李新良</a> </object> </div>
-                                    </div>
-                                    <div class="ntag text-success">存续</div>
-                                </div>
-                                <div class="darrow"></div>
-                            </a> </div>
-                    </div>
-                    <div class="content-block" style="display: none;">
-                        <div class="module-row border-bottom">
-                            <div class="module-col-4 border-right"> <span class="module-num">0</span>
-                                <div class="module-img"> <img src="/material/theme/mobile/img/wxa-service/btn_branch_off.png" title="暂无信息"> </div>
-                                <div class="module-name">分支机构</div>
-                            </div>
-                            <div class="module-col-4 border-right"> <span class="module-num">0</span>
-                                <div class="module-img"> <img src="/material/theme/mobile/img/wxa-service/btn_invest_off.png" title="暂无信息"> </div>
-                                <div class="module-name">对外投资</div>
-                            </div>
-                            <div class="module-col-4 border-right"> <span class="module-num">0</span>
-                                <div class="module-img"> <img src="/material/theme/mobile/img/wxa-service/btn_annual_off.png" title="暂无信息"> </div>
-                                <div class="module-name">企业年报</div>
-                            </div>
-                            <div class="module-col-4"> <span class="module-num">0</span>
-                                <div class="module-img"> <img src="/material/theme/mobile/img/wxa-service/btn_dishonest_off.png" title="暂无信息"> </div>
-                                <div class="module-name">失信信息</div>
-                            </div>
-                        </div>
-                        <div class="module-row">
-                            <div class="module-col-4 border-right"> <span class="module-num">0</span>
-                                <div class="module-img"> <img src="/material/theme/mobile/img/wxa-service/btn_executed_off.png" title="暂无信息"> </div>
-                                <div class="module-name">被执行人</div>
-                            </div>
-                            <div class="module-col-4 border-right"> <span class="module-num">0</span>
-                                <div class="module-img"> <img src="/material/theme/mobile/img/wxa-service/btn_brand_off.png" title="暂无信息"> </div>
-                                <div class="module-name">商标信息</div>
-                            </div>
-                            <div class="module-col-4 border-right"> <span class="module-num">0</span>
-                                <div class="module-img"> <img src="/material/theme/mobile/img/wxa-service/btn_patent_off.png" title="暂无信息"> </div>
-                                <div class="module-name">专利信息</div>
-                            </div>
-                            <div class="module-col-4" onclick=""> <span class="module-num">0</span>
-                                <div class="module-img"> <img src="/material/theme/mobile/img/wxa-service/btn_judge_off.png" title="暂无信息"> </div>
-                                <div class="module-name">裁判文书</div>
-                            </div>
+                            </a> 
+                            </template>
                         </div>
                     </div>
                 </div>
@@ -558,6 +561,7 @@ export default {
                 director: '董事',
                 directorExecutive: '执行董事',
             },
+            occupation:[],
             id:'',
             show: true,
             message: {},
@@ -567,19 +571,10 @@ export default {
         onMounted(async () => {            
             state.geo.options = await Betools.manage.queryCity();
             state.id = await Betools.tools.queryUrlString('id','search');
-            const list = await Betools.manage.queryTableData('bs_company_flow_data',`_where=(id,eq,${state.id})`);
-            const element = list[0];
-            const { directorChairman, director, directorExecutive, manager, supervisorChairman, supervisor } = element;
-            const { shareholder0, ratioDetail0, shareholder1, ratioDetail1, shareholder2, ratioDetail2, shareholder3, ratioDetail3, shareholder4, ratioDetail4, shareholder5, ratioDetail5, shareholder6, ratioDetail6, shareholder7, ratioDetail7, shareholder8, ratioDetail8, shareholder9, ratioDetail9, shareholder10, ratioDetail10, shareholder11, ratioDetail11, shareholder12, ratioDetail12, shareholder13, ratioDetail13, shareholder14, ratioDetail14, shareholder15, ratioDetail15, shareholder16, ratioDetail16, shareholder17, ratioDetail17, shareholder18, ratioDetail18, shareholder19, ratioDetail19, } = element;
-            state.director = { directorChairman, director, directorExecutive, manager, supervisorChairman, supervisor };
-            state.stock = { shareholder0, ratioDetail0, shareholder1, ratioDetail1, shareholder2, ratioDetail2, shareholder3, ratioDetail3, shareholder4, ratioDetail4, shareholder5, ratioDetail5, shareholder6, ratioDetail6, shareholder7, ratioDetail7, shareholder8, ratioDetail8, shareholder9, ratioDetail9, shareholder10, ratioDetail10, shareholder11, ratioDetail11, shareholder12, ratioDetail12, shareholder13, ratioDetail13, shareholder14, ratioDetail14, shareholder15, ratioDetail15, shareholder16, ratioDetail16, shareholder17, ratioDetail17, shareholder18, ratioDetail18, shareholder19, ratioDetail19, };
-            state.item = element;
-            state.item.create_time = dayjs(element.create_time).format('YYYY-MM-DD');
-            state.item.paidTime = dayjs(element.paidTime).format('YYYY-MM-DD');
-            state.item.paidTureTime = dayjs(element.paidTureTime).format('YYYY-MM-DD');
-            state.item.businessTerm = dayjs(element.businessTerm).format('YYYY-MM-DD');
-            state.item.establish_time = dayjs(element.establish_time).format('YYYY-MM-DD');
-            state.item.examine_date = dayjs(element.examine_date).format('YYYY-MM-DD');
+            const element = await Betools.manage.queryCompanyIndustryInfo('bs_company_flow_data', state.id , state);
+            const zone = element.item.companyCode;
+            const industry = element.item.industryName;
+            state.occupation = await Betools.manage.queryTableData('bs_company_flow_data',`_where=(companyCode,eq,${zone})~and(industryName,eq,${industry})~and(id,ne,${state.id})&_size=5`);
             window.addEventListener("scroll", pageScroll);
         });
 
