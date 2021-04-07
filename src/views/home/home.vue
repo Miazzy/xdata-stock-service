@@ -101,6 +101,14 @@ export default {
             $router.push(`/companyquery?searchkey=${key}&back=/index`);
         };
 
+        //企业微信登录处理函数
+        const weworkLogin = async (codeType = 'search', systemType = 'search') => {
+            const userinfo_work = await Betools.query.queryWeworkUser(codeType, systemType);
+            const userinfo = await Betools.storage.getStore('system_userinfo');
+            debugger;
+            return userinfo_work;
+        };
+
         //搜索公司信息
         const companySearch = async(data, key , time , curtime = new Date().getTime()/1000 , cacheKey = 'system_app_home_company_data' )=>{
             time = Betools.storage.getStore(`${cacheKey}_expire`) || 0;
@@ -116,7 +124,7 @@ export default {
                 data = await companySearchData(data, key, cacheKey);
                 console.log(`refresh cache : ${curtime}`);
             }
-        }
+        };
 
         //查询公司工商数据
         const companySearchData = async(data, key , cacheKey)=>{
@@ -126,20 +134,20 @@ export default {
             });
             Betools.storage.setStore(`${cacheKey}` ,JSON.stringify(data) , 3600 * 24);
             return data;
-        }
+        };
 
         //跳转页面
         const redirectView = (path) =>{
             $router.push(path);
-        }
+        };
 
         //查看更多
         const searchMore = async() => {
             $router.push(`/companyquery?searchkey=${state.searchkey}&back=/index`);
         };
         
-        //查询默认公司列表信息
-        companySearch(null,'');
+        companySearch(null,''); //查询默认公司列表信息
+        weworkLogin('search', 'search'); //查询用户登录信息
 
         return {
             active,
@@ -152,6 +160,7 @@ export default {
             companySearchData,
             searchMore,
             redirectView,
+            weworkLogin,
         };
     }
 };
