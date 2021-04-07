@@ -9,7 +9,7 @@
             <div class="home-middle-content">
                 <template v-for="(item , index) in state.companyColumns" :key="index">
                     <a href="#" class="a-decoration">
-                        <div class="list-item">
+                        <div class="list-item" @click="redirectView(`/companyinfo?id=${item.id}`);">
                             <div class="list-item-top">
                                 <div class="list-item-logo">
                                     <span class="boss-letter color-1" :first-letter="item.companyName.slice(0,4)" ></span>
@@ -76,6 +76,11 @@ export default {
             window.addEventListener("scroll", pageScroll);
         });
 
+        //跳转到View
+        const redirectView = (path) =>{
+            $router.push(path);
+        }
+
         //返回上一页函数
         const returnBack = (back = '/company') => {
             back = $route.query.back ? $route.query.back : '/company';
@@ -109,6 +114,7 @@ export default {
             pageScroll,
             returnBack,
             companySearch,
+            redirectView,
         };
     }
 };

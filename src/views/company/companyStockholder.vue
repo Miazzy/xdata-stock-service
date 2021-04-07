@@ -199,7 +199,7 @@ export default {
         const state = reactive({
             title:'录入股东',
             companyNameColumns: [],
-            companyTypeColumns: ['有限公司', '股份公司'],
+            companyTypeColumns: ['有限责任公司', '股份有限公司'],
             shareholderColumns: [],
             shareholder0Columns:[],
             shareholder1Columns:[],

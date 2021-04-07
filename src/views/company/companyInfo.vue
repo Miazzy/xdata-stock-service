@@ -16,17 +16,17 @@
             <div class="content">
                 <div class="content-block">
                     <div class="company-name">
-                        <h1 style="font-size:15px">深圳市绿满园环保服务有限公司
-                            <span class="ntag text-success">存续</span> </h1>
+                        <h1 style="font-size:15px">{{state.item.company}}
+                            <span class="ntag text-success">{{state.item.registrationStatus}}</span> </h1>
                     </div>
-                    <div class="oper-warp"> <a href="/pl/prcff5954c49da16ce2f85860c129233.html" class="text-primary oper">晋升</a> <span class="oper-desc">
+                    <div class="oper-warp"> <a href="/pl/prcff5954c49da16ce2f85860c129233.html" class="text-primary oper">{{state.item.legalRepresentative}}</a> <span class="oper-desc">
                             法定代表人
                         </span> </div>
                     <div class="address">
-                        深圳市龙岗区龙城街道爱联社区爱南路639号颐安都会中央花园2期F座17-1号商铺
+                        {{state.item.registeredAddress}}
                     </div>
                     <div style="font-size: 12px;color:#666; padding-bottom: 15px; margin-left: 10px;margin-right: 10px;">
-                        简介：深圳市绿满园环保服务有限公司成立于2021-03-31，法定代表人为晋升，注册资本为500万元人民币，统一社会信用代码为91440300MA5GNY375L。企业地址位于深圳市龙岗区龙城街道爱联社区爱南路639号颐安都会中央花园2期F座17-1号商铺，所属行业为居民服务业，经营范围包含：生物技术开发；除“四害”消毒杀虫服务；电子产品、家居环保设备的研发与销售；提供清洁服务；环境保护及环境检测技术咨询；环境保护工程的设计与施工；室内环境污染处理工程的施工；室内空气净化产品的技术开发与销售；生物技术、病媒生物防止、白蚁防治技术开发与技术咨询；园林绿化用品的销售；厨房抽油烟设施上门安装、清洗、保养、维护、维修；国内贸易；货物及技术进出口。园林绿化工程的设计与施工；室内、车内空气中甲醛等有害物质的质量检测及治理；园林绿化养护服务。无。深圳市绿满园环保服务有限公司目前的经营状态为存续（在营、开业、在册）。
+                        {{state.item.brief_info}}
                     </div>
                 </div>
                 <div class="tab-content">
@@ -42,28 +42,28 @@
                                         <td colspan="2">
                                             <div class="pull-left">
                                                 <div class="d">法定代表人</div>
-                                                <div class="v"> <a href="/pl/prcff5954c49da16ce2f85860c129233.html" class="text-primary ">晋升</a> </div>
+                                                <div class="v"> <a href="/pl/prcff5954c49da16ce2f85860c129233.html" class="text-primary ">{{state.item.legalRepresentative}}</a> </div>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <div class="d">成立日期</div>
-                                            <div class="v"> 2021-03-31 </div>
+                                            <div class="v"> {{state.item.establish_time}} </div>
                                         </td>
                                         <td>
                                             <div class="d">登记状态</div>
-                                            <div class="v">存续</div>
+                                            <div class="v">{{state.item.registrationStatus}}</div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <div class="d">注册资本</div>
-                                            <div class="v"> 500万元人民币 </div>
+                                            <div class="v"> {{ state.item.registeredCapital }} 万元人民币 </div>
                                         </td>
                                         <td>
                                             <div class="d">实缴资本</div>
-                                            <div class="v">- </div>
+                                            <div class="v"> {{ state.item.paidCapital }} 万元人民币 </div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -410,7 +410,7 @@ export default {
                 options: null,
             },
             companyNameColumns: [],
-            companyTypeColumns: ['有限公司', '股份公司'],
+            companyTypeColumns: ['有限责任公司', '股份有限公司'],
             industryColumns: ['房地产行业', '金融行业', '物业管理', '医疗健康产业', '商业管理', '批发和零售业', '建筑业', '租赁和商务服务业'],
             industryNameColumns: ['房地产行业', '金融行业', '物业管理', '医疗健康产业', '商业管理'],
             registStatusColumns: ['存续', '注销', '经营异常'],
@@ -602,6 +602,7 @@ export default {
                 director: '董事',
                 directorExecutive: '执行董事',
             },
+            id:'',
             show: true,
             message: {},
             step: 'one',
@@ -609,6 +610,20 @@ export default {
 
         onMounted(async () => {            
             state.geo.options = await Betools.manage.queryCity();
+            state.id = await Betools.tools.queryUrlString('id','search');
+            const list = await Betools.manage.queryTableData('bs_company_flow_data',`_where=(id,eq,${state.id})`);
+            const element = list[0];
+            const { directorChairman, director, directorExecutive, manager, supervisorChairman, supervisor } = element;
+            const { shareholder0, ratioDetail0, shareholder1, ratioDetail1, shareholder2, ratioDetail2, shareholder3, ratioDetail3, shareholder4, ratioDetail4, shareholder5, ratioDetail5, shareholder6, ratioDetail6, shareholder7, ratioDetail7, shareholder8, ratioDetail8, shareholder9, ratioDetail9, shareholder10, ratioDetail10, shareholder11, ratioDetail11, shareholder12, ratioDetail12, shareholder13, ratioDetail13, shareholder14, ratioDetail14, shareholder15, ratioDetail15, shareholder16, ratioDetail16, shareholder17, ratioDetail17, shareholder18, ratioDetail18, shareholder19, ratioDetail19, } = element;
+            state.director = { directorChairman, director, directorExecutive, manager, supervisorChairman, supervisor };
+            state.stock = { shareholder0, ratioDetail0, shareholder1, ratioDetail1, shareholder2, ratioDetail2, shareholder3, ratioDetail3, shareholder4, ratioDetail4, shareholder5, ratioDetail5, shareholder6, ratioDetail6, shareholder7, ratioDetail7, shareholder8, ratioDetail8, shareholder9, ratioDetail9, shareholder10, ratioDetail10, shareholder11, ratioDetail11, shareholder12, ratioDetail12, shareholder13, ratioDetail13, shareholder14, ratioDetail14, shareholder15, ratioDetail15, shareholder16, ratioDetail16, shareholder17, ratioDetail17, shareholder18, ratioDetail18, shareholder19, ratioDetail19, };
+            state.item = element;
+            state.item.create_time = dayjs(element.create_time).format('YYYY-MM-DD');
+            state.item.paidTime = dayjs(element.paidTime).format('YYYY-MM-DD');
+            state.item.paidTureTime = dayjs(element.paidTureTime).format('YYYY-MM-DD');
+            state.item.businessTerm = dayjs(element.businessTerm).format('YYYY-MM-DD');
+            state.item.establish_time = dayjs(element.establish_time).format('YYYY-MM-DD');
+            state.item.examine_date = dayjs(element.examine_date).format('YYYY-MM-DD');
             window.addEventListener("scroll", pageScroll);
         });
 

@@ -125,7 +125,7 @@ export default {
                 options: [],
             },
             companyNameColumns: [],
-            companyTypeColumns: ['有限公司', '股份公司'],
+            companyTypeColumns: ['有限责任公司', '股份有限公司'],
             industryColumns: ['房地产行业', '金融行业', '物业管理', '医疗健康产业', '商业管理','批发和零售业','建筑业','租赁和商务服务业'],
             industryNameColumns: ['房地产行业', '金融行业', '物业管理', '医疗健康产业', '商业管理'],
             registStatusColumns: ['存续', '注销', '经营异常'],
