@@ -551,9 +551,10 @@ export default {
         }
 
         //确认函数
-        const confirm = async (elem, result, validResult, response) => {
-            await Betools.manage.confirmCompanyAdd(elem, result, validResult, response, state, Dialog);
-            postMainDataInfoInc(state.item , [] , []);
+        const confirm = async (elem, result, validResult, response , resp = {}) => {
+            resp.elem = await Betools.manage.confirmCompanyAdd(elem, result, validResult, response, state, Dialog);
+            state.item.id = resp.elem.id;
+            resp.mdm = await postMainDataInfoInc(state.director , state.item , [], []);
             debugger;
         }
 
@@ -573,50 +574,51 @@ export default {
          * @param {*} stocks 
          * @param {*} qualification 
          */
-        const postMainDataInfoInc = async (companyInfo, stocks, qualification, postURL = `http://localhost:3880/gateway-mdm/api/inner/datahub/producer/serverApi`, resp = '') => {
+        const postMainDataInfoInc = async (director, company, stocks, qualification, postURL = `https://api.yunwisdom.club:30443/gateway-mdm/api/inner/datahub/producer/serverApi`, resp = '') => {
 
-            const company = {
-                "sn": companyInfo.id,
-                "companyAreaCode": companyInfo.companyAreaCode || '0000',
-                "companyArea": companyInfo.companyArea || '成都区域',
-                "comPanyName": companyInfo.companyName,
-                "comPanyNum": companyInfo.id,
-                "registrationStatus": companyInfo.registrationStatus,
-                "businessScope": companyInfo.businessScope,
-                "registeredAddress": companyInfo.registeredAddress,
-                "registeredCapital": companyInfo.registeredCapital,
-                "legalRepresentative": companyInfo.legalRepresentative,
-                "directorChairman": companyInfo.directorChairman,
-                "director": companyInfo.director,
-                "directorExecutive": companyInfo.directorChairman || companyInfo.director ? "" : companyInfo.directorExecutive,
-                "manager": companyInfo.manager,
-                "supervisorChairman": companyInfo.supervisorChairman,
-                "supervisor": companyInfo.supervisor,
-                "validStatus": "0",
-                "dataStatus": "0",
-            };
-
+            console.log(`company info :`, company);
             const stocklist = stocks;
             const qualificationlist = qualification;
 
-            //待发送节点数据
             const node = {
                 "appCode": "de",
                 "topicCode": "cor_c",
                 "jsonData": [{
-                    "single": [company],
-                    "ShareholderInformation": stocklist,
-                    "qualification": qualificationlist,
+                    "single": [{
+                        "sn": state.item.id,
+                        "comPanyNum": state.item.id,
+                        "companyAreaCode": "0001",
+                        "companyArea": "川北区域",
+                        "comPanyName": company.companyName,
+                        "registrationStatus": company.registrationStatus,
+                        "businessScope": company.businessScope,
+                        "registeredAddress": company.registeredAddress,
+                        "registeredCapital": company.registeredCapital,
+                        "legalRepresentative": company.legalRepresentative,
+                        "directorChairman": director.directorChairman,
+                        "director": director.director,
+                        "directorExecutive": director.directorExecutive,
+                        "manager": director.manager,
+                        "supervisorChairman": director.supervisorChairman,
+                        "supervisor": director.supervisor,
+                        "validStatus": "0",
+                        "dataStatus": "0",
+                    }],
+                    "ShareholderInformation": [
+                    ],
+                    "qualification": [
+                    ]
                 }]
             };
 
             try {
-                resp = await superagent.post(postURL).send(node).set('accept', 'json');
+                resp = await superagent.post(postURL).send(node).set('accept', 'application/json');
             } catch (error) {
-                resp = await superagent.post(postURL).send(node).set('accept', 'json');
+                resp = await superagent.post(postURL).send(node).set('accept', 'application/json');
+                console.log(`post mdm data error : `, error);
             }
 
-            console.log(`post mdm data and response :` , resp);
+            console.log(`post mdm data and response :`, resp);
 
             //返回响应结果
             return resp;
