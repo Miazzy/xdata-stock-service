@@ -21,7 +21,7 @@
             <div class="home-middle-content"> 
                 <template v-for="(item , index) in state.companyColumns" :key="index">
                     <a href="#" class="a-decoration">
-                        <div class="list-item">
+                        <div class="list-item" @click="redirectView(`/companyinfo?id=${item.id}&back=/index`);">
                             <div class="list-item-top">
                                 <div class="list-item-logo">
                                     <span class="boss-letter color-1" :first-letter="item.companyName.slice(0,4)" ></span>
@@ -34,7 +34,7 @@
                                 <div class="col-3">
                                     <div class="col-subtitle">
                                         法定代表人
-                                    </div> <object class="col-title"> <a class="text-primary" href="/people?name=%E9%99%88%E6%B5%A9&amp;keyno=f06eabb81ca5c48435a99d643e2aeb6d">{{ item.legalRepresentative }} </a> </object>
+                                    </div> <object class="col-title"> <a class="text-primary" href="#">{{ item.legalRepresentative }} </a> </object>
                                 </div>
                                 <div class="col-3">
                                     <div class="col-subtitle">注册资金</div>

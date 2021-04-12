@@ -19,7 +19,7 @@
                         <h1 style="font-size:15px">{{state.item.company}}
                             <span class="ntag text-success">{{state.item.registrationStatus}}</span> </h1>
                     </div>
-                    <div class="oper-warp"> <a href="/pl/prcff5954c49da16ce2f85860c129233.html" class="text-primary oper">{{state.item.legalRepresentative}}</a> <span class="oper-desc">
+                    <div class="oper-warp"> <a href="#" class="text-primary oper">{{state.item.legalRepresentative}}</a> <span class="oper-desc">
                             法定代表人
                         </span> </div>
                     <div class="address">
@@ -42,7 +42,7 @@
                                         <td colspan="2">
                                             <div class="pull-left">
                                                 <div class="d">法定代表人</div>
-                                                <div class="v"> <a href="/pl/prcff5954c49da16ce2f85860c129233.html" class="text-primary ">{{state.item.legalRepresentative}}</a> </div>
+                                                <div class="v"> <a href="#" class="text-primary ">{{state.item.legalRepresentative}}</a> </div>
                                             </div>
                                         </td>
                                     </tr>
@@ -198,7 +198,7 @@
                                             <div class="cop-td">
                                                 <div class="head"> <span class="letter color-1" first-letter="董"></span> </div>
                                                 <div class="ct">
-                                                    <div class="name"> <a href="/pl/prcff5954c49da16ce2f85860c129233.html" class="text-primary ">{{ state.director.directorChairman }}</a> </div>
+                                                    <div class="name"> <a href="#" class="text-primary ">{{ state.director.directorChairman }}</a> </div>
                                                     <div class="vl">董事长</div>
                                                 </div>
                                             </div>
@@ -213,7 +213,7 @@
                                             <div class="cop-td">
                                                 <div class="head"> <span class="letter color-2" first-letter="董"></span> </div>
                                                 <div class="ct">
-                                                    <div class="name"> <a href="/pl/prcff5954c49da16ce2f85860c129233.html" class="text-primary ">{{ state.director.director }}</a> </div>
+                                                    <div class="name"> <a href="#" class="text-primary ">{{ state.director.director }}</a> </div>
                                                     <div class="vl">董事</div>
                                                 </div>
                                             </div>
@@ -228,7 +228,7 @@
                                             <div class="cop-td">
                                                 <div class="head"> <span class="letter color-3" first-letter="执"></span> </div>
                                                 <div class="ct">
-                                                    <div class="name"> <a href="/pl/prcff5954c49da16ce2f85860c129233.html" class="text-primary ">{{ state.director.directorExecutive }}</a> </div>
+                                                    <div class="name"> <a href="#" class="text-primary ">{{ state.director.directorExecutive }}</a> </div>
                                                     <div class="vl">执行董事</div>
                                                 </div>
                                             </div>
@@ -243,7 +243,7 @@
                                             <div class="cop-td">
                                                 <div class="head"> <span class="letter color-4" first-letter="总"></span> </div>
                                                 <div class="ct">
-                                                    <div class="name"> <a href="/pl/pre4783f0a547eaddcfe615225ce8bef.html" class="text-primary ">{{ state.director.manager }}</a> </div>
+                                                    <div class="name"> <a href="#" class="text-primary ">{{ state.director.manager }}</a> </div>
                                                     <div class="vl">总经理</div>
                                                 </div>
                                             </div>
@@ -258,7 +258,7 @@
                                             <div class="cop-td">
                                                 <div class="head"> <span class="letter color-5" first-letter="监"></span> </div>
                                                 <div class="ct">
-                                                    <div class="name"> <a href="/pl/pre4783f0a547eaddcfe615225ce8bef.html" class="text-primary ">{{ state.director.supervisorChairman }}</a> </div>
+                                                    <div class="name"> <a href="#" class="text-primary ">{{ state.director.supervisorChairman }}</a> </div>
                                                     <div class="vl">监事会主席</div>
                                                 </div>
                                             </div>
@@ -273,7 +273,7 @@
                                             <div class="cop-td">
                                                 <div class="head"> <span class="letter color-6" first-letter="监"></span> </div>
                                                 <div class="ct">
-                                                    <div class="name"> <a href="/pl/pre4783f0a547eaddcfe615225ce8bef.html" class="text-primary ">{{ state.director.supervisor }}</a> </div>
+                                                    <div class="name"> <a href="#" class="text-primary ">{{ state.director.supervisor }}</a> </div>
                                                     <div class="vl">监事</div>
                                                 </div>
                                             </div>
@@ -289,15 +289,19 @@
                             同地区同行业企业
                             <div onclick="collapse(this)" class="darrow"></div>
                         </div>
-                        <div> 
+                        <div id="company-info-content" > 
                             <template :key="item.id" v-for=" item in state.occupation " >
-                            <a class="info-cell" href="/firm/2b12c64ed7dda3749394cc5f53f2d0f0.html">
+                            <a class="info-cell" href="#">
                                 <div class="img-row">
-                                    <div class="img"> <img src="https://qccdata.qichacha.com/AutoImage/2b12c64ed7dda3749394cc5f53f2d0f0.jpg" onerror="this.src='https://co-image.qichacha.com/CompanyImage/default.jpg'"> </div>
+                                    <div class="img"> 
+                                        <div class="list-item-logo">
+                                            <span class="boss-letter color-1" :first-letter="item.companyName.slice(0,4)" ></span>
+                                        </div>
+                                    </div>
                                     <div class="ct">
                                         <div class="name">
                                             {{ item.companyName }}
-                                            <object class="v"> <a href="/pl/pr4b772e49e06e19720c2b9d8e3f401e.html" class="text-primary ">{{ item.legalRepresentative }}</a> </object> </div>
+                                            <object class="v"> <a href="#" class="text-primary ">{{ item.legalRepresentative }}</a> </object> </div>
                                     </div>
                                     <div class="ntag text-success">{{ item.registrationStatus }}</div>
                                 </div>

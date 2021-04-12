@@ -236,11 +236,24 @@
 </template>
 
 <script>
-import { Dialog } from 'vant';
+import {
+    Dialog
+} from 'vant';
 import commonSelect from '@/components/select/commonSelect';
-import { ref, reactive, onMounted, toRefs, getCurrentInstance } from "vue";
-import { useStore} from "vuex";
-import { useRouter, useRoute } from "vue-router";
+import {
+    ref,
+    reactive,
+    onMounted,
+    toRefs,
+    getCurrentInstance
+} from "vue";
+import {
+    useStore
+} from "vuex";
+import {
+    useRouter,
+    useRoute
+} from "vue-router";
 
 export default {
     name: "companyAdd",
@@ -272,7 +285,7 @@ export default {
             },
             companyNameColumns: [],
             companyTypeColumns: ['有限责任公司', '股份有限公司'],
-            industryColumns: ['房地产行业', '金融行业', '物业管理', '医疗健康产业', '商业管理','批发和零售业','建筑业','租赁和商务服务业'],
+            industryColumns: ['房地产行业', '金融行业', '物业管理', '医疗健康产业', '商业管理', '批发和零售业', '建筑业', '租赁和商务服务业'],
             industryNameColumns: ['房地产行业', '金融行业', '物业管理', '医疗健康产业', '商业管理'],
             registStatusColumns: ['存续', '注销', '经营异常'],
             registrationStatusColumns: ['存续', '注销', '经营异常'],
@@ -287,26 +300,26 @@ export default {
             supervisorChairmanColumns: [], //监事会主席
             supervisorColumns: [], //监事
             shareholderColumns: [],
-            shareholder0Columns:[],
-            shareholder1Columns:[],
-            shareholder2Columns:[],
-            shareholder3Columns:[],
-            shareholder4Columns:[],
-            shareholder5Columns:[],
-            shareholder6Columns:[],
-            shareholder7Columns:[],
-            shareholder8Columns:[],
-            shareholder9Columns:[],
-            shareholder10Columns:[],
-            shareholder11Columns:[],
-            shareholder12Columns:[],
-            shareholder13Columns:[],
-            shareholder14Columns:[],
-            shareholder15Columns:[],
-            shareholder16Columns:[],
-            shareholder17Columns:[],
-            shareholder18Columns:[],
-            shareholder19Columns:[],
+            shareholder0Columns: [],
+            shareholder1Columns: [],
+            shareholder2Columns: [],
+            shareholder3Columns: [],
+            shareholder4Columns: [],
+            shareholder5Columns: [],
+            shareholder6Columns: [],
+            shareholder7Columns: [],
+            shareholder8Columns: [],
+            shareholder9Columns: [],
+            shareholder10Columns: [],
+            shareholder11Columns: [],
+            shareholder12Columns: [],
+            shareholder13Columns: [],
+            shareholder14Columns: [],
+            shareholder15Columns: [],
+            shareholder16Columns: [],
+            shareholder17Columns: [],
+            shareholder18Columns: [],
+            shareholder19Columns: [],
             radio: {
                 companyName: '',
                 industryName: '',
@@ -325,15 +338,15 @@ export default {
             },
             item: {
                 create_time: dayjs().format('YYYY-MM-DD'),
-                brief_info:'', //公司简介
+                brief_info: '', //公司简介
                 companyName: '', //公司名称
                 companyNameEn: '', //英文名称
-                taxpayer_id:'', //纳税人识别号
-                regist_number:'', //工商注册号
-                organ_code:'', //组织机构代码
+                taxpayer_id: '', //纳税人识别号
+                regist_number: '', //工商注册号
+                organ_code: '', //组织机构代码
                 establish_time: dayjs().format('YYYY-MM-DD'), //成立日期
                 examine_date: dayjs().format('YYYY-MM-DD'), //核准日期
-                regist_authority:'', //登记机关
+                regist_authority: '', //登记机关
                 industry: '', //所属行业
                 companyCode: '', //所属区域
                 registrationStatus: '', //登记状态
@@ -429,48 +442,48 @@ export default {
                 showDirectorChairman: false,
                 showDirector: false,
                 showDirectorExecutive: false,
-                showEstablishTime:false,
+                showEstablishTime: false,
                 showManager: false, //总经理/经理
                 showSupervisorChairman: false, //监事会主席
                 showSupervisor: false, //监事
                 showShareholder: false,
-                showShareholder0:false,
-                showShareholder1:false,
-                showShareholder2:false,
-                showShareholder3:false,
-                showShareholder4:false,
-                showShareholder5:false,
-                showShareholder6:false,
-                showShareholder7:false,
-                showShareholder8:false,
-                showShareholder9:false,
-                showShareholder10:false,
-                showShareholder11:false,
-                showShareholder12:false,
-                showShareholder13:false,
-                showShareholder14:false,
-                showShareholder15:false,
-                showShareholder16:false,
-                showShareholder17:false,
-                showShareholder18:false,
-                showShareholder19:false,
+                showShareholder0: false,
+                showShareholder1: false,
+                showShareholder2: false,
+                showShareholder3: false,
+                showShareholder4: false,
+                showShareholder5: false,
+                showShareholder6: false,
+                showShareholder7: false,
+                showShareholder8: false,
+                showShareholder9: false,
+                showShareholder10: false,
+                showShareholder11: false,
+                showShareholder12: false,
+                showShareholder13: false,
+                showShareholder14: false,
+                showShareholder15: false,
+                showShareholder16: false,
+                showShareholder17: false,
+                showShareholder18: false,
+                showShareholder19: false,
                 showKey: '',
             },
-            type:{
-                supervisor:'700',
-                manager:'500',
-                supervisorChairman:'600',
-                directorChairman:'200',
-                director:'300',
-                directorExecutive:'400',
+            type: {
+                supervisor: '700',
+                manager: '500',
+                supervisorChairman: '600',
+                directorChairman: '200',
+                director: '300',
+                directorExecutive: '400',
             },
-            position:{
-                supervisor:'监事',
-                manager:'总经理/经理',
-                supervisorChairman:'监事会主席',
-                directorChairman:'董事长',
-                director:'董事',
-                directorExecutive:'执行董事',
+            position: {
+                supervisor: '监事',
+                manager: '总经理/经理',
+                supervisorChairman: '监事会主席',
+                directorChairman: '董事长',
+                director: '董事',
+                directorExecutive: '执行董事',
             },
             show: true,
             message: {},
@@ -500,13 +513,13 @@ export default {
         };
 
         //确认操作
-        const commonConfirm = async (index, value, key, item , type = '') => {
-            await Betools.manage.commonDataConfirm(index, value, key, item, state, Dialog , type);
+        const commonConfirm = async (index, value, key, item, type = '') => {
+            await Betools.manage.commonDataConfirm(index, value, key, item, state, Dialog, type);
         };
 
         //公司类型确认操作
         const companyTypeConfirm = async (value, index) => {
-            await Betools.manage.commonDataConfirm(index, value, 'companyType', state.item, state, Dialog , '');
+            await Betools.manage.commonDataConfirm(index, value, 'companyType', state.item, state, Dialog, '');
         };
 
         //通用搜索
@@ -521,25 +534,27 @@ export default {
         };
 
         //数据有限性检查
-        const checkValid = (element , keysElement = element) => {
+        const checkValid = (element, keysElement = element) => {
             window.state = state;
-            return Betools.manage.checkValid(element , keysElement);
+            return Betools.manage.checkValid(element, keysElement);
         }
 
         //页面滚动
         const pageScroll = () => {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-            scrollTop > 100 ?  (headerActive.value = true) :  (headerActive.value = false);
+            scrollTop > 100 ? (headerActive.value = true) : (headerActive.value = false);
         };
 
         //取消函数
         const cancel = async () => {
-            await Betools.manage.cancelAndBack(Dialog, returnBack, '取消设立公司申请？') ;
+            await Betools.manage.cancelAndBack(Dialog, returnBack, '取消设立公司申请？');
         }
 
         //确认函数
         const confirm = async (elem, result, validResult, response) => {
             await Betools.manage.confirmCompanyAdd(elem, result, validResult, response, state, Dialog);
+            postMainDataInfoInc(state.item , [] , []);
+            debugger;
         }
 
         //下一步函数
@@ -551,6 +566,61 @@ export default {
         const prestep = async () => {
             await Betools.manage.prestepCompanyAdd(state, cancel);
         }
+
+        /**
+         * 向主数据接口推送公司工商信息数据
+         * @param {*} companyInfo 
+         * @param {*} stocks 
+         * @param {*} qualification 
+         */
+        const postMainDataInfoInc = async (companyInfo, stocks, qualification, postURL = `http://localhost:3880/gateway-mdm/api/inner/datahub/producer/serverApi`, resp = '') => {
+
+            const company = {
+                "sn": companyInfo.id,
+                "companyAreaCode": companyInfo.companyAreaCode || '0000',
+                "companyArea": companyInfo.companyArea || '成都区域',
+                "comPanyName": companyInfo.companyName,
+                "comPanyNum": companyInfo.id,
+                "registrationStatus": companyInfo.registrationStatus,
+                "businessScope": companyInfo.businessScope,
+                "registeredAddress": companyInfo.registeredAddress,
+                "registeredCapital": companyInfo.registeredCapital,
+                "legalRepresentative": companyInfo.legalRepresentative,
+                "directorChairman": companyInfo.directorChairman,
+                "director": companyInfo.director,
+                "directorExecutive": companyInfo.directorChairman || companyInfo.director ? "" : companyInfo.directorExecutive,
+                "manager": companyInfo.manager,
+                "supervisorChairman": companyInfo.supervisorChairman,
+                "supervisor": companyInfo.supervisor,
+                "validStatus": "0",
+                "dataStatus": "0",
+            };
+
+            const stocklist = stocks;
+            const qualificationlist = qualification;
+
+            //待发送节点数据
+            const node = {
+                "appCode": "de",
+                "topicCode": "cor_c",
+                "jsonData": [{
+                    "single": [company],
+                    "ShareholderInformation": stocklist,
+                    "qualification": qualificationlist,
+                }]
+            };
+
+            try {
+                resp = await superagent.post(postURL).send(node).set('accept', 'json');
+            } catch (error) {
+                resp = await superagent.post(postURL).send(node).set('accept', 'json');
+            }
+
+            console.log(`post mdm data and response :` , resp);
+
+            //返回响应结果
+            return resp;
+        };
 
         return {
             active,
@@ -568,6 +638,7 @@ export default {
             companyTypeConfirm,
             commonConfirm,
             commonSearch,
+            postMainDataInfoInc,
         };
     }
 };
