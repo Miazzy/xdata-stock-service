@@ -553,9 +553,8 @@ export default {
         //确认函数
         const confirm = async (elem, result, validResult, response , resp = {}) => {
             resp.elem = await Betools.manage.confirmCompanyAdd(elem, result, validResult, response, state, Dialog);
-            state.item.id = resp.elem.id;
-            resp.mdm = await postMainDataInfoInc(state.director , state.item , [], []);
             debugger;
+            resp.mdm = await postMainDataInfoInc(state.director , resp.elem , resp.elem['stocklist'], []);
         }
 
         //下一步函数
@@ -577,13 +576,15 @@ export default {
         const postMainDataInfoInc = async (director, company, stocks, qualification, postURL = `https://api.yunwisdom.club:30443/gateway-mdm/api/inner/datahub/producer/serverApi`, resp = '') => {
 
             console.log(`company info :`, company);
-            const stocklist = stocks;
+            const stocklist = [];
             const qualificationlist = qualification;
 
-            if(Array.isArray(stocklist)){
-                stocklist.each((item , index)=>{
-                    item['ratioDetail'] = parseFloat(item['ratioDetail']/100);
-                    debugger;
+            if(Array.isArray(stocks)){
+                stocks.each((item , index) => {
+                    stocklist.push({
+                        shareholder: item.shareholder,
+                        ratioDetail: parseFloat(item['ratioDetail']/100),
+                    });
                 });
             }
 
@@ -611,8 +612,7 @@ export default {
                         "validStatus": "0",
                         "dataStatus": "0",
                     }],
-                    "ShareholderInformation": [
-                    ],
+                    "ShareholderInformation": stocklist,
                     "qualification": [
                     ]
                 }]
