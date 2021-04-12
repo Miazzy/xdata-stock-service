@@ -580,6 +580,13 @@ export default {
             const stocklist = stocks;
             const qualificationlist = qualification;
 
+            if(Array.isArray(stocklist)){
+                stocklist.each((item , index)=>{
+                    item['ratioDetail'] = parseFloat(item['ratioDetail']/100);
+                    debugger;
+                });
+            }
+
             const node = {
                 "appCode": "de",
                 "topicCode": "cor_c",
