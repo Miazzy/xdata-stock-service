@@ -30,8 +30,8 @@
                                 <van-cell value="基本信息" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field clearable label="填报日期" v-model="state.item.create_time" placeholder="请输入登记日期" readonly />
                                 <common-select :showTag="state.tag.showCompanyName" :modelColumns="state.companyNameColumns" fieldName="companyName" :modelValue="state.item.companyName" :element="state.item" type="company" v-model="state.item.companyName" labelName="公司名称" placeholderName="请填写公司名称" @search="commonSearch" @confirm="commonConfirm" />
-                                <van-field required :readonly="false" clickable clearable label="公司简介" v-model="state.item.brief_info" rows="1" autosize type="textarea" placeholder="请输入公司简介" />
                                 <van-field required :readonly="false" clickable clearable label="英文名称" v-model="state.item.companyNameEn" rows="1" autosize type="textarea" placeholder="请输入公司英文名称" />
+                                <van-field required :readonly="false" clickable clearable label="公司简介" v-model="state.item.brief_info" rows="1" autosize type="textarea" placeholder="请输入公司简介" />
                                 <common-select :showTag="state.tag.showIndustryName" :modelColumns="state.industryColumns" fieldName="industryName" :modelValue="state.item.industry" :element="state.item" type="common" v-model="state.item.industry" labelName="所属行业" placeholderName="请选择所属行业" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="所属区域" v-model="state.item.companyCode" placeholder="请选择所属区域" @click="state.geo.show = true;" />
                                 <van-cascader v-show="state.geo.show" v-model="state.geo.cascaderValue" title="请选择所在地区" :options="state.geo.options" @close="state.geo.show = false" @finish="companyCode" />
@@ -65,7 +65,7 @@
                                 <common-select :showTag="state.tag.showSealKeeper" :modelColumns="state.sealKeeperColumns" fieldName="sealKeeper" :modelValue="state.item.sealKeeper" :element="state.item" type="user" v-model="state.item.sealKeeper" labelName="印章保管人" placeholderName="请输入印章保管人" @search="commonSearch" @confirm="commonConfirm" />
                                 <common-select :showTag="state.tag.showLiaison" :modelColumns="state.liaisonColumns" fieldName="liaison" :modelValue="state.item.liaison" :element="state.item" type="user" v-model="state.item.liaison" labelName="备案联络员" placeholderName="请选择工商备案联络员" @search="commonSearch" @confirm="commonConfirm" />
                                 <common-select :showTag="state.tag.showResponsiblePerson" :modelColumns="state.responsiblePersonColumns" fieldName="responsiblePerson" :modelValue="state.item.responsiblePerson" :element="state.item" type="user" v-model="state.item.responsiblePerson" labelName="财务负责人" placeholderName="请选择工商备案财务负责人" @search="commonSearch" @confirm="commonConfirm" />
-                                <van-field required :readonly="false" clickable clearable label="备注信息" v-model="state.item.remark" rows="1" autosize type="textarea" placeholder="请输入备注信息" />
+                                <van-field required :readonly="false" clickable clearable label="备注信息" v-model="state.item.remark" rows="2" autosize type="textarea" placeholder="请输入备注信息" />
                             </van-cell-group>
                         </van-form>
                     </van-cell-group>
@@ -218,19 +218,34 @@
                                 <van-field required :readonly="false" clickable clearable label="占股明细(%)" v-model="state.stock.ratioDetail19" type="number" placeholder="请输入股权占股明细(单位%)" />
                             </van-cell-group>
 
-                            <van-cell-group>
-                                <van-field required :readonly="false" clickable clearable label="资质类型" v-model="state.qualification.qualificationType" placeholder="请选择资质类型" />
-                                <van-field required :readonly="false" clickable clearable label="资质等级" v-model="state.qualification.qualificationLevel" placeholder="请选择资质等级" />
-                                <van-field required :readonly="false" clickable clearable label="资质编号" v-model="state.qualification.qualificationNumber" placeholder="请选择资质编号" />
-                                <van-field required :readonly="false" clickable clearable label="资质证有效期" v-model="state.qualification.ordertype" placeholder="请选择资质证有效期" />
-                                <van-field required :readonly="false" clickable clearable label="资质状态" v-model="state.qualification.qualificationStatus" placeholder="请选择资质状态" />
-                                <van-field required :readonly="false" clickable clearable label="注销原因" v-model="state.qualification.ordertype" placeholder="请选择注销原因" />
-                            </van-cell-group>
-
                         </van-form>
                     </van-cell-group>
-
                 </div>
+            </section>
+
+            <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%); margin-bottom:0.75rem;">
+                <div id="weui-cells-flex" class="weui-cells" style="">
+                    <van-cell-group>
+                        <van-form>
+                            <van-cell value="资质管理" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                            
+                            <van-field required :readonly="false" clickable clearable label="资质类型" v-model="state.qualification.qualificationType" placeholder="请选择资质类型" @click="state.tag.showQualificationType = true;" />
+                            <van-cascader v-show="state.tag.showQualificationType" title="请选择资质类型" :options="state.cascader.typeOptions" @close="state.tag.showQualificationType = false" @finish="companyQType" />
+                            
+                            <van-field v-show="state.qualification.qualificationType!='--'" required :readonly="false" clickable clearable label="资质等级" v-model="state.qualification.qualificationLevel" placeholder="请选择资质类型" @click="state.tag.showQualificationLevel = true;" />
+                            <van-cascader v-show="state.tag.showQualificationLevel && state.qualification.qualificationType!='--'" title="请选择资质等级" :options="state.cascader.levelOptions" @close="state.tag.showQualificationLevel = false" @finish="companyQLevel" />
+
+                            <van-field v-show="state.qualification.qualificationType!='--'" required :readonly="false" clickable clearable label="资质编号" v-model="state.qualification.qualificationNumber" placeholder="请选择资质编号" />
+                            <van-field v-show="state.qualification.qualificationType!='--'" required :readonly="false" clickable clearable label="资质证有效期" v-model="state.qualification.qualificationPeriod" placeholder="请选择资质证有效期" />
+
+                            <van-field v-show="state.qualification.qualificationType!='--'" required :readonly="false" clickable clearable label="资质状态" v-model="state.qualification.qualificationStatus" placeholder="请选择资质状态" @click="state.tag.showQualificationStatus = true;" />
+                            <van-cascader v-show="state.tag.showQualificationStatus && state.qualification.qualificationType!='--'" title="请选择资质状态" :options="state.cascader.statusOptions" @close="state.tag.showQualificationStatus = false" @finish="companyQStatus" />
+                            
+                            <van-field v-show="state.qualification.qualificationType!='--' && state.qualification.qualificationStatus == '注销' " required :readonly="false" clickable clearable label="注销原因" rows="2" autosize type="textarea" v-model="state.qualification.cancellationReason" placeholder="请选择注销原因" />
+                        </van-form>
+                    </van-cell-group>
+                </div>
+
             </section>
         </div>
 
@@ -293,6 +308,11 @@ export default {
                 cascaderValue: '',
                 options: [],
             },
+            cascader:{
+                typeOptions:[{"text":"房地产开发","value":"房地产开发"},{"text":"建筑装修装饰工程专业承包","value":"建筑装修装饰工程专业承包"},{"text":"食品经营许可证","value":"食品经营许可证"},{"text":"--","value":"--"}],
+                levelOptions:[{"text":"一级资质","value":"一级资质"},{"text":"二级资质","value":"二级资质"},{"text":"三级资质","value":"三级资质"},{"text":"其他","value":"其他"}],
+                statusOptions:[{"text":"有效","value":"有效"},{"text":"无效","value":"无效"},{"text":"注销","value":"注销"},],
+            },
             companyNameColumns: [],
             companyTypeColumns: ['有限责任公司', '股份有限公司'],
             industryColumns: ['房地产行业', '金融行业', '物业管理', '医疗健康产业', '商业管理', '批发和零售业', '建筑业', '租赁和商务服务业'],
@@ -330,6 +350,7 @@ export default {
             shareholder17Columns: [],
             shareholder18Columns: [],
             shareholder19Columns: [],
+            qualificationTypeColumns:['房地产开发','建筑装修装饰工程专业承包','食品经营许可证'],
             radio: {
                 companyName: '',
                 industryName: '',
@@ -486,6 +507,9 @@ export default {
                 showShareholder17: false,
                 showShareholder18: false,
                 showShareholder19: false,
+                showQualificationType:false,
+                showQualificationLevel:false,
+                showQualificationStatus:false,
                 showKey: '',
             },
             type: {
@@ -506,7 +530,7 @@ export default {
             },
             show: true,
             message: {},
-            step: 'one',
+            step: 'three',
         });
 
         onMounted(async () => {
@@ -529,6 +553,24 @@ export default {
         const companyCode = (config) => {
             state.geo.show = false;
             state.item.companyCode = config.selectedOptions.map((option) => option.text).join('/');
+        };
+
+        //设置资质类型
+        const companyQType = (config) => {
+            state.tag.showQualificationType = false;
+            state.qualification.qualificationType = config.selectedOptions.map((option) => option.text).join('/');
+        };
+
+        //设置资质等级
+        const companyQLevel = (config) => {
+            state.tag.showQualificationLevel = false;
+            state.qualification.qualificationLevel = config.selectedOptions.map((option) => option.text).join('/');
+        };
+
+        //设置资质状态
+        const companyQStatus = (config) => {
+            state.tag.showQualificationStatus = false;
+            state.qualification.qualificationStatus = config.selectedOptions.map((option) => option.text).join('/');
         };
 
         //确认操作
@@ -669,6 +711,9 @@ export default {
             confirm,
             clickDatePicker,
             companyCode,
+            companyQType,
+            companyQLevel,
+            companyQStatus,
             companyTypeConfirm,
             commonConfirm,
             commonSearch,
