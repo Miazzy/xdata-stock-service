@@ -663,8 +663,8 @@ export default {
                 "topicCode": "cor_c",
                 "jsonData": [{
                     "single": [{
-                        "sn": company.id,
-                        "comPanyNum": company.id,
+                        "sn": company.id.slice(0,16),
+                        "comPanyNum": company.id.slice(0,16),
                         "companyAreaCode": "0000",
                         "companyArea": company.companyCode,
                         "comPanyName": company.companyName,
