@@ -529,7 +529,7 @@ export default {
             },
             show: true,
             message: {},
-            step: 'three',
+            step: 'one',
         });
 
         onMounted(async () => {
