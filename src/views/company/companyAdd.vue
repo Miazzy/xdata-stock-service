@@ -637,77 +637,9 @@ export default {
             await Betools.manage.prestepCompanyAdd(state, cancel);
         }
 
-        /**
-         * 向主数据接口推送公司工商信息数据
-         * @param {*} companyInfo 
-         * @param {*} stocks 
-         * @param {*} qualification 
-         */
+        //向主数据接口推送公司工商信息数据
         const postMainDataInfoInc = async (director, company, stocks, qualification, postURL = `https://api.yunwisdom.club:30443/gateway-mdm/api/inner/datahub/producer/serverApi`, postURL_ = `https://api.yunwisdom.club:30443/gateway-mdm-slave/api/inner/datahub/producer/serverApi`, resp = '') => {
-
-            console.log(`company info :`, company);
-            const stocklist = [];
-
-            if(Array.isArray(stocks)){
-                stocks.map((item , index) => {
-                    try {
-                        stocklist.push({
-                            shareholder: item.shareholder,
-                            ratioDetail: parseFloat(item['ratioDetail']/100).toFixed(2) + '',
-                        });
-                    } catch (error) {
-                        console.log(error);
-                    }
-                });
-            }
-
-            if(qualification && qualification.length > 0 && qualification[0].qualificationType == '--'){
-                qualification = [];
-            }
-
-            const node = {
-                "appCode": "de",
-                "topicCode": "cor_c",
-                "jsonData": [{
-                    "single": [{
-                        "sn": company.id.slice(0,16),
-                        "comPanyNum": company.id.slice(0,16),
-                        "companyAreaCode": "0000",
-                        "registrationStatusCode": "4201",
-                        "companyArea": company.companyCode,
-                        "comPanyName": company.companyName,
-                        "registrationStatus": company.registrationStatus,
-                        "businessScope": company.businessScope,
-                        "registeredAddress": company.registeredAddress,
-                        "registeredCapital": company.registeredCapital,
-                        "legalRepresentative": company.legalRepresentative,
-                        "directorChairman": director.directorChairman,
-                        "director": director.director,
-                        "directorExecutive": director.directorExecutive,
-                        "manager": director.manager,
-                        "supervisorChairman": director.supervisorChairman,
-                        "supervisor": director.supervisor,
-                        "validStatus": "0",
-                        "dataStatus": "0",
-                    }],
-                    "ShareholderInformation": stocklist,
-                    "qualification": qualification,
-                }]
-            };
-
-            try {
-                superagent.post(postURL).send(node).set('accept', 'application/json').then(()=>{});
-                superagent.post(postURL_).send(node).set('accept', 'application/json').then(()=>{});
-            } catch (error) {
-                superagent.post(postURL).send(node).set('accept', 'application/json').then(()=>{});
-                superagent.post(postURL_).send(node).set('accept', 'application/json').then(()=>{});
-                console.log(`post mdm data error : `, error);
-            }
-
-            console.log(`post mdm data and response :`, resp , `\n\rpost mdm data :`,node);
-
-            //返回响应结果
-            return resp;
+            return await Betools.manage.postMainDataInfoInc(director, company, stocks, qualification, postURL, postURL_ , resp);
         };
 
         return {
