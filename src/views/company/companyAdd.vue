@@ -487,7 +487,7 @@ export default {
             },
             show: true,
             message: {},
-            step: 'two',
+            step: 'one',
         });
 
         onMounted(async () => {
