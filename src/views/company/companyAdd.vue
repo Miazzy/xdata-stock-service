@@ -622,7 +622,7 @@ export default {
             // 将资质数据载入基础信息
             const { qualificationType, qualificationLevel, qualificationNumber , validityPeriod1 , validityPeriod2 , qualificationStatus, cancellationReason, } = state.qualification;
             const qualificationList = qualificationType == '--' ? [] : [ { qualificationType, qualificationLevel, qualificationNumber , validityPeriod1 , validityPeriod2 , qualificationStatus, cancellationReason, } ];
-            // 持久化工商管理数据
+            // 持久化工商管理数据，如果执行发现数据库存在数据，则改用patch修改公司工商数据
             resp.elem = await Betools.manage.confirmCompanyAdd(elem, result, validResult, response, state, Dialog);
             resp.mdm = await postMainDataInfoInc(state.director, resp.elem, resp.elem['stocklist'], qualificationList);
         }
