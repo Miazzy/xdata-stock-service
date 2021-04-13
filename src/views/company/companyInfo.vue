@@ -191,7 +191,7 @@
                             <div onclick="collapse(this)" class="darrow"></div>
                         </div>
                         <div>
-                            <table class="info-table">
+                            <table class="info-table" v-if="state.director.directorChairman != '--' ">
                                 <tbody>
                                     <tr>
                                         <td colspan="2">
@@ -206,7 +206,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <table class="info-table">
+                            <table class="info-table" v-if="state.director.director != '--' ">
                                 <tbody>
                                     <tr>
                                         <td colspan="2">
@@ -221,7 +221,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <table class="info-table">
+                            <table class="info-table" v-if="state.director.directorExecutive != '--' ">
                                 <tbody>
                                     <tr>
                                         <td colspan="2">
@@ -236,7 +236,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <table class="info-table">
+                            <table class="info-table" v-if="state.director.manager != '--' ">
                                 <tbody>
                                     <tr>
                                         <td colspan="2">
@@ -251,7 +251,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <table class="info-table">
+                            <table class="info-table" v-if="state.director.supervisorChairman != '--' ">
                                 <tbody>
                                     <tr>
                                         <td colspan="2">
@@ -266,7 +266,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <table class="info-table">
+                            <table class="info-table" v-if="state.director.supervisor != '--' ">
                                 <tbody>
                                     <tr>
                                         <td colspan="2">
