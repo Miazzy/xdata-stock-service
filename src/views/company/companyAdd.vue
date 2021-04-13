@@ -409,7 +409,6 @@ export default {
             },
             qualification:{
                 qualificationType :'', // '资质类型',
-                qualificationName :'', // '资质名称',
                 qualificationLevel : '', //  '资质等级',
                 qualificationNumber : '', //'资质编号',
                 qualificationPeriod:'', // '资质证有效期',
@@ -617,10 +616,15 @@ export default {
         }
 
         //确认函数
-        const confirm = async (elem, result, validResult, response , resp = {}) => {
+        const confirm = async (elem, result, validResult, response , resp = {} , qualification = {}) => {
+            
             state.item = {...state.item,...state.qualification}; //将资质数据载入基础信息
+            
+            const { qualificationType, qualificationLevel, qualificationNumber, qualificationStatus, cancellationReason, } = state.qualification;
+            qualification = { qualificationType, qualificationLevel, qualificationNumber, qualificationStatus, cancellationReason, }; //重组资质信息
+
             resp.elem = await Betools.manage.confirmCompanyAdd(elem, result, validResult, response, state, Dialog);
-            resp.mdm = await postMainDataInfoInc(state.director , resp.elem , resp.elem['stocklist'], []);
+            resp.mdm = await postMainDataInfoInc(state.director , resp.elem , resp.elem['stocklist'], [qualification]);
         }
 
         //下一步函数
@@ -643,7 +647,6 @@ export default {
 
             console.log(`company info :`, company);
             const stocklist = [];
-            const qualificationlist = qualification;
 
             if(Array.isArray(stocks)){
                 stocks.map((item , index) => {
@@ -679,8 +682,7 @@ export default {
                         "dataStatus": "0",
                     }],
                     "ShareholderInformation": stocklist,
-                    "qualification": [
-                    ]
+                    "qualification": qualification,
                 }]
             };
 
