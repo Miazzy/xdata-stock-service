@@ -619,7 +619,7 @@ export default {
 
         //确认函数
         const confirm = async (elem, result, validResult, response , resp = {} , qualification = {}) => {
-            // state.item = {...state.item,...state.qualification}; //将资质数据载入基础信息
+            // 将资质数据载入基础信息
             const { qualificationType, qualificationLevel, qualificationNumber , validityPeriod1 , validityPeriod2 , qualificationStatus, cancellationReason, } = state.qualification;
             qualification = { qualificationType, qualificationLevel, qualificationNumber, validityPeriod1 , validityPeriod2 , qualificationStatus, cancellationReason, }; //重组资质信息
             
