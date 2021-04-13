@@ -512,37 +512,6 @@ export default {
             state.item.companyCode = config.selectedOptions.map((option) => option.text).join('/');
         };
 
-        /**
-         * 查询用户数据
-         * @param {*} searchkey
-         * @param {*} data
-         */
-        const  queryUserData = async(searchkey = '', data = []) => {
-            try {
-                if (searchkey && searchkey.length >= 2) {
-                    data = await Betools.manage.queryTableData('bs_hrmresource', `_where=(status,in,0,1,2,3,4)~and(lastname,like,~${searchkey}~)&_sort=id&_p=0&_size=100`); // 获取最近12个月的已用印记录
-                    data.map((item, index) => {
-                        item.code = item.id;
-                        item.tel = '';
-                        item.name = item.lastname;
-                        item.departName = item.textfield1 && item.textfield1.includes('||') ? item.textfield1.split('||')[1] : '';
-                        item.title = `${item.lastname} ${item.departName}`;
-                        item.isDefault = false;
-                    });
-                    data = data.filter((item, index, self) => {
-                        const findex = self.findIndex((element) => {
-                            return element.loginid == item.loginid;
-                        })
-                        return findex == index;
-                    });
-                }
-                return data;
-            } catch (err) {
-                console.log(err);
-                return [];
-            }
-        };
-
         //确认操作
         const commonConfirm = async (index, value, key, item, type = '') => {
             await Betools.manage.commonDataConfirm(index, value, key, item, state, Dialog, type);
@@ -555,7 +524,7 @@ export default {
 
         //通用搜索
         const commonSearch = async (data, value, key, fieldKey, type = 'user') => {
-            await Betools.manage.commonDataSearch(data, value, key, fieldKey, state, type);
+            commonDataSearch(data, value, key, fieldKey, state, type);
         };
 
         /**
@@ -575,25 +544,21 @@ export default {
             let list = [];
             try {
                 if (searchkey && searchkey.length >= 2) {
-
                     data = await Betools.manage.queryUserData(searchkey, data);
                     data = data.map(obj => {
                         const { id, code, name, title } = obj;
                         return { id, code, name, title };
                     });
-                    list.concat(data);
-
+                    list = list.concat(data);
                     data_ = await Betools.manage.queryCompanyData(searchkey, data_);
                     data_ = data_.map(obj => {
                         const { id, code, name, title } = obj;
                         return { id, code, name, title };
                     });
-                    list.concat(data_);
+                    list = list.concat(data_);
                 }
-                
                 return list;
             } catch (error) {
-                console.log(err);
                 return [];
             }
         };
