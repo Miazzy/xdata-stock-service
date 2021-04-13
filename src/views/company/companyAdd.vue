@@ -622,10 +622,11 @@ export default {
             // 将资质数据载入基础信息
             const { qualificationType, qualificationLevel, qualificationNumber , validityPeriod1 , validityPeriod2 , qualificationStatus, cancellationReason, } = state.qualification;
             qualification = { qualificationType, qualificationLevel, qualificationNumber, validityPeriod1 , validityPeriod2 , qualificationStatus, cancellationReason, }; //重组资质信息
-            
+            const qualificationList = qualificationType == '--' ? [] : [qualification];
+
             // 持久化工商管理数据
             resp.elem = await Betools.manage.confirmCompanyAdd(elem, result, validResult, response, state, Dialog);
-            resp.mdm = await postMainDataInfoInc(state.director , resp.elem , resp.elem['stocklist'], [qualification]);
+            resp.mdm = await postMainDataInfoInc(state.director , resp.elem , resp.elem['stocklist'], qualificationList);
         }
 
         //下一步函数
@@ -651,16 +652,23 @@ export default {
 
             if(Array.isArray(stocks)){
                 stocks.map((item , index) => {
-                    stocklist.push({
-                        shareholder: item.shareholder,
-                        ratioDetail: parseFloat(item['ratioDetail']/100),
-                    });
+                    try {
+                        stocklist.push({
+                            shareholder: item.shareholder,
+                            ratioDetail: parseFloat(item['ratioDetail']/100).toFixed(2) + '',
+                        });
+                    } catch (error) {
+                        console.log(error);
+                    }
                 });
             }
 
-            if(qualification && qualification.qualificationType == '--'){
+            if(qualification && qualification.length > 0 && qualification[0].qualificationType == '--'){
                 qualification = [];
+                debugger;
             }
+
+            debugger;
 
             const node = {
                 "appCode": "de",
