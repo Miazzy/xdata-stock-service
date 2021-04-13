@@ -658,6 +658,10 @@ export default {
                 });
             }
 
+            if(qualification && qualification.qualificationType == '--'){
+                qualification = [];
+            }
+
             const node = {
                 "appCode": "de",
                 "topicCode": "cor_c",
@@ -666,6 +670,7 @@ export default {
                         "sn": company.id.slice(0,16),
                         "comPanyNum": company.id.slice(0,16),
                         "companyAreaCode": "0000",
+                        "registrationStatusCode": "4201",
                         "companyArea": company.companyCode,
                         "comPanyName": company.companyName,
                         "registrationStatus": company.registrationStatus,
