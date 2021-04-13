@@ -696,7 +696,7 @@ export default {
                 console.log(`post mdm data error : `, error);
             }
 
-            console.log(`post mdm data and response :`, resp);
+            console.log(`post mdm data and response :`, resp , `\n\rpost mdm data :`,node);
 
             //返回响应结果
             return resp;
