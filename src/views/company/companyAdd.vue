@@ -217,6 +217,16 @@
                                 <common-select :showTag="state.tag.showShareholder19" :modelColumns="state.shareholder19Columns" fieldName="shareholder19" fieldName_="shareholder19" :modelValue="state.stock.shareholder19" :element="state.stock" type="stockholder" v-model="state.stock.shareholder19" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
                                 <van-field required :readonly="false" clickable clearable label="占股明细(%)" v-model="state.stock.ratioDetail19" type="number" placeholder="请输入股权占股明细(单位%)" />
                             </van-cell-group>
+
+                            <van-cell-group>
+                                <van-field required :readonly="false" clickable clearable label="资质类型" v-model="state.qualification.qualificationType" placeholder="请选择资质类型" />
+                                <van-field required :readonly="false" clickable clearable label="资质等级" v-model="state.qualification.qualificationLevel" placeholder="请选择资质等级" />
+                                <van-field required :readonly="false" clickable clearable label="资质编号" v-model="state.qualification.qualificationNumber" placeholder="请选择资质编号" />
+                                <van-field required :readonly="false" clickable clearable label="资质证有效期" v-model="state.qualification.ordertype" placeholder="请选择资质证有效期" />
+                                <van-field required :readonly="false" clickable clearable label="资质状态" v-model="state.qualification.qualificationStatus" placeholder="请选择资质状态" />
+                                <van-field required :readonly="false" clickable clearable label="注销原因" v-model="state.qualification.ordertype" placeholder="请选择注销原因" />
+                            </van-cell-group>
+
                         </van-form>
                     </van-cell-group>
 
@@ -375,6 +385,15 @@ export default {
                 manager: '', //总经理/经理
                 supervisorChairman: '', //监事会主席
                 supervisor: '' //监事
+            },
+            qualification:{
+                qualificationType :'', // '资质类型',
+                qualificationName :'', // '资质名称',
+                qualificationLevel : '', //  '资质等级',
+                qualificationNumber : '', //'资质编号',
+                qualificationPeriod:'', // '资质证有效期',
+                qualificationStatus :'', // '资质状态',
+                cancellationReason:'', //     
             },
             stock: {
                 shareholder0: '', //股东
