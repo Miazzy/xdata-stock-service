@@ -101,121 +101,121 @@
                             <van-cell-group style="margin-top:10px;">
                                 <van-cell value="股东信息1" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <common-select :showTag="state.tag.showShareholder0" :modelColumns="state.shareholder0Columns" fieldName="shareholder0" fieldName_="shareholder0" :modelValue="state.stock.shareholder0" :element="state.stock" type="stockholder" v-model="state.stock.shareholder0" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
-                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail0" type="number" placeholder="请输入股权占股明细(单位%)" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细(%)" v-model="state.stock.ratioDetail0" type="number" placeholder="请输入股权占股明细(单位%)" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder0 && state.stock.ratioDetail0 && (state.stock.ratioDetail0 * 1.0).toFixed(8) < 100 " style="margin-top:10px;">
                                 <van-cell value="股东信息2" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <common-select :showTag="state.tag.showShareholder1" :modelColumns="state.shareholder1Columns" fieldName="shareholder1" fieldName_="shareholder1" :modelValue="state.stock.shareholder1" :element="state.stock" type="stockholder" v-model="state.stock.shareholder1" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
-                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail1" type="number" placeholder="请输入股权占股明细(单位%)" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细(%)" v-model="state.stock.ratioDetail1" type="number" placeholder="请输入股权占股明细(单位%)" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder1 && state.stock.ratioDetail1 && (state.stock.ratioDetail0 * 1.0 + state.stock.ratioDetail1 * 1.0).toFixed(8) < 100 " style="margin-top:10px;">
                                 <van-cell value="股东信息3" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <common-select :showTag="state.tag.showShareholder2" :modelColumns="state.shareholder2Columns" fieldName="shareholder2" fieldName_="shareholder2" :modelValue="state.stock.shareholder2" :element="state.stock" type="stockholder" v-model="state.stock.shareholder2" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
-                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail2" type="number" placeholder="请输入股权占股明细(单位%)" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细(%)" v-model="state.stock.ratioDetail2" type="number" placeholder="请输入股权占股明细(单位%)" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder2 && state.stock.ratioDetail2 && (state.stock.ratioDetail0 * 1.0 + state.stock.ratioDetail1 * 1.0  + state.stock.ratioDetail2 * 1.0 ).toFixed(8) < 100 " style="margin-top:10px;">
                                 <van-cell value="股东信息4" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <common-select :showTag="state.tag.showShareholder3" :modelColumns="state.shareholder3Columns" fieldName="shareholder3" fieldName_="shareholder3" :modelValue="state.stock.shareholder3" :element="state.stock" type="stockholder" v-model="state.stock.shareholder3" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
-                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail3" type="number" placeholder="请输入股权占股明细(单位%)" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细(%)" v-model="state.stock.ratioDetail3" type="number" placeholder="请输入股权占股明细(单位%)" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder3 && state.stock.ratioDetail3 && (state.stock.ratioDetail0 * 1.0 + state.stock.ratioDetail1 * 1.0 + state.stock.ratioDetail2 * 1.0 + state.stock.ratioDetail3 * 1.0 ).toFixed(8) < 100" style="margin-top:10px;">
                                 <van-cell value="股东信息5" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <common-select :showTag="state.tag.showShareholder4" :modelColumns="state.shareholder4Columns" fieldName="shareholder4" fieldName_="shareholder4" :modelValue="state.stock.shareholder4" :element="state.stock" type="stockholder" v-model="state.stock.shareholder4" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
-                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail4" type="number" placeholder="请输入股权占股明细(单位%)" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细(%)" v-model="state.stock.ratioDetail4" type="number" placeholder="请输入股权占股明细(单位%)" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder4 && state.stock.ratioDetail4 && (state.stock.ratioDetail0 * 1.0 + state.stock.ratioDetail1 * 1.0 + state.stock.ratioDetail2 * 1.0 + state.stock.ratioDetail3 * 1.0 + state.stock.ratioDetail4 * 1.0 ).toFixed(8) < 100" style="margin-top:10px;">
                                 <van-cell value="股东信息6" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <common-select :showTag="state.tag.showShareholder5" :modelColumns="state.shareholder5Columns" fieldName="shareholder5" fieldName_="shareholder5" :modelValue="state.stock.shareholder5" :element="state.stock" type="stockholder" v-model="state.stock.shareholder5" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
-                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail5" type="number" placeholder="请输入股权占股明细(单位%)" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细(%)" v-model="state.stock.ratioDetail5" type="number" placeholder="请输入股权占股明细(单位%)" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder5 && state.stock.ratioDetail5 && (state.stock.ratioDetail0 * 1.0 + state.stock.ratioDetail1 * 1.0 + state.stock.ratioDetail2 * 1.0 + state.stock.ratioDetail3 * 1.0 + state.stock.ratioDetail4 * 1.0 + state.stock.ratioDetail5 * 1.0 ).toFixed(8) < 100" style="margin-top:10px;">
                                 <van-cell value="股东信息7" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <common-select :showTag="state.tag.showShareholder6" :modelColumns="state.shareholder6Columns" fieldName="shareholder6" fieldName_="shareholder6" :modelValue="state.stock.shareholder6" :element="state.stock" type="stockholder" v-model="state.stock.shareholder6" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
-                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail6" type="number" placeholder="请输入股权占股明细(单位%)" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细(%)" v-model="state.stock.ratioDetail6" type="number" placeholder="请输入股权占股明细(单位%)" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder6 && state.stock.ratioDetail6 && (state.stock.ratioDetail0 * 1.0 + state.stock.ratioDetail1 * 1.0 + state.stock.ratioDetail2 * 1.0 + state.stock.ratioDetail3 * 1.0 + state.stock.ratioDetail4 * 1.0 + state.stock.ratioDetail5 * 1.0 + state.stock.ratioDetail6 * 1.0 ).toFixed(8) < 100" style="margin-top:10px;">
                                 <van-cell value="股东信息8" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <common-select :showTag="state.tag.showShareholder7" :modelColumns="state.shareholder7Columns" fieldName="shareholder7" fieldName_="shareholder7" :modelValue="state.stock.shareholder7" :element="state.stock" type="stockholder" v-model="state.stock.shareholder7" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
-                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail7" type="number" placeholder="请输入股权占股明细(单位%)" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细(%)" v-model="state.stock.ratioDetail7" type="number" placeholder="请输入股权占股明细(单位%)" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder7 && state.stock.ratioDetail7 && (state.stock.ratioDetail0 * 1.0 + state.stock.ratioDetail1 * 1.0 + state.stock.ratioDetail2 * 1.0 + state.stock.ratioDetail3 * 1.0 + state.stock.ratioDetail4 * 1.0 + state.stock.ratioDetail5 * 1.0 + state.stock.ratioDetail6 * 1.0 + state.stock.ratioDetail7 * 1.0 ).toFixed(8) < 100" style="margin-top:10px;">
                                 <van-cell value="股东信息9" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <common-select :showTag="state.tag.showShareholder8" :modelColumns="state.shareholder8Columns" fieldName="shareholder8" fieldName_="shareholder8" :modelValue="state.stock.shareholder8" :element="state.stock" type="stockholder" v-model="state.stock.shareholder8" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
-                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail8" type="number" placeholder="请输入股权占股明细(单位%)" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细(%)" v-model="state.stock.ratioDetail8" type="number" placeholder="请输入股权占股明细(单位%)" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder8 && state.stock.ratioDetail8 && (state.stock.ratioDetail0 * 1.0 + state.stock.ratioDetail1 * 1.0 + state.stock.ratioDetail2 * 1.0 + state.stock.ratioDetail3 * 1.0 + state.stock.ratioDetail4 * 1.0 + state.stock.ratioDetail5 * 1.0 + state.stock.ratioDetail6 * 1.0 + state.stock.ratioDetail7 * 1.0 + state.stock.ratioDetail8 * 1.0 ).toFixed(8) < 100" style="margin-top:10px;">
                                 <van-cell value="股东信息10" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <common-select :showTag="state.tag.showShareholder9" :modelColumns="state.shareholder9Columns" fieldName="shareholder9" fieldName_="shareholder9" :modelValue="state.stock.shareholder9" :element="state.stock" type="stockholder" v-model="state.stock.shareholder9" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
-                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail9" type="number" placeholder="请输入股权占股明细(单位%)" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细(%)" v-model="state.stock.ratioDetail9" type="number" placeholder="请输入股权占股明细(单位%)" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder9 && state.stock.ratioDetail9 && (state.stock.ratioDetail0 * 1.0 + state.stock.ratioDetail1 * 1.0 + state.stock.ratioDetail2 * 1.0 + state.stock.ratioDetail3 * 1.0 + state.stock.ratioDetail4 * 1.0 + state.stock.ratioDetail5 * 1.0 + state.stock.ratioDetail6 * 1.0 + state.stock.ratioDetail7 * 1.0 + state.stock.ratioDetail8 * 1.0 + state.stock.ratioDetail9 * 1.0 ).toFixed(8) < 100" style="margin-top:10px;">
                                 <van-cell value="股东信息11" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <common-select :showTag="state.tag.showShareholder10" :modelColumns="state.shareholder10Columns" fieldName="shareholder10" fieldName_="shareholder10" :modelValue="state.stock.shareholder10" :element="state.stock" type="stockholder" v-model="state.stock.shareholder10" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
-                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail10" type="number" placeholder="请输入股权占股明细(单位%)" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细(%)" v-model="state.stock.ratioDetail10" type="number" placeholder="请输入股权占股明细(单位%)" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder10 && state.stock.ratioDetail10 && (state.stock.ratioDetail0 * 1.0 + state.stock.ratioDetail1 * 1.0 + state.stock.ratioDetail2 * 1.0 + state.stock.ratioDetail3 * 1.0 + state.stock.ratioDetail4 * 1.0 + state.stock.ratioDetail5 * 1.0 + state.stock.ratioDetail6 * 1.0 + state.stock.ratioDetail7 * 1.0 + state.stock.ratioDetail8 * 1.0 + state.stock.ratioDetail9 * 1.0 + state.stock.ratioDetail10 * 1.0 ).toFixed(8) < 100" style="margin-top:10px;">
                                 <van-cell value="股东信息12" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <common-select :showTag="state.tag.showShareholder11" :modelColumns="state.shareholder11Columns" fieldName="shareholder11" fieldName_="shareholder11" :modelValue="state.stock.shareholder11" :element="state.stock" type="stockholder" v-model="state.stock.shareholder11" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
-                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail11" type="number" placeholder="请输入股权占股明细(单位%)" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细(%)" v-model="state.stock.ratioDetail11" type="number" placeholder="请输入股权占股明细(单位%)" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder11 && state.stock.ratioDetail11 && (state.stock.ratioDetail0 * 1.0 + state.stock.ratioDetail1 * 1.0 + state.stock.ratioDetail2 * 1.0 + state.stock.ratioDetail3 * 1.0 + state.stock.ratioDetail4 * 1.0 + state.stock.ratioDetail5 * 1.0 + state.stock.ratioDetail6 * 1.0 + state.stock.ratioDetail7 * 1.0 + state.stock.ratioDetail8 * 1.0 + state.stock.ratioDetail9 * 1.0 + state.stock.ratioDetail10 * 1.0 + state.stock.ratioDetail11 * 1.0 ).toFixed(8) < 100" style="margin-top:10px;">
                                 <van-cell value="股东信息13" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <common-select :showTag="state.tag.showShareholder12" :modelColumns="state.shareholder12Columns" fieldName="shareholder12" fieldName_="shareholder12" :modelValue="state.stock.shareholder12" :element="state.stock" type="stockholder" v-model="state.stock.shareholder12" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
-                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail12" type="number" placeholder="请输入股权占股明细(单位%)" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细(%)" v-model="state.stock.ratioDetail12" type="number" placeholder="请输入股权占股明细(单位%)" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder12 && state.stock.ratioDetail12 && (state.stock.ratioDetail0 * 1.0 + state.stock.ratioDetail1 * 1.0 + state.stock.ratioDetail2 * 1.0 + state.stock.ratioDetail3 * 1.0 + state.stock.ratioDetail4 * 1.0 + state.stock.ratioDetail5 * 1.0 + state.stock.ratioDetail6 * 1.0 + state.stock.ratioDetail7 * 1.0 + state.stock.ratioDetail8 * 1.0 + state.stock.ratioDetail9 * 1.0 + state.stock.ratioDetail10 * 1.0 + state.stock.ratioDetail11 * 1.0 + state.stock.ratioDetail12 * 1.0 ).toFixed(8) < 100" style="margin-top:10px;">
                                 <van-cell value="股东信息14" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <common-select :showTag="state.tag.showShareholder13" :modelColumns="state.shareholder13Columns" fieldName="shareholder13" fieldName_="shareholder13" :modelValue="state.stock.shareholder13" :element="state.stock" type="stockholder" v-model="state.stock.shareholder13" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
-                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail13" type="number" placeholder="请输入股权占股明细(单位%)" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细(%)" v-model="state.stock.ratioDetail13" type="number" placeholder="请输入股权占股明细(单位%)" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder13 && state.stock.ratioDetail13 && (state.stock.ratioDetail0 * 1.0 + state.stock.ratioDetail1 * 1.0 + state.stock.ratioDetail2 * 1.0 + state.stock.ratioDetail3 * 1.0 + state.stock.ratioDetail4 * 1.0 + state.stock.ratioDetail5 * 1.0 + state.stock.ratioDetail6 * 1.0 + state.stock.ratioDetail7 * 1.0 + state.stock.ratioDetail8 * 1.0 + state.stock.ratioDetail9 * 1.0 + state.stock.ratioDetail10 * 1.0 + state.stock.ratioDetail11 * 1.0 + state.stock.ratioDetail12 * 1.0 + state.stock.ratioDetail13 * 1.0 ).toFixed(8) < 100" style="margin-top:10px;">
                                 <van-cell value="股东信息15" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <common-select :showTag="state.tag.showShareholder14" :modelColumns="state.shareholder14Columns" fieldName="shareholder14" fieldName_="shareholder14" :modelValue="state.stock.shareholder14" :element="state.stock" type="stockholder" v-model="state.stock.shareholder14" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
-                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail14" type="number" placeholder="请输入股权占股明细(单位%)" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细(%)" v-model="state.stock.ratioDetail14" type="number" placeholder="请输入股权占股明细(单位%)" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder14 && state.stock.ratioDetail14 && (state.stock.ratioDetail0 * 1.0 + state.stock.ratioDetail1 * 1.0 + state.stock.ratioDetail2 * 1.0 + state.stock.ratioDetail3 * 1.0 + state.stock.ratioDetail4 * 1.0 + state.stock.ratioDetail5 * 1.0 + state.stock.ratioDetail6 * 1.0 + state.stock.ratioDetail7 * 1.0 + state.stock.ratioDetail8 * 1.0 + state.stock.ratioDetail9 * 1.0 + state.stock.ratioDetail10 * 1.0 + state.stock.ratioDetail11 * 1.0 + state.stock.ratioDetail12 * 1.0 + state.stock.ratioDetail13 * 1.0 + state.stock.ratioDetail14 * 1.0 ).toFixed(8) < 100" style="margin-top:10px;">
                                 <van-cell value="股东信息16" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <common-select :showTag="state.tag.showShareholder15" :modelColumns="state.shareholder15Columns" fieldName="shareholder15" fieldName_="shareholder15" :modelValue="state.stock.shareholder15" :element="state.stock" type="stockholder" v-model="state.stock.shareholder15" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
-                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail15" type="number" placeholder="请输入股权占股明细(单位%)" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细(%)" v-model="state.stock.ratioDetail15" type="number" placeholder="请输入股权占股明细(单位%)" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder15 && state.stock.ratioDetail15 && (state.stock.ratioDetail0 * 1.0 + state.stock.ratioDetail1 * 1.0 + state.stock.ratioDetail2 * 1.0 + state.stock.ratioDetail3 * 1.0 + state.stock.ratioDetail4 * 1.0 + state.stock.ratioDetail5 * 1.0 + state.stock.ratioDetail6 * 1.0 + state.stock.ratioDetail7 * 1.0 + state.stock.ratioDetail8 * 1.0 + state.stock.ratioDetail9 * 1.0 + state.stock.ratioDetail10 * 1.0 + state.stock.ratioDetail11 * 1.0 + state.stock.ratioDetail12 * 1.0 + state.stock.ratioDetail13 * 1.0 + state.stock.ratioDetail14 * 1.0 + state.stock.ratioDetail15 * 1.0 ).toFixed(8) < 100" style="margin-top:10px;">
                                 <van-cell value="股东信息17" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <common-select :showTag="state.tag.showShareholder16" :modelColumns="state.shareholder16Columns" fieldName="shareholder16" fieldName_="shareholder16" :modelValue="state.stock.shareholder16" :element="state.stock" type="stockholder" v-model="state.stock.shareholder16" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
-                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail16" type="number" placeholder="请输入股权占股明细(单位%)" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细(%)" v-model="state.stock.ratioDetail16" type="number" placeholder="请输入股权占股明细(单位%)" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder16 && state.stock.ratioDetail16 && (state.stock.ratioDetail0 * 1.0 + state.stock.ratioDetail1 * 1.0 + state.stock.ratioDetail2 * 1.0 + state.stock.ratioDetail3 * 1.0 + state.stock.ratioDetail4 * 1.0 + state.stock.ratioDetail5 * 1.0 + state.stock.ratioDetail6 * 1.0 + state.stock.ratioDetail7 * 1.0 + state.stock.ratioDetail8 * 1.0 + state.stock.ratioDetail9 * 1.0 + state.stock.ratioDetail10 * 1.0 + state.stock.ratioDetail11 * 1.0 + state.stock.ratioDetail12 * 1.0 + state.stock.ratioDetail13 * 1.0 + state.stock.ratioDetail14 * 1.0 + state.stock.ratioDetail15 * 1.0 + state.stock.ratioDetail16 * 1.0 ).toFixed(8) < 100" style="margin-top:10px;">
                                 <van-cell value="股东信息18" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <common-select :showTag="state.tag.showShareholder17" :modelColumns="state.shareholder17Columns" fieldName="shareholder17" fieldName_="shareholder17" :modelValue="state.stock.shareholder17" :element="state.stock" type="stockholder" v-model="state.stock.shareholder17" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
-                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail17" type="number" placeholder="请输入股权占股明细(单位%)" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细(%)" v-model="state.stock.ratioDetail17" type="number" placeholder="请输入股权占股明细(单位%)" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder17 && state.stock.ratioDetail17 && (state.stock.ratioDetail0 * 1.0 + state.stock.ratioDetail1 * 1.0 + state.stock.ratioDetail2 * 1.0 + state.stock.ratioDetail3 * 1.0 + state.stock.ratioDetail4 * 1.0 + state.stock.ratioDetail5 * 1.0 + state.stock.ratioDetail6 * 1.0 + state.stock.ratioDetail7 * 1.0 + state.stock.ratioDetail8 * 1.0 + state.stock.ratioDetail9 * 1.0 + state.stock.ratioDetail10 * 1.0 + state.stock.ratioDetail11 * 1.0 + state.stock.ratioDetail12 * 1.0 + state.stock.ratioDetail13 * 1.0 + state.stock.ratioDetail14 * 1.0 + state.stock.ratioDetail15 * 1.0 + state.stock.ratioDetail16 * 1.0 + state.stock.ratioDetail17 * 1.0 ).toFixed(8) < 100" style="margin-top:10px;">
                                 <van-cell value="股东信息19" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <common-select :showTag="state.tag.showShareholder18" :modelColumns="state.shareholder18Columns" fieldName="shareholder18" fieldName_="shareholder18" :modelValue="state.stock.shareholder18" :element="state.stock" type="stockholder" v-model="state.stock.shareholder18" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
-                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail18" type="number" placeholder="请输入股权占股明细(单位%)" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细(%)" v-model="state.stock.ratioDetail18" type="number" placeholder="请输入股权占股明细(单位%)" />
                             </van-cell-group>
 
                             <van-cell-group v-show="state.stock.shareholder18 && state.stock.ratioDetail18 && (state.stock.ratioDetail0 * 1.0 + state.stock.ratioDetail1 * 1.0 + state.stock.ratioDetail2 * 1.0 + state.stock.ratioDetail3 * 1.0 + state.stock.ratioDetail4 * 1.0 + state.stock.ratioDetail5 * 1.0 + state.stock.ratioDetail6 * 1.0 + state.stock.ratioDetail7 * 1.0 + state.stock.ratioDetail8 * 1.0 + state.stock.ratioDetail9 * 1.0 + state.stock.ratioDetail10 * 1.0 + state.stock.ratioDetail11 * 1.0 + state.stock.ratioDetail12 * 1.0 + state.stock.ratioDetail13 * 1.0 + state.stock.ratioDetail14 * 1.0 + state.stock.ratioDetail15 * 1.0 + state.stock.ratioDetail16 * 1.0 + state.stock.ratioDetail17 * 1.0 + state.stock.ratioDetail18 * 1.0 ).toFixed(8) < 100 " style="margin-top:10px;">
                                 <van-cell value="股东信息20" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <common-select :showTag="state.tag.showShareholder19" :modelColumns="state.shareholder19Columns" fieldName="shareholder19" fieldName_="shareholder19" :modelValue="state.stock.shareholder19" :element="state.stock" type="stockholder" v-model="state.stock.shareholder19" labelName="股东" placeholderName="请选择股东" @search="commonSearch" @confirm="commonConfirm" />
-                                <van-field required :readonly="false" clickable clearable label="占股明细" v-model="state.stock.ratioDetail19" type="number" placeholder="请输入股权占股明细(单位%)" />
+                                <van-field required :readonly="false" clickable clearable label="占股明细(%)" v-model="state.stock.ratioDetail19" type="number" placeholder="请输入股权占股明细(单位%)" />
                             </van-cell-group>
                         </van-form>
                     </van-cell-group>
@@ -487,11 +487,11 @@ export default {
             },
             show: true,
             message: {},
-            step: 'three',
+            step: 'one',
         });
 
         onMounted(async () => {
-            state.geo.options = await Betools.manage.queryCity();
+            state.geo.options = queryZoneName();
             window.addEventListener("scroll", pageScroll);
         });
 
@@ -524,60 +524,12 @@ export default {
 
         //通用搜索
         const commonSearch = async (data, value, key, fieldKey, type = 'user') => {
-            commonDataSearch(data, value, key, fieldKey, state, type);
+            await Betools.manage.commonDataSearch(data, value, key, fieldKey, state, type);
         };
 
-        /**
-         * 首字母大写
-         * @param {*} str
-         */
-        const prefixUpperCase = (str) => {
-            return String.fromCharCode(str.charCodeAt(0) - 32) + str.slice(1);
-        };
-
-        /**
-         * 查询公司及用户数据
-         * @param {*} searchkey
-         * @param {*} data
-         */
-        const queryCompanyAndUserData = async(searchkey = '', data = [], data_ = []) => {
-            let list = [];
-            try {
-                if (searchkey && searchkey.length >= 2) {
-                    data = await Betools.manage.queryUserData(searchkey, data);
-                    data = data.map(obj => {
-                        const { id, code, name, title } = obj;
-                        return { id, code, name, title };
-                    });
-                    list = list.concat(data);
-                    data_ = await Betools.manage.queryCompanyData(searchkey, data_);
-                    data_ = data_.map(obj => {
-                        const { id, code, name, title } = obj;
-                        return { id, code, name, title };
-                    });
-                    list = list.concat(data_);
-                }
-                return list;
-            } catch (error) {
-                return [];
-            }
-        };
-
-        /**
-         * 股权管理平台查询公司/用户数据
-         * @param {*} data
-         * @param {*} value
-         * @param {*} key
-         * @param {*} fieldKey
-         */
-        const commonDataSearch = async (data, value, key, fieldKey, state, type = 'company') => {
-            const searchkey = value[key];
-            if (type == 'stockholder') {
-                data = await queryCompanyAndUserData(searchkey, []);
-            }
-            state.tag['show' + prefixUpperCase(fieldKey)] = true;
-            state.tag.showKey = key;
-            state[fieldKey + 'Columns'] = data;
+        //获取区域名称
+        const queryZoneName = (data = null) => {
+            return JSON.parse(`[{"text":"融量集团","value":"融量集团","children":[{"text":"融量集团总部","value":"融量集团总部"},{"text":"地产板块","value":"地产板块","children":[{"text":"领地集团总部","value":"领地集团总部"},{"text":"重庆区域","value":"重庆区域"},{"text":"两湖区域","value":"两湖区域"},{"text":"川北区域","value":"川北区域"},{"text":"成都区域","value":"成都区域"},{"text":"川南区域","value":"川南区域"},{"text":"中原区域","value":"中原区域"},{"text":"攀西区域","value":"攀西区域"},{"text":"新疆区域","value":"新疆区域"},{"text":"大湾区域","value":"大湾区域"},{"text":"北京区域","value":"北京区域"},{"text":"园林公司","value":"园林公司"}]},{"text":"金融板块","value":"金融板块","children":[{"text":"量石投资","value":"量石投资"}]},{"text":"物业板块","value":"物业板块","children":[{"text":"领悦集团总部","value":"领悦集团总部"},{"text":"川南区域","value":"川南区域"},{"text":"商写事业部","value":"商写事业部"},{"text":"川北区域","value":"川北区域"},{"text":"新疆区域","value":"新疆区域"},{"text":"攀西区域","value":"攀西区域"},{"text":"长春区域","value":"长春区域"},{"text":"大湾区域","value":"大湾区域"},{"text":"郑州荆州区域","value":"郑州荆州区域"},{"text":"贵阳区域","value":"贵阳区域"},{"text":"佳美物业公司","value":"佳美物业公司"}]},{"text":"医疗健康板块","value":"医疗健康板块","children":[{"text":"健康事业部","value":"健康事业部"},{"text":"至诚和爱健管中心","value":"至诚和爱健管中心"},{"text":"高康国际医院","value":"高康国际医院"}]},{"text":"商业板块","value":"商业板块","children":[{"text":"宝瑞商管","value":"宝瑞商管"}]},{"text":"合作方财务公司","value":"合作方财务公司","children":[{"text":"共享财务中心","value":"共享财务中心"}]}]}]`);
         };
 
         //日期选择确认
@@ -606,7 +558,6 @@ export default {
         //确认函数
         const confirm = async (elem, result, validResult, response , resp = {}) => {
             resp.elem = await Betools.manage.confirmCompanyAdd(elem, result, validResult, response, state, Dialog);
-            debugger;
             resp.mdm = await postMainDataInfoInc(state.director , resp.elem , resp.elem['stocklist'], []);
         }
 
@@ -700,7 +651,6 @@ export default {
             companyTypeConfirm,
             commonConfirm,
             commonSearch,
-            commonDataSearch,
             postMainDataInfoInc,
         };
     }
