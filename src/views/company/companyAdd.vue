@@ -578,7 +578,6 @@ export default {
             state.tag['show' + prefixUpperCase(fieldKey)] = true;
             state.tag.showKey = key;
             state[fieldKey + 'Columns'] = data;
-            debugger;
         };
 
         //日期选择确认
