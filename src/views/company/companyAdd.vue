@@ -577,7 +577,7 @@ export default {
          * @param {*} stocks 
          * @param {*} qualification 
          */
-        const postMainDataInfoInc = async (director, company, stocks, qualification, postURL = `https://api.yunwisdom.club:30443/gateway-mdm/api/inner/datahub/producer/serverApi`, resp = '') => {
+        const postMainDataInfoInc = async (director, company, stocks, qualification, postURL = `https://api.yunwisdom.club:30443/gateway-mdm/api/inner/datahub/producer/serverApi`, postURL_ = `https://api.yunwisdom.club:30443/gateway-mdm-slave/api/inner/datahub/producer/serverApi`, resp = '') => {
 
             console.log(`company info :`, company);
             const stocklist = [];
@@ -623,9 +623,11 @@ export default {
             };
 
             try {
-                resp = await superagent.post(postURL).send(node).set('accept', 'application/json');
+                superagent.post(postURL).send(node).set('accept', 'application/json').then(()=>{});
+                superagent.post(postURL_).send(node).set('accept', 'application/json').then(()=>{});
             } catch (error) {
-                resp = await superagent.post(postURL).send(node).set('accept', 'application/json');
+                superagent.post(postURL).send(node).set('accept', 'application/json').then(()=>{});
+                superagent.post(postURL_).send(node).set('accept', 'application/json').then(()=>{});
                 console.log(`post mdm data error : `, error);
             }
 
