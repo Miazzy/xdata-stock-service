@@ -665,10 +665,7 @@ export default {
 
             if(qualification && qualification.length > 0 && qualification[0].qualificationType == '--'){
                 qualification = [];
-                debugger;
             }
-
-            debugger;
 
             const node = {
                 "appCode": "de",
