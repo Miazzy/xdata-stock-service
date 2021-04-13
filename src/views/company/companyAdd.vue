@@ -618,6 +618,7 @@ export default {
 
         //确认函数
         const confirm = async (elem, result, validResult, response , resp = {}) => {
+            state.item = {...state.item,...state.qualification}; //将资质数据载入基础信息
             resp.elem = await Betools.manage.confirmCompanyAdd(elem, result, validResult, response, state, Dialog);
             resp.mdm = await postMainDataInfoInc(state.director , resp.elem , resp.elem['stocklist'], []);
         }
