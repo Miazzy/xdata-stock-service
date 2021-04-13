@@ -413,6 +413,8 @@ export default {
                 qualificationNumber : '', //'资质编号',
                 qualificationPeriod:'', // '资质证有效期',
                 qualificationStatus :'', // '资质状态',
+                validityPeriod1: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+                validityPeriod2: dayjs().format('YYYY-MM-DD HH:mm:ss'),
                 cancellationReason:'', //     
             },
             stock: {
@@ -661,8 +663,8 @@ export default {
                 "topicCode": "cor_c",
                 "jsonData": [{
                     "single": [{
-                        "sn": state.item.id,
-                        "comPanyNum": state.item.id,
+                        "sn": company.id,
+                        "comPanyNum": company.id,
                         "companyAreaCode": "0000",
                         "companyArea": company.companyCode,
                         "comPanyName": company.companyName,
