@@ -620,7 +620,7 @@ export default {
             // state.item = {...state.item,...state.qualification}; //将资质数据载入基础信息
             const { qualificationType, qualificationLevel, qualificationNumber, qualificationStatus, cancellationReason, } = state.qualification;
             qualification = { qualificationType, qualificationLevel, qualificationNumber, qualificationStatus, cancellationReason, }; //重组资质信息
-
+            debugger;
             // 持久化工商管理数据
             resp.elem = await Betools.manage.confirmCompanyAdd(elem, result, validResult, response, state, Dialog);
             resp.mdm = await postMainDataInfoInc(state.director , resp.elem , resp.elem['stocklist'], [qualification]);
