@@ -599,8 +599,8 @@ export default {
                     "single": [{
                         "sn": state.item.id,
                         "comPanyNum": state.item.id,
-                        "companyAreaCode": "0001",
-                        "companyArea": "川北区域",
+                        "companyAreaCode": "0000",
+                        "companyArea": company.companyCode,
                         "comPanyName": company.companyName,
                         "registrationStatus": company.registrationStatus,
                         "businessScope": company.businessScope,
