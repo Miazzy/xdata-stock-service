@@ -41,19 +41,19 @@
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="" >查询公司</div>
                             </van-col>
-                            <van-col span="6" @click="redirectView('/companystockholder')">
+                            <van-col span="6" @click="redirectView('/companystockholder')" style="display:none;">
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[3]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">录入股东</div>
                             </van-col>
-                            <van-col span="6" @click="redirectView('/companydirector')">
+                            <van-col span="6" @click="redirectView('/companydirector')" style="display:none;">
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[2]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">录董监高</div>
                             </van-col>
-                            <van-col span="6" @click="redirectView('/companyrec')" style="display:block;" >
+                            <van-col span="6" @click="redirectView('/companyrec')" style="display:none;" >
                                 <van-badge>
                                     <img class="child" style="transform:scale(0.78);" :src="state.imgs[1]">
                                 </van-badge>

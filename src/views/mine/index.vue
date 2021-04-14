@@ -48,7 +48,7 @@
             <router-link to="/alteration" class="option-item" tag="li">
                 <div class="item-info">
                     <van-icon name="chart-trending-o" color="chocolate" size="0.71rem" style="margin-right:10px;" />
-                    <span>信息变更</span>
+                    <span>公司变更</span>
                 </div>
                 <van-icon name="arrow" color="#DBDBDB" />
             </router-link>

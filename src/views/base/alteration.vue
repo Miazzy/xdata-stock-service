@@ -21,7 +21,7 @@
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[0]">
                                 </van-badge>
-                                <div class="section-flex-layout-content" style="">公司变更</div>
+                                <div class="section-flex-layout-content" style="">基础信息变更</div>
                             </van-col>
                             <van-col span="6" @click="redirectView('/companystockholder?back=/alteration&title=股东变更')" >
                                 <van-badge>
@@ -35,19 +35,19 @@
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">高管变更</div>
                             </van-col>
-                            <van-col span="6" @click="redirectView('/alterationadd')" >
+                            <van-col span="6" @click="redirectView('/alterationadd')" style="display:none;">
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[3]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">资金变更</div>
                             </van-col>
-                            <van-col span="6" @click="redirectView('/alterationadd')" >
+                            <van-col span="6" @click="redirectView('/alterationadd')" style="display:none;" >
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[6]">
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">经营变更</div>
                             </van-col>
-                            <van-col span="6" @click="redirectView('/alterationadd')" >
+                            <van-col span="6" @click="redirectView('/alterationadd')" style="display:none;">
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[5]">
                                 </van-badge>
