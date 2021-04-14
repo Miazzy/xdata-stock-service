@@ -80,9 +80,9 @@
                         <van-form>
                             <van-cell-group style="margin-top:10px;">
                                 <van-cell value="机构人员" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <common-select v-show="!state.director.directorExecutive" :showTag="state.tag.showDirectorChairman" :modelColumns="state.directorChairmanColumns" fieldName="directorChairman" :modelValue="state.director.directorChairman" :element="state.director" type="user" v-model="state.director.directorChairman" labelName="董事长" placeholderName="请选择董事长" @search="commonSearch" @confirm="commonConfirm" />
-                                <common-select v-show="!state.director.directorExecutive" :showTag="state.tag.showDirector" :modelColumns="state.directorColumns" fieldName="director" :modelValue="state.director.director" :element="state.director" type="user" v-model="state.director.director" labelName="董事" placeholderName="请选择董事" @search="commonSearch" @confirm="commonConfirm" />
-                                <common-select v-show="!state.director.directorChairman && !state.director.director" :showTag="state.tag.showDirectorExecutive" :modelColumns="state.directorExecutiveColumns" fieldName="directorExecutive" :modelValue="state.director.directorExecutive" :element="state.director" type="user" v-model="state.director.directorExecutive" labelName="执行董事" placeholderName="请选择执行董事" @search="commonSearch" @confirm="commonConfirm" />
+                                <common-select v-show="!state.director.directorExecutive || state.director.directorExecutive == '--' " :showTag="state.tag.showDirectorChairman" :modelColumns="state.directorChairmanColumns" fieldName="directorChairman" :modelValue="state.director.directorChairman" :element="state.director" type="user" v-model="state.director.directorChairman" labelName="董事长" placeholderName="请选择董事长" @search="commonSearch" @confirm="commonConfirm" />
+                                <common-select v-show="!state.director.directorExecutive || state.director.directorExecutive == '--' " :showTag="state.tag.showDirector" :modelColumns="state.directorColumns" fieldName="director" :modelValue="state.director.director" :element="state.director" type="user" v-model="state.director.director" labelName="董事" placeholderName="请选择董事" @search="commonSearch" @confirm="commonConfirm" />
+                                <common-select v-show="!state.director.directorChairman && !state.director.director || (state.director.directorChairman == '--' || state.director.director == '--' ) " :showTag="state.tag.showDirectorExecutive" :modelColumns="state.directorExecutiveColumns" fieldName="directorExecutive" :modelValue="state.director.directorExecutive" :element="state.director" type="user" v-model="state.director.directorExecutive" labelName="执行董事" placeholderName="请选择执行董事" @search="commonSearch" @confirm="commonConfirm" />
                                 <common-select :showTag="state.tag.showManager" :modelColumns="state.managerColumns" fieldName="manager" :modelValue="state.director.manager" :element="state.director" type="user" v-model="state.director.manager" labelName="总经理/经理" placeholderName="请选择总经理/经理名单" @search="commonSearch" @confirm="commonConfirm" />
                                 <common-select :showTag="state.tag.showSupervisorChairman" :modelColumns="state.supervisorChairmanColumns" fieldName="supervisorChairman" :modelValue="state.director.supervisorChairman" :element="state.director" type="user" v-model="state.director.supervisorChairman" labelName="监事会主席" placeholderName="请选择监事会主席" @search="commonSearch" @confirm="commonConfirm" />
                                 <common-select :showTag="state.tag.showSupervisor" :modelColumns="state.supervisorColumns" fieldName="supervisor" :modelValue="state.director.supervisor" :element="state.director" type="user" v-model="state.director.supervisor" labelName="监事" placeholderName="请选择监事" @search="commonSearch" @confirm="commonConfirm" />
@@ -619,6 +619,16 @@ export default {
 
         //确认函数
         const confirm = async (elem, result, validResult, response , resp = {} , qualification = {}) => {
+
+            //执行校验
+            if(!/^[+-]?\d*\.?\d*$/.test(state.item.paidCapital)){ //实缴资本必须为数字
+                state.item.paidCapital = 0;
+            }
+
+            if(!/^[+-]?\d*\.?\d*$/.test(state.item.registeredCapital)){ //注册资本必须为数字
+                state.item.registeredCapital = 0;
+            }
+
             // 将资质数据载入基础信息
             const { qualificationType, qualificationLevel, qualificationNumber , validityPeriod1 , validityPeriod2 , qualificationStatus, cancellationReason, } = state.qualification;
             const qualificationList = qualificationType == '--' ? [] : [ { qualificationType, qualificationLevel, qualificationNumber , validityPeriod1 , validityPeriod2 , qualificationStatus, cancellationReason, } ];
