@@ -624,6 +624,9 @@ export default {
         //确认函数
         const confirm = async (elem, result, validResult, response , resp = {} , qualification = {}) => {
 
+            state.item.paidCapital = state.item.paidCapital == '-' ? 0: state.item.paidCapital;
+            state.item.registeredCapital = state.item.registeredCapital == '-' ? 0: state.item.registeredCapital;
+
             //执行校验
             if(!/^[+-]?\d*\.?\d*$/.test(state.item.paidCapital)){ //实缴资本必须为数字
                 state.item.paidCapital = 0;
