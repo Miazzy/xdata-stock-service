@@ -623,10 +623,18 @@ export default {
             //执行校验
             if(!/^[+-]?\d*\.?\d*$/.test(state.item.paidCapital)){ //实缴资本必须为数字
                 state.item.paidCapital = 0;
+                return await vant.Dialog.confirm({ 
+                    title: '微信提示',
+                    message: '请在实缴资本栏输入数字，请不要使用字符串！',
+                });
             }
 
             if(!/^[+-]?\d*\.?\d*$/.test(state.item.registeredCapital)){ //注册资本必须为数字
                 state.item.registeredCapital = 0;
+                return await vant.Dialog.confirm({ 
+                    title: '微信提示',
+                    message: '请在注册资本栏输入数字，请不要使用字符串！',
+                });
             }
 
             // 将资质数据载入基础信息
