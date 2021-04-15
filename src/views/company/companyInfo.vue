@@ -314,11 +314,6 @@
             </div>
         </div>
 
-        <div class="section-button" style="text-align:center;margin-top:0.75rem;margin-bottom:0.75rem;display:none;">
-            <van-button v-show="state.step == 'one' " plain hairline type="info" style="width:37.5%;" @click="cancel">取消</van-button>
-            <van-button v-show="state.step == 'one' " plain hairline type="primary" style="width:37.5%;margin-left:0.5rem;" @click="confirm">确认</van-button>
-        </div>
-
     </div>
 </keep-alive>
 </template>
@@ -425,6 +420,7 @@ export default {
                 shareholder: '',
             },
             item: {
+                id:'',
                 create_time: dayjs().format('YYYY-MM-DD'),
                 companyName: '', //公司名称
                 industry: '', //所属行业
@@ -574,11 +570,12 @@ export default {
 
         onMounted(async () => {            
             state.geo.options = await Betools.manage.queryCity();
-            state.id = await Betools.tools.queryUrlString('id','search');
+            state.id = state.item.id = await Betools.tools.queryUrlString('id','search');
             const element = await Betools.manage.queryCompanyIndustryInfo('bs_company_flow_data', state.id , state);
             const zone = element.item.companyCode;
             const industry = element.item.industryName;
             state.occupation = await Betools.manage.queryTableData('bs_company_flow_data',`_where=(companyCode,eq,${zone})~and(industryName,eq,${industry})~and(id,ne,${state.id})&_size=5`);
+            Betools.manage.patchMainDataInfoInc(state).then(()=>{console.log(`更新法人信息_更新推送#主数据:`,JSON.stringify(state.item))});
             window.addEventListener("scroll", pageScroll);
         });
 
@@ -593,66 +590,11 @@ export default {
             console.log('searching');
         };
 
-        const companyCode = (config) => {
-            state.geo.show = false;
-            state.item.companyCode = config.selectedOptions.map((option) => option.text).join('/');
-        };
-
-        const commonConfirm = async (index, value, key, item, type = '') => {
-            await Betools.manage.commonDataConfirm(index, value, key, item, state, Dialog, type);
-        };
-
-        const companyTypeConfirm = async (value, index) => {
-            await Betools.manage.commonDataConfirm(index, value, 'companyType', state.item, state, Dialog, '');
-        };
-
-        const commonSearch = async (data, value, key, fieldKey, type = 'user') => {
-            await Betools.manage.commonDataSearch(data, value, key, fieldKey, state, type);
-        };
-
-        const validField = (fieldName, item) => {
-            state.message[fieldName] = Betools.tools.isNull(item[fieldName]) ? `未填写${fieldName}信息，请填写后在进行提交申请！` : '';
-            return Betools.tools.isNull(state.message[fieldName]);
-        };
-
-        const clickDatePicker = async (name, tname, status = true) => {
-            state.tag[name] = status;
-            state.item[tname] = dayjs(state.status[tname]).format('YYYY-MM-DD');
-        };
-
-        const checkValid = (element) => {
-            const keys = Object.keys(element);
-            const invalidKey = keys.find(key => {
-                return !validField(key, element);
-            });
-            return invalidKey;
-        }
-
         //页面滚动
         const pageScroll = () => {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
             scrollTop > 100 ? (headerActive.value = true) : (headerActive.value = false);
         };
-
-        //取消函数
-        const cancel = async () => {
-            await Betools.manage.cancelAndBack(Dialog, returnBack, '取消设立公司申请？');
-        }
-
-        //确认函数
-        const confirm = async (elem, result, validResult, response) => {
-            await Betools.manage.confirmCompanyAdd(elem, result, validResult, response, state, Dialog);
-        }
-
-        //下一步函数
-        const nextstep = async () => {
-            await Betools.manage.nextstepCompanyAdd(state, checkValid, Dialog, confirm);
-        }
-
-        //上一步函数
-        const prestep = async () => {
-            await Betools.manage.prestepCompanyAdd(state, cancel);
-        }
 
         return {
             active,
@@ -661,15 +603,6 @@ export default {
             searching,
             headerActive,
             pageScroll,
-            nextstep,
-            prestep,
-            cancel,
-            confirm,
-            clickDatePicker,
-            companyCode,
-            companyTypeConfirm,
-            commonConfirm,
-            commonSearch,
         };
     }
 };

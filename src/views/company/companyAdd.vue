@@ -660,7 +660,7 @@ export default {
             const qualificationList = qualificationType == '--' ? [] : [ { qualificationType, qualificationLevel, qualificationNumber , validityPeriod1 , validityPeriod2 , qualificationStatus, cancellationReason, } ];
             // 持久化工商管理数据，如果执行发现数据库存在数据，则改用patch修改公司工商数据
             resp.elem = await Betools.manage.confirmCompanyAdd(elem, result, validResult, response, state, Dialog);
-            resp.mdm = await postMainDataInfoInc(state.director, resp.elem, resp.elem['stocklist'], qualificationList);
+            resp.mdm = await Betools.manage.postMainDataInfoInc(state.director, resp.elem, resp.elem['stocklist'], qualificationList);//向主数据接口推送公司工商信息数据
         }
 
         //下一步函数
@@ -672,11 +672,6 @@ export default {
         const prestep = async () => {
             await Betools.manage.prestepCompanyAdd(state, cancel);
         }
-
-        //向主数据接口推送公司工商信息数据
-        const postMainDataInfoInc = async (director, company, stocks, qualification, postURL = `https://api.yunwisdom.club:30443/gateway-mdm/api/inner/datahub/producer/serverApi`, postURL_ = `https://api.yunwisdom.club:30443/gateway-mdm-slave/api/inner/datahub/producer/serverApi`, resp = '') => {
-            return await Betools.manage.postMainDataInfoInc(director, company, stocks, qualification, postURL, postURL_ , resp);
-        };
 
         return {
             active,
