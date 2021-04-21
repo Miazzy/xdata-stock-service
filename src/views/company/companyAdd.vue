@@ -275,24 +275,11 @@
 </template>
 
 <script>
-import {
-    Dialog
-} from 'vant';
+import { Dialog } from 'vant';
 import commonSelect from '@/components/select/commonSelect';
-import {
-    ref,
-    reactive,
-    onMounted,
-    toRefs,
-    getCurrentInstance
-} from "vue";
-import {
-    useStore
-} from "vuex";
-import {
-    useRouter,
-    useRoute
-} from "vue-router";
+import { ref, reactive, onMounted, toRefs, getCurrentInstance } from "vue";
+import { useStore } from "vuex";
+import { useRouter, useRoute } from "vue-router";
 
 export default {
     name: "companyAdd",

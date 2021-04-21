@@ -35,6 +35,12 @@
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">高管变更</div>
                             </van-col>
+                            <van-col span="6" @click="redirectView('/companydirector?back=/alteration&title=信息变更')" >
+                                <van-badge>
+                                    <img class="child" style="" :src="state.imgs[3]">
+                                </van-badge>
+                                <div class="section-flex-layout-content" style="">信息变更</div>
+                            </van-col>
                             <van-col span="6" @click="redirectView('/alterationadd')" style="display:none;">
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[3]">
@@ -67,20 +73,11 @@
 </template>
 
 <script>
-import {
-    ref,
-    reactive,
-    onMounted,
-    getCurrentInstance
-} from "vue";
-import {
-    useStore
-} from "vuex";
-import {
-    useRouter,
-    useRoute
-} from "vue-router";
+import { ref, reactive, onMounted, getCurrentInstance } from "vue";
+import { useStore } from "vuex";
+import { useRouter, useRoute } from "vue-router";
 import tabbar from "@/components/tabbar";
+
 export default {
     name: "base",
     components: {
