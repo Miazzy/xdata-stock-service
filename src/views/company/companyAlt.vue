@@ -175,7 +175,13 @@ export default {
 
         //提交录入变更记录申请确认函数
         const confirm = async(result = null , elem = null , nodes = []) => {
-            
+            //获取所属公司名称
+
+            //构建提交Node
+
+            //推进提交信息
+
+            //提升用户操作成功
         };
 
         return {
