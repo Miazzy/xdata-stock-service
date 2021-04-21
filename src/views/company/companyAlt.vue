@@ -29,15 +29,21 @@
                     <van-cell-group>
                         <van-form>
                             <van-cell-group style="margin-top:10px;">
-                                <van-cell value="机构人员" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+
+                                <van-cell value="变更记录" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
                                 <van-field clearable label="录入日期" v-model="state.item.create_time" placeholder="请输入录入日期" readonly />
-                                <common-select :showTag="state.tag.showCompanyName" :modelColumns="state.companyNameColumns" fieldName="companyName" :modelValue="state.item.companyName" :element="state.item" type="company_ic" v-model="state.item.companyName" labelName="公司名称" placeholderName="请填写公司名称" @search="commonSearch" @confirm="commonConfirm" />
-                                <common-select :showTag="state.tag.showDirectorChairman" :modelColumns="state.directorChairmanColumns" fieldName="directorChairman" :modelValue="state.director.directorChairman" :element="state.director" type="user" v-model="state.director.directorChairman" labelName="董事长" placeholderName="请选择董事长" @search="commonSearch" @confirm="commonConfirm" />
-                                <common-select :showTag="state.tag.showDirector" :modelColumns="state.directorColumns" fieldName="director" :modelValue="state.director.director" :element="state.director" type="user" v-model="state.director.director" labelName="董事" placeholderName="请选择董事" @search="commonSearch" @confirm="commonConfirm" />
-                                <common-select :showTag="state.tag.showDirectorExecutive" :modelColumns="state.directorExecutiveColumns" fieldName="directorExecutive" :modelValue="state.director.directorExecutive" :element="state.director" type="user" v-model="state.director.directorExecutive" labelName="执行董事" placeholderName="请选择执行董事" @search="commonSearch" @confirm="commonConfirm" />
-                                <common-select :showTag="state.tag.showManager" :modelColumns="state.managerColumns" fieldName="manager" :modelValue="state.director.manager" :element="state.director" type="user" v-model="state.director.manager" labelName="总经理/经理" placeholderName="请选择总经理/经理名单" @search="commonSearch" @confirm="commonConfirm" />
-                                <common-select :showTag="state.tag.showSupervisorChairman" :modelColumns="state.supervisorChairmanColumns" fieldName="supervisorChairman" :modelValue="state.director.supervisorChairman" :element="state.director" type="user" v-model="state.director.supervisorChairman" labelName="监事会主席" placeholderName="请选择监事会主席" @search="commonSearch" @confirm="commonConfirm" />
-                                <common-select :showTag="state.tag.showSupervisor" :modelColumns="state.supervisorColumns" fieldName="supervisor" :modelValue="state.director.supervisor" :element="state.director" type="user" v-model="state.director.supervisor" labelName="监事" placeholderName="请选择监事" @search="commonSearch" @confirm="commonConfirm" />
+                                
+                                <common-select :showTag="state.tag.showCompanyName" :modelColumns="state.companyNameColumns" fieldName="companyName" :modelValue="state.alteration.companyName" :element="state.alteration" type="company" v-model="state.alteration.companyName" labelName="公司名称" placeholderName="请填写公司名称" @search="commonSearch" @confirm="commonConfirm" />
+
+                                <van-field required :readonly="false" clickable clearable label="变更类型" v-model="state.alteration.name" placeholder="请选择变更类型" @click="state.tag.showName = true;" />
+                                <van-picker v-show="state.tag.showName" title="选择变更类型" show-toolbar :columns="state.typeNameColumns" @confirm="nameConfirm" @cancel="state.tag.showName = false;" />
+                                
+                                <van-field required :readonly="false" clickable clearable label="变更日期" v-model="state.alteration.time" placeholder="请选择变更日期" @click="clickDatePicker('showTime' , 'time' , true);" />
+                                <van-datetime-picker v-show="state.tag.showTime" v-model="state.status.time" type="date" title="选择年月日" :min-date="state.status.minDate" :max-date="state.status.maxDate" @cancel="clickDatePicker('showTime' , 'time' , false);" @confirm="clickDatePicker('showTime' , 'time' , false);" />
+                                
+                                <van-field required :readonly="false" clickable clearable label="变更前内容" v-model="state.alteration.pre_value" rows="5" autosize type="textarea" placeholder="请输入变更前内容" />
+                                <van-field required :readonly="false" clickable clearable label="变更后内容" v-model="state.alteration.value" rows="5" autosize type="textarea" placeholder="请输入变更后内容" />
+
                             </van-cell-group>
                         </van-form>
                     </van-cell-group>
@@ -79,71 +85,33 @@ export default {
         const headerActive = ref(false);
 
         const state = reactive({
-            title:'信息变更',
+            title:'变更记录',
             companyNameColumns: [],
-            directorChairmanColumns: [],
-            directorColumns: [],
-            directorExecutiveColumns: [],
-            managerColumns: [], //总经理/经理
-            supervisorChairmanColumns: [], //监事会主席
-            supervisorColumns: [], //监事
-            shareholderColumns: [],
+            typeNameColumns: ['主要成员变更', '章程备案变更', '企业类型变更', '出资情况变更', '公司名称变更', '法定代表人变更', '注册资本(金)变更', '高级管理人员备案(董事/监事/经理等)', '章程修正案备案', '其他事项备案', '投资者名称(姓名)变更', '其他事项备案', '投资人(股权)变更', '经营范围变更', '换发证照', '企业类型变更', '经理备案', '经营期限(营业期限)变更'],
             radio: {
-                companyName: '',
-                directorChairman: '',
-                director: '',
-                directorExecutive: '',
-                manager: '', //总经理/经理
-                supervisorChairman: '', //监事会主席
-                supervisor: '', //监事
-                shareholder: '',
             },
             item: {
                 create_time: dayjs().format('YYYY-MM-DD'),
                 companyName: '', //公司名称
             },
-            director: {
-                directorChairman: '', //董事长
-                director: '', //董事
-                directorExecutive: '', //执行董事
-                manager: '', //总经理/经理
-                supervisorChairman: '', //监事会主席
-                supervisor: '' //监事
+            alteration: {
+                id: '', //变更记录ID
+                time: dayjs().format('YYYY-MM-DD'), //变更日期
+                name: '主要成员变更', //变更类型
+                pre_value: '', //变更前信息
+                value: '', //变更后信息
+                companyName: '', //公司名称
+                xid:0,
             },
             status: {
-                cancellationTime: new Date(),
-                paidTime: new Date(),
-                paidTureTime: new Date(),
-                businessTerm: new Date(),
-                minDate: new Date(1970, 0, 1),
+                time: new Date(),
+                minDate: new Date(1990, 0, 1),
                 maxDate: new Date(2099, 12, 31),
             },
             tag: {
                 showCompanyName: false,
-                showDirectorChairman: false,
-                showDirector: false,
-                showDirectorExecutive: false,
-                showManager: false, //总经理/经理
-                showSupervisorChairman: false, //监事会主席
-                showSupervisor: false, //监事
-                showShareholder: false,
+                showName: false,
                 showKey: '',
-            },
-            type:{
-                supervisor:'700',
-                manager:'500',
-                supervisorChairman:'600',
-                directorChairman:'200',
-                director:'300',
-                directorExecutive:'400',
-            },
-            position:{
-                supervisor:'监事',
-                manager:'总经理/经理',
-                supervisorChairman:'监事会主席',
-                directorChairman:'董事长',
-                director:'董事',
-                directorExecutive:'执行董事',
             },
             show: true,
             message: {},
@@ -170,6 +138,11 @@ export default {
             scrollTop > 100 ?  (headerActive.value = true) :  (headerActive.value = false);
         };
 
+        //类型名称确认操作
+        const nameConfirm = async (value, index) => {
+            await Betools.manage.commonDataConfirm(index, value, 'name', state.alteration, state, Dialog, '');
+        };
+
         //搜索数据确认函数
         const commonConfirm = async (index, value, key, item, type='company_ic') => {
             await Betools.manage.commonDataConfirm(index, value, key, item, state, Dialog, type);
@@ -178,6 +151,12 @@ export default {
         //搜索数据函数
         const commonSearch = async (data, value, key, fieldKey, type = 'user') => {
             await Betools.manage.commonDataSearch(data, value, key, fieldKey, state, type);
+        };
+
+        //日期选择确认
+        const clickDatePicker = async (name, tname, status = true) => {
+            state.tag[name] = status;
+            state.alteration[tname] = dayjs(state.status[tname]).format('YYYY-MM-DD');
         };
 
         //取消提交录入申请函数
@@ -199,6 +178,8 @@ export default {
             pageScroll,
             commonConfirm,
             commonSearch,
+            nameConfirm,
+            clickDatePicker,
             cancel,
             confirm,
         };

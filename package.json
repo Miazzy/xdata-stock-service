@@ -10,6 +10,7 @@
         "lint": "eslint --fix --ext .js,.vue src"
     },
     "dependencies": {
+        "@nutui/nutui": "^3.0.0-beta.13",
         "axios": "^0.21.1",
         "better-scroll": "^2.0.7",
         "core-js": "^3.6.5",

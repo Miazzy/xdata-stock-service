@@ -111,7 +111,7 @@ export default [{
     component: () =>
         import ('@/views/base/license.vue')
 }, {
-    path: '/otherlicense', //businesslicense
+    path: '/otherlicense',
     name: 'otherlicense',
     meta: {
         index: 115
@@ -119,7 +119,7 @@ export default [{
     component: () =>
         import ('@/views/base/otherlicense.vue')
 }, {
-    path: '/businesslicense', //businesslicense
+    path: '/businesslicense',
     name: 'businesslicense',
     meta: {
         index: 116
@@ -127,7 +127,7 @@ export default [{
     component: () =>
         import ('@/views/base/businesslicense.vue')
 }, {
-    path: '/certificate', //businesslicense
+    path: '/certificate',
     name: 'certificate',
     meta: {
         index: 117
@@ -135,7 +135,7 @@ export default [{
     component: () =>
         import ('@/views/base/certificate.vue')
 }, {
-    path: '/companyadd', //businesslicense
+    path: '/companyadd',
     name: 'companyadd',
     meta: {
         index: 118
@@ -143,7 +143,7 @@ export default [{
     component: () =>
         import ('@/views/company/companyAdd.vue')
 }, {
-    path: '/companyquery', //businesslicense
+    path: '/companyquery',
     name: 'companyquery',
     meta: {
         index: 119
@@ -151,7 +151,7 @@ export default [{
     component: () =>
         import ('@/views/company/companyQuery.vue')
 }, {
-    path: '/companydirector', //businesslicense
+    path: '/companydirector',
     name: 'companydirector',
     meta: {
         index: 120
@@ -159,7 +159,7 @@ export default [{
     component: () =>
         import ('@/views/company/companyDirector.vue')
 }, {
-    path: '/companypledge', //businesslicense
+    path: '/companypledge',
     name: 'companypledge',
     meta: {
         index: 12
@@ -167,7 +167,7 @@ export default [{
     component: () =>
         import ('@/views/company/companyPledge.vue')
 }, {
-    path: '/companyqualification', //businesslicense
+    path: '/companyqualification',
     name: 'companyqualification',
     meta: {
         index: 121
@@ -175,7 +175,7 @@ export default [{
     component: () =>
         import ('@/views/company/companyQualification.vue')
 }, {
-    path: '/companyrec', //businesslicense
+    path: '/companyrec',
     name: 'companyrec',
     meta: {
         index: 122
@@ -183,7 +183,7 @@ export default [{
     component: () =>
         import ('@/views/company/companyRec.vue')
 }, {
-    path: '/companyinfo', //businesslicense
+    path: '/companyinfo',
     name: 'companyinfo',
     meta: {
         index: 123
@@ -191,11 +191,19 @@ export default [{
     component: () =>
         import ('@/views/company/companyInfo.vue')
 }, {
-    path: '/companystockholder', //businesslicense
+    path: '/companystockholder',
     name: 'companystockholder',
     meta: {
         index: 124
     },
     component: () =>
         import ('@/views/company/companyStockholder.vue')
+}, {
+    path: '/companyalt',
+    name: 'companyAlt',
+    meta: {
+        index: 125
+    },
+    component: () =>
+        import ('@/views/company/companyAlt.vue')
 }]

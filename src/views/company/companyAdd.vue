@@ -679,7 +679,6 @@ export default {
             companyTypeConfirm,
             commonConfirm,
             commonSearch,
-            postMainDataInfoInc,
         };
     }
 };

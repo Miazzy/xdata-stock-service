@@ -6,15 +6,17 @@ import axios from "@/plugins/axios";
 import 'lib-flexible/flexible';
 import icons from '@/icons'; // icon
 import components from '@/components'; // icon
-import Vant from 'vant';
-import 'vant/lib/index.css'; // 全局引入样式
+
 import './mock/mock';
 import eventBus from './utils/eventBus';
 
+import Vant from 'vant';
+import 'vant/lib/index.css'; // 全局引入样式
 
+import NutUI from "@nutui/nutui";
+import "@nutui/nutui/dist/style.css";
 
 const app = createApp(App);
-
 
 try {
     app.use(store).use(router).mount('#app');
@@ -23,7 +25,7 @@ try {
     app.use(components)
     app.use(eventBus);
     app.use(Vant);
-    //FastClick.attach(document.body); //注册移动端快速点击功能
+    app.use(NutUI);
 } catch (error) {
     console.log('fask click components regist error: ', error);
 }

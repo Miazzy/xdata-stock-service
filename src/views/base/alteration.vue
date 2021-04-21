@@ -21,7 +21,7 @@
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[0]">
                                 </van-badge>
-                                <div class="section-flex-layout-content" style="">基础信息变更</div>
+                                <div class="section-flex-layout-content" style="">基础变更</div>
                             </van-col>
                             <van-col span="6" @click="redirectView('/companystockholder?back=/alteration&title=股东变更')" >
                                 <van-badge>
@@ -35,11 +35,11 @@
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">高管变更</div>
                             </van-col>
-                            <van-col span="6" @click="redirectView('/companydirector?back=/alteration&title=信息变更')" >
+                            <van-col span="6" @click="redirectView('/companyalt?back=/alteration&title=变更记录')" >
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[3]">
                                 </van-badge>
-                                <div class="section-flex-layout-content" style="">信息变更</div>
+                                <div class="section-flex-layout-content" style="">变更申请</div>
                             </van-col>
                             <van-col span="6" @click="redirectView('/alterationadd')" style="display:none;">
                                 <van-badge>
