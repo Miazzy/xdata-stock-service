@@ -140,6 +140,7 @@
                             </table>
                         </div>
                     </div>
+
                     <div id="partners" class="content-block">
                         <div class="block-title">
                             股东信息
@@ -174,6 +175,7 @@
                         </div>
                         </template>
                     </div>
+
                     <div id="guquan" class="content-block" style="display:none;">
                         <div class="block-title">
                             股权结构
@@ -285,19 +287,41 @@
                         </div>
                     </div>
 
-                    <div id="alteration" class="content-block" >
-                        <section class="panel b-a" id="Changelist"> <div class="tcaption"> <span class="title">变更记录</span> <span class="tbadge changelistcount">41</span> <div class="tdrop"> <span class="btn" onclick="exportTable(this,'变更记录',211);zhugeTrack('导出数据来源',{'企业主页':'变更记录'});"> <span class="export"></span> <span>导出数据</span> </span> </div> <div class="tdrop pull-right"> <span class="btn" data-toggle="dropdown"> <span class="changelisttype">全部类型</span> <span class="caret m-l"></span> </span> <ul class="dropdown-menu dropdown-menu-right"> <li><a onclick="changeRecordsFilter('',this)">全部类型</a></li> <li><a onclick="changeRecordsFilter('主要成员',this)">主要成员(4)</a></li> <li><a onclick="changeRecordsFilter('章程备案',this)">章程备案(5)</a></li> <li><a onclick="changeRecordsFilter('企业类型',this)">企业类型(1)</a></li> <li><a onclick="changeRecordsFilter('出资情况',this)">出资情况(1)</a></li> <li><a onclick="changeRecordsFilter('名称',this)">名称(1)</a></li> <li><a onclick="changeRecordsFilter('章程修正案备案',this)">章程修正案备案(5)</a></li> <li><a onclick="changeRecordsFilter('法定代表人变更',this)">法定代表人变更(1)</a></li> <li><a onclick="changeRecordsFilter('注册资本(金)变更',this)">注册资本(金)变更(5)</a></li> <li><a onclick="changeRecordsFilter('高级管理人员备案（董事、监事、经理等）',this)">高级管理人员备案（董事、监事、经理等）(3)</a></li> <li><a onclick="changeRecordsFilter('其他事项备案',this)">其他事项备案(2)</a></li> <li><a onclick="changeRecordsFilter('投资者名称(姓名)变更',this)">投资者名称(姓名)变更(1)</a></li> <li><a onclick="changeRecordsFilter('名称变更',this)">名称变更(2)</a></li> <li><a onclick="changeRecordsFilter('投资人(股权)变更',this)">投资人(股权)变更(1)</a></li> <li><a onclick="changeRecordsFilter('经营范围变更',this)">经营范围变更(3)</a></li> <li><a onclick="changeRecordsFilter('换发证照',this)">换发证照(2)</a></li> <li><a onclick="changeRecordsFilter('企业类型变更',this)">企业类型变更(2)</a></li> <li><a onclick="changeRecordsFilter('经理备案',this)">经理备案(1)</a></li> <li><a onclick="changeRecordsFilter('经营期限(营业期限)变更',this)">经营期限(营业期限)变更(1)</a></li> </ul> </div> <span class="watermark"></span> <span class="explain-tip2" onclick="addNotice(this,true,'f50d972bf1d7aa5bb88da915da782762|领地集团有限公司');zhugeTrack('企业主页按钮点击',{'变更通知':'变更记录'});"> <span class="explain2"></span> <span>发生变更时通知我</span> </span> </div> <table class="ntable" style="margin-bottom: -1px"> <tbody><tr> <th class="tx">序号</th> <th width="103">变更日期</th> <th>变更项目</th> <th width="30%">变更前</th> <th width="30%">变更后</th> </tr> </tbody></table> <div style="border-bottom: #E4EEF6 1px solid;"> <div id="ChangelistTable"> <table class="ntable" style="margin-bottom: -1px;"> <tbody><tr data-pname="主要成员"> <td class="tx">1</td> <td width="103" class="text-center">2019-11-18</td> <td width="" class="text-center">
-                主要成员
-                            </td> <td width="30%"> <div style="max-width: 300px;"> <a href="/pl/p4e1d3966b51d51f5494ed3f0261c535.html">王涛</a><br> </div> </td> <td width="30%"> <div style="max-width: 300px;"> <a href="/pl/p4e1d3966b51d51f5494ed3f0261c535.html">王涛</a><br> <em><a href="/pl/p10d240fc9323273e6d00ead2df9b62a.html">龙一勤</a>【新增】</em><br> <em><a href="/pl/p0e7bf031703bc01246807db0da940e2.html">侯三利</a>【新增】</em><br> </div> </td> </tr> <tr data-pname="主要成员"> <td class="tx">2</td> <td width="103" class="text-center">2019-11-18</td> <td width="" class="text-center">
-                主要成员
-                <br><span class="text-gray" style="font-size: 12px">带有*标记的为法定代表人</span> </td> <td width="30%"> <div style="max-width: 300px;"> <a href="/pl/pa623216b83c08894d124afed076d1ef.html">刘玉辉</a>*<br> </div> </td> <td width="30%"> <div style="max-width: 300px;"> <a href="/pl/pa623216b83c08894d124afed076d1ef.html">刘玉辉</a>*<br> <em><a href="/pl/pc3e5ea54891bad17f32f09ec0039d8c.html">刘策</a>【新增】</em><br> <em><a href="/pl/pa97017b51c3e2cfc52c60499d4144e6.html">刘浩威</a>【新增】</em><br> </div> </td> </tr> <tr data-pname="章程备案"> <td class="tx">3</td> <td width="103" class="text-center">2019-11-18</td> <td width="" class="text-center">
-                章程备案
-                            </td> <td width="30%"> <div style="max-width: 300px;">
-                                                                                房地产<em>开发(按资质许可范围经营)</em><br> <em>建筑材料销售</em>。<br> </div> </td> <td width="30%"> <div style="max-width: 300px;">
-                                         
-                                        房地产<em>投资</em><br> <em>房地产开发经营(凭资质证经营)</em><br> <em>商品房销售及出租</em><br> <em> 实业投资。(以上项目国家法律、行政法规、国务院决定禁止或限制的除外)</em>。<br> </div> </td> </tr> <tr data-pname="高级管理人员备案（董事、监事、经理等）"> <td class="tx">41</td> <td width="103" class="text-center">2008-06-16</td> <td width="" class="text-center">
-                高级管理人员备案（董事、监事、经理等）
-                <br><span class="text-gray" style="font-size: 12px">带有*标记的为法定代表人</span> </td> <td width="30%"> <div style="max-width: 300px;"> <a href="/pl/p4e1d3966b51d51f5494ed3f0261c535.html">王涛</a>,董事<br> </div> </td> <td width="30%"> <div style="max-width: 300px;"> <a href="/pl/p4e1d3966b51d51f5494ed3f0261c535.html">王涛</a>,董事<br> <em><a href="/pl/pdd92809ea9e903531a39b12356edb1f.html">张启伟</a>,董事【新增】</em><br> <em><a href="/pl/pa623216b83c08894d124afed076d1ef.html">刘玉辉</a>*,董事长【新增】</em><br> <em><a href="/pl/p96b44492e6d73062f13560ef9362c8d.html">刘跃林</a>,董事【新增】</em><br> <em><a href="/pl/p1a84f054f52aa54f623090075216590.html">王志东</a>,董事【新增】</em><br> <em>杨丽,董事【新增】</em><br> </div> </td> </tr> </tbody></table> </div> </div> </section>
+                    <div id="alteration" class="content-block">
+                        <div class="block-title">
+                            变更记录
+                            <div onclick="collapse(this)" class="darrow"></div>
+                        </div>
+                        <template :key="item.id" :index="index" v-for="(item, index) in state.alteration" >
+                        <div style="border-bottom:1px solid #fafafa;">
+                            <table class="info-table">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="3">
+                                            <div class="cop-td">
+                                                <div class="ct" style="padding-left:0.0rem;">
+                                                    <div class="m-t-xs ptag"> 
+                                                        <span class="ntag sm text-success m-r-xs tooltip-br" style="margin-left:0.0rem;" >类型</span> 
+                                                        <span class="" style="margin-top:0.05rem;" >{{ item.name }}</span> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d">变更前内容</div>
+                                            <div class="v"> {{ item.pre_value }} </div>
+                                        </td>
+                                        <td>
+                                            <div class="d">变更后内容</div>
+                                            <div class="v"> {{ item.value }} </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        </template>
                     </div>
 
                     <div id="samelist" class="content-block">
@@ -564,6 +588,7 @@ export default {
                 director: '董事',
                 directorExecutive: '执行董事',
             },
+            alteration:[],
             occupation:[],
             id:'',
             show: true,
@@ -578,6 +603,7 @@ export default {
             const zone = element.item.companyCode;
             const industry = element.item.industryName;
             state.occupation = await Betools.manage.queryTableData('bs_company_flow_data',`_where=(companyCode,eq,${zone})~and(industryName,eq,${industry})~and(id,ne,${state.id})&_size=5`);
+            state.alteration = await Betools.manage.queryTableData('bs_company_flow_alteration',`_where=(companyName,eq,${element.item.companyName})&_sort=-time&_size=10`);
             Betools.manage.patchMainDataInfoInc(state).then(()=>{console.log(`更新法人信息_更新推送#主数据:`,JSON.stringify(state.item))});
             window.addEventListener("scroll", pageScroll);
         });
