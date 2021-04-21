@@ -44,6 +44,7 @@
                                 <van-field required :readonly="false" clickable clearable label="变更前内容" v-model="state.alteration.pre_value" rows="5" autosize type="textarea" placeholder="请输入变更前内容" />
                                 <van-field required :readonly="false" clickable clearable label="变更后内容" v-model="state.alteration.value" rows="5" autosize type="textarea" placeholder="请输入变更后内容" />
 
+                                <nut-button disabled type="primary">禁用状态</nut-button>
                             </van-cell-group>
                         </van-form>
                     </van-cell-group>
@@ -61,6 +62,7 @@
 </template>
 
 <script>
+import { Toast } from "@nutui/nutui";
 import { Dialog, Popup } from 'vant';
 import commonSelect from '@/components/select/commonSelect';
 import { ref, reactive, onMounted, toRefs, getCurrentInstance } from "vue";
@@ -167,6 +169,8 @@ export default {
         //提交录入董监高申请确认函数
         const confirm = async(result = null , elem = null , nodes = []) => {
             await Betools.manage.confirmCompanyDirector(result, elem, nodes, state, Dialog, returnBack);
+            // const toast = Toast.loading('加载中');
+            // toast.hide();
         };
 
         return {
