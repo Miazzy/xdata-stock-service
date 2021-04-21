@@ -305,6 +305,9 @@
                                                         <span class="" style="margin-top:0.05rem;" >{{ item.name }}</span> 
                                                     </div>
                                                 </div>
+                                                <div style="margin-top:0.2rem;">
+                                                    <span class="" style="margin-top:0.28rem; margin-left:0.5rem;" > 变更于 {{ item.time }}</span> 
+                                                </div>
                                             </div>
                                         </td>
                                     </tr>
@@ -604,6 +607,7 @@ export default {
             const industry = element.item.industryName;
             state.occupation = await Betools.manage.queryTableData('bs_company_flow_data',`_where=(companyCode,eq,${zone})~and(industryName,eq,${industry})~and(id,ne,${state.id})&_size=5`);
             state.alteration = await Betools.manage.queryTableData('bs_company_flow_alteration',`_where=(companyName,eq,${element.item.companyName})&_sort=-time&_size=10`);
+            state.alteration.map((item)=>{item.time = dayjs(item.time).format('YYYY-MM-DD')});
             Betools.manage.patchMainDataInfoInc(state).then(()=>{console.log(`更新法人信息_更新推送#主数据:`,JSON.stringify(state.item))});
             window.addEventListener("scroll", pageScroll);
         });

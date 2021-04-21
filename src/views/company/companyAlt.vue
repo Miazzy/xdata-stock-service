@@ -56,7 +56,7 @@
             </section>
         </div>
 
-        <div class="section-button" style="text-align:center;margin-top:0.75rem;margin-bottom:0.75rem;">
+        <div v-if="state.tag.showOperationZone" class="section-button" style="text-align:center;margin-top:0.75rem;margin-bottom:0.75rem;">
             <van-button plain hairline type="info" style="width:37.5%;" @click="cancel">取消</van-button>
             <van-button plain hairline type="primary" style="width:37.5%;margin-left:0.5rem;" @click="confirm" >确定</van-button>
         </div>
@@ -115,7 +115,7 @@ export default {
                 maxDate: new Date(2099, 12, 31),
             },
             tag: {
-                showCompanyName: false,
+                showOperationZone: true,
                 showName: false,
                 showTimes:false,
                 showTime:false,
@@ -175,13 +175,11 @@ export default {
 
         //提交录入变更记录申请确认函数
         const confirm = async(result = null , elem = null , nodes = []) => {
-            //获取所属公司名称
-
-            //构建提交Node
-
-            //推进提交信息
-
-            //提升用户操作成功
+            delete state.alteration.company;
+            state.alteration.id = Betools.tools.queryUniqueID(); //构建提交Node
+            result = await Betools.manage.postTableData('bs_company_flow_alteration', state.alteration); //提交变更信息
+            Toast.success('提交变更记录申请成功！');//提示用户操作成功
+            state.tag.showOperationZone = false;
         };
 
         return {
