@@ -182,7 +182,7 @@ export default {
         }
     }
 
-    /deep/ .van-button--large {
+    ::v-deep .van-button--large {
         height: 44px;
         line-height: 44px;
     }

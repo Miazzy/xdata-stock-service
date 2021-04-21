@@ -276,12 +276,12 @@ export default {
         margin-left: 4%;
         margin-right: 4%;
 
-        /deep/ .van-button--large {
+        ::v-deep .van-button--large {
             height: 44px;
             line-height: 44px;
         }
 
-        /deep/ .van-button--danger {
+        ::v-deep .van-button--danger {
             color: #d8182d;
         }
     }

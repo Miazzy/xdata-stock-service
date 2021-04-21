@@ -286,7 +286,7 @@ export default {
   min-height: 100vh;
   margin-bottom: 45px;
   padding-bottom: 45px;
-  /deep/ .van-swipe-item {
+  ::v-deep .van-swipe-item {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -433,7 +433,7 @@ export default {
       justify-content: space-between;
       margin-top: 10px;
       margin-bottom: 10px;
-      /deep/ .van-button--danger {
+      ::v-deep .van-button--danger {
         background-color: #d8182d;
         border: 1px solid #d8182d;
       }
@@ -455,7 +455,7 @@ export default {
       .store-btn {
         padding-right: 16px;
         padding-top: 10px;
-        /deep/ .van-button {
+        ::v-deep .van-button {
           margin-left: 10px;
         }
       }
@@ -491,10 +491,10 @@ export default {
     }
     .html-class {
       margin-top: 20px;
-      /deep/ img {
+      ::v-deep img {
         width: 375px;
       }
-      /deep/ div {
+      ::v-deep div {
         background-size: 50% 100%;
       }
     }
@@ -617,7 +617,7 @@ export default {
             font-size: 14px;
             color: #3a3a3a;
           }
-          /deep/ .van-stepper__input {
+          ::v-deep .van-stepper__input {
             width: 31px;
             height: 20px;
             padding: 0;
@@ -626,14 +626,14 @@ export default {
             background-color: transparent;
             border: 1px solid #dbdbdb;
           }
-          /deep/ .van-stepper__plus {
+          ::v-deep .van-stepper__plus {
             border: 1px solid #dbdbdb;
             background-color: transparent;
             width: 16px;
             height: 22px;
             border-radius: 0;
           }
-          /deep/ .van-stepper__minus {
+          ::v-deep .van-stepper__minus {
             border-radius: 0;
             border: 1px solid #dbdbdb;
             background-color: transparent;
@@ -644,17 +644,17 @@ export default {
       }
     }
   }
-  /deep/ .van-popup--bottom {
+  ::v-deep .van-popup--bottom {
     border-radius: 16px 16px 0 0;
   }
   .product-footer {
-    /deep/ .van-button--warning {
+    ::v-deep .van-button--warning {
       background-color: #f3ca43;
       border: 1px solid #f3ca43;
       height: 44px;
       line-height: 44px;
     }
-    /deep/ .van-button--danger {
+    ::v-deep .van-button--danger {
       height: 44px;
       line-height: 44px;
       background-color: #d8182d;

@@ -154,16 +154,16 @@ export default {
       padding-bottom: 32px;
       font-size: 11px;
     }
-    /deep/ .van-hairline--top-bottom::after {
+    ::v-deep .van-hairline--top-bottom::after {
       display: none;
     }
-    /deep/ .temp-empty {
+    ::v-deep .temp-empty {
       display: none;
     }
-    /deep/ .van-cell-group {
+    ::v-deep .van-cell-group {
       background-color: transparent;
     }
-    /deep/ .van-cell {
+    ::v-deep .van-cell {
       background-color: transparent;
       padding-left: 0;
       padding-right: 0;

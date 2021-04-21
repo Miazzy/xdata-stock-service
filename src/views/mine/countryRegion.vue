@@ -96,13 +96,13 @@ export default {
   }
   .index-box {
     padding: 0 16px;
-    /deep/ .van-index-bar {
+    ::v-deep .van-index-bar {
       border-radius: 8px;
     }
-    /deep/ .van-index-bar__sidebar {
+    ::v-deep .van-index-bar__sidebar {
       color: #2b8bff;
     }
-    /deep/ .letter-idnex {
+    ::v-deep .letter-idnex {
       color: #2a2a2a;
       font-size: 20px;
       font-weight: 700;

@@ -110,10 +110,10 @@ export default {
         justify-content: space-between;
         align-items: center;
         padding-bottom: 20px;
-        /deep/ .van-cell {
+        ::v-deep .van-cell {
           padding: 0;
         }
-        /deep/ .van-cell::after {
+        ::v-deep .van-cell::after {
           border: none;
         }
         .header-img {
@@ -134,7 +134,7 @@ export default {
   }
   .popup-content {
     padding: 16px;
-    /deep/ .van-field {
+    ::v-deep .van-field {
       border: 1px solid #949497;
       border-radius: 2px;
     }

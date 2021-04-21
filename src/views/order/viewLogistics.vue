@@ -238,10 +238,10 @@ export default {
       display: flex;
       flex-direction: column;
     }
-    /deep/ .van-steps__items {
+    ::v-deep .van-steps__items {
       padding-left: 30px;
     }
-    /deep/ .van-step__title {
+    ::v-deep .van-step__title {
       padding-left: 12px;
       .active-text {
         color: #d8182d;

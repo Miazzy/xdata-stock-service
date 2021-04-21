@@ -146,18 +146,18 @@ export default {
     border-radius: 8px;
     background-color: white;
     .item-content {
-      /deep/ .van-cell:not(:last-child)::after {
+      ::v-deep .van-cell:not(:last-child)::after {
         display: none;
       }
-      /deep/ .van-hairline--top-bottom::after {
+      ::v-deep .van-hairline--top-bottom::after {
         display: none;
       }
-      /deep/ .van-field__right-icon {
+      ::v-deep .van-field__right-icon {
         position: absolute;
         bottom: 5px;
         right: 0;
       }
-      /deep/ .van-cell {
+      ::v-deep .van-cell {
         padding: 10px 0;
         // padding-top: 20px;
       }
@@ -179,7 +179,7 @@ export default {
       font-size: 14px;
       padding-bottom: 10px;
     }
-    /deep/ .van-button--danger {
+    ::v-deep .van-button--danger {
       background-color: #d8182d;
       line-height: 44px;
       font-size: 18px;

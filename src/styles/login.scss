@@ -57,18 +57,18 @@
                 }
             }
         }
-        /deep/ .temp-empty {
+         ::v-deep .temp-empty {
             display: none;
         }
-        /deep/ .van-cell-group {
+         ::v-deep .van-cell-group {
             background-color: transparent;
         }
-        /deep/ .van-cell {
+         ::v-deep .van-cell {
             background-color: transparent;
             font-size: 17px;
             padding-top: 0.5rem;
         }
-        /deep/ .van-hairline--top-bottom::after {
+         ::v-deep .van-hairline--top-bottom::after {
             font-size: 17px;
             border-width: 0;
         }

@@ -124,10 +124,10 @@ export default {
           display: inline-block;
           margin-right: 12px;
           margin-bottom: 10px;
-          /deep/ .van-radio__icon {
+          ::v-deep .van-radio__icon {
             width: 14px;
           }
-          /deep/ .van-radio__label {
+          ::v-deep .van-radio__label {
             font-size: 15px;
             color: #3a3a3a;
           }
@@ -139,10 +139,10 @@ export default {
         height: 303px;
         border-radius: 8px;
         border: 1px solid #949497;
-        /deep/ .van-cell {
+        ::v-deep .van-cell {
           padding-bottom: 0;
         }
-        /deep/ .van-field__right-icon {
+        ::v-deep .van-field__right-icon {
           position: absolute;
           bottom: 0;
           right: 0;

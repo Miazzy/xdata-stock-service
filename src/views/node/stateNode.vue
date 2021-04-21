@@ -312,7 +312,7 @@ export default {
     left: 0;
     right: 0;
     padding: 0 16px;
-    /deep/ .van-button--danger {
+    ::v-deep .van-button--danger {
       background-color: #d8182d;
       line-height: 44px;
       font-size: 18px;

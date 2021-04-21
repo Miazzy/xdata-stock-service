@@ -188,11 +188,11 @@ export default {
     margin-top: 20px;
     border-radius: 5px;
     background-color: #fff;
-    /deep/ .van-cell {
+    ::v-deep .van-cell {
       padding-left: 0;
       padding-right: 0;
     }
-    /deep/ .van-image img {
+    ::v-deep .van-image img {
       border-radius: 8px;
     }
   }
@@ -201,7 +201,7 @@ export default {
     padding: 0 16px;
     padding-top: 50px;
     padding-bottom: 10px;
-    /deep/ .van-button--danger {
+    ::v-deep .van-button--danger {
       background-color: #d8182d;
       line-height: 44px;
       font-size: 18px;
