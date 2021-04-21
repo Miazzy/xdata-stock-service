@@ -36,15 +36,19 @@
                                 <common-select :showTag="state.tag.showCompanyName" :modelColumns="state.companyNameColumns" fieldName="companyName" :modelValue="state.alteration.companyName" :element="state.alteration" type="company" v-model="state.alteration.companyName" labelName="公司名称" placeholderName="请填写公司名称" @search="commonSearch" @confirm="commonConfirm" />
 
                                 <van-field required :readonly="false" clickable clearable label="变更类型" v-model="state.alteration.name" placeholder="请选择变更类型" @click="state.tag.showName = true;" />
-                                <van-picker v-show="state.tag.showName" title="选择变更类型" show-toolbar :columns="state.typeNameColumns" @confirm="nameConfirm" @cancel="state.tag.showName = false;" />
-                                
+                                <nut-popup position="bottom" closeable close-icon-position="top-left" :style="{ height: '40%' }" v-model:visible="state.tag.showName">
+                                    <van-picker v-show="state.tag.showName" title="选择变更类型" show-toolbar :columns="state.typeNameColumns" @confirm="nameConfirm" @cancel="state.tag.showName = false;" />
+                                </nut-popup>
+
                                 <van-field required :readonly="false" clickable clearable label="变更日期" v-model="state.alteration.time" placeholder="请选择变更日期" @click="clickDatePicker('showTime' , 'time' , true);" />
-                                <van-datetime-picker v-show="state.tag.showTime" v-model="state.status.time" type="date" title="选择年月日" :min-date="state.status.minDate" :max-date="state.status.maxDate" @cancel="clickDatePicker('showTime' , 'time' , false);" @confirm="clickDatePicker('showTime' , 'time' , false);" />
+                                <nut-popup position="bottom" closeable close-icon-position="top-left" :style="{ height: '40%' }" v-model:visible="state.tag.showTime">
+                                    <van-datetime-picker v-show="state.tag.showTime" v-model="state.status.time" type="date" title="选择年月日" :min-date="state.status.minDate" :max-date="state.status.maxDate" @cancel="clickDatePicker('showTime' , 'time' , false);" @confirm="clickDatePicker('showTime' , 'time' , false);" />
+                                </nut-popup>
+
                                 
                                 <van-field required :readonly="false" clickable clearable label="变更前内容" v-model="state.alteration.pre_value" rows="5" autosize type="textarea" placeholder="请输入变更前内容" />
                                 <van-field required :readonly="false" clickable clearable label="变更后内容" v-model="state.alteration.value" rows="5" autosize type="textarea" placeholder="请输入变更后内容" />
 
-                                <nut-button disabled type="primary">禁用状态</nut-button>
                             </van-cell-group>
                         </van-form>
                     </van-cell-group>
@@ -62,8 +66,8 @@
 </template>
 
 <script>
-import { Toast } from "@nutui/nutui";
-import { Dialog, Popup } from 'vant';
+import { Toast} from "@nutui/nutui";
+import { Dialog, } from 'vant';
 import commonSelect from '@/components/select/commonSelect';
 import { ref, reactive, onMounted, toRefs, getCurrentInstance } from "vue";
 import { useStore } from "vuex";
@@ -113,6 +117,9 @@ export default {
             tag: {
                 showCompanyName: false,
                 showName: false,
+                showTimes:false,
+                showTime:false,
+                show:true,
                 showKey: '',
             },
             show: true,
@@ -163,14 +170,12 @@ export default {
 
         //取消提交录入申请函数
         const cancel = async() => {
-            await Betools.manage.cancelAndBack(Dialog , returnBack , '取消录入董监高申请？');
+            await Betools.manage.cancelAndBack(Dialog , returnBack , '取消录入变更记录申请？');
         };
 
-        //提交录入董监高申请确认函数
+        //提交录入变更记录申请确认函数
         const confirm = async(result = null , elem = null , nodes = []) => {
-            await Betools.manage.confirmCompanyDirector(result, elem, nodes, state, Dialog, returnBack);
-            // const toast = Toast.loading('加载中');
-            // toast.hide();
+            
         };
 
         return {
