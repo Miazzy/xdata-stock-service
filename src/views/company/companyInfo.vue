@@ -287,7 +287,57 @@
                         </div>
                     </div>
 
-                    <div id="alteration" class="content-block">
+                    <div id="alteration" class="content-block" v-if="state.qualification.length > 0">
+                        <div class="block-title">
+                            资质证书
+                            <div onclick="collapse(this)" class="darrow"></div>
+                        </div>
+                        <template :key="item.id" :index="index" v-for="(item, index) in state.qualification" >
+                        <div style="border-bottom:1px solid #fafafa;">
+                            <table class="info-table">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="3">
+                                            <div class="cop-td">
+                                                <div class="ct" style="padding-left:0.0rem;">
+                                                    <div class="m-t-xs ptag"> 
+                                                        <span class="ntag sm text-pl m-r-xs tooltip-br" style="margin-left:0.0rem;" >证书类别</span> 
+                                                        <span class="ntag sm text-primary m-r-xs tooltip-br" style="margin-left:0.0rem;" >{{ item.qualificationType }}</span> 
+                                                        <span class="ntag sm text-success m-r-xs tooltip-br" style="margin-top:0.0rem; margin-left:0.0rem;" > {{ item.qualificationStatus }}</span> 
+                                                    </div>
+                                                </div>
+                                                <div style="margin-top:0.2rem;">
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d">证书类别</div>
+                                            <div class="v"> {{ item.qualificationType }} </div>
+                                        </td>
+                                        <td>
+                                            <div class="d">证书等级</div>
+                                            <div class="v"> {{ item.qualificationLevel }} </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d">证书编号</div>
+                                            <div class="v"> {{ item.qualificationNumber }} </div>
+                                        </td>
+                                        <td colspan="1">
+                                            <div class="d">资质证有效期</div>
+                                            <div class="v"> {{ item.qualificationPeriod }} </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        </template>
+                    </div>
+
+                    <div id="alteration" class="content-block" v-if="state.alteration.length > 0">
                         <div class="block-title">
                             变更记录
                             <div onclick="collapse(this)" class="darrow"></div>
@@ -301,7 +351,7 @@
                                             <div class="cop-td">
                                                 <div class="ct" style="padding-left:0.0rem;">
                                                     <div class="m-t-xs ptag"> 
-                                                        <span class="ntag sm text-success m-r-xs tooltip-br" style="margin-left:0.0rem;" >类型</span> 
+                                                        <span class="ntag sm text-warning m-r-xs tooltip-br" style="margin-left:0.0rem;" >类型</span> 
                                                         <span class="" style="margin-top:0.05rem;" >{{ item.name }}</span> 
                                                     </div>
                                                 </div>
@@ -593,6 +643,7 @@ export default {
             },
             alteration:[],
             occupation:[],
+            qualification:[],
             id:'',
             show: true,
             message: {},
@@ -607,6 +658,7 @@ export default {
             const industry = element.item.industryName;
             state.occupation = await Betools.manage.queryTableData('bs_company_flow_data',`_where=(companyCode,eq,${zone})~and(industryName,eq,${industry})~and(id,ne,${state.id})&_size=5`);
             state.alteration = await Betools.manage.queryTableData('bs_company_flow_alteration',`_where=(companyName,eq,${element.item.companyName})&_sort=-time&_size=10`);
+            state.qualification = await Betools.manage.queryTableData('bs_company_flow_qualification',`_where=(companyName,eq,${element.item.companyName})&_sort=-id&_size=10`);
             state.alteration.map((item)=>{item.time = dayjs(item.time).format('YYYY-MM-DD')});
             Betools.manage.patchMainDataInfoInc(state).then(()=>{console.log(`更新法人信息_更新推送#主数据:`,JSON.stringify(state.item))});
             window.addEventListener("scroll", pageScroll);

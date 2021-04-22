@@ -27,5 +27,11 @@ try {
     app.use(Vant);
     app.use(NutUI);
 } catch (error) {
-    console.log('fask click components regist error: ', error);
+    console.log('components regist error: ', error);
+}
+
+try {
+    // window.vConsole = new VConsole();
+} catch (error) {
+    console.log(`vconsole run error:`, error);
 }

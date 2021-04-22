@@ -65,9 +65,9 @@
             </section>
         </div>
 
-        <div class="section-button" style="text-align:center;margin-top:0.75rem;margin-bottom:0.75rem;">
-            <van-button plain hairline type="info" style="width:37.5%;">取消</van-button>
-            <van-button plain hairline type="primary" style="width:37.5%;margin-left:0.5rem;">确定</van-button>
+        <div v-if="state.tag.showOperationZone" class="section-button" style="text-align:center;margin-top:0.75rem;margin-bottom:0.75rem;">
+            <van-button plain hairline type="info" style="width:37.5%;" @click="cancel" >取消</van-button>
+            <van-button plain hairline type="primary" style="width:37.5%;margin-left:0.5rem;" @click="confirm" >确定</van-button>
         </div>
 
     </div>
@@ -75,6 +75,7 @@
 </template>
 
 <script>
+import { Toast} from "@nutui/nutui";
 import { Dialog } from 'vant';
 import { ref, reactive, onMounted, toRefs, getCurrentInstance } from "vue";
 import { useStore } from "vuex";
@@ -115,11 +116,11 @@ export default {
                 id:'',
                 create_time: dayjs().format('YYYY-MM-DD'),
                 companyName:'',
-                qualificationType :'', // '资质类型',
-                qualificationLevel : '', //  '资质等级',
+                qualificationType :'房地产开发', // '资质类型',
+                qualificationLevel : '一级资质', //  '资质等级',
                 qualificationNumber : '', //'资质编号',
-                qualificationPeriod: '', // '资质证有效期',
-                qualificationStatus :'', // '资质状态',
+                qualificationPeriod: dayjs().format('YYYY-MM-DD') + ' 至 ' + dayjs().format('YYYY-MM-DD'), // '资质证有效期',
+                qualificationStatus :'有效', // '资质状态',
                 validityPeriod1: dayjs().format('YYYY-MM-DD'),
                 validityPeriod2: dayjs().format('YYYY-MM-DD'),
                 cancellationReason:'', //     
@@ -131,6 +132,7 @@ export default {
                 maxDate: new Date(2099, 12, 31),
             },
             tag:{
+                showOperationZone:true,
                 showCompanyName:false,
                 showValidityPeriod1:false,
                 showValidityPeriod2:false,
@@ -144,7 +146,6 @@ export default {
         });
 
         onMounted(() => {
-            state.qualification.qualificationPeriod = state.qualification.validityPeriod1 + ' 至 ' + state.qualification.validityPeriod2;
             window.addEventListener("scroll", pageScroll);
         });
 
@@ -205,6 +206,20 @@ export default {
             scrollTop > 100 ? (headerActive.value = true) : (headerActive.value = false);
         };
 
+        //取消提交录入申请函数
+        const cancel = async() => {
+            await Betools.manage.cancelAndBack(Dialog , returnBack , '取消录入资质申请？');
+        };
+
+        //提交录入变更记录申请确认函数
+        const confirm = async(result = null , elem = null , nodes = []) => {
+            delete state.qualification.company;
+            state.qualification.id = Betools.tools.queryUniqueID(); //构建提交Node
+            result = await Betools.manage.postTableData('bs_company_flow_qualification', state.qualification); //提交变更信息
+            Toast.success('提交录入资质申请成功！');//提示用户操作成功
+            state.tag.showOperationZone = false;
+        };
+
         return {
             active,
             state,
@@ -218,7 +233,9 @@ export default {
             commonConfirm,
             companyTypeConfirm,
             clickDatePicker,
-            commonSearch
+            commonSearch,
+            cancel,
+            confirm,
         };
     }
 };
