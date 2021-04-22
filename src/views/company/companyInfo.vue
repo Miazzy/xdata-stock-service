@@ -337,6 +337,56 @@
                         </template>
                     </div>
 
+                    <div id="alteration" class="content-block" v-if="state.pledge.length > 0">
+                        <div class="block-title">
+                            质押情况
+                            <div onclick="collapse(this)" class="darrow"></div>
+                        </div>
+                        <template :key="item.id" :index="index" v-for="(item, index) in state.pledge" >
+                        <div style="border-bottom:1px solid #fafafa;">
+                            <table class="info-table">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="3">
+                                            <div class="cop-td">
+                                                <div class="ct" style="padding-left:0.0rem;">
+                                                    <div class="m-t-xs ptag"> 
+                                                        <span class="ntag sm text-danger m-r-xs tooltip-br" style="margin-left:0.0rem;" >出质标的</span> 
+                                                        <span class="ntag sm text-primary m-r-xs tooltip-br" style="margin-left:0.0rem;" >{{ item.pledgeCompanyName }}</span> 
+                                                        <span class="ntag sm text-success m-r-xs tooltip-br" style="margin-top:0.0rem; margin-left:0.0rem;" > {{ item.pledgeStatus }}</span> 
+                                                    </div>
+                                                </div>
+                                                <div style="margin-top:0.2rem;">
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d">出资人</div>
+                                            <div class="v"> {{ item.pledgor }} </div>
+                                        </td>
+                                        <td>
+                                            <div class="d">质权人</div>
+                                            <div class="v"> {{ item.pledgee }} </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d">登记编号</div>
+                                            <div class="v"> {{ item.pledgeID }} </div>
+                                        </td>
+                                        <td colspan="1">
+                                            <div class="d">出质股权数</div>
+                                            <div class="v"> {{ item.pledgedNumber }} </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        </template>
+                    </div>
+
                     <div id="alteration" class="content-block" v-if="state.alteration.length > 0">
                         <div class="block-title">
                             变更记录
@@ -643,6 +693,7 @@ export default {
             },
             alteration:[],
             occupation:[],
+            pledge:[],
             qualification:[],
             id:'',
             show: true,
@@ -657,8 +708,9 @@ export default {
             const zone = element.item.companyCode;
             const industry = element.item.industryName;
             state.occupation = await Betools.manage.queryTableData('bs_company_flow_data',`_where=(companyCode,eq,${zone})~and(industryName,eq,${industry})~and(id,ne,${state.id})&_size=5`);
-            state.alteration = await Betools.manage.queryTableData('bs_company_flow_alteration',`_where=(companyName,eq,${element.item.companyName})&_sort=-time&_size=10`);
-            state.qualification = await Betools.manage.queryTableData('bs_company_flow_qualification',`_where=(companyName,eq,${element.item.companyName})&_sort=-id&_size=10`);
+            state.alteration = await Betools.manage.queryTableData('bs_company_flow_alteration',`_where=(companyName,like,~${element.item.companyName}~)&_sort=-time&_size=10`);
+            state.pledge = await Betools.manage.queryTableData('bs_company_flow_pledge',`_where=(companyName,like,~${element.item.companyName}~)&_sort=-id&_size=10`);
+            state.qualification = await Betools.manage.queryTableData('bs_company_flow_qualification',`_where=(companyName,like,~${element.item.companyName}~)&_sort=-id&_size=10`);
             state.alteration.map((item)=>{item.time = dayjs(item.time).format('YYYY-MM-DD')});
             Betools.manage.patchMainDataInfoInc(state).then(()=>{console.log(`更新法人信息_更新推送#主数据:`,JSON.stringify(state.item))});
             window.addEventListener("scroll", pageScroll);

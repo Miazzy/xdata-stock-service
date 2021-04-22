@@ -12,7 +12,7 @@
         </header>
 
         <div class="section-content" style="">
-            <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%);">
+            <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 3%); padding-bottom: 0.40rem;">
 
                 <div class="weui-cells" style="margin-top:0px;">
                     <div class="weui-cells" style="margin-top:0px;border-bottom:0px solid #fefefe;">
@@ -213,6 +213,8 @@ export default {
 
         //提交录入变更记录申请确认函数
         const confirm = async(result = null , elem = null , nodes = []) => {
+            //验证信息是否填写完整
+            
             delete state.qualification.company;
             state.qualification.id = Betools.tools.queryUniqueID(); //构建提交Node
             result = await Betools.manage.postTableData('bs_company_flow_qualification', state.qualification); //提交变更信息

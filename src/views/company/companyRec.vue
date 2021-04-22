@@ -12,7 +12,7 @@
         </header>
 
         <div class="section-content" style="">
-            <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%);">
+            <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 3%); padding-bottom: 0.40rem;">
 
                 <div class="weui-cells" style="margin-top:0px;">
 

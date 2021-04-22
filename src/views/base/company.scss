@@ -1,16 +1,25 @@
 .section-content {
     padding: 0 0.125rem;
     padding-bottom: 0.005rem;
+
     .section {
         background-color: #fff;
-        border-radius: 0.21333rem;
+        border-radius: 0.11333rem;
         padding: 0 0.42667rem;
         margin-top: 0.48rem;
         margin-bottom: 0.005rem;
+
+        #van-company-name .van-cell__value--alone {
+            color: red;
+            text-align: left;
+        }
     }
+
     #company-flow-base-content .van-button--small {
         height: 0.60333rem;
         padding: 0 0.21333rem;
         font-size: 0.32rem;
     }
+    
+    
 }

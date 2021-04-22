@@ -12,7 +12,7 @@
         </header>
 
         <div class="section-content" v-show="state.step == 'one' " style="">
-            <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%);">
+            <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 3%); padding-bottom: 0.40rem;">
                 <div class="weui-cells" style="margin-top:0px;">
                     <div class="weui-cells" style="margin-top:0px;border-bottom:0px solid #fefefe;">
                         <van-notice-bar v-show=" title!='' && title != null && typeof title != 'undefined' " left-icon="volume-o" color="#1989fa" background="#ecf9ff" :text="title" />

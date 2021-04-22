@@ -12,7 +12,8 @@
         </header>
 
         <div class="section-content" style="">
-            <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 10%);">
+
+            <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 3%); padding-bottom:0.40rem;">
                 <div id="weui-cells-flex" class="weui-cells" style="">
                     <div class="weui-cell-title" style="">设立管理</div>
                     <div class="flex-layout-content" id="scanCell" style="">
@@ -41,24 +42,6 @@
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="" >查询公司</div>
                             </van-col>
-                            <van-col span="6" @click="redirectView('/companystockholder')" style="display:none;">
-                                <van-badge>
-                                    <img class="child" style="" :src="state.imgs[3]">
-                                </van-badge>
-                                <div class="section-flex-layout-content" style="">录入股东</div>
-                            </van-col>
-                            <van-col span="6" @click="redirectView('/companydirector')" style="display:none;">
-                                <van-badge>
-                                    <img class="child" style="" :src="state.imgs[2]">
-                                </van-badge>
-                                <div class="section-flex-layout-content" style="">录董监高</div>
-                            </van-col>
-                            <van-col span="6" @click="redirectView('/companyrec')" style="display:none;" >
-                                <van-badge>
-                                    <img class="child" style="transform:scale(0.78);" :src="state.imgs[1]">
-                                </van-badge>
-                                <div class="section-flex-layout-content" style="">录工商信息</div>
-                            </van-col>
                             <van-col span="6" @click="redirectView('/companypledge')">
                                 <van-badge>
                                     <img class="child" style="" :src="state.imgs[4]">
@@ -71,6 +54,39 @@
                                 </van-badge>
                                 <div class="section-flex-layout-content" style="">录入资质</div>
                             </van-col>
+                        </van-row>
+                    </div>
+                </div>
+                <div id="weui-cells-bottom" style="">
+                    <span></span>
+                </div>
+            </section>
+
+            <section class="section" style="box-shadow: 0 0.13333rem 0.2rem 0 rgb(0 0 0 / 3%); padding-bottom:0.40rem;">
+                <div id="weui-cells-flex" class="weui-cells" style="">
+                    <div class="weui-cell-title" style="">设立修改</div>
+                    <div class="flex-layout-content" id="scanCell" style="">
+                        <van-row>
+                            
+                            <van-col span="6" @click="redirectView('/companystockholder')" style="display:block;">
+                                <van-badge>
+                                    <img class="child" style="" :src="state.imgs[3]">
+                                </van-badge>
+                                <div class="section-flex-layout-content" style="">股东修改</div>
+                            </van-col>
+                            <van-col span="6" @click="redirectView('/companydirector')" style="display:block;">
+                                <van-badge>
+                                    <img class="child" style="" :src="state.imgs[2]">
+                                </van-badge>
+                                <div class="section-flex-layout-content" style="">董监高修改</div>
+                            </van-col>
+                            <van-col span="6" @click="redirectView('/companyrec')" style="display:block;" >
+                                <van-badge>
+                                    <img class="child" style="transform:scale(0.78);" :src="state.imgs[1]">
+                                </van-badge>
+                                <div class="section-flex-layout-content" style="">基础信息修改</div>
+                            </van-col>
+                            
                         </van-row>
                     </div>
                 </div>
