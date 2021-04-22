@@ -29,15 +29,35 @@
                     <van-cell-group>
                         <van-form>
                             <van-cell-group style="margin-top:10px;">
-                                <van-cell value="资质信息" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
-                                <van-field clearable label="填报日期" v-model="state.item.createtime" placeholder="请输入登记日期" readonly />
-                                <van-field required :readonly="false" clickable clearable label="公司名称" v-model="state.item.sealtype" placeholder="请填写公司名称" />
-                                <van-field required :readonly="false" clickable clearable label="资质类型" v-model="state.item.sealtype" placeholder="请选择资质类型" />
-                                <van-field required :readonly="false" clickable clearable label="资质等级" v-model="state.item.ordertype" placeholder="请选择资质等级" />
-                                <van-field required :readonly="false" clickable clearable label="资质编号" v-model="state.item.ordertype" placeholder="请选择资质编号" />
-                                <van-field required :readonly="false" clickable clearable label="资质证有效期" v-model="state.item.ordertype" placeholder="请选择资质证有效期" />
-                                <van-field required :readonly="false" clickable clearable label="资质状态" v-model="state.item.ordertype" placeholder="请选择资质状态" />
-                                <van-field required :readonly="false" clickable clearable label="注销原因" v-model="state.item.ordertype" placeholder="请选择注销原因" />
+                                <van-cell value="资质管理" style="margin-left:0px;margin-left:-3px;font-size: 0.375rem;" />
+                                <van-field clearable label="填报日期" v-model="state.qualification.create_time" placeholder="请输入填报日期" readonly />
+
+                                <!--公司名称-->
+                                <common-select :showTag="state.tag.showCompanyName" :modelColumns="state.companyNameColumns" fieldName="companyName" :modelValue="state.qualification.companyName" :element="state.qualification" type="company" v-model="state.qualification.companyName" labelName="公司名称" placeholderName="请填写公司名称" @search="commonSearch" @confirm="commonConfirm" />
+
+                                <van-field required :readonly="true" clickable clearable label="资质类型" v-model="state.qualification.qualificationType" placeholder="请选择资质类型" @click="state.tag.showQualificationType = true;" />
+                                <van-cascader v-show="state.tag.showQualificationType" title="请选择资质类型" :options="state.cascader.typeOptions" @close="state.tag.showQualificationType = false" @finish="companyQType" />
+                                
+                                <van-field v-show="state.qualification.qualificationType!='--'" required :readonly="true" clickable clearable label="资质等级" v-model="state.qualification.qualificationLevel" placeholder="请选择资质类型" @click="state.tag.showQualificationLevel = true;" />
+                                <van-cascader v-show="state.tag.showQualificationLevel && state.qualification.qualificationType!='--'" title="请选择资质等级" :options="state.cascader.levelOptions" @close="state.tag.showQualificationLevel = false" @finish="companyQLevel" />
+
+                                <van-field v-show="state.qualification.qualificationType!='--'" required :readonly="false" clickable clearable label="资质编号" v-model="state.qualification.qualificationNumber" placeholder="请选择资质编号" />
+                                <van-field v-show="state.qualification.qualificationType!='--'" required :readonly="true" clickable clearable label="资质证有效期" v-model="state.qualification.qualificationPeriod" placeholder="请选择资质证有效期" />
+
+                                <van-field v-show="state.qualification.qualificationType!='--'" required :readonly="true" clickable clearable label="开始时间" v-model="state.qualification.validityPeriod1" placeholder="请选择资质证有效开始时间" @click="clickDatePicker('showValidityPeriod1' , 'validityPeriod1' , true);" />
+                                <nut-popup position="bottom" closeable close-icon-position="top-left" :style="{ height: '40%' }" v-model:visible="state.tag.showValidityPeriod1">
+                                    <van-datetime-picker v-show="state.tag.showValidityPeriod1" v-model="state.status.validityPeriod1" type="date" title="选择年月日" :min-date="state.status.minDate" :max-date="state.status.maxDate" @cancel="clickDatePicker('showValidityPeriod1' , 'validityPeriod1' , false);" @confirm="clickDatePicker('showValidityPeriod1' , 'validityPeriod1' , false);" />
+                                </nut-popup>
+
+                                <van-field v-show="state.qualification.qualificationType!='--'" required :readonly="true" clickable clearable label="结束时间" v-model="state.qualification.validityPeriod2" placeholder="请选择资质证有效结束时间" @click="clickDatePicker('showValidityPeriod2' , 'validityPeriod2' , true);" />
+                                <nut-popup position="bottom" closeable close-icon-position="top-left" :style="{ height: '40%' }" v-model:visible="state.tag.showValidityPeriod2">
+                                    <van-datetime-picker v-show="state.tag.showValidityPeriod2" v-model="state.status.validityPeriod2" type="date" title="选择年月日" :min-date="state.status.minDate" :max-date="state.status.maxDate" @cancel="clickDatePicker('showValidityPeriod2' , 'validityPeriod2' , false);" @confirm="clickDatePicker('showValidityPeriod2' , 'validityPeriod2' , false);" />
+                                </nut-popup>
+
+                                <van-field v-show="state.qualification.qualificationType!='--'" required :readonly="true" clickable clearable label="资质状态" v-model="state.qualification.qualificationStatus" placeholder="请选择资质状态" @click="state.tag.showQualificationStatus = true;" />
+                                <van-cascader v-show="state.tag.showQualificationStatus && state.qualification.qualificationType!='--'" title="请选择资质状态" :options="state.cascader.statusOptions" @close="state.tag.showQualificationStatus = false" @finish="companyQStatus" />
+                                
+                                <van-field v-show="state.qualification.qualificationType!='--' && state.qualification.qualificationStatus == '注销' " required :readonly="false" clickable clearable label="注销原因" rows="5" autosize type="textarea" v-model="state.qualification.cancellationReason" placeholder="请选择注销原因" />
                             </van-cell-group>
                         </van-form>
                     </van-cell-group>
@@ -55,21 +75,12 @@
 </template>
 
 <script>
-import {
-    ref,
-    reactive,
-    onMounted,
-    toRefs,
-    getCurrentInstance
-} from "vue";
-import {
-    useStore
-} from "vuex";
-import {
-    useRouter,
-    useRoute
-} from "vue-router";
+import { Dialog } from 'vant';
+import { ref, reactive, onMounted, toRefs, getCurrentInstance } from "vue";
+import { useStore } from "vuex";
+import { useRouter, useRoute } from "vue-router";
 import tabbar from "@/components/tabbar";
+
 export default {
     name: "base",
     components: {
@@ -93,29 +104,47 @@ export default {
                 levelOptions:[{"text":"一级资质","value":"一级资质"},{"text":"二级资质","value":"二级资质"},{"text":"三级资质","value":"三级资质"},{"text":"其他","value":"其他"}],
                 statusOptions:[{"text":"有效","value":"有效"},{"text":"无效","value":"无效"},{"text":"注销","value":"注销"},],
             },
+            radio: {
+                companyName: '',
+            },
+            item:{
+                create_time: dayjs().format('YYYY-MM-DD'),
+                companyName:'',
+            },
             qualification:{
+                id:'',
+                create_time: dayjs().format('YYYY-MM-DD'),
+                companyName:'',
                 qualificationType :'', // '资质类型',
                 qualificationLevel : '', //  '资质等级',
                 qualificationNumber : '', //'资质编号',
-                qualificationPeriod:'', // '资质证有效期',
+                qualificationPeriod: '', // '资质证有效期',
                 qualificationStatus :'', // '资质状态',
-                validityPeriod1: dayjs().format('YYYY-MM-DD HH:mm:ss'),
-                validityPeriod2: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+                validityPeriod1: dayjs().format('YYYY-MM-DD'),
+                validityPeriod2: dayjs().format('YYYY-MM-DD'),
                 cancellationReason:'', //     
             },
             status: {
-                cancellationTime: new Date(),
-                paidTime: new Date(),
-                paidTureTime: new Date(),
-                businessTerm: new Date(),
-                establish_time: new Date(),
-                minDate: new Date(1990, 0, 1),
+                validityPeriod1: new Date(),
+                validityPeriod2: new Date(),
+                minDate: new Date(1970, 0, 1),
                 maxDate: new Date(2099, 12, 31),
             },
+            tag:{
+                showCompanyName:false,
+                showValidityPeriod1:false,
+                showValidityPeriod2:false,
+                showQualificationType:false,
+                showQualificationLevel:false,
+                showQualificationStatus:false,
+                showKey: '',
+            },
+            companyNameColumns:[],
             qualificationTypeColumns:['房地产开发','建筑装修装饰工程专业承包','食品经营许可证'],
         });
 
         onMounted(() => {
+            state.qualification.qualificationPeriod = state.qualification.validityPeriod1 + ' 至 ' + state.qualification.validityPeriod2;
             window.addEventListener("scroll", pageScroll);
         });
 
@@ -125,41 +154,55 @@ export default {
             $router.push(back);
         };
 
+        //执行搜索
         const searching = () => {
             console.log('searching');
         };
 
-        const beforeEnter = el => {
-            const dom = ball.el;
-            const rect = dom.getBoundingClientRect();
-            const x = rect.left - window.innerWidth * 0.6;
-            const y = -(window.innerHeight - rect.top);
-            el.style.display = "block";
-            el.style.transform = `translate3d(0,${y}px,0)`;
-            const inner = el.querySelector(".inner");
-            inner.style.transform = `translate3d(${x}px,0,0)`;
+        //设置资质类型
+        const companyQType = (config) => {
+            state.tag.showQualificationType = false;
+            state.qualification.qualificationType = config.selectedOptions.map((option) => option.text).join('/');
         };
 
-        const enter = (el, done) => {
-            document.body.offsetHeight;
-            el.style.transform = "translate3d(0,0,0)";
-            const inner = el.querySelector(".inner");
-            inner.style.transform = "translate3d(0,0,0)";
-            el.addEventListener("transitionend", done);
+        //设置资质等级
+        const companyQLevel = (config) => {
+            state.tag.showQualificationLevel = false;
+            state.qualification.qualificationLevel = config.selectedOptions.map((option) => option.text).join('/');
         };
 
-        const afterEnter = el => {
-            el.style.display = "none";
+        //设置资质状态
+        const companyQStatus = (config) => {
+            state.tag.showQualificationStatus = false;
+            state.qualification.qualificationStatus = config.selectedOptions.map((option) => option.text).join('/');
         };
 
+        //确认操作
+        const commonConfirm = async (index, value, key, item, type = '') => {
+            await Betools.manage.commonDataConfirm(index, value, key, item, state, Dialog, type);
+        };
+
+        //公司类型确认操作
+        const companyTypeConfirm = async (value, index) => {
+            await Betools.manage.commonDataConfirm(index, value, 'companyType', state.qualification, state, Dialog, '');
+        };
+
+        //日期选择确认
+        const clickDatePicker = async (name, tname, status = true) => {
+            state.tag[name] = status;
+            state.qualification[tname] = dayjs(state.status[tname]).format('YYYY-MM-DD');
+            state.qualification.qualificationPeriod = state.qualification.validityPeriod1 + ' 至 ' + state.qualification.validityPeriod2;
+        };
+
+        //通用搜索
+        const commonSearch = async (data, value, key, fieldKey, type = 'user') => {
+            await Betools.manage.commonDataSearch(data, value, key, fieldKey, state, type);
+        };
+
+        //页面滚动
         const pageScroll = () => {
-            const scrollTop =
-                window.pageYOffset ||
-                document.documentElement.scrollTop ||
-                document.body.scrollTop;
-            scrollTop > 100 ?
-                (headerActive.value = true) :
-                (headerActive.value = false);
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+            scrollTop > 100 ? (headerActive.value = true) : (headerActive.value = false);
         };
 
         return {
@@ -167,11 +210,15 @@ export default {
             state,
             returnBack,
             searching,
-            beforeEnter,
-            enter,
-            afterEnter,
             headerActive,
-            pageScroll
+            pageScroll,
+            companyQType,
+            companyQLevel,
+            companyQStatus,
+            commonConfirm,
+            companyTypeConfirm,
+            clickDatePicker,
+            commonSearch
         };
     }
 };
