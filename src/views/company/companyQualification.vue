@@ -88,12 +88,31 @@ export default {
         const headerActive = ref(false);
 
         const state = reactive({
-            imgs: [],
-            item: {
-                createtime: dayjs().format('YYYY-MM-DD'),
-                sealtype: '',
-                ordertype: '',
+            cascader:{
+                typeOptions:[{"text":"房地产开发","value":"房地产开发"},{"text":"建筑装修装饰工程专业承包","value":"建筑装修装饰工程专业承包"},{"text":"食品经营许可证","value":"食品经营许可证"},{"text":"--","value":"--"}],
+                levelOptions:[{"text":"一级资质","value":"一级资质"},{"text":"二级资质","value":"二级资质"},{"text":"三级资质","value":"三级资质"},{"text":"其他","value":"其他"}],
+                statusOptions:[{"text":"有效","value":"有效"},{"text":"无效","value":"无效"},{"text":"注销","value":"注销"},],
             },
+            qualification:{
+                qualificationType :'', // '资质类型',
+                qualificationLevel : '', //  '资质等级',
+                qualificationNumber : '', //'资质编号',
+                qualificationPeriod:'', // '资质证有效期',
+                qualificationStatus :'', // '资质状态',
+                validityPeriod1: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+                validityPeriod2: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+                cancellationReason:'', //     
+            },
+            status: {
+                cancellationTime: new Date(),
+                paidTime: new Date(),
+                paidTureTime: new Date(),
+                businessTerm: new Date(),
+                establish_time: new Date(),
+                minDate: new Date(1990, 0, 1),
+                maxDate: new Date(2099, 12, 31),
+            },
+            qualificationTypeColumns:['房地产开发','建筑装修装饰工程专业承包','食品经营许可证'],
         });
 
         onMounted(() => {
